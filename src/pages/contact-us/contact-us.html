@@ -1,0 +1,34 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'SIDEMENU.contactus' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form>
+        <div class="social-group">
+            <h5>You Can Join Us On</h5>
+            <img src="./assets/imgs/social/face.png" />
+            <img src="./assets/imgs/social/tw.png" />
+            <img src="./assets/imgs/social/google.png" />
+            <img src="./assets/imgs/social/instg.png" />
+        </div>
+        <br />
+       <h5>Or Send Your Message Here</h5> 
+        <ion-item>
+            <ion-input type="text" name="name" placeholder="Your Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" name="title" placeholder="Subject Title"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-textarea name="description" placeholder="Your Message"></ion-textarea>
+        </ion-item>
+        <br />
+        <button ion-button type="submit" block>Submit</button>
+    </form>
+</ion-content>

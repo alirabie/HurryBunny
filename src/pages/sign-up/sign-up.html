@@ -1,0 +1,85 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{'PAGE_TITLE.signup' | translate}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="{{oriantation}}">
+
+    <!--<h5 class="title">{{'SIgNUP.creat' | translate}}</h5>-->
+    <div class="pageLogo">
+        <img src="./assets/imgs/login-logo.png" />
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">
+        <ion-list no-line>
+
+            <ion-item class="colr">
+                <ion-label floating>{{'SIgNUP.fname' | translate}}</ion-label>
+                <ion-input formControlName="firstName" type="text"></ion-input>
+            </ion-item>
+            <span class="warning" *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched">
+                <span [hidden]="!form.controls['firstName'].errors.required">
+                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>
+                </span>
+            </span>
+
+            <ion-item class="colr">
+                <ion-label floating>{{'SIgNUP.lname' | translate}}</ion-label>
+                <ion-input formControlName="lastname" type="text"></ion-input>
+            </ion-item>
+            <span class="warning" *ngIf="form.controls['lastname'].hasError('required') && form.controls['lastname'].touched">
+                <span [hidden]="!form.controls['lastname'].errors.required">
+                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>
+                </span>
+            </span>
+
+
+
+            <ion-item class="colr">
+                <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
+                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">
+                    <ion-option data-countryCode="SA" value="966">{{'Ksa' | translate}}</ion-option>
+                    <ion-option data-countryCode="EG" value="20">{{'EG' | translate}}</ion-option>
+                    <ion-option data-countryCode="US" value="1">{{'US' | translate}}</ion-option>
+                    <ion-option data-countryCode="BH" value="973">{{'bh' | translate}}</ion-option>
+                    <ion-option data-countryCode="CA" value="1">{{'CA' | translate}}</ion-option>
+                    <ion-option data-countryCode="CN" value="86">{{'CN' | translate}}</ion-option>
+                    <ion-option data-countryCode="FR" value="33">{{'FR' | translate}}</ion-option>
+                    <ion-option data-countryCode="IN" value="91">{{'IN' | translate}}</ion-option>
+                    <ion-option data-countryCode="IQ" value="964">{{'IQ' | translate}}</ion-option>
+                    <ion-option data-countryCode="IT" value="39">{{'IT' | translate}}</ion-option>
+                    <ion-option data-countryCode="LY" value="218">{{'LY' | translate}}</ion-option>
+                    <ion-option data-countryCode="MA" value="212">{{'MA' | translate}}</ion-option>
+                    <ion-option data-countryCode="QA" value="974">{{'QA' | translate}}</ion-option>
+
+                </ion-select>
+            </ion-item>
+
+
+
+            <ion-item class="colr">
+                <ion-label floating>{{'SIgNUP.phone' | translate}}</ion-label>
+                <ion-input formControlName="phone" type="text"></ion-input>
+            </ion-item>
+            <span class="warning" *ngIf="form.controls['phone'].hasError('required') && form.controls['phone'].touched">
+                <span [hidden]="!form.controls['phone'].errors.required">
+                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>
+                </span>
+            </span>
+
+
+        </ion-list>
+
+        <div class="btn">
+            <button ion-button round color="primary" [disabled]="!form.valid">
+                <span class="fontColor">{{'SIgNUP.cont' | translate}}</span>
+            </button>
+        </div>
+
+    </form>
+
+</ion-content>

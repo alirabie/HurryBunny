@@ -1,0 +1,26 @@
+<ion-content class="bg">
+    <div class="langsc" >
+         <button class="cartbutton" #myButton ion-button icon-only (click)="toggleIcon()">
+       <!-- <img class="langlogo" src="./assets/imgs/switchlang.png"> -->
+       <h6 class="langtxt">{{langName}}</h6>
+    </button>
+    </div> 
+
+   
+
+
+    <div class="logo">
+        <img src="./assets/imgs/HBlogo.png">
+        <h1 class="appname">HurryBunny</h1>
+    </div>
+
+</ion-content>
+<ion-footer no-shadow class="bg">
+
+    <ion-row>
+        <button class="btn1" ion-button clear (click)="login()">{{ 'BUTTONS.btn_login' | translate }}</button>
+        <button class="btn1" ion-button clear (click)="signUp()">{{ 'BUTTONS.btn_signup' | translate }}</button>
+        <button class="btn1" ion-button clear (click)="gust()">{{ 'BUTTONS.btn_gust' | translate }}</button>
+    </ion-row>
+
+</ion-footer>

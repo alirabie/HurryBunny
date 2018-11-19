@@ -1,0 +1,209 @@
+​
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<ion-header>
+
+
+  <ion-navbar hideBackButton="true">
+    <!--Shopping Cart button-->
+    <!-- <ion-buttons (click)="loadCartPage()" start left>
+      <button ion-button icon-only>
+        <ion-icon name="md-cart"></ion-icon>
+        <ion-badge color="secondary">{{badgeValue}}</ion-badge>
+      </button>
+    </ion-buttons> -->
+
+    <!--<ion-buttons (click)="goShoppingCartPage()" start>
+        <button ion-button icon-only>
+            <ion-icon name="md-cart"></ion-icon>
+            <ion-badge color="danger">{{badgeValue}}</ion-badge>
+        </button>
+    </ion-buttons>-->
+
+    <!--Title of Page-->
+    <ion-title>
+      {{ 'PAGE_TITLE.home' | translate }}
+    </ion-title>
+
+    <!--Search Bar button-->
+    <ion-buttons (click)="onButtonClick()" left>
+      <button ion-button icon-only>
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons (click)="goToLocationPage()" right>
+      <button ion-button icon-only >
+        <ion-icon name='ios-navigate-outline'></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+
+
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar *ngIf="buttonClicked" placeholder="{{'search' | translate}}" [(ngModel)]="searchTerm" (ionInput)="setFilteredLocations($event)" (ionCancel)="onCancel()">
+  </ion-searchbar>
+
+  
+  
+
+  <!--Start Advertisements Slider-->
+  <ion-slides pager options="{pagination: true}" autoplay="5000" loop="true" speed="500" dir="{{oriantation}}">
+
+      <ion-slide *ngIf="ads.length==0" style="background-color: bisque; color: #555;">
+          <img class="img" height="100 px" width="100 px" src="./assets/imgs/addsPlaceholder.png" />
+        </ion-slide>
+
+    <ion-slide *ngFor="let ad of ads" style="background-color: bisque; color: #555;"  (click)="goResturantInfoFromAd(ad.vendor_id)">
+      <img class="img" height="100 px" width="100 px" [src]="ad.image.src" />
+      <!-- <h2>Advertising 1</h2> -->
+    </ion-slide>
+
+  </ion-slides>
+
+
+
+
+
+  <!-- Delivery type selection segment  -->
+  <!-- <ion-segment  (ionChange)="switchDeliveryType($event)" full="true"  assertive>
+    <ion-segment-button value="2">
+        <i class=" fa fa-gift" style="font-size:18px;  text-align: center;"></i>
+        <label>{{'pickup' | translate}}</label>
+        
+    </ion-segment-button>
+    <ion-segment-button value="1">
+        <i class="fa fa-truck" style="font-size:18px;  text-align: center;"></i>
+        <label>{{'delivry' | translate}}</label>
+    </ion-segment-button>
+  </ion-segment> -->
+
+
+
+
+  <!--Segment Tabs-->
+  <div class="seg-tabs" dir="{{oriantation}}">
+    <ion-segment (ionChange)="switchDeliveryType($event)" [(ngModel)]="serviceType">
+      <ion-segment-button value="1">
+        <img src="./assets/imgs/delivery-icon.png" />{{'delivry' | translate}}</ion-segment-button>
+      <ion-segment-button value="2">
+        <img src="./assets/imgs/pickup-icon.png" />{{'pickup' | translate}}</ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+
+
+
+
+
+
+  <ion-label class="emptylbl" *ngIf="empty">{{ 'EMPTY' | translate }}</ion-label>
+  <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>
+
+
+  <!--Start The List Of Resturants-->
+  <ion-list *ngIf="serviceType==1">
+
+    <ion-item [color]="even? 'light' : 'whiteer'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"
+      (click)="goResturantInfo(resturant.id,resturant.branchid)">
+      <ion-thumbnail item-start>
+        <!--<img [src]="resturant.profile_image">-->
+        <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />
+        <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />
+      </ion-thumbnail>
+
+      <div class="group">
+        <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>
+
+        <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"
+          emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+        </rating>
+        <ion-badge class="badge" start left *ngIf="compareResturantId(resturant.id)" color="primary">{{badgeValue}}</ion-badge>
+      </div>
+
+
+      <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->
+
+      <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">
+        <p class="settings" *ngIf="serviceType==1">
+          <small class="settingsname">{{'mimimum' | translate}}</small>
+          <small>{{resturant.Settings.MinimumOrderAmount}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>
+        </p>
+        |
+        <p class="settings" *ngIf="serviceType==1">
+          <small class="settingsname">{{'deliveryfees' | translate}}</small>
+          <small>{{resturant.Settings.DeliveryFees}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>
+        </p>
+        |
+        <p class="settings" *ngIf="serviceType==1">
+          <small class="settingsname">{{'deliverytime' | translate}}</small>
+          <small>{{resturant.Settings.DeliveryTime}} min</small>
+        </p>
+      </ion-row>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="serviceType==2">
+
+      <ion-item [color]="even? 'light' : 'whiteer'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"
+        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.lat,resturant.lng))">
+        <ion-thumbnail item-start>
+          <!--<img [src]="resturant.profile_image">-->
+          <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />
+          <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />
+        </ion-thumbnail>
+  
+        <div class="group">
+          <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>
+  
+          <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"
+            emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+          </rating>
+          <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>
+        </div>
+  
+  
+        <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->
+  
+        <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">
+        
+          <p class="settings" *ngIf="serviceType==2">
+            <small class="settingsname">{{'distance' | translate}}</small>
+            <small>{{getDistance(resturant.lat,resturant.lng)}} {{'km' | translate}}</small>
+          </p>
+          |
+          <p class="settings" *ngIf="serviceType==2">
+            <small class="settingsname">{{'mealpreparetime' | translate}}</small>
+            <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>
+          </p>
+          |
+          <p class="settings" *ngIf="serviceType==2">
+            <small class="settingsname">{{'closetime' | translate}}</small>
+            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>
+          </p>
+        </ion-row>
+  
+      </ion-item>
+    </ion-list>
+
+</ion-content>
+
+<!-- <ion-footer>
+  <div class="header-banner">
+    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500" *ngFor="let product of productInfo">
+      <ion-slide *ngFor="let image of product.images">
+        <img class="img" height="100 px" width="100 px" [src]="image.src">
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-footer> -->

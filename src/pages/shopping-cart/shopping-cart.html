@@ -1,0 +1,165 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'orderdetals' | translate}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir={{oriantation}}>
+
+    <!-- Head Part -->
+    <!-- <div class="hgroup">
+        <h3>{{'orderdetals' | translate}}</h3>
+    </div>  -->
+
+
+    <!--Restaurant name and logo-->
+    <ion-row class="rest-info">
+        <img src="{{resImage}}">
+        <div>
+            <h3>{{resLable}}</h3>
+            <small>{{resDescription}}</small>
+        </div>
+    </ion-row>
+
+    <div>
+        <ion-row dir="{{oriantation}}">
+            <form [formGroup]="discountcopun" (ngSubmit)="applyDiscount(discountcopun.value)" class="footer">
+                <button color="secondary" ion-button round block [disabled]="!discountcopun.valid">{{'apply' | translate}}</button>
+                <ion-input formControlName="code" placeholder="{{'descountcode' | translate}}"></ion-input>
+            </form>
+        </ion-row>
+    </div>
+    <!--The Order Details Table-->
+    <table class="details" full>
+        <thead>
+            <tr>
+                <th class="order">{{'order' | translate}}</th>
+                <th class="qty">{{'qty' | translate}}</th>
+                <th class="price">{{'pricc' | translate}}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of cartItemsList">
+                <td class="order">
+                    <!--The Main Meal-->
+                    <div class="main-order">
+                        <h6 class="ordname">
+                            <ion-icon name="ios-close-circle-outline" (click)="delItem(item.id)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{item.product.name}} ({{item.product.price*item.quantity}})&#x200E;</h6>
+                    </div>
+                    <!--The List of Addition-->
+                    <ion-list no-lines class="add" *ngIf="item.additions.length != 0">
+                        <p>{{'Additions' | translate}}</p>
+                        <ion-item *ngFor="let addition of item.additions">
+                            <ion-icon name="ios-close-circle-outline" (click)="delAddition(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{addition.addition_name}}
+
+                            <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>
+                            <label color="primary" *ngIf="addition.price==0">({{'free' | translate}})&#x200E;</label>
+
+
+                        </ion-item>
+                    </ion-list>
+                    <!--The List of Customisation-->
+                    <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">
+                        <p>{{'Customization' | translate}}</p>
+                        <ion-item *ngFor="let customiz of item.customizations">
+                            <ion-icon name="ios-close-circle-outline" (click)="delCustomization(item,customiz.id,item.customizations)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{customiz.customization_name}}
+
+
+                            <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>
+                            <label color="primary" *ngIf="customiz.price==0">({{'free' | translate}})&#x200E;</label>
+
+                        </ion-item>
+                    </ion-list>
+                </td>
+                <td class="qty">
+                    <!--The List of Quantity for The Main Meal-->
+                    <ion-item class="main-order">
+                        <button ion-button icon-only (click)="downCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">
+                            <ion-icon name="remove"></ion-icon>
+                        </button>
+                        {{item.quantity}}
+                        <button ion-button icon-only (click)="upCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">
+                            <ion-icon name="add"></ion-icon>
+                        </button>
+                    </ion-item>
+                    <!--The List of Quantity for Addition-->
+                    <ion-list no-lines class="add">
+                        <ion-item *ngFor="let addition of item.additions">
+                            <button ion-button icon-only (click)="downAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">
+                                <ion-icon name="remove"></ion-icon>
+                            </button>
+                            {{addition.quantity}}
+                            <button ion-button icon-only (click)="upAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">
+                                <ion-icon name="add"></ion-icon>
+                            </button>
+                        </ion-item>
+                    </ion-list>
+                </td>
+                <td class="price">{{calcEachItemPrice(item)}}</td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>{{'total' | translate}}</td>
+                <td></td>
+                <td class="price">{{total}}</td>
+            </tr>
+            <tr *ngIf="serviceTypeId==1">
+                <td>{{'deliveryfees' | translate}}</td>
+                <td></td>
+                <td class="price">{{deliveryees}}</td>
+            </tr>
+
+
+            <!-- <tr>
+                <td>{{'discount' | translate}}</td>
+                <td></td>
+                <td class="price">00.00</td>
+            </tr> -->
+            <!-- <tr>
+                <td>Subtotal</td>
+                <td></td>
+                <td class="price">90.00 SR</td>
+            </tr> -->
+        </tfoot>
+    </table>
+
+
+
+    <ion-list no-lines class="add" *ngIf="discountCopuns.length != 0">
+        <p class="discuntCopuns">{{'discountCopuns' | translate}}</p>
+        <ion-item *ngFor="let coupon of discountCopuns">
+            <ion-icon color="danger" name="ios-close-circle-outline" (click)="removeDiscountCopun(coupon.Key)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>
+            {{'dicountcopun' | translate}}
+            <label> ({{coupon.Value}})&#x200E;</label>
+        </ion-item>
+    </ion-list>
+
+
+    <ion-item class="notes" dir="{{oriantation}}"> 
+        <ion-label class="lablee" floating>{{'notes' | translate}}</ion-label>
+        <ion-input [(ngModel)]="orderNotes"></ion-input>
+      </ion-item>
+    <!-- <ion-input dir="{{oriantation}}" class="notes" placeholder="{{'notes' | translate}}"></ion-input> -->
+
+    <!--Choose Payment Method Link-->
+    <button ion-button clear class="paymethod">{{'chosepaymethod' | translate}}</button>
+
+    <!--The Total Amount Requested-->
+    <ion-row class="allcash">
+        <p>
+            <small>{{'amountreq' | translate}}</small> {{total+deliveryees}} SR</p>
+    </ion-row>
+
+    <!--Submit Button & Minimum Order Note-->
+    <ion-row class="subtn">
+        <button ion-button type="submit" block round (click)="loadOrderData()">{{'submet' | translate}}</button>
+        <!-- <small>Minimum Order 25.00 SAR</small> -->
+    </ion-row>
+
+</ion-content>

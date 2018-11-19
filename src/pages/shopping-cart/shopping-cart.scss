@@ -1,0 +1,238 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+$color7:#c6bbac;
+
+page-shopping-cart {
+    .scroll-content {
+        padding: 15px 0;
+        padding-bottom:0
+    }
+
+    .hgroup{
+        display:flex;
+        justify-content:space-between;
+        align-items: center;
+        height:40px;
+        margin-bottom:10px;
+        padding:10px;
+        h3 {
+            margin: 0;
+            color:$color2;
+        }
+        button.button {
+            height: 35px;
+            color:$color2;
+            border-color:$color2;
+            font-weight:600
+        }
+    }
+
+    ion-row.rest-info.row {
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        width: calc(100% - 20px); 
+        margin:auto;
+        img{
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+        h3,small{margin:0;  color:$color2}
+    }
+
+
+    table.details { 
+        table-layout: fixed;
+        width: calc(100% - 20px); 
+        margin:auto;
+		border-collapse: collapse;
+        tr td{border-bottom: 1px inset #ccc}
+        tr.done { 
+		    background: #eee; 
+	    }
+
+	    th { 
+		    background: $color2; 
+		    color: #fff; 
+		    font-weight: bold; 
+	    }
+
+	    td, th { 
+		    padding: 5px; 
+		    border-bottom: 1px solid #ccc; 
+		    text-align: start; 
+            ion-icon.icon.ion-ios-close-circle-outline{
+                font-weight:500
+            }
+            p.ordname {padding: 0 5px}
+	    }
+
+        td{color:#333}
+
+        th.price,th.qty,td.order {text-align:start}
+
+        th.qty, td.qty {width: 20%}
+
+        td.price {
+            background: #eee;
+            text-align:center
+        }
+
+        th.price, td.price {width: 20%}
+
+        td.order {
+            h6.ordname {margin-top: 10px}
+            ion-list.add.list ,ion-list.cust.list {
+                margin-bottom:0;
+                p{
+                    margin: 5px 0 0;
+                    padding: 0 18px;
+                    font-size: 10px;
+                    font-weight: bold;
+                    color: $color1;
+                    padding-top: 5px;
+                }
+                ion-label{color:#555; font-size: 13px;}
+            }
+        }
+        
+        td.qty {
+            vertical-align:top;
+            ion-item.main-order .item-inner {border-bottom: 0}
+            ion-item.item.item-block{padding:0}
+            .item-inner{
+                padding:0;
+                ion-label.label {display: flex; margin:0}
+                button.button {
+                    background: transparent;
+                    color: #555;
+                    box-shadow: none;
+                    border: 1px solid #777;
+                    border-radius: 18px;
+                    width: 13px;
+                    height: 13px;
+                }
+                ion-icon.icon {font-size: 16px}
+                input[type=number]::-webkit-inner-spin-button, 
+                input[type=number]::-webkit-outer-spin-button { 
+                  -webkit-appearance: none; 
+                  margin: 0; 
+                }
+                input[type=number]{width: 30px; border:none; text-align: center;} 
+            }
+            ion-list.add.list {
+                margin-top: 21px;
+            }
+        }
+
+        tfoot{
+            border-bottom: 1px inset #ccc;
+            td{color:$color2; border-bottom:0; font-weight:600}
+            td.price{color:#222; font-weight:normal}
+        }
+        ion-icon.icon.icon-ios.ion-ios-close-circle-outline {color: indianred}
+	}
+
+    button.paymethod{
+        display:block;
+        color:$color2;
+        font-size:16px;
+        font-weight:600;
+        text-decoration:underline;
+        margin:10px auto
+    }
+
+    ion-row.allcash.row{
+        background-color:#eee;
+        text-align:center;
+        margin-bottom:25px;
+        p{
+            width:100%;
+            font-size:1.8em;
+            font-weight:600;
+            margin:10px 0;
+            color:$color2
+        }
+        small{
+            font-weight:500;
+            font-size:14px
+        }
+    }
+	
+    ion-row.subtn.row{
+        text-align:center;
+        padding: 0 15px;
+        margin-bottom: 5px;
+        button {height: 35px}
+        small{width:100%; 
+              color:$color1; 
+              padding:5px 0;
+              font-size:12px
+        }
+    }
+
+
+
+	/*MQ*/
+	@media (max-width: 480px){
+    }
+    
+
+
+    .footer {
+        display: flex;
+        width: 100%;
+        padding:4px 15px;
+        align-items:center;
+        input{
+          margin: 5px;
+          text-align: center;
+          font-size: 12px;
+          border: 1px solid #777;
+          padding:4px 15px;
+          width:100%;
+      }
+        button{
+            width:30%;
+            font-size: 10px;
+            font-weight: bold;
+            height: 30px;
+            background:$color2
+        }
+    }
+
+
+
+    .discuntCopuns{
+        margin: 5px 0 0;
+        width: calc(100% - 20px); 
+        height: 30px;
+        margin:auto;
+        text-align: center;
+        padding: 0 18px;
+        font-size: 15px;
+        background-color:$color2;
+        font-weight: bold;
+        color: $color3;
+        padding-top: 5px;
+    }
+
+
+
+
+    .notes{
+        .lablee{
+            color: #f77123;
+            font-weight: bold;
+        }
+        margin:auto;
+        text-align: start;
+        font-size: 15px;
+        padding:0 15px;
+       
+        width: calc(100% - 20px);
+    }
+}

@@ -1,0 +1,99 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+
+page-settings {
+    ion-list.list {
+        width:85%;
+        margin: 5% auto;
+        ion-label,.select-placeholder.select-text {
+            font-size: 16px;
+            color: $color2;
+            font-weight:600;
+        }
+
+        /*ion-select{
+            text-align: center;
+            align-content: center;
+            max-width: 100%;
+            margin: 10px 0;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 !important;
+            font-size: 18px;
+            span.button-inner{text-align:-webkit-auto;}
+            .select-icon {
+                display:none
+            }
+        }*/
+        .item-input .label-md, .item-select .label-md, .item-datetime .label-md{color:$color2}
+    
+    }
+
+    @media (min-width:640px){
+        ion-list.list {
+            width: 50%;
+        }
+    }
+    
+}
+
+.list-ios > .item-block:first-child {border-top: none}
+
+
+/*Alert pop select menu*/
+
+.alert-ios .alert-message:empty {
+    padding: 0;
+    text-align: center;
+}
+
+.alert-md .alert-message:empty {
+    padding: 0;
+    text-align: center;
+}
+.alert-ios .alert-radio-group, .alert-ios .alert-checkbox-group {
+    overflow: visible;
+    text-align: center;
+}
+
+
+.alert-md .alert-radio-group, .alert-ios .alert-checkbox-group {
+    overflow: visible;
+    text-align: center;
+}
+
+
+
+
+
+
+.alert-button-group {
+    padding: 0 !important;
+    text-align: center;
+}
+
+button.alert-button.alert-button-md.alert-button-default.alert-button-default-md {
+    margin: 0;
+    flex: 1;
+    border-right: 1px solid #ccc;
+    color: #fff;
+    background: $color1;
+    text-align: center;
+}
+.alert-md .alert-button .button-inner{
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+button.disable-hover.alert-button.alert-button-ios.alert-button-default{
+    background: $color1;
+    color: #fff;
+    font-size:12px;
+    font-weight:normal;
+    text-align: center;
+}

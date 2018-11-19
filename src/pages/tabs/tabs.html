@@ -1,0 +1,6 @@
+<ion-tabs   selectedIndex="4" dir="{{oriantation}}">
+  <ion-tab [root]="tab1Root"  tabIcon="ios-restaurant" tabTitle = "{{ 'resturants' | translate}}" ></ion-tab>
+  <ion-tab [root]="tab2Root"  tabIcon="md-paper" tabTitle ="{{ 'orders' | translate}}" [enabled]="checkLogin()"  ></ion-tab>
+  <ion-tab [root]="tab4Root"  tabIcon="md-megaphone" tabTitle="{{ 'offers' | translate}}" ></ion-tab>
+  <ion-tab [root]="tab3Root"  tabIcon="md-more" tabTitle="{{ 'more' | translate}}" ></ion-tab>
+</ion-tabs>

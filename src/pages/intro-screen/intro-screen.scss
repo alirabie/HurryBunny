@@ -1,0 +1,83 @@
+page-intro-screen {
+    .row{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .appname{
+        font-size: 30px;
+        font-weight: bold;
+        color: #f4f4f4;
+        text-align: center;
+        font-style: italic;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .lang{
+        color: #f4f4f4;
+        width: 100%;
+        max-width: 100% !important;
+        text-align: center;
+        font-weight: bold;
+        font-size: 15pt;
+    }
+
+    .segcolor{
+        color: #f4f4f4;
+    }
+
+    .btn1{
+        flex: auto;
+        width: 5%;
+        padding: 10pt;
+        margin: 5pt;
+        color:#f4f4f4;
+        outline-offset: 3pt;
+        font-size: 10pt;
+        font-weight: bold;
+        text-decoration: underline;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+         
+    .bg{background-color: #F77123}
+
+    .cartbutton{
+        background: none !important;
+        background-color: none !important;
+        box-shadow: none !important;
+    }
+
+    .scroll-content {
+        position: relative;
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+    button.cartbutton {height: auto}
+
+    .langsc {
+        position: absolute;
+        margin: 20px 20px 0;
+    }
+    .logo {
+        width: 100%;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .langlogo{width: 25pt}
+
+    .langtxt{
+        font-family: sans-serif;
+        padding : 10px;
+        font-size: 20px;
+        font-weight: bold;
+        margin:0;
+        border : 0.1em solid #f4f4f4;
+        border-radius: 10px;
+        text-align: center !important ; 
+    }
+
+    .footer-md::before {background: transparent}
+}

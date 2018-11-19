@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="ratingpage">
+
+  <ion-item class="addRating"  dir="{{oriantation}}">
+       <!--Row of Rating form-->
+       <button ion-button full (click)="onButtonClick()" class="style2">
+        <ion-icon name="add"></ion-icon>{{'addrating' | translate}}</button>
+    <form [formGroup]="form" (ngSubmit)="addMealReview(form.value)" *ngIf="buttonClicked">
+        <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"></rating>
+        <textarea formControlName="reviewtxt" type="text" placeholder="{{'addyourreview' | translate}}"></textarea>
+        <button ion-button round [disabled]="!form.valid">{{'send' | translate}}</button>
+    </form>
+  </ion-item>
+
+  <ion-list dir="{{oriantation}}">
+    <!--Users Rating Part-->
+    <ion-item *ngFor="let review of mealReviews">
+      <h3>{{review.customer_name}}</h3>
+      <p>{{review.review_text}}</p>
+      <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating" ></rating>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,14 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+
+page-offers {
+    ion-content.content, .scroll-content { padding: 0 !important}
+    ion-item.item,ion-item.item .item-inner{padding: 0 !important}
+    ion-label.label {margin: 0}
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

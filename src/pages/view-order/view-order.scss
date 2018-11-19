@@ -1,0 +1,219 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+$color7:#c6bbac;
+
+page-view-order {
+    ion-row.rest-info.row {
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 20px); 
+        margin:auto;
+        img{
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+        }
+        h3,span{margin:0; color:$color2}
+    }
+
+    .seg-tabs {
+        position:relative;
+    top:0;
+    margin-top:0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    ion-segment.segment {
+        border : .5px solid $color2;
+        ion-segment-button.segment-button {
+            opacity: 1;
+            color: $color2;
+            font-size: 15px;
+            text-transform: uppercase;
+            border: none;
+            height: 35px;
+            font-weight: bold;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            img{
+                width:30px; 
+                height:30px;
+                margin:5px
+
+            }
+        }
+        ion-segment-button.segment-button.segment-activated {
+            background-color: $color2;
+            color: #fff;
+            img{
+                -webkit-filter: brightness(0) invert(1);
+                filter: brightness(0) invert(1);
+            }
+        }
+    }
+    }
+
+    .seg-content{
+    
+    }
+
+    ion-list.status {
+        display:flex;
+        div.steps-img{
+            width:65px;
+            height:auto
+        }
+        ion-item-group {
+            margin: 15px;
+            .step {
+                margin-bottom: 65px;
+                p{
+                    margin:0;
+                    font-size:16px
+                }
+                p,small{color:#777}
+            }
+            .step.active{
+                p,small{color:$color2; font-weight:500}
+            }
+        }
+    }
+
+
+    .butn{
+        margin-top: 5px;
+    }
+
+ h2{
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+    
+   }
+
+
+
+   table.details { 
+    table-layout: fixed;
+    width: 100%; 
+    margin:auto;
+    border-collapse: collapse;
+    tr td{border-bottom: 1px inset #ccc}
+    tr.done { 
+        background: #eee; 
+    }
+
+    th { 
+        background: $color3; 
+        color:black; 
+        font-weight: bold; 
+    }
+
+    td, th { 
+        padding: 5px; 
+        border-bottom: 1px solid #ccc; 
+        text-align: start; 
+        ion-icon.icon.ion-ios-close-circle-outline{
+            font-weight:500
+        }
+        p.ordname {padding: 0 5px}
+    }
+
+    td{color:#333}
+
+    th.price,th.qty,td.order {text-align:start}
+
+    th.qty, td.qty {width: 20%}
+
+    td.price {
+        background: #eee;
+        text-align:center
+    }
+
+    th.price, td.price {width: 20%}
+
+    td.order {
+        h6.ordname {margin-top: 10px}
+        ion-list.add.list ,ion-list.cust.list {
+            margin-bottom:0;
+            p{
+                margin: 5px 0 0;
+                padding: 0 10px;
+                font-size: 10px;
+                font-weight: bold;
+                color: $color1;
+                padding-top: 5px;
+            }
+            ion-label{color:#555; font-size: 13px;}
+        }
+    }
+    
+    td.qty {
+        vertical-align:top;
+        ion-item.main-order .item-inner {border-bottom: 0}
+        ion-item.item.item-block{padding:0}
+        .item-inner{
+            padding:0;
+            ion-label.label {display: flex; margin:0}
+            button.button {
+                background: transparent;
+                color: #555;
+                box-shadow: none;
+                border: 1px solid #777;
+                border-radius: 18px;
+                width: 13px;
+                height: 13px;
+            }
+            ion-icon.icon {font-size: 16px}
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+              -webkit-appearance: none; 
+              margin: 0; 
+            }
+            input[type=number]{width: 30px; border:none; text-align: center;} 
+        }
+        ion-list.add.list {
+            margin-top: 21px;
+        }
+    }
+
+    tfoot{
+        border-bottom: 1px inset #ccc;
+        td{color:$color2; border-bottom:0; font-weight:600; font-size: 11px}
+        td.price{color:#222; font-weight:normal;}
+    }
+    ion-icon.icon.icon-ios.ion-ios-close-circle-outline {color: indianred}
+}
+
+  
+
+
+
+ion-row.allcash.row{
+    background-color:#eee;
+    text-align:center;
+    margin-top:15px;
+    p{
+        width:100%;
+        font-size:1.8em;
+        font-weight:600;
+        margin:10px 0;
+        color:$color2
+    }
+    small{
+        font-weight:500;
+        font-size:14px
+    }
+}
+
+
+
+
+
+
+
+
+}

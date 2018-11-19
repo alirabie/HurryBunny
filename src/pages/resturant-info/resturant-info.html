@@ -1,0 +1,181 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <!--Shopping Cart button-->
+        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;" (click)="loadCartPage()" start
+            right>
+            <button ion-button icon-only>
+                <ion-icon name="md-cart"></ion-icon>
+                <ion-badge color="secondary">{{badgeValue}}</ion-badge>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <!-- info for resturant -->
+    <div dir="{{oriantation}}" class="resturantInfoHeader">
+        <ion-item no-lines>
+            <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />
+            <div class="group">
+                <h2>{{resturantName}}</h2>
+                <rating justify-content-center align-items-center style="height: 100%" readOnly="true" [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline"
+                    halfStarIconName="star-half" starIconName="star" nullable="false">
+                </rating>
+            </div>
+
+            <p class="resInfo">{{resDiscription}}</p>
+
+            <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->
+
+            <ion-row class="settingsrow" *ngIf="resSettings!=null">
+                <p class="settings" *ngIf="serviceTypeId==1">
+                    <small class="settingsname">{{'mimimum' | translate}}</small>
+                    <small>{{resSettings.MinimumOrderAmount}} {{resSettings.PrimaryStoreCurrencyCode}}</small>
+                </p>
+                <p class="settings" *ngIf="serviceTypeId==2">
+                    <small class="settingsname">{{'distance' | translate}}</small>
+                    <small>{{distance}} {{'km' | translate}}</small>
+                </p>
+                |
+                <p class="settings" *ngIf="serviceTypeId==1">
+                    <small class="settingsname">{{'deliveryfees' | translate}}</small>
+                    <small>{{resSettings.DeliveryFees}} {{resSettings.PrimaryStoreCurrencyCode}}</small>
+                </p>
+                <p class="settings" *ngIf="serviceTypeId==2">
+                    <small class="settingsname">{{'mealpreparetime' | translate}}</small>
+                    <small>{{resSettings.TimeToPrepareOrder}} min</small>
+                </p>
+                |
+                <p class="settings" *ngIf="serviceTypeId==1">
+                    <small class="settingsname">{{'deliverytime' | translate}}</small>
+                    <small>{{resSettings.DeliveryTime}} min</small>
+                </p>
+                <p class="settings" *ngIf="serviceTypeId==2">
+                    <small class="settingsname">{{'closetime' | translate}}</small>
+                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>
+                </p>
+            </ion-row>
+
+        </ion-item>
+    </div>
+
+
+
+
+
+    <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">
+        <ion-segment-button *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)" [ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }'>
+            {{tab}}
+        </ion-segment-button>
+    </ion-segment>
+
+    <!-- here is our dynamic line  "indicator"-->
+    <div dir="{{oriantation}}" id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
+
+</ion-header>
+
+
+<ion-content class="has-header">
+    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()"
+        (ionSlideDidChange)="updateIndicatorPosition()" (pan)="updateIndicatorPosition()" [pager]="true">
+        <ion-slide dir="{{oriantation}}" class="menupage">
+            <!--The filter of categories-->
+            <ion-row class="filters">
+                <ion-col no-padding>
+                    <ion-slides dir="{{oriantation}}"  class="categorieSlide" slidesPerView="4">
+                        <ion-slide class="categorieSlide" *ngFor="let category of categories" [ngClass]="{'active': category == categoryActive, 'not-selected-item': category != categoryActive}"
+                            (tap)="selectPickup(category)">
+                            <div class="categIcon" (click)="getMealslist(category.id)">
+                                <img *ngIf="category.image !=null" height="100px" width="100px" [src]="category.image.src" />
+                                <img *ngIf="category.image == null" height="100px" width="100px" src="./assets/imgs/categories-filters/grill.png" />
+                                <h5  class="categoryTitle">{{category.name}}</h5>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </ion-col>
+            </ion-row>
+            <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>
+            <ion-list no-lines>
+                <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">
+                    <ion-thumbnail item-start>
+                        <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />
+                        <img *ngIf="meal.images.length === 0" src="./assets/imgs/categories-filters/meal-placeholder.png" />
+                    </ion-thumbnail>
+                    <h2 class="mealNametxt">{{meal.name}}</h2>
+                    <p class="mealdictxt">{{meal.short_description}}</p>
+                    <h3>
+                        <ion-icon md="md-cash"></ion-icon> {{meal.price}}
+                        <small>{{meal.currency_code}} SR</small>
+                    </h3>
+                </ion-item>
+            </ion-list>
+
+        </ion-slide>
+
+
+        <!--contents of tab#2 'The Reviews'-->
+        <ion-slide class="ratingpage">
+            <!-- <ion-item class="addRating" dir="{{oriantation}}"> -->
+            <!--Row of Rating form-->
+            <!-- <button ion-button full (click)="onButtonClick()" class="style2">
+                    <ion-icon name="add"></ion-icon>{{'addrating' | translate}}</button>
+                <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)" *ngIf="buttonClicked">
+                    <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"
+                        halfStarIconName="star-half" starIconName="star"></rating>
+                    <textarea formControlName="reviewtxt" type="text" placeholder="{{'addyourreview' | translate}}"></textarea>
+                    <button ion-button round [disabled]="!form.valid">{{'send' | translate}}</button>
+                </form>
+            </ion-item> -->
+
+            <ion-list dir="{{oriantation}}">
+                <!--Users Rating Part-->
+                <ion-item *ngFor="let review of resturantReviews">
+                    <h3>{{review.customer_name}}</h3>
+                    <p>{{review.review_text}}</p>
+                    <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating"></rating>
+                </ion-item>
+            </ion-list>
+        </ion-slide>
+
+
+        <ion-slide dir="{{oriantation}}" class="menupage">
+
+            <!-- <br> -->
+            <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">
+                <h1 class="tite">{{resturantName}}</h1>
+                <small>{{resDiscription}}</small>
+                <h6 class="hours">{{'workinghours' | translate}}</h6>
+                <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>
+            </ion-item>
+
+
+            <!-- <ion-item no-lines *ngIf="branches.length!=0" class="branhesList">
+                <h1 class="branchestitle">{{'resturantbranches' | translate}}</h1>
+               
+                    <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">
+                        <img class="pin" item-start src="./assets/imgs/branchIcon.png">
+                        <h1 class="pname">{{branch.branch_name}} -->
+                            <!-- <small end>10Km</small> -->
+                        <!-- </h1>
+                    </ion-item>
+
+            </ion-item> -->
+
+
+
+
+        </ion-slide>
+    </ion-slides>
+
+
+
+
+    <!-- <ion-list>
+          <ion-item *ngFor="let category of categories">
+            <ion-thumbnail item-start>
+              <img [src]="category.image.src">
+            </ion-thumbnail>
+            <h2>{{category.name}}</h2>
+            <button ion-button clear item-end>View</button>
+          </ion-item>
+        </ion-list> -->
+
+</ion-content>

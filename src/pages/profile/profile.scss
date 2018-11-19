@@ -1,0 +1,24 @@
+page-profile {
+
+     .pageLogo {
+        text-align: center;
+        margin-top: 5%;
+    }
+        .pageLogo img {
+            max-width: 35%;
+            width: 100px;
+        }
+    button.button {
+       border-radius: 20px;
+       height: 35px;
+   }
+   ion-item.item.item-input,textarea.text-input {
+       margin-bottom: 15px;
+   }
+   .item-md.item-input.item-input-has-focus .item-inner,
+   .item-md.item-input.input-has-focus .item-inner {
+     border-bottom-color: #ccc;
+     -webkit-box-shadow: none;
+     box-shadow: none;
+   }
+}

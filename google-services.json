@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "419714293749",
+    "firebase_url": "https://hurrybunny-ab20d.firebaseio.com",
+    "project_id": "hurrybunny-ab20d",
+    "storage_bucket": "hurrybunny-ab20d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419714293749:android:ba3ff74e7451ab34",
+        "android_client_info": {
+          "package_name": "com.appsmatic.ionic.hurrybunnyy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419714293749-jc8eul6ig6r19u3rstcmohoekbk5dabb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT8dqSGwuSbBEypeXgBeE3QsNwWjyo9LA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

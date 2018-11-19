@@ -1,0 +1,88 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'orders' | translate}}</ion-title>
+        <ion-buttons (click)="reload()" end>
+                <button ion-button icon-only>
+                    <ion-icon color="primary" name="ios-refresh-circle-outline"></ion-icon>
+                </button>
+            </ion-buttons>
+    </ion-navbar>
+
+
+</ion-header>
+
+
+
+<ion-content padding dir="{{oriantation}}">
+    <table>
+        <thead>
+            <tr>
+                <th>{{'order' | translate}}</th>
+                <th>{{'status' | translate}}</th>
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+
+            <tr *ngFor="let order of customerOrders.reverse()" (click)="goOrderDetails(order.id)">
+                <td>
+                    <div class="block">
+                        <img [src]="order.vendor_logo" />
+                        <ion-item>
+                            <p>
+                                <span>{{'orderno' | translate}}# {{order.id}}</span> |
+                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>
+                            </p>
+                            <p>{{'from' | translate}} {{order.vendor_name}}</p>
+                            <p>{{ order.created_on_utc | date :'MM/dd/yyyy hh:mm a'}}</p>
+                            <!-- <p *ngIf="order.service_type_id==2">PickUp</p>
+                            <p *ngIf="order.service_type_id==1">Dlivery</p> -->
+                        </ion-item>
+                    </div>
+                </td>
+                <td *ngIf="order.order_status_id==10">{{'wait' | translate}}</td>
+                <td *ngIf="order.order_status_id==70">{{'acccepted' | translate}}</td>
+                <td *ngIf="order.order_status_id==20">{{'processing' | translate}}</td>
+                <td *ngIf="order.order_status_id==30 || order.order_status_id==50 || order.order_status_id==60 || order.order_status_id==80">{{'complete' | translate}}</td>
+                <td *ngIf="order.order_status_id==40">{{'canceld' | translate}}</td>
+            </tr>
+
+
+
+
+
+
+            <!-- <tr class="done">
+                <td>
+                    <div class="block">
+                        <img src="./assets/imgs/restaurants_logo/bking.png" />
+                        <ion-item>
+                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>
+                            <p>From 'Domino's Pizza' in 10/05/2018</p>
+                        </ion-item>
+                    </div>
+                </td>
+                <td>Done</td>
+            </tr>
+            <tr class="done">
+                <td>
+                    <div class="block">
+                        <img src="./assets/imgs/restaurants_logo/bking.png" />
+                        <ion-item>
+                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>
+                            <p>From 'Domino's Pizza' in 10/05/2018</p>
+                        </ion-item>
+                    </div>
+                </td>
+                <td>Done</td>
+            </tr>         -->
+        </tbody>
+    </table>
+
+    <ion-label class="emptylbl" *ngIf="isEmpty">{{ 'emptyorders' | translate }}</ion-label>
+    <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>
+
+</ion-content>

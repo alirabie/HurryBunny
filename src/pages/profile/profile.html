@@ -1,0 +1,46 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{ 'SIDEMENU.account' | translate }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="{{oriantation}}">
+
+        <div class="pageLogo">
+                <img src="./assets/imgs/login-logo.png" />
+            </div>
+
+    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">
+        <ion-list no-line>
+
+
+
+            <ion-item class="colr">
+                <ion-label color="primary" floating>{{'SIgNUP.fname' | translate}}</ion-label>
+                <ion-input value="{{fname}}" formControlName="firstName" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item class="colr">
+                <ion-label color="primary" floating>{{'SIgNUP.lname' | translate}}</ion-label>
+                <ion-input value="{{lname}}" formControlName="lastname" type="text"></ion-input>
+            </ion-item>
+
+
+            <ion-item class="colr">
+                <ion-label color="primary" floating>{{'SIgNUP.phone' | translate}}</ion-label>
+                <ion-input value="{{phonenum}}" formControlName="phone" [disabled]="true" type="text"></ion-input>
+            </ion-item>
+
+
+        </ion-list>
+        <div class="btn">
+            <button ion-button color="primary" [disabled]="!form.valid" block>
+                <span class="fontColor">{{'update' | translate}}</span>
+            </button>
+        </div>
+    </form>
+
+</ion-content>

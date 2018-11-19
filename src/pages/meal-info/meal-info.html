@@ -1,0 +1,142 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{mealName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="header-banner" *ngFor="let meal of mealInfo">
+    <!--The Slider-->
+    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500">
+      <ion-slide *ngFor="let image of meal.images">
+        <img class="img" [src]="image.src" />
+      </ion-slide>
+
+      <ion-slide *ngIf="meal.images.length == 0">
+        <img class="img" src="./assets/imgs/categories-filters/meal-placeholder.png" />
+      </ion-slide>
+
+
+
+    </ion-slides>
+    <!--The Rating Bar-->
+    <div class="rating-bar" (click)="goMealReviews()">
+      <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="meal.rating" readOnly="true" max="5"
+        emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+      </rating>
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>
+  </div>
+
+
+  <!--The escription bar-->
+  <div class="info-bar" *ngFor="let meal of mealInfo">
+    <p class="infotxt">{{meal.short_description}} </p>
+
+    <!-- (ngModelChange)="onModelChange($event)" -->
+    <!--<h1 class="pricestyle">{{count*meal.price+count*optionPrice}}
+              <small>{{meal.currency_code}}</small>
+          </h1>-->
+  </div>
+
+
+  <!--The QTY part-->
+  <ion-row dir="{{oriantation}}" justify-content-center align-items-center class="qty">
+    <label>{{'count' | translate}}</label>
+    <div class="box">
+      <button class="cartbutton" ion-button icon-only (click)="up()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+      {{count}}
+      <button class="cartbutton" ion-button icon-only (click)="dwon()">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+    </div>
+  </ion-row>
+
+
+
+  <ion-row class="addition">
+    <button *ngIf="mealAdditions.length != 0" ion-button outline (click)="onButtonClick1()" class="style2">{{'Additions' | translate}}</button>
+    <div *ngIf="buttonClicked1" class="options" dir="{{oriantation}}">
+      <!-- (ionChange)="print()" -->
+      <ion-list no-lines>
+        <ion-row justify-content-center align-items-center style="height: 100%" *ngFor="let addition of mealAdditions">
+          <ion-checkbox style="padding-left:8px ; padding-right:8px " color="primary" (ionChange)="toggleComponent($event, addition)"></ion-checkbox>
+          <ion-label>{{addition.name}}
+
+
+            <label *ngIf="addition.price!=0">({{addition.price}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>
+            <label color="primary" *ngIf="addition.price==0">({{'free' | translate}})&#x200E;</label>
+
+
+
+          </ion-label>
+
+          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="incAdditionCount(addition.name,addition.price)">
+            <ion-icon color="primary" name="arrow-dropup"></ion-icon>
+          </button>
+          {{mealAdditionsCountsMap[addition.name]}}
+          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="decAdditionCount(addition.name,addition.price)">
+            <ion-icon color="primary" name="arrow-dropdown"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-list>
+    </div>
+  </ion-row>
+
+
+
+  <ion-row class="customization">
+    <button *ngIf="mealAttr.length != 0" ion-button outline (click)="onButtonClick2()" class="style2">{{'Customization' | translate}}</button>
+    <div *ngIf="buttonClicked2">
+
+      <div class="group" *ngFor="let attr of mealAttr" dir="{{oriantation}}">
+        <!-- (ionChange)="print()" -->
+        <ion-list no-lines radio-group>
+          <ion-list-header no-lines>
+            {{attr.product_attribute_name}}
+          </ion-list-header>
+          <ion-item *ngFor="let option of attr.attribute_values">
+            <ion-label>{{option.name}} 
+
+              <label *ngIf="option.price_adjustment!=0">(+{{option.price_adjustment}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>  
+              <label color="primary" *ngIf="option.price_adjustment==0">({{'free' | translate}})&#x200E;</label>  
+
+            </ion-label>
+            <ion-radio item-start (click)="getOptionPrice(attr.id,option.price_adjustment)" (click)="getOptionId(attr.id,option.id)"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-row>
+
+</ion-content>
+
+<ion-footer class="footer" no-lines>
+
+  <!-- <ion-row justify-content-center align-items-center style="height: 100%">
+    <button class="cartbutton" ion-button icon-only (click)="up()">
+      <ion-icon color="primary" name="ios-arrow-dropup"></ion-icon>
+    </button>
+    {{count}}
+    <button class="cartbutton" ion-button icon-only (click)="dwon()">
+      <ion-icon color="primary" name="ios-arrow-dropdown"></ion-icon>
+    </button>
+  </ion-row>
+  <button color="secondary" ion-button round block (click)="printIds()">{{'addtocart' | translate}}</button> -->
+  <ion-row dir="{{oriantation}}" class="footer">
+
+    <button color="secondary" ion-button round block (click)="addToCart()">{{'addtocart' | translate}}</button>
+    <h2 *ngFor="let meal of mealInfo" class="pricestyle">
+      <ion-icon name="md-cash"></ion-icon> {{count*meal.price+optionPrice+additionPrice}}
+      <small>{{meal.currency_code}}</small>
+    </h2>
+
+  </ion-row>
+
+</ion-footer>

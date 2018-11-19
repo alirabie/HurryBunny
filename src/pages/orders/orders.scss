@@ -1,0 +1,79 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+$color6:#ccc;
+
+page-orders {
+    .toolbar-content.toolbar-content-md ion-title.title.title-md .toolbar-title.toolbar-title-md{color:$color2} 
+
+    table { 
+		width: 100%; 
+		border-collapse: collapse; 
+        tr.done { 
+		    background: #eee; 
+	    }
+	    th { 
+		    background: $color2; 
+		    color: white; 
+            font-weight: bold; 
+            
+	    }
+	    td, th { 
+		    padding: 6px; 
+		    border: 1px solid #ccc; 
+		    text-align: start; 
+	    }
+        tr.done td:last-child {color: green}
+        .block {
+            display: flex;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+            ion-item.item.item-block{background-color:transparent;
+                .item-inner{border-bottom: 0}
+            }
+        }
+	}
+	
+
+
+	/*MQ*/
+	@media (max-width: 480px){
+        table .block img {
+                width: 75px;
+                height: 75px;
+        }
+        ion-content.content, .scroll-content { padding: 0 !important}
+    }
+    
+
+    .emptylbl{
+        width: fit-content;
+        height: fit-content;
+        margin: auto; 
+        font-stretch: expanded;
+        text-align: center;
+        margin-top: 50%;
+        font-size: 25px;
+        align-content: center ;
+        align-items: center;
+    }
+
+
+    .spin {
+        display: block;
+        margin: auto;
+        margin-top: 50%;
+    &.spinner-circles circle,
+    &.spinner-bubbles circle,
+    &.spinner-dots circle {
+      fill: $color1 !important;
+     
+     
+    }
+       
+    }
+}
+

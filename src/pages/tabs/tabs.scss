@@ -1,0 +1,11 @@
+ion-tabs.tabs {
+    .tabbar.show-tabbar {background: #e4dcca; padding:9px 0}
+    ion-icon.tab-button-icon.icon {color: #51423d}
+    .tab-button[aria-selected=true] span.tab-button-text{color:#F77123; 
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1 1);
+        margin:0;
+        font-weight:bold
+    }
+    span.tab-button-text {color: #51423d }
+}

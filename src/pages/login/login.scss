@@ -1,0 +1,96 @@
+page-login {
+    .btn1{
+        margin-left: auto;
+        color: gray;
+        font-size: 8pt;
+        font-weight: lighter;
+        text-decoration: underline;
+    }
+    .btn2{
+        margin-right: auto;
+        color: gray;
+        font-size: 8pt;
+        font-weight: lighter;
+        text-decoration: underline;
+    }
+    .pageLogo {
+        text-align: center;
+        margin-top: 5%;
+    }
+        .pageLogo img {
+            max-width: 35%;
+            width: 175px;
+        }
+
+    .loginform{
+        width:75%;
+        margin:15px auto
+    }
+
+    .in-bottom{
+        width:75%;
+        margin:auto
+    }
+
+    .loginbtn{
+        font-size:1.1em;
+        display:block;
+        margin:20px auto;
+        height: 40px;
+    }
+
+    .titlelogin{
+        text-align: center;
+        color: grey;
+    }
+
+    ion-list.list[no-lines] .item-block, ion-list.list[no-lines] ion-item-options, ion-list.list[no-lines] .item .item-inner{border-bottom-width:1px; padding: 0;}
+
+    ion-list.list .item-input.item-input-has-focus:last-child,
+    ion-list.list .item-input.input-has-focus:last-child,
+    ion-item.item.item-input.item-input-has-focus .item-inner,
+    ion-item.item.item-input.input-has-focus .item-inner,
+    ion-item.item.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-list.list .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    ion-item.item.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-item.item.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-list.list .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    ion-list.list .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+        border-width: 1px;
+        border-bottom-color: #aaa;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .item-input-has-focus .label[floating], .input-has-focus .label[floating], .item-input-has-value .label[floating], .input-has-value .label[floating] {
+        -webkit-transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
+        font-size: 0.85em;
+    }
+
+    ion-item.item.item-block.item-ios.item-input.item-label-floating {border-top: 0}
+
+    .item-input-has-focus .label[stacked],
+    .input-has-focus .label[stacked],
+    .item-input-has-focus .label[floating],
+    .input-has-focus .label[floating] {
+      color: #F77123;
+    }
+
+    input.text-input {padding: 0 10px}
+
+    ion-list.list {margin: 0}
+
+    span.warning ion-label.label{margin:5px 0 0}
+
+    ion-icon.icon.icon-ios.ion-ios-log-in:before {font-weight: bold}
+    ion-app.ios [padding],ion-app.md [padding] {padding: 5px}
+
+    /*===== MQ =====*/
+    @media (max-width:767px){
+        .loginbtn{width:100%}
+    }
+    @media (max-width:480px){
+        .pageLogo {margin-top: 12%}
+    }
+}

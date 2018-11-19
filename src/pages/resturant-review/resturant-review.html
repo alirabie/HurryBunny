@@ -1,0 +1,26 @@
+<ion-content padding class="ratingpage">
+
+  <button class="cartbutton" ion-button icon-only (click)="closemodal()" start>
+    <ion-icon color=primary name="close"></ion-icon>
+  </button>
+
+  <!--Restaurant name and logo-->
+  <ion-label class="lbll">{{'reviewrestursant' | translate}}</ion-label>
+
+  <ion-item class="rest-info">
+    <img *ngIf="resturantData.vendor_logo!=null" [src]="resturantData.vendor_logo">
+    <div>
+      <h3>{{resturantData.vendor_name}}</h3>
+    </div>
+  </ion-item>
+
+  <ion-item class="addRating" dir="{{oriantation}}">
+    <!--Row of Rating form-->
+    <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)">
+      <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"
+        halfStarIconName="star-half" starIconName="star"></rating>
+      <textarea formControlName="reviewtxt" type="text" placeholder="{{'addyourreview' | translate}}"></textarea>
+      <button ion-button round [disabled]="!form.valid">{{'send' | translate}}</button>
+    </form>
+  </ion-item>
+</ion-content>

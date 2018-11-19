@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'more' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="{{oriantation}}">
+  <ion-list>
+    <div class="logo">
+      <img src="./assets/imgs/sidemenu-logo.png" />
+    </div>
+
+
+    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">
+      <ion-icon name="md-globe"></ion-icon>
+      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->
+      <h2>{{langName}}</h2>
+    </button>
+
+    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">
+      <ion-icon name="ios-home"></ion-icon>
+      <h2> {{ 'SIDEMENU.home' | translate }}</h2>
+    </button> -->
+
+    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">
+      <ion-icon name="ios-contact"></ion-icon>
+      <h2>{{ 'SIDEMENU.account' | translate }}</h2>
+    </button>
+
+    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">
+      <ion-icon name="ios-contact"></ion-icon>
+      <h2>{{ 'PAGE_TITLE.signup' | translate }}</h2>
+    </button>
+
+
+    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >
+      <ion-icon name="ios-basket"></ion-icon>
+      <h2>{{ 'SIDEMENU.basket' | translate }}</h2>
+    </button> -->
+
+
+    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">
+      <ion-icon name="md-pricetag"></ion-icon>
+      <h2>{{ 'SIDEMENU.discounted' | translate }}</h2>
+    </button> -->
+
+
+    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">
+      <ion-icon name="ios-people"></ion-icon>
+      <h2>{{ 'SIDEMENU.aboutus' | translate }}</h2>
+    </button>
+
+
+    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">
+      <ion-icon name="md-log-out"></ion-icon>
+      <h2>{{ 'SIDEMENU.logout' | translate }}</h2>
+    </button>
+
+    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">
+      <ion-icon name="md-log-in"></ion-icon>
+      <h2>{{ 'SIDEMENU.login' | translate }}</h2>
+    </button>
+
+  </ion-list>
+</ion-content>

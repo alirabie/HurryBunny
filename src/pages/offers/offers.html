@@ -1,0 +1,19 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>{{ 'offers' | translate}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-item-group>
+          <ion-item *ngFor="let offer of offers" (click)="goResturantInfoFromAd(offer.vendor_id)">
+              <img [src]="offer.image.src" />
+          </ion-item>
+      </ion-item-group>
+  
+  </ion-content>
+  

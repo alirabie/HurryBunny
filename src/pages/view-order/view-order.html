@@ -1,0 +1,183 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'orderdetails'|translate}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding dir="{{oriantation}}">
+    <!--Restaurant name and logo-->
+    <ion-row class="rest-info">
+        <img *ngIf="order.vendor_logo!=null" [src]="order.vendor_logo">
+        <div>
+            <h3>{{order.vendor_name}}</h3>
+            <span>{{ order.created_on_utc | date :'MM/dd/yyyy hh:mm a'}}</span>
+        </div>
+    </ion-row>
+
+
+
+    <div class="seg-tabs">
+        <ion-segment [(ngModel)]="vieworder">
+            <ion-segment-button [hidden]="false" value="details">{{'orderdetails'|translate}}</ion-segment-button>
+            <ion-segment-button [hidden]="order.order_status_id==10 || order.order_status_id==40 || order.order_status_id==60" value="status">{{'orderstatus'|translate}}</ion-segment-button>
+        </ion-segment>
+    </div>
+
+
+
+
+    <div class="seg-content" [ngSwitch]="vieworder">
+        <ion-list class="status" *ngSwitchCase="'status'">
+            <div class="steps-img">
+                <img class="steps" src="{{status}}">
+            </div>
+            <ion-item-group>
+                <div class="{{active1}}">
+                    <p>{{'pending' | translate}}</p>
+                    <small>{{'pendingdetails' | translate}}</small>
+                </div>
+                <div class="{{active2}}">
+                    <p>{{'processing' | translate}}</p>
+                    <small>{{'processingdetals' | translate}}</small>
+                </div>
+                <div *ngIf="order.service_type_id==1"  class="{{active3}}">
+                    <p>{{'completed' | translate}}</p>
+                    <small>{{'completeddetails' | translate}}</small>
+                </div>
+
+                 <div *ngIf="order.service_type_id==2" class="{{active3}}">
+                    <p>{{'orderreaady' | translate}}</p>
+                    <small>{{'orderreaadydetails' | translate}}</small>
+                </div> 
+            </ion-item-group>
+
+
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'details'">
+
+
+
+            <!--The Order Details Table-->
+            <table class="details" full>
+                <thead>
+                    <tr>
+                        <th class="order">{{'order' | translate}}</th>
+                        <th class="qty">{{'qty' | translate}}</th>
+                        <th class="price">{{'pricc' | translate}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of orderItems">
+                        <td class="order">
+                            <!--The Main Meal-->
+                            <div class="main-order">
+                                <h6 class="ordname">{{item.product.name}} ({{item.product.price*item.quantity}}) &#x200E;</h6>
+                            </div>
+                            <!--The List of Addition-->
+                            <ion-list no-lines class="add" *ngIf="item.additions.length != 0">
+                                <p>{{'Additions' | translate}}</p>
+                                <ion-item *ngFor="let addition of item.additions">{{addition.addition_name}}
+
+                                    <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>
+                                    <label color="primary" *ngIf="addition.price==0">({{'free' | translate}})&#x200E;</label>
+
+                                </ion-item>
+                            </ion-list>
+                            <!--The List of Customisation-->
+                            <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">
+                                <p>{{'Customization' | translate}}</p>
+                                <ion-item *ngFor="let customiz of item.customizations">{{customiz.customization_name}}
+
+                                    <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>
+                                    <label color="primary" *ngIf="customiz.price==0">({{'free' | translate}})&#x200E;</label>
+
+                                </ion-item>
+                            </ion-list>
+                        </td>
+                        <td class="qty">
+                            <!--The List of Quantity for The Main Meal-->
+                            <ion-item class="main-order">
+
+                                {{item.quantity}}
+
+                            </ion-item>
+                            <!--The List of Quantity for Addition-->
+                            <ion-list no-lines class="add">
+                                <ion-item *ngFor="let addition of item.additions">
+
+                                    {{addition.quantity}}
+
+                                </ion-item>
+                            </ion-list>
+                        </td>
+                        <td class="price">{{calcEachItemPrice(item)}}</td>
+                    </tr>
+
+                </tbody>
+
+                <tfoot>
+
+                    <tr *ngIf="serviceTypeId== 1">
+                        <td>{{'deliveryfees' | translate}}</td>
+                        <td></td>
+                        <td class="price">{{order.delivery_fees}}</td>
+                    </tr>
+                    <tr *ngFor="let discount of order.applied_codes">
+                        <td>{{'dicountcopun' | translate}}</td>
+                        <td></td>
+                        <td class="price">{{discount.Value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{'total' | translate}}</td>
+                        <td></td>
+                        <td class="price">{{order.order_total}}</td>
+                    </tr>
+                </tfoot>
+
+
+
+
+            </table>
+
+
+            <!-- <ion-item class="item" *ngFor="let item of orderItems">
+          
+          <h2>{{item.product.name}} {{item.quantity}}x</h2>
+          <p class="qty" *ngFor="let add of item.additions">#{{add.addition_name}} {{add.quantity}}x</p>
+          <p class="qty" *ngFor="let cust of item.customizations">#{{cust.customization_name}}</p>
+          <p class="price">{{item.price_incl_tax}}{{order.customer_currency_code}}</p>
+        </ion-item> -->
+
+            <!-- <ion-item>
+                <p>{{'deliveryfees' | translate}} {{order.delivery_fees}}
+                    <small>{{order.customer_currency_code}}</small>
+                </p>
+                <p>{{'discount' | translate}} 00.00 SR</p>
+                <p>{{'total' | translate}} {{order.order_total}}
+                    <small>{{order.customer_currency_code}}</small>
+                </p> -->
+
+
+            <!-- <p>SubTotal {{order.order_subtotal_incl_tax}}{{order.customer_currency_code}}</p> -->
+            <!-- </ion-item> -->
+            <ion-row class="allcash">
+                <p>
+                    <small>{{'amountreq' | translate}}</small> {{order.order_total}}
+                    <small>{{order.customer_currency_code}}</small>
+                </p>
+            </ion-row>
+        </ion-list>
+
+    </div>
+
+
+
+    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==10" (click)="cancelOrder()">{{'cancleorder' | translate }}</button>
+    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==40" (click)="reOrder()">{{'reorder' | translate }}</button>
+
+</ion-content>

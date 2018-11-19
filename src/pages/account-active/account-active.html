@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{'PAGE_TITLE.active' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h6 class="title">{{'ACTIVE.title' | translate}}</h6>
+
+  <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">
+  <ion-item class="colr">
+      <ion-label color="primary" floating>{{'ACTIVE.code' | translate}}</ion-label>
+      <ion-input formControlName="code" type="text"></ion-input>
+    </ion-item>
+    <span *ngIf="form.controls['code'].hasError('required') && form.controls['code'].touched">
+        <span [hidden]="!form.controls['code'].errors.required">
+            <ion-label style="color: red; margin-left: 16px;">*</ion-label>
+        </span>
+    </span>
+    <div>
+        <button ion-button color="primary" [disabled]="!form.valid" block>
+          <span class="fontColor">{{'ACTIVE.create' | translate}}</span>
+        </button>
+      </div>
+</form>
+</ion-content>

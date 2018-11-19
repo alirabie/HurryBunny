@@ -1,0 +1,43 @@
+page-meals-reviews {
+    .ratingpage{
+        ion-item.addRating{
+            padding:0;
+            ion-label.label {margin: 0}
+            .item-inner{
+                padding:0;
+                border-bottom:0
+            }
+            button{height:40px; font-size:14px}
+            button.style2{
+                font-weight: bold;
+                background-color: transparent;
+                color: #51423d;
+                background: #f9f7f3;
+                -webkit-box-shadow: 1px 1px 3px #e4dcca;
+                box-shadow: 1px 1px 3px #e4dcca;
+                ion-icon.icon.icon-md.ion-md-add {
+                    font-weight: bold;
+                    margin: 0 5px;
+                }
+            }
+            
+            form{
+                padding:10px;
+                border-bottom:1px solid #eee;
+                rating{text-align:center;
+                    ion-icon::before {font-size: 22px}
+                }
+                textarea {width: 100%}
+                button{
+                    font-size:13px; 
+                    display:block; 
+                    margin:auto; 
+                    height:25px}
+            }
+        }
+        ion-list{
+            border-top: 0.55px solid #c8c7cc;
+
+        }
+    }
+}

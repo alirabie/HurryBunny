@@ -1,0 +1,196 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+$color6:#ccc;
+
+page-meal-info {
+    .swiper-pagination-clickable .swiper-pagination-bullet {background: rgba(255, 255, 255, 0.7);}
+
+    .header-banner{min-height:200px;
+
+        .rating-bar {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            padding: 0 10px;
+            align-items: center;
+            background-color:$color2;
+            ion-icon.ion-ios-arrow-forward{color:#fff}
+        }
+
+    
+    }
+
+    .info-bar {background-color: #eee}
+
+    ion-row.qty {
+        border-bottom:1px solid #ccc;
+        padding:10px 0;
+        label{color:#333}
+        .box {
+            border: 1px solid #999;
+            border-radius: 5px;
+            margin: 10px;
+            max-width: 50%;
+            height:35px;
+            line-height:35px;
+            button.cartbutton{
+                margin: 0;
+                height:auto;
+                padding:10px;
+                top:-5px
+            }
+            ion-icon{
+                color:#555;
+                font-size:14px;
+                font-weight:bold
+            }
+        }
+    }
+
+    button.style2{
+        color:$color2;
+        border-color:$color2;
+        border-width:2px;
+        width:300px;
+        height: 35px;
+        margin:auto;
+        border-radius:5px;
+        font-weight:600
+    }
+
+    ion-row.addition,ion-row.customization{
+    
+        margin-top:10px;
+        margin-bottom: 10px;
+        padding:0 10px;
+        form {
+            display: block;
+            clear: both;
+            width: 100%;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            ion-list{margin-bottom:0}
+      
+            label.item {
+                display: block;
+                width: 300px;
+                margin: auto;
+                text-align: -webkit-auto;
+            }
+            input[type="checkbox"] {}
+            button.button {
+                width: 300px;
+                height: 25px;
+                background-color:$color2;
+                margin-top:15px
+            }
+        }
+    }
+    ion-row.addition{margin-top:20px}
+
+    ion-footer{
+        background:$color3;
+        .footer {
+                display: flex;
+                width: 100%;
+                padding:5px 15px;
+                align-items:center;
+                h2.pricestyle{
+                  margin: 0;
+                  text-align: center;
+                  font-size: 20px;
+                  width:50%;
+              }
+                button{
+                    width:50%;
+                    background:$color2
+                }
+            }
+    }
+    
+
+	.slide-zoom {
+        height: 100%;
+        width: 100%;
+    }
+
+    ion-slides {
+        height:70vw;
+        width: 100%;
+       
+     }
+
+     .img{
+        width: 100vw;
+        overflow: visible;
+        width: 100%;
+     }
+
+     .text{
+         text-align: center;
+         text-decoration: olive;
+         text-decoration-style: solid;
+         text-overflow: clip;
+    }
+
+    .price-bar{
+        width: 100vw;
+        height: 50px;
+        background: none;
+        text-align: center;
+        color:oldlace;
+    }
+
+    .cartbutton{
+        background: none !important;
+        background-color: none !important;
+        box-shadow: none !important;
+    }
+
+    ul {
+    height: 100%;
+    padding: 5px;
+    margin: 0;
+    align-items: center;  
+  
+    &.rating li {
+      background: none;
+      color: #FFA800;
+      ion-icon {
+        font-size: 20px;
+        
+      }
+    }
+  }
+
+    .title{
+        text-align: center;
+        color:gray;
+    }
+
+  .options{
+    height: 50% !important;
+    width: 100% !important;
+   margin-top: 10px;
+  }
+
+  .infotxt{
+    margin: 0;
+    padding: 10px 5px;
+    white-space: initial;
+    text-align: center;
+    font-size: 12px;
+    line-height:1.4;
+    color: #333;
+  }
+  .group {
+    width: 50%;
+    min-width: 300px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+    &:last-child{border-bottom:none}
+    p{font-weight:600; color:#777; margin-bottom:0}
+}
+}

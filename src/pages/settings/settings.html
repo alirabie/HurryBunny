@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'SIDEMENU.settings' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Notification Sound</ion-label>
+            <ion-toggle></ion-toggle>
+        </ion-item>
+
+        <!--<ion-item>
+            <ion-select placeholder="{{ 'LANG' | translate }}" [(ngModel)]="language" (ionChange)="onChange($event)">
+                <ion-option value="ar">عربي</ion-option>
+                <ion-option value="en">English</ion-option>
+            </ion-select>
+        </ion-item>-->
+
+        <ion-item>
+            <ion-label>{{ 'LANG' | translate }}</ion-label>
+            <ion-select [(ngModel)]="language" (ionChange)="onChange($event)">
+                <ion-option value="ar">عربي</ion-option>
+                <ion-option value="en">English</ion-option>
+            </ion-select>
+        </ion-item>        
+
+    </ion-list>
+</ion-content>

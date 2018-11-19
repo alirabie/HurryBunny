@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+    <ion-title class="titlestyle">
+      {{ 'PAGE_TITLE.dilog' | translate }}
+    </ion-title>
+    <!--   
+        <button class="locationButton"  ion-button icon-only (click)="loadMap()" >
+          <ion-icon name='ios-locate-outline' ></ion-icon>
+        </button> -->
+
+
+    <!--Search Bar button-->
+    <ion-buttons (click)="getCustomerLastLocations()" left>
+      <button ion-button icon-only>
+        <ion-icon name="ios-navigate-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+
+
+
+    <ion-buttons *ngIf="loggedIn" right>
+      <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="loggedIn" right>
+      <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="updateCustomerLocation()">
+        <ion-icon color="softDark" name='md-create'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+
+
+</ion-header>
+
+
+
+
+
+
+<ion-content>
+
+
+  <ion-row *ngIf="loggedIn" dir="{{oriantation}}" class="colr">
+
+
+    <ion-select class="selectclass" placeholder="{{'lastplaces' | translate}}" interface="popover" [(ngModel)]="selectedLocationForUser">
+      <ion-option (ionSelect)="loadMap()">{{'addnewLocation' | translate}}</ion-option>
+      <ion-option *ngFor="let location of customerLocations" (ionSelect)="goAndStoreLocation(location)">{{location.LocationName}}</ion-option>
+    </ion-select>
+
+    <!-- <ion-label>{{'lastplaces' | translate}}</ion-label> -->
+
+    <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="deleteLocation()">
+      <ion-icon color="danger" name='ios-trash-outline'></ion-icon>
+    </button>
+
+  </ion-row>
+
+
+
+  <ion-item *ngIf="locationNameIsShowing">
+    <ion-input [(ngModel)]="locationNameInput" placeholder="Clear Input" clearInput></ion-input>
+  </ion-item>
+
+  <div #map id="map"></div>
+</ion-content>
+
+<ion-footer>
+
+
+  <ion-fab top right edge class="fablist">
+    <button color="softDark" ion-fab mini icon-only>
+      <ion-icon class="ic" name="md-more"></ion-icon>
+    </button>
+    <!-- <button  ><ion-icon name="add"></ion-icon></button> -->
+    <ion-fab-list side="top">
+      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="signOut()">
+        <ion-icon class="ic" name="md-log-out"></ion-icon>
+      </button>
+      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyProfile()">
+        <ion-icon class="ic" name="ios-contact"></ion-icon>
+      </button>
+      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyOrders()">
+        <ion-icon class="ic" name="md-paper"></ion-icon>
+      </button>
+      <button *ngIf="!loggedIn" color="softDark" ion-fab (click)="signIn()" >
+        <ion-icon class="ic" name="md-log-in"></ion-icon>
+      </button>
+      <button color="softDark" ion-fab (click)="goToOffers()">
+        <ion-icon class="ic" name="md-megaphone"></ion-icon>
+      </button>
+
+
+      <!-- <button color="softDark" ion-fab><ion-icon class="ic" name="logo-googleplus"></ion-icon></button> -->
+    </ion-fab-list>
+  </ion-fab>
+
+
+
+  <button class="butn" padding ion-button color="primary" round block (click)="gomainsc()" [disabled]="selected">{{'resturantsList' | translate }}</button>
+</ion-footer>

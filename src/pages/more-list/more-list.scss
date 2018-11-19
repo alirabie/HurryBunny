@@ -1,0 +1,45 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+
+page-more-list {
+    .logo {
+        text-align:center;
+        margin-top:20px;
+        img{
+            margin:auto;
+            padding:15px 10px
+        }
+    }
+    
+    button.sidemenu{
+        color :#333;
+        text-align: center;
+        width: 150px;
+        margin: auto;
+        padding: 0;
+        .item-inner {
+            height: 20px;
+            padding:0;
+            .input-wrapper{
+                ion-label.label {
+                    display:flex;
+                    text-align:center;
+                    h2{font-weight: bold;}
+                }
+            }
+            ion-icon.icon{
+                color:#333;
+                margin:0 10px;
+            }
+        }
+    }
+
+    /*MQ*/
+    @media (max-width:480px){
+        .logo img{width:50%}
+    }
+}
+
+.toolbar-content.toolbar-content-md ion-title.title.title-md .toolbar-title.toolbar-title-md{color:$color2}

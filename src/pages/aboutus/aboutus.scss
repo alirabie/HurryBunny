@@ -1,0 +1,31 @@
+page-aboutus {
+    ion-row.row{
+        text-align:center;
+        img {
+            margin: auto;
+            padding:15px
+        }
+        p{
+            color:#555; 
+            text-align:center;
+            line-height: 1.5;
+        }
+    } 
+
+
+    @media (min-width:992px){
+        p{width:75%; margin:auto}
+    }
+    @media (max-width:400px){
+        ion-row.row img{width:75%}
+    }
+
+
+    .social-group {
+        text-align: center;
+        img {
+            width: 50px;
+            padding: 5px;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+
+<ion-header>
+    <ion-navbar color="primary" hideBackButton="true">
+    
+  
+      <!--Search Bar button-->
+      <ion-buttons (click)="getCurrentLocation()" left>
+        <button ion-button icon-only>
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-buttons>
+
+     
+      <ion-buttons (click)="close()" right>
+        <button ion-button icon-only>
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  
+
+    </ion-navbar>
+  
+  
+  
+  </ion-header>
+
+
+
+<ion-content >
+    <div #map id="map"></div>
+    <form [formGroup]="form" (ngSubmit)="updateLocation(form.value)">
+  
+
+            <ion-item class="colr">
+                <!-- <ion-label floating>{{'SIgNUP.fname' | translate}}</ion-label> -->
+                <ion-input dir="{{oriantation}}" placeholder="{{'locationname' | translate}}" formControlName="locationName" type="text"></ion-input>
+            </ion-item>
+            <ion-item class="colr">
+                <!-- <ion-label floating>{{'SIgNUP.lname' | translate}}</ion-label> -->
+                <ion-input dir="{{oriantation}}" placeholder="{{'notes' | translate}}" formControlName="locationNote" type="text"></ion-input>
+            </ion-item>
+  
+            <button class="butn" padding ion-button color="softDark" round block  [disabled]="false">{{'save' | translate }}</button>
+    </form>
+
+</ion-content>
+<ion-footer>
+    <ion-row class="buttonsrow">
+      
+    </ion-row>
+ 
+</ion-footer>

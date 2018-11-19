@@ -1,0 +1,28 @@
+$color1:#f77123;
+$color2:#51423d;
+$color3:#e4dcca;
+$color4:#ffa800;
+
+page-contact-us {
+    h5{color:$color1; text-align:center; font-size:16px; font-weight:normal}
+    .social-group {
+        text-align: center;
+        img {
+            width: 50px;
+            padding: 5px;
+        }
+    }
+    button.button {
+        border-radius: 20px;
+        height: 35px;
+    }
+    ion-item.item.item-input,textarea.text-input {
+        margin-bottom: 15px;
+    }
+    .item-md.item-input.item-input-has-focus .item-inner,
+    .item-md.item-input.input-has-focus .item-inner {
+      border-bottom-color: #ccc;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+}

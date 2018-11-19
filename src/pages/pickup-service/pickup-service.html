@@ -1,0 +1,40 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{'pickup' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content dir="{{oriantation}}">
+        <ion-title>{{'selectbranch' | translate}}</ion-title>
+    <div #map id="map"></div>
+    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">
+        <ion-list no-line>
+
+            <ion-item class="colr">
+                <ion-label floating>{{'locationname' | translate}}</ion-label>
+                <ion-input type="text" formControlName="locationName" [disabled]="true"></ion-input>
+            </ion-item>
+
+            <!-- <ion-item class="colr">
+                <ion-label floating>{{'note' | translate}}</ion-label>
+                <ion-input type="text" formControlName="notes"></ion-input>
+            </ion-item> -->
+
+
+            <!-- <ion-item class="colr">
+                <ion-label floating>{{'places' | translate}}</ion-label>
+                <ion-select interface="popover">
+                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>
+                </ion-select>
+            </ion-item> -->
+
+        </ion-list>
+        <button ion-button block round  [disabled]="selected">{{'makeorder' | translate}}</button>
+    </form>
+
+
+
+
+</ion-content>

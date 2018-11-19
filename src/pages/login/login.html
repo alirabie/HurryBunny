@@ -1,0 +1,66 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title>{{ 'PAGE_TITLE.login' | translate }}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content dir="{{oriantation}}">
+  
+      <!--<h3 class="titlelogin">{{ 'logintoyouraccount' | translate }}</h3>-->
+      <div class="pageLogo">
+          <img src="./assets/imgs/login-logo.png" />
+      </div>
+  
+      <form class="loginform" [formGroup]="signIn" (ngSubmit)="doLogin(signIn.value)">
+          <ion-list no-lines>
+
+            <ion-item class="colr" > 
+                <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
+                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">
+                    <ion-option data-countryCode="SA" value="966" >{{'Ksa' | translate}}</ion-option>
+                    <ion-option data-countryCode="EG" value="20">{{'EG' | translate}}</ion-option>
+                    <ion-option data-countryCode="US" value="1">{{'US' | translate}}</ion-option>
+                    <ion-option data-countryCode="BH" value="973">{{'bh' | translate}}</ion-option>
+                    <ion-option data-countryCode="CA" value="1">{{'CA' | translate}}</ion-option>
+                    <ion-option data-countryCode="CN" value="86">{{'CN' | translate}}</ion-option>
+                    <ion-option data-countryCode="FR" value="33">{{'FR' | translate}}</ion-option>
+                    <ion-option data-countryCode="IN" value="91">{{'IN' | translate}}</ion-option>
+                    <ion-option data-countryCode="IQ" value="964">{{'IQ' | translate}}</ion-option>
+                    <ion-option data-countryCode="IT" value="39">{{'IT' | translate}}</ion-option>
+                    <ion-option data-countryCode="LY" value="218">{{'LY' | translate}}</ion-option>
+                    <ion-option data-countryCode="MA" value="212">{{'MA' | translate}}</ion-option>
+                    <ion-option data-countryCode="QA" value="974">{{'QA' | translate}}</ion-option>
+
+                </ion-select>
+            </ion-item>
+
+              <ion-item>
+                  <ion-label floating>{{'SIgNUP.phone' | translate}}</ion-label>
+                  <ion-input formControlName="phone" required="true" type="text"></ion-input>
+              </ion-item>
+
+
+  
+          </ion-list>
+          
+        
+          <button class="loginbtn" ion-button round color="primary" [disabled]="!signIn.valid" >
+              <ion-icon padding ios="ios-log-in" md="md-log-in"></ion-icon>
+              {{ 'BUTTONS.btn_login' | translate }}
+          </button>
+        
+        </form>
+        
+
+
+
+          <div class="in-bottom">
+            <ion-row>
+              <button class="btn1" ion-button clear (click)="signUp()" >{{'donthaveaccount' | translate}}</button>
+            </ion-row>
+        </div>
+  </ion-content>
+  

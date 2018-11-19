@@ -1,0 +1,70 @@
+page-sign-up {
+    .title{
+        text-align: center;
+        color:gray;
+    }
+
+    .pageLogo {
+        text-align: center;
+        margin-top: 5%;
+    }
+        .pageLogo img {
+            max-width: 35%;
+            width: 175px;
+        }
+
+    form {
+        width: 75%;
+        margin: 15px auto;
+    }
+
+    ion-item.colr {padding: 0}
+
+    ion-list.list[no-lines] .item-block, ion-list.list[no-lines] ion-item-options, ion-list.list[no-lines] .item .item-inner{border-bottom-width:1px; padding: 0;}
+
+    ion-list.list .item-input.item-input-has-focus:last-child,
+    ion-list.list .item-input.input-has-focus:last-child,
+    ion-item.item.item-input.item-input-has-focus .item-inner,
+    ion-item.item.item-input.input-has-focus .item-inner,
+    ion-item.item.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-list.list .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    ion-item.item.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-item.item.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    ion-list.list .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    ion-list.list .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+        border-width: 1px;
+        border-bottom-color: #aaa;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .item-input-has-focus .label[floating], .input-has-focus .label[floating], .item-input-has-value .label[floating], .input-has-value .label[floating] {
+        -webkit-transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
+        font-size: 0.85em;
+    }
+
+    ion-item.item.item-block.item-ios.item-input.item-label-floating {border-top: 0}
+
+    .item-input-has-focus .label[stacked],
+    .input-has-focus .label[stacked],
+    .item-input-has-focus .label[floating],
+    .input-has-focus .label[floating] {
+      color: #F77123;
+    }
+
+    .btn button {
+        display: block;
+        margin: 25px auto;
+        height: 40px;
+        width: 150px;
+    }
+
+    /*===== MQ =====*/
+    @media (max-width:767px){
+        .btn button{width:100%}
+    }
+    @media (max-width:480px){
+        .pageLogo {margin-top: 12%}
+    }
+}
