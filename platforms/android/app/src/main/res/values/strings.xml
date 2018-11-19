@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name" translatable="false">HurryBunny</string>
+    <string name="launcher_name" translatable="false">@string/app_name</string>
+    <string name="activity_name" translatable="false">@string/launcher_name</string>
+    
+    <string name="google_app_id">1:419714293749:android:ba3ff74e7451ab34</string>
+    <string name="google_api_key">AIzaSyCT8dqSGwuSbBEypeXgBeE3QsNwWjyo9LA</string>
+</resources>
