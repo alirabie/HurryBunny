@@ -4,6 +4,23 @@
             "outputFile": "F:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-nl\\values-nl.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.5.aar\\d99c2acce24eae2e4f79fe85083c7f61\\res\\values-nl\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "208,304,418",
+                        "endColumns": "95,113,95",
+                        "endOffsets": "303,417,513"
+                    },
+                    "to": {
+                        "startLines": "59,60,61",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "7550,7650,7768",
+                        "endColumns": "99,117,99",
+                        "endOffsets": "7645,7763,7863"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.3.4.aar\\627fe46d7c70d3991fdda0307c1bb04b\\res\\values-nl\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -86,23 +103,6 @@
                         "startOffsets": "4983,5126,5225,5285,5510,5624,5771,5914,6061,6181,6349,6531,6672,6856,7033,7139,7276",
                         "endColumns": "142,98,59,224,113,146,142,146,119,167,181,140,183,176,105,136,90",
                         "endOffsets": "5121,5220,5280,5505,5619,5766,5909,6056,6176,6344,6526,6667,6851,7028,7134,7271,7362"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.4.aar\\7f9898a0e5422062a450acd3106f3c63\\res\\values-nl\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "208,304,418",
-                        "endColumns": "95,113,95",
-                        "endOffsets": "303,417,513"
-                    },
-                    "to": {
-                        "startLines": "59,60,61",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "7550,7650,7768",
-                        "endColumns": "99,117,99",
-                        "endOffsets": "7645,7763,7863"
                     }
                 }
             ]

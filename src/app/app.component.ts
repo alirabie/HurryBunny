@@ -40,9 +40,7 @@ export class MyApp {
     confirmAlert;
 
     constructor(public platform: Platform, public modelCtrl: ModalController, public genrator: GenratorProvider, public tost: ToastController, cache: CacheService, public evnts: Events, statusBar: StatusBar, public fcm: Firebase, public alertCtrl: AlertController, splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public menuCtrl: MenuController, toastCtrl: ToastController) {
-
-
-
+    
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -56,13 +54,14 @@ export class MyApp {
                 this.listenToNotifications();
             }
 
-
             this.listenConnection();
             translateService.setDefaultLang('en');
 
             if (localStorage.getItem('lang') == null) {
                 localStorage.setItem('lang', 'en');
             }
+
+
 
 
             statusBar.styleDefault();

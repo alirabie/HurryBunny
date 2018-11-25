@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , App} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { HomePage } from '../../pages/home/home';
 import { MainScreenPage } from '../../pages/main-screen/main-screen';
@@ -24,11 +24,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class MoreListPage {
   langName: string = "";
+  mode = "";
   oriantation = "";
   loggedOut = false;
   loggedIn = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , public splashScreen : SplashScreen , private translateService: TranslateService, events: Events ,public app : App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public app: App) {
     if (localStorage.getItem('customerid') === null) {
       this.loggedOut = true;
       this.loggedIn = false;
@@ -37,25 +38,37 @@ export class MoreListPage {
       this.loggedIn = true;
     }
 
-    if(localStorage.getItem('lang')=="en"){
-      this.oriantation="ltr";
-    }else{
-      this.oriantation="rtl";
+    if (localStorage.getItem('lang') == "en") {
+      this.oriantation = "ltr";
+    } else {
+      this.oriantation = "rtl";
     }
 
-    if(localStorage.getItem('lang')=="ar"){
-      this.langName="English";
-    }else{
-      this.langName="اللغة العربية";
-      
+    
+    
+    if (localStorage.getItem('mode') == "development") {
+      this.mode = "Production";
+    } else {
+      this.mode = "Development";
     }
+
+
+
+    if (localStorage.getItem('lang') == "ar") {
+      this.langName = "English";
+    } else {
+      this.langName = "اللغة العربية";
+
+    }
+
+
 
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoreListPage');
-  
+
   }
 
   loginEvent() {
@@ -64,17 +77,17 @@ export class MoreListPage {
   }
 
 
-   //Logout
-   logout() {
+  //Logout
+  logout() {
     localStorage.removeItem('customerid');
     localStorage.removeItem('customerdata');
-    localStorage.setItem('cartCount',"0");
+    localStorage.setItem('cartCount', "0");
     localStorage.removeItem("customerLocation");
     localStorage.removeItem("rated");
-    
+
     // this.navCtrl.setRoot();
     this.app.getRootNav().push(IntroScreenPage);
-  
+
   }
 
   //Login
@@ -84,20 +97,20 @@ export class MoreListPage {
   }
 
   //go home page
-  gohome(){
-    
+  gohome() {
+
     this.navCtrl.push(MainScreenPage).then(() => {
       // first we find the index of the current view controller:
-      let viewc : ViewController;
+      let viewc: ViewController;
       const index = viewc.index;
       // then we remove it from the navigation stack
       this.navCtrl.remove(index);
     });
 
-}
+  }
 
   //Go signUp
-  signUp(){
+  signUp() {
     this.app.getRootNav().push(SignUpPage);
   }
 
@@ -109,33 +122,33 @@ export class MoreListPage {
 
 
   //Go Orders Page
-  goOrdersPage(){
+  goOrdersPage() {
     this.app.getRootNav().push(OrdersPage);
   }
 
 
 
   //Go Offers Page
-  goOffersPage(){
+  goOffersPage() {
     this.app.getRootNav().push(OffersPage);
   }
 
 
   //Go settings Page
-  goSettings(){
+  goSettings() {
     this.app.getRootNav().push(SettingsPage);
   }
 
 
 
   //Go AboutUs Page 
-  goAboutUs(){
+  goAboutUs() {
     this.app.getRootNav().push(AboutusPage);
   }
 
 
   //Go ContactUs Page
-  goContactUs(){
+  goContactUs() {
     this.app.getRootNav().push(ContactUsPage);
   }
 
@@ -147,26 +160,56 @@ export class MoreListPage {
     if (this.langName === "English") {
       this.langName = "اللغة العربية";
       this.translateService.use("en");
-      localStorage.setItem('lang',"en");
+      localStorage.setItem('lang', "en");
       this.splashScreen.show();
       location.reload();
-    }else{
-     
+    } else {
+
       this.translateService.use("ar");
-      localStorage.setItem('lang',"ar");
+      localStorage.setItem('lang', "ar");
       this.langName = "English";
       this.splashScreen.show();
       location.reload();
     }
   }
-  
 
-  checkLogin(){
-    if(localStorage.getItem('customerid')===null){
+
+  checkLogin() {
+    if (localStorage.getItem('customerid') === null) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
+
+
+
+
+
+  //Change App mode 
+  appMode() {
+    
+    if (this.mode === "Production") {
+      localStorage.setItem('mode', "Production");
+      this.mode = "Development";
+      this.logout();
+      this.splashScreen.show();
+      location.reload();
+
+    } else if (this.mode === "Development") {
+      localStorage.setItem('mode', "development");
+      this.mode = "Production";
+      this.logout();
+      this.splashScreen.show();
+      location.reload();
+
+
+
+
+    }
+  }
+
+
+
 
 }

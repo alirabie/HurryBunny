@@ -10,16 +10,27 @@ import { retryWhen } from 'rxjs/operators';
 @Injectable()
 export class GenratorProvider {
 
-  ProductionURL = "https://www.hurrybunny.com/"; 
+  ProductionURL = "https://www.hurrybunny.com/";
   devlomentURL = "http://hurrybunny.appsmatic.net/";
 
-  private url ;
+  private url;
 
   constructor(public http: Http, public cache: CacheService) {
     console.log('Hello GenratorProvider Provider');
 
-    this.url=this.devlomentURL;
-    
+    if (localStorage.getItem('mode') == null) {
+      this.url = this.devlomentURL;
+      localStorage.setItem('mode', "development");
+    }
+  
+
+    if (localStorage.getItem('mode') == "development") {
+      this.url = this.devlomentURL;
+    } else if (localStorage.getItem('mode') == "Production") {
+      this.url = this.ProductionURL;
+    }
+
+
   }
 
 
@@ -118,10 +129,10 @@ export class GenratorProvider {
   }
 
 
-    //Get resturant Info
-    getResturantInfoForAds(resId) {
-      return this.http.get(this.url + "api/vendor?VendorId=" + resId).map((res: Response) => res.json());
-    }
+  //Get resturant Info
+  getResturantInfoForAds(resId) {
+    return this.http.get(this.url + "api/vendor?VendorId=" + resId).map((res: Response) => res.json());
+  }
 
   //Get Categories of resturant 
   getCategories(id) {
@@ -415,7 +426,7 @@ export class GenratorProvider {
 
 
   //Get Adds 
-  getAdds(){
+  getAdds() {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/ads");
     let cacheKey = "adds"
@@ -424,7 +435,7 @@ export class GenratorProvider {
 
 
   //Get Offers
-  getOffers(){
+  getOffers() {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/offers");
     let cacheKey = "offers"
