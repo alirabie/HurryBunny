@@ -13,6 +13,7 @@
         <img *ngIf="order.vendor_logo!=null" [src]="order.vendor_logo">
         <div>
             <h3>{{order.vendor_name}}</h3>
+            <!-- <h1>{{'orderno' | translate}}#{{orderId}}</h1> -->
             <span>{{ order.created_on_utc | date :'MM/dd/yyyy hh:mm a'}}</span>
         </div>
     </ion-row>
@@ -21,7 +22,7 @@
 
     <div class="seg-tabs">
         <ion-segment [(ngModel)]="vieworder">
-            <ion-segment-button [hidden]="false" value="details">{{'orderdetails'|translate}}</ion-segment-button>
+            <ion-segment-button [hidden]="false" value="details">{{'orderdetails'|translate}} #{{orderId}}</ion-segment-button>
             <ion-segment-button [hidden]="order.order_status_id==10 || order.order_status_id==40 || order.order_status_id==60" value="status">{{'orderstatus'|translate}}</ion-segment-button>
         </ion-segment>
     </div>

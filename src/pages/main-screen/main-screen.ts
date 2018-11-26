@@ -7,8 +7,9 @@ import { ResturantInfoPage } from '../../pages/resturant-info/resturant-info';
 import { ShoppingCartPage } from '../../pages/shopping-cart/shopping-cart';
 import { LoginPage } from '../login/login';
 import { ResturantReviewPage } from '../resturant-review/resturant-review';
+import { min } from 'rxjs/operators';
 
-
+declare let google;
 
 @IonicPage()
 @Component({
@@ -25,8 +26,8 @@ export class MainScreenPage {
   searchTerm = "";
   noBranches;
   serviceType;
-  userLat=0;
-  userLng=0;
+  userLat = 0;
+  userLng = 0;
 
   isBusy = false;
   empty = false;
@@ -200,8 +201,9 @@ export class MainScreenPage {
                   name: vendor.name,
                   branchName: branch.branch_name,
                   branchid: branch.id,
-                  lat : branch.latitude,
-                  lng : branch.longtitude,
+                  lat: branch.latitude,
+                  lng: branch.longtitude,
+                  bounds: branch.bounds,
                   addressid: vendor.addressid,
                   rating: vendor.rating,
                   address: vendor.address,
@@ -213,10 +215,10 @@ export class MainScreenPage {
                   Branches: []
                 }
 
-                
+
 
                 this.resturants.push(updatedVendor);
-                
+
               }
 
               // this.resturants.push(vendor);
@@ -259,12 +261,12 @@ export class MainScreenPage {
 
 
   //Go resturant info Page 
-  goResturantInfo(id, branchid,distance) {
+  goResturantInfo(id, branchid, distance) {
     this.app.getRootNav().push(ResturantInfoPage, {
       resid: id,
       branchId: branchid,
       serviceType: this.serviceType,
-      distace : distance
+      distace: distance
     });
   }
 
@@ -400,7 +402,7 @@ export class MainScreenPage {
             resid: id,
             branchId: null,
             serviceType: "1",
-            distace : 0
+            distace: 0
           });
           break;
 
@@ -412,21 +414,21 @@ export class MainScreenPage {
           this.app.getRootNav().push(ResturantInfoPage, {
             resid: id,
             branchId: branch.id,
-            distace: this.getDistance(branch.latitude,branch.longtitude),
+            distace: this.getDistance(branch.bounds),
             serviceType: "2"
           });
           break;
 
         case 3:
 
-        let branches2 = [];
+          let branches2 = [];
           branches2 = resturantInfo['Branches'];
           let branch2 = branches[0];
           this.app.getRootNav().push(ResturantInfoPage, {
-            
+
             resid: id,
-            branchId:  branch2.id,
-            distace : this.getDistance(branch.latitude,branch.longtitude) ,
+            branchId: branch2.id,
+            distace: this.getDistance(branch.bounds),
             serviceType: this.serviceType
           });
           break;
@@ -442,12 +444,29 @@ export class MainScreenPage {
 
 
 
-  
 
 
-  getDistance(lat,lng){
+
+  getDistance(bounds) {
+    //Convert bounds to Array of lat/lng and get distance between current location and each item and get Min value
+    if (bounds != null) {
+      var coordsArray = bounds.split(",");
+      var path = [];
+      for (var i = 0; i < coordsArray.length; i++) {
+        path.push(this.checkDistance(coordsArray[i], coordsArray[i + 1]));
+        i++;
+      }
+      console.log(path);
+      return Math.min.apply(Math, path)
+    } else {
+      return 0;
+    }
+  }
 
 
+
+  //Get distance 
+  checkDistance(lat, lng) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(parseFloat(localStorage.getItem("userLat")) - lat);  // deg2rad below
     var dLon = this.deg2rad(parseFloat(localStorage.getItem("userLng")) - lng);
@@ -460,13 +479,9 @@ export class MainScreenPage {
     var d = R * c; // Distance in km
     return Number(d).toFixed(2);
   }
-
   deg2rad(deg) {
     return deg * (Math.PI / 180)
-
   }
-
-
 
 
 }

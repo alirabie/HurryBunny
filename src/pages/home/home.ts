@@ -236,7 +236,7 @@ export class HomePage {
     }).catch((error) => {
       let alert = this.alertCrtl.create({
         title: this.translate.instant('PAGE_TITLE.dilog'),
-        subTitle: error,
+        subTitle: this.translate.instant('errorLocationDetict'),
         buttons: [this.translate.instant('BUTTONS.dissmiss')]
       });
       alert.present();

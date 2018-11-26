@@ -209,7 +209,8 @@
     "orderreaadydetails":"طلبك جاهز الان للإستلام",
     "acccepted":"مقبول",
     "km":"كم",
-    "distance":"المسافة"
+    "distance":"المسافة",
+    "errorLocationDetict":"حدث خطأ فى تحديد موقعك"
 
 
 }

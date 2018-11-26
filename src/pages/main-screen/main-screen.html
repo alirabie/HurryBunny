@@ -179,7 +179,7 @@
         
           <p class="settings" *ngIf="serviceType==2">
             <small class="settingsname">{{'distance' | translate}}</small>
-            <small>{{getDistance(resturant.lat,resturant.lng)}} {{'km' | translate}}</small>
+            <small>{{getDistance(resturant.bounds)}} {{'km' | translate}}</small>
           </p>
           |
           <p class="settings" *ngIf="serviceType==2">

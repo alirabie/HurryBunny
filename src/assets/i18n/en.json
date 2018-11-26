@@ -210,5 +210,6 @@
     "orderreaadydetails":"Your Order ready for pick up",
     "acccepted":"Accepted",
     "km":"KM",
-    "distance":"Distance"
+    "distance":"Distance",
+    "errorLocationDetict":"There is an error when detecting your location"
 }
