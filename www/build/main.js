@@ -743,62 +743,6 @@ var UpdateLocationPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AboutusPage = /** @class */ (function () {
-    function AboutusPage(navCtrl, navParams, trans, config) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.trans = trans;
-        this.config = config;
-        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
-    }
-    AboutusPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AboutusPage');
-    };
-    AboutusPage.prototype.goFacebook = function () {
-        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goTwitter = function () {
-        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goGooglePlus = function () {
-        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goInsta = function () {
-        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-aboutus',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
-    ], AboutusPage);
-    return AboutusPage;
-}());
-
-//# sourceMappingURL=aboutus.js.map
-
-/***/ }),
-
-/***/ 142:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountActivePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -933,7 +877,7 @@ var AccountActivePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 143:
+/***/ 142:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1416,7 +1360,7 @@ var MealInfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 144:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1692,7 +1636,7 @@ var ViewOrderPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 145:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1707,8 +1651,8 @@ var ViewOrderPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_sign_up_sign_up__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__offers_offers__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1888,7 +1832,7 @@ var MoreListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 146:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1934,6 +1878,62 @@ var SettingsPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=settings.js.map
+
+/***/ }),
+
+/***/ 146:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AboutusPage = /** @class */ (function () {
+    function AboutusPage(navCtrl, navParams, trans, config) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.trans = trans;
+        this.config = config;
+        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
+    }
+    AboutusPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AboutusPage');
+    };
+    AboutusPage.prototype.goFacebook = function () {
+        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goTwitter = function () {
+        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goGooglePlus = function () {
+        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goInsta = function () {
+        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-aboutus',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
+    ], AboutusPage);
+    return AboutusPage;
+}());
+
+//# sourceMappingURL=aboutus.js.map
 
 /***/ }),
 
@@ -2268,23 +2268,23 @@ webpackEmptyAsyncContext.id = 161;
 
 var map = {
 	"../pages/aboutus/aboutus.module": [
-		402,
+		404,
 		20
 	],
 	"../pages/account-active/account-active.module": [
-		403,
+		402,
 		19
 	],
 	"../pages/contact-us/contact-us.module": [
-		404,
+		403,
 		18
 	],
 	"../pages/intro-screen/intro-screen.module": [
-		405,
+		406,
 		17
 	],
 	"../pages/login/login.module": [
-		406,
+		405,
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
@@ -2300,27 +2300,27 @@ var map = {
 		13
 	],
 	"../pages/more-list/more-list.module": [
-		410,
+		411,
 		12
 	],
 	"../pages/offers/offers.module": [
-		411,
+		421,
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		412,
+		410,
 		10
 	],
 	"../pages/orders/orders.module": [
-		413,
+		417,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		414,
+		412,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
-		415,
+		413,
 		7
 	],
 	"../pages/resturant-review/resturant-review.module": [
@@ -2328,23 +2328,23 @@ var map = {
 		6
 	],
 	"../pages/settings/settings.module": [
-		418,
+		414,
 		5
 	],
 	"../pages/shopping-cart/shopping-cart.module": [
-		417,
+		415,
 		4
 	],
 	"../pages/sign-up/sign-up.module": [
-		419,
+		420,
 		3
 	],
 	"../pages/update-location/update-location.module": [
-		420,
+		418,
 		2
 	],
 	"../pages/view-order/view-order.module": [
-		421,
+		419,
 		1
 	]
 };
@@ -2979,24 +2979,24 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_sign_up_sign_up__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_profile_profile__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_offers_offers__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_ionic2_rating__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_ionic_image_loader__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3096,26 +3096,26 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["HttpModule"],
                 __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["k" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/contact-us/contact-us.module#ContactUsPageModule', name: 'ContactUsPage', segment: 'contact-us', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__["b" /* TranslateModule */].forRoot({
@@ -3183,7 +3183,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(143);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4027,7 +4027,7 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offers_offers__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4205,7 +4205,7 @@ var OffersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(141);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5200,7 +5200,7 @@ var IntroScreenPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__ = __webpack_require__(56);
@@ -5942,7 +5942,7 @@ var MainScreenPage = /** @class */ (function () {
     };
     MainScreenPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-            selector: 'page-main-screen',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/'​\n<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\n\n\n<ion-header>\n\n\n  <ion-navbar hideBackButton="true">\n    <!--Shopping Cart button-->\n    <!-- <ion-buttons (click)="loadCartPage()" start left>\n      <button ion-button icon-only>\n        <ion-icon name="md-cart"></ion-icon>\n        <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n      </button>\n    </ion-buttons> -->\n\n    <!--<ion-buttons (click)="goShoppingCartPage()" start>\n        <button ion-button icon-only>\n            <ion-icon name="md-cart"></ion-icon>\n            <ion-badge color="danger">{{badgeValue}}</ion-badge>\n        </button>\n    </ion-buttons>-->\n\n    <!--Title of Page-->\n    <ion-title>\n      {{ \'PAGE_TITLE.home\' | translate }}\n    </ion-title>\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="onButtonClick()" left>\n      <button ion-button icon-only>\n        <ion-icon name="ios-search"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-buttons (click)="goToLocationPage()" right>\n      <button ion-button icon-only >\n        <ion-icon name=\'ios-navigate-outline\'></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n  </ion-navbar>\n\n\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar *ngIf="buttonClicked" placeholder="{{\'search\' | translate}}" [(ngModel)]="searchTerm" (ionInput)="setFilteredLocations($event)" (ionCancel)="onCancel()">\n  </ion-searchbar>\n\n  \n  \n\n  <!--Start Advertisements Slider-->\n  <ion-slides pager options="{pagination: true}" autoplay="5000" loop="true" speed="500" dir="{{oriantation}}">\n\n      <ion-slide *ngIf="ads.length==0" style="background-color: bisque; color: #555;">\n          <img class="img" height="100 px" width="100 px" src="./assets/imgs/addsPlaceholder.png" />\n        </ion-slide>\n\n    <ion-slide *ngFor="let ad of ads" style="background-color: bisque; color: #555;"  (click)="goResturantInfoFromAd(ad.vendor_id)">\n      <img class="img" height="100 px" width="100 px" [src]="ad.image.src" />\n      <!-- <h2>Advertising 1</h2> -->\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n\n\n  <!-- Delivery type selection segment  -->\n  <!-- <ion-segment  (ionChange)="switchDeliveryType($event)" full="true"  assertive>\n    <ion-segment-button value="2">\n        <i class=" fa fa-gift" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'pickup\' | translate}}</label>\n        \n    </ion-segment-button>\n    <ion-segment-button value="1">\n        <i class="fa fa-truck" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'delivry\' | translate}}</label>\n    </ion-segment-button>\n  </ion-segment> -->\n\n\n\n\n  <!--Segment Tabs-->\n  <div class="seg-tabs" dir="{{oriantation}}">\n    <ion-segment (ionChange)="switchDeliveryType($event)" [(ngModel)]="serviceType">\n      <ion-segment-button value="1">\n        <img src="./assets/imgs/delivery-icon.png" />{{\'delivry\' | translate}}</ion-segment-button>\n      <ion-segment-button value="2">\n        <img src="./assets/imgs/pickup-icon.png" />{{\'pickup\' | translate}}</ion-segment-button>\n    </ion-segment>\n  </div>\n\n\n\n\n\n\n\n\n  <ion-label class="emptylbl" *ngIf="empty">{{ \'EMPTY\' | translate }}</ion-label>\n  <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n\n  <!--Start The List Of Resturants-->\n  <ion-list *ngIf="serviceType==1">\n\n    <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n      (click)="goResturantInfo(resturant.id,resturant.branchid)">\n      <ion-thumbnail item-start>\n        <!--<img [src]="resturant.profile_image">-->\n        <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n        <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n      </ion-thumbnail>\n\n      <div class="group">\n        <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n\n        <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n          emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n        </rating>\n        <ion-badge class="badge" start left *ngIf="compareResturantId(resturant.id)" color="primary">{{badgeValue}}</ion-badge>\n      </div>\n\n\n      <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n\n      <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'mimimum\' | translate}}</small>\n          <small>{{resturant.Settings.MinimumOrderAmount}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryFees}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryTime}} min</small>\n        </p>\n      </ion-row>\n\n    </ion-item>\n  </ion-list>\n\n  <ion-list *ngIf="serviceType==2">\n\n      <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.lat,resturant.lng))">\n        <ion-thumbnail item-start>\n          <!--<img [src]="resturant.profile_image">-->\n          <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n          <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n        </ion-thumbnail>\n  \n        <div class="group">\n          <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n  \n          <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n            emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n          </rating>\n          <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>\n        </div>\n  \n  \n        <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n  \n        <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        \n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'distance\' | translate}}</small>\n            <small>{{getDistance(resturant.bounds)}} {{\'km\' | translate}}</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n            <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'closetime\' | translate}}</small>\n            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>\n          </p>\n        </ion-row>\n  \n      </ion-item>\n    </ion-list>\n</ion-content>\n\n<!-- <ion-footer>\n  <div class="header-banner">\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500" *ngFor="let product of productInfo">\n      <ion-slide *ngFor="let image of product.images">\n        <img class="img" height="100 px" width="100 px" [src]="image.src">\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-footer> -->'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/,
+            selector: 'page-main-screen',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/'​\n<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\n\n\n<ion-header>\n\n\n  <ion-navbar hideBackButton="true">\n    <!--Shopping Cart button-->\n    <!-- <ion-buttons (click)="loadCartPage()" start left>\n      <button ion-button icon-only>\n        <ion-icon name="md-cart"></ion-icon>\n        <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n      </button>\n    </ion-buttons> -->\n\n    <!--<ion-buttons (click)="goShoppingCartPage()" start>\n        <button ion-button icon-only>\n            <ion-icon name="md-cart"></ion-icon>\n            <ion-badge color="danger">{{badgeValue}}</ion-badge>\n        </button>\n    </ion-buttons>-->\n\n    <!--Title of Page-->\n    <ion-title>\n      {{ \'PAGE_TITLE.home\' | translate }}\n    </ion-title>\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="onButtonClick()" left>\n      <button ion-button icon-only>\n        <ion-icon name="ios-search"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-buttons (click)="goToLocationPage()" right>\n      <button ion-button icon-only >\n        <ion-icon name=\'ios-navigate-outline\'></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n  </ion-navbar>\n\n\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar *ngIf="buttonClicked" placeholder="{{\'search\' | translate}}" [(ngModel)]="searchTerm" (ionInput)="setFilteredLocations($event)" (ionCancel)="onCancel()">\n  </ion-searchbar>\n\n  \n  \n\n  <!--Start Advertisements Slider-->\n  <ion-slides pager options="{pagination: true}" autoplay="5000" loop="true" speed="500" dir="{{oriantation}}">\n\n      <ion-slide *ngIf="ads.length==0" style="background-color: bisque; color: #555;">\n          <img class="img" height="100 px" width="100 px" src="./assets/imgs/addsPlaceholder.png" />\n        </ion-slide>\n\n    <ion-slide *ngFor="let ad of ads" style="background-color: bisque; color: #555;"  (click)="goResturantInfoFromAd(ad.vendor_id)">\n      <img class="img" height="100 px" width="100 px" [src]="ad.image.src" />\n      <!-- <h2>Advertising 1</h2> -->\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n\n\n  <!-- Delivery type selection segment  -->\n  <!-- <ion-segment  (ionChange)="switchDeliveryType($event)" full="true"  assertive>\n    <ion-segment-button value="2">\n        <i class=" fa fa-gift" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'pickup\' | translate}}</label>\n        \n    </ion-segment-button>\n    <ion-segment-button value="1">\n        <i class="fa fa-truck" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'delivry\' | translate}}</label>\n    </ion-segment-button>\n  </ion-segment> -->\n\n\n\n\n  <!--Segment Tabs-->\n  <div class="seg-tabs" dir="{{oriantation}}">\n    <ion-segment (ionChange)="switchDeliveryType($event)" [(ngModel)]="serviceType">\n      <ion-segment-button value="1">\n        <img src="./assets/imgs/delivery-icon.png" />{{\'delivry\' | translate}}</ion-segment-button>\n      <ion-segment-button value="2">\n        <img src="./assets/imgs/pickup-icon.png" />{{\'pickup\' | translate}}</ion-segment-button>\n    </ion-segment>\n  </div>\n\n\n\n\n\n\n\n\n  <ion-label class="emptylbl" *ngIf="empty">{{ \'EMPTY\' | translate }}</ion-label>\n  <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n\n  <!--Start The List Of Resturants-->\n  <ion-list *ngIf="serviceType==1">\n\n    <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n      (click)="goResturantInfo(resturant.id,resturant.branchid)">\n      <ion-thumbnail item-start>\n        <!--<img [src]="resturant.profile_image">-->\n        <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n        <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n      </ion-thumbnail>\n\n      <div class="group">\n        <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n\n        <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n          emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n        </rating>\n        <ion-badge class="badge" start left *ngIf="compareResturantId(resturant.id)" color="primary">{{badgeValue}}</ion-badge>\n      </div>\n\n\n      <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n\n      <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'mimimum\' | translate}}</small>\n          <small>{{resturant.Settings.MinimumOrderAmount}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryFees}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryTime}} min</small>\n        </p>\n      </ion-row>\n\n    </ion-item>\n  </ion-list>\n\n  <ion-list *ngIf="serviceType==2">\n\n      <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.bounds))">\n        <ion-thumbnail item-start>\n          <!--<img [src]="resturant.profile_image">-->\n          <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n          <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n        </ion-thumbnail>\n  \n        <div class="group">\n          <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n  \n          <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n            emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n          </rating>\n          <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>\n        </div>\n  \n  \n        <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n  \n        <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        \n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'distance\' | translate}}</small>\n            <small>{{getDistance(resturant.bounds)}} {{\'km\' | translate}}</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n            <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'closetime\' | translate}}</small>\n            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>\n          </p>\n        </ion-row>\n  \n      </ion-item>\n    </ion-list>\n</ion-content>\n\n<!-- <ion-footer>\n  <div class="header-banner">\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500" *ngFor="let product of productInfo">\n      <ion-slide *ngFor="let image of product.images">\n        <img class="img" height="100 px" width="100 px" [src]="image.src">\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-footer> -->'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Events */]])
     ], MainScreenPage);

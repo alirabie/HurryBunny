@@ -7,663 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3cc8984-5472-466d-95f2-9983adf727dd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_16_0_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_16_0_5.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_16_0_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_16_0_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/5tpR16aA+S_TiHXPwsY2cB_2hH8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/8ZrFxOdjVfmLpRolFsjggqDcjAs=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/97Ccl0mdxhgXpQQdOwekfU3oYLU=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/EQ1sSNhDMn1WHTTtoR0Kp83AUAI=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/UXd223vsRNzE+9+eOOfUsisRBC8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/WbCvRbWdDWuycbVdg8urjsRVvBk=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/Wgh4XgsjK3wWL7tg_elpYvWkPk4=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ho1jwpvSyufVC42i7MNdoTjUd74=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/zeYX_srTIgtw23xqpMWpw5t61nE=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/5tpR16aA+S_TiHXPwsY2cB_2hH8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/8ZrFxOdjVfmLpRolFsjggqDcjAs=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/97Ccl0mdxhgXpQQdOwekfU3oYLU=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/EQ1sSNhDMn1WHTTtoR0Kp83AUAI=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/UXd223vsRNzE+9+eOOfUsisRBC8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/WbCvRbWdDWuycbVdg8urjsRVvBk=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/Wgh4XgsjK3wWL7tg_elpYvWkPk4=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/ho1jwpvSyufVC42i7MNdoTjUd74=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/zeYX_srTIgtw23xqpMWpw5t61nE=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/5tpR16aA+S_TiHXPwsY2cB_2hH8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/8ZrFxOdjVfmLpRolFsjggqDcjAs=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/97Ccl0mdxhgXpQQdOwekfU3oYLU=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/EQ1sSNhDMn1WHTTtoR0Kp83AUAI=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/UXd223vsRNzE+9+eOOfUsisRBC8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/WbCvRbWdDWuycbVdg8urjsRVvBk=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/Wgh4XgsjK3wWL7tg_elpYvWkPk4=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/ho1jwpvSyufVC42i7MNdoTjUd74=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/zip-cache/zeYX_srTIgtw23xqpMWpw5t61nE=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/5tpR16aA+S_TiHXPwsY2cB_2hH8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/8ZrFxOdjVfmLpRolFsjggqDcjAs=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/97Ccl0mdxhgXpQQdOwekfU3oYLU=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/EQ1sSNhDMn1WHTTtoR0Kp83AUAI=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/UXd223vsRNzE+9+eOOfUsisRBC8=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/WbCvRbWdDWuycbVdg8urjsRVvBk=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/Wgh4XgsjK3wWL7tg_elpYvWkPk4=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/ho1jwpvSyufVC42i7MNdoTjUd74=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/zip-cache/zeYX_srTIgtw23xqpMWpw5t61nE=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args196447621264151608" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args2774761172256823062" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args3442392215813781174" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args4085523155107049364" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args4176164702569849206" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args526520561447403129" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args5574299005665549151" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args881721300170128003" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args8887469612578864751" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/tmp/desugar_args9129292349393800908" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/16.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/160.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/161.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/162.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/17.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/172.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/173.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/174.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/175.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/176.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/177.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/178.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/179.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/180.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/181.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/183.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/184.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/33.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/34.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/45.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/46.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/47.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/48.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/49.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/50.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/51.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/52.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/53.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/54.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/55.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/56.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/57.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/58.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/59.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/60.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/61.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/62.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/63.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/64.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/65.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/66.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/67.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/68.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/69.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/jarAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskJars.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJniLibs/merge-state" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/zip-cache/I+vioBx+CkNLOtNJyJM8J2d0j9U=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/zip-cache/I+vioBx+CkNLOtNJyJM8J2d0j9U=" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/zip-cache/OHTFGCSASHwI7468DYgzSCB4BM4=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/zip-cache/OHTFGCSASHwI7468DYgzSCB4BM4=" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/zip-cache/52aUgtWTZER_DKbfxToIDmWTDSk=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/zip-cache/52aUgtWTZER_DKbfxToIDmWTDSk=" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/zip-cache/7X8iGKoqImWP66WMdWkbeAjqnsY=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/zip-cache/7X8iGKoqImWP66WMdWkbeAjqnsY=" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/merge-state" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJavaRes/merge-state" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/merge-state" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/release-mergeJniLibs/merge-state" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/release/resources-release.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/release/resources-release.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/15.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/15.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/16.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/17.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/17.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/18.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/18.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/19.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/20.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/20.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/21.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/21.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/26.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/28.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/28.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/29.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/29.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/30.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/30.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/31.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/31.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/32.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/32.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/33.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/33.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/34.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/34.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/35.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/35.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/36.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/36.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/37.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/37.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/38.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/38.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/39.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/39.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/40.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/40.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/41.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/41.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/42.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/42.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/43.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/43.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/44.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/44.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/45.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/45.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/46.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/46.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/9.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/9.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/15.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/15.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/16.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/17.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/17.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/18.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/18.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/19.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/20.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/20.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/21.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/21.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/26.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/28.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/28.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/29.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/29.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/30.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/30.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/31.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/31.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/32.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/32.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/33.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/33.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/34.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/34.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/35.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/35.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/36.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/36.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/37.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/37.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/38.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/38.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/39.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/39.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/40.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/40.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/41.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/41.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/42.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/42.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/43.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/43.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/44.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/44.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/45.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/45.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/46.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/46.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/9.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/9.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/release/0/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/release/0/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/163.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/163.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/164.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/164.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/165.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/165.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/166.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/166.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/167.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/167.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/168.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/168.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/169.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/169.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/170.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/170.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/171.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/171.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/182.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/182.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/2.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/2.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/3.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/3.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/0.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/release/0.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/release/0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/0.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/1.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/10.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/10.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/13.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/13.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/14.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/14.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/16.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/17.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/17.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/18.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/18.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/19.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/20.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/20.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/21.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/21.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/22.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/22.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/23.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/23.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/24.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/24.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/25.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/25.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/26.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/27.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/27.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/28.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/28.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/29.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/29.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/30.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/30.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/31.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/31.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/32.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/32.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/33.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/33.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/34.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/34.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/35.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/35.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/36.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/36.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/37.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/37.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/38.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/38.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/39.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/39.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/4.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/4.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/40.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/40.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/41.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/41.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/42.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/42.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/43.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/43.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/44.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/44.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/45.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/45.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/46.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/46.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/5.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/5.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/9.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/9.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/13.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/13.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/14.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/14.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/15.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/15.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/16.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/17.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/17.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/18.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/18.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/19.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/24.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/24.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/26.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/27.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/27.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/28.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/28.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/29.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/29.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/30.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/30.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/31.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/31.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/32.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/32.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/33.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/33.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/34.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/34.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/35.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/35.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/36.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/36.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/37.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/37.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/38.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/38.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/39.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/39.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/40.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/40.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/41.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/41.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/42.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/42.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/43.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/43.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/44.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/44.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/7.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/7.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/13.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/13.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/14.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/14.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/15.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/15.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/16.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/17.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/17.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/18.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/18.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/19.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/19.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/24.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/24.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/26.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/26.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/27.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/27.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/28.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/28.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/29.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/29.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/30.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/30.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/31.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/31.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/32.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/32.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/33.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/33.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/34.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/34.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/35.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/35.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/36.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/36.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/37.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/37.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/38.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/38.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/39.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/39.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/40.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/40.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/41.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/41.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/42.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/42.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/43.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/43.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/44.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/44.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/7.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/7.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.sourcemaps/main.js.map" afterPath="$PROJECT_DIR$/../../.sourcemaps/main.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/1.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/12.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/12.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/13.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/13.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/14.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/14.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/15.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/15.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/16.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/16.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/17.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/17.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/18.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/18.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/19.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/19.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/20.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/20.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/3.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/4.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/5.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/6.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/7.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/7.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/9.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/9.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.css" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.js.map" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/vendor.js.map" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/www/build/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/1.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/10.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/10.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/11.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/11.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/12.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/12.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/13.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/13.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/14.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/14.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/15.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/15.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/16.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/16.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/17.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/17.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/19.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/19.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/2.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/20.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/20.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/3.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/4.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/5.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/8.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/8.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/9.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/9.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.css" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.js" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.js.map" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/vendor.js.map" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/release/www/build/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/debug.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/debug.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-af.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-af.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-am.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-am.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ar.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ar.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-as.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-as.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-az.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-az.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-b+sr+Latn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-b+sr+Latn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-be.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-be.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bg.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bg.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-bs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ca.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ca.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-cs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-cs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-da.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-da.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-de.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-de.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-el.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-el.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-en-rGB.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-en-rGB.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-es-rUS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-es-rUS.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-es.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-es.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-et.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-et.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-eu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-eu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fr-rCA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fr-rCA.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-fr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-gl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-gl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-gu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-gu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hy.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-hy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-in.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-in.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-is.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-is.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-it.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-it.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-iw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-iw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ja.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ja.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ka.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ka.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-kk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-kk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-km.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-km.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-kn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-kn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ko.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ko.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ky.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ky.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lo.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lo.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-lv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ml.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ml.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-mr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ms.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ms.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-my.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-my.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-nb.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-nb.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ne.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ne.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-nl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-nl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-or.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-or.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pt-rBR.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pt-rBR.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pt-rPT.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-pt-rPT.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ro.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ro.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ru.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ru.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-si.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-si.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sq.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sq.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-sw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ta.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ta.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-te.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-te.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-th.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-th.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-tl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-tl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-tr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-tr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-uk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-uk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ur.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-ur.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-uz.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-uz.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-vi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-vi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rCN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rCN.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rHK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rHK.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rTW.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zh-rTW.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values-zu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/androidTest/debug/multi-v2/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-af.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-af.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-am.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-am.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-as.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-as.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-az.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-az.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-b+sr+Latn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-b+sr+Latn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-be.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-be.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bg.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bg.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-bs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ca.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ca.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-da.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-da.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-el.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-el.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-en-rGB.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-en-rGB.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es-rUS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es-rUS.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-et.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-et.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-eu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-eu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr-rCA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr-rCA.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-gu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hy.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-in.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-in.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-is.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-is.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-iw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-iw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ka.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ka.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-km.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-km.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-kn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ko.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ko.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ky.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ky.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lo.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lo.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-lv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ml.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ml.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-mr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ms.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ms.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-my.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-my.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nb.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nb.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ne.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ne.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-nl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-or.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-or.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rBR.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rBR.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rPT.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pt-rPT.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ro.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ro.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-si.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-si.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sq.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sq.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-sw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ta.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ta.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-te.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-te.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-th.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-th.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-tr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ur.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ur.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uz.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-uz.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-vi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-vi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rCN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rCN.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rHK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rHK.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rTW.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zh-rTW.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-zu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/release.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/release.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-af.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-af.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-am.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-am.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ar.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ar.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-as.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-as.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-az.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-az.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-b+sr+Latn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-b+sr+Latn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-be.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-be.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bg.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bg.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-bs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ca.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ca.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-cs.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-cs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-da.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-da.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-de.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-de.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-el.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-el.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-en-rGB.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-en-rGB.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-es-rUS.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-es-rUS.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-es.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-es.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-et.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-et.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-eu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-eu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fr-rCA.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fr-rCA.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-fr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-gl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-gl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-gu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-gu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hy.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-hy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-in.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-in.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-is.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-is.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-it.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-it.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-iw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-iw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ja.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ja.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ka.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ka.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-kk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-kk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-km.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-km.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-kn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-kn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ko.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ko.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ky.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ky.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lo.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lo.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-lv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ml.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ml.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mn.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-mr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ms.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ms.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-my.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-my.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-nb.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-nb.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ne.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ne.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-nl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-nl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-or.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-or.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pa.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pa.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pt-rBR.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pt-rBR.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pt-rPT.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-pt-rPT.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ro.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ro.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ru.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ru.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-si.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-si.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sq.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sq.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sv.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sv.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sw.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-sw.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ta.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ta.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-te.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-te.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-th.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-th.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-tl.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-tl.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-tr.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-tr.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-uk.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-uk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ur.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-ur.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-uz.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-uz.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-vi.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-vi.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rCN.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rCN.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rHK.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rHK.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rTW.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zh-rTW.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zu.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values-zu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/release/multi-v2/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeReleaseResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeReleaseResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/dex-renamer-state.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/debug/file-input-save-data.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/dex-renamer-state.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageRelease/release/file-input-save-data.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/release/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/desugar/release/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/preDex/release/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/debug/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/stackFramesFixer/release/__content__.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-release-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-release-report.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/reports/lint-results-release-fatal.html" afterPath="$PROJECT_DIR$/app/build/reports/lint-results-release-fatal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/1.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/12.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/12.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/13.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/13.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/14.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/14.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/15.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/15.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/16.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/16.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/17.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/17.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/18.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/18.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/19.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/19.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/20.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/20.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/3.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/4.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/5.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/6.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/7.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/7.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/9.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/9.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/main.css" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/main.js" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/main.js.map" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/assets/www/build/vendor.js.map" afterPath="$PROJECT_DIR$/app/src/main/assets/www/build/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/app/app.component.ts" afterPath="$PROJECT_DIR$/../../src/app/app.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/app/app.html" afterPath="$PROJECT_DIR$/../../src/app/app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/app/app.scss" afterPath="$PROJECT_DIR$/../../src/app/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/pages/main-screen/main-screen.html" afterPath="$PROJECT_DIR$/../../src/pages/main-screen/main-screen.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/pages/more-list/more-list.html" afterPath="$PROJECT_DIR$/../../src/pages/more-list/more-list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/pages/more-list/more-list.scss" afterPath="$PROJECT_DIR$/../../src/pages/more-list/more-list.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/pages/more-list/more-list.ts" afterPath="$PROJECT_DIR$/../../src/pages/more-list/more-list.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/providers/genrator/genrator.ts" afterPath="$PROJECT_DIR$/../../src/providers/genrator/genrator.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/theme/variables.scss" afterPath="$PROJECT_DIR$/../../src/theme/variables.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/1.js" afterPath="$PROJECT_DIR$/../../www/build/1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/10.js" afterPath="$PROJECT_DIR$/../../www/build/10.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/11.js" afterPath="$PROJECT_DIR$/../../www/build/11.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/12.js" afterPath="$PROJECT_DIR$/../../www/build/12.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/14.js" afterPath="$PROJECT_DIR$/../../www/build/14.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/13.js" afterPath="$PROJECT_DIR$/../../www/build/13.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/16.js" afterPath="$PROJECT_DIR$/../../www/build/16.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/17.js" afterPath="$PROJECT_DIR$/../../www/build/17.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/18.js" afterPath="$PROJECT_DIR$/../../www/build/18.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/19.js" afterPath="$PROJECT_DIR$/../../www/build/19.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/2.js" afterPath="$PROJECT_DIR$/../../www/build/2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/20.js" afterPath="$PROJECT_DIR$/../../www/build/20.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/3.js" afterPath="$PROJECT_DIR$/../../www/build/3.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/4.js" afterPath="$PROJECT_DIR$/../../www/build/4.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/5.js" afterPath="$PROJECT_DIR$/../../www/build/5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/7.js" afterPath="$PROJECT_DIR$/../../www/build/7.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/8.js" afterPath="$PROJECT_DIR$/../../www/build/8.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/9.js" afterPath="$PROJECT_DIR$/../../www/build/9.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/main.css" afterPath="$PROJECT_DIR$/../../www/build/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/main.js" afterPath="$PROJECT_DIR$/../../www/build/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/main.js.map" afterPath="$PROJECT_DIR$/../../www/build/main.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/build/vendor.js.map" afterPath="$PROJECT_DIR$/../../www/build/vendor.js.map" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_analytics_impl_16_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_analytics_impl_16_0_5.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_measurement_api_16_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_measurement_api_16_0_3.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_measurement_base_16_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_measurement_base_16_0_4.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tagmanager_16_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tagmanager_16_0_5.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tagmanager_api_16_0_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tagmanager_api_16_0_5.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_16_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_16_2_3.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_measurement_connector_impl_17_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_measurement_connector_impl_17_0_3.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -3544,9 +2911,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3561,11 +2928,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="E:/Android Devlopments Work/25 Nov" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Sefary/Sefery POS Printer" />
     <property name="device.picker.selection" value="FA495WG00205" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1526472107213" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
@@ -3659,7 +3026,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1543172409611" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1543840097410" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3759,7 +3126,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1543172409611" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1543840097411" />
       </method>
     </configuration>
     <list size="1">
@@ -3798,11 +3165,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1060" extended-state="0" />
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3828,6 +3194,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="StringPreview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3845,7 +3212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3918,7 +3284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
           <caret line="1" column="130" lean-forward="false" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="130" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-manifest">
