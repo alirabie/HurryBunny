@@ -4,23 +4,6 @@
             "outputFile": "F:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ta\\values-ta.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.5.aar\\d99c2acce24eae2e4f79fe85083c7f61\\res\\values-ta\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "208,302,437",
-                        "endColumns": "93,134,100",
-                        "endOffsets": "301,436,537"
-                    },
-                    "to": {
-                        "startLines": "42,43,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "5095,5193,5332",
-                        "endColumns": "97,138,104",
-                        "endOffsets": "5188,5327,5432"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.3.4.aar\\627fe46d7c70d3991fdda0307c1bb04b\\res\\values-ta\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -69,6 +52,23 @@
                         "startOffsets": "105,219,327,450,555,670,759,866,992,1073,1153,1235,1337,1441,1538,1648,1750,1857,1976,4914,4994",
                         "endColumns": "113,107,122,104,114,88,106,125,80,79,81,101,103,96,109,101,106,118,99,79,100",
                         "endOffsets": "214,322,445,550,665,754,861,987,1068,1148,1230,1332,1436,1533,1643,1745,1852,1971,2071,4989,5090"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.6.aar\\22d34aeae6d86930e203f61d9c7cc948\\res\\values-ta\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "208,302,437",
+                        "endColumns": "93,134,100",
+                        "endOffsets": "301,436,537"
+                    },
+                    "to": {
+                        "startLines": "42,43,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "5095,5193,5332",
+                        "endColumns": "97,138,104",
+                        "endOffsets": "5188,5327,5432"
                     }
                 },
                 {

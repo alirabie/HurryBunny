@@ -4,6 +4,23 @@
             "outputFile": "F:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sr\\values-sr.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.6.aar\\22d34aeae6d86930e203f61d9c7cc948\\res\\values-sr\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "208,303,421",
+                        "endColumns": "94,117,93",
+                        "endOffsets": "302,420,514"
+                    },
+                    "to": {
+                        "startLines": "42,43,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "5011,5110,5232",
+                        "endColumns": "98,121,97",
+                        "endOffsets": "5105,5227,5325"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-16.0.1.aar\\9f3b0b3d2a0350a3f139f776cfedad0c\\res\\values-sr\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -18,23 +35,6 @@
                         "startOffsets": "2063,2171,2359,2487,2599,2812,2941,3083,3403,3611,3720,3911,4040,4248,4420,4518,4613",
                         "endColumns": "107,187,127,111,212,128,141,130,207,108,190,128,207,171,97,94,108",
                         "endOffsets": "2166,2354,2482,2594,2807,2936,3078,3209,3606,3715,3906,4035,4243,4415,4513,4608,4717"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.5.aar\\d99c2acce24eae2e4f79fe85083c7f61\\res\\values-sr\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "208,303,421",
-                        "endColumns": "94,117,93",
-                        "endOffsets": "302,420,514"
-                    },
-                    "to": {
-                        "startLines": "42,43,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "5011,5110,5232",
-                        "endColumns": "98,121,97",
-                        "endOffsets": "5105,5227,5325"
                     }
                 },
                 {

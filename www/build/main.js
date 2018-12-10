@@ -190,16 +190,16 @@ var GenratorProvider = /** @class */ (function () {
         this.ProductionURL = "https://www.hurrybunny.com/";
         this.devlomentURL = "http://hurrybunny.appsmatic.net/";
         console.log('Hello GenratorProvider Provider');
-        if (localStorage.getItem('mode') == null) {
-            this.url = this.devlomentURL;
-            localStorage.setItem('mode', "development");
-        }
-        if (localStorage.getItem('mode') == "development") {
-            this.url = this.devlomentURL;
-        }
-        else if (localStorage.getItem('mode') == "Production") {
-            this.url = this.ProductionURL;
-        }
+        // if (localStorage.getItem('mode') == null) {
+        //   this.url = this.devlomentURL;
+        //   localStorage.setItem('mode', "development");
+        // }
+        // if (localStorage.getItem('mode') == "development") {
+        //   this.url = this.devlomentURL;
+        // } else if (localStorage.getItem('mode') == "Production") {
+        //   this.url = this.ProductionURL;
+        // }
+        this.url = this.ProductionURL;
     }
     //Registeration
     GenratorProvider.prototype.signUp = function (registrData) {
@@ -743,6 +743,62 @@ var UpdateLocationPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AboutusPage = /** @class */ (function () {
+    function AboutusPage(navCtrl, navParams, trans, config) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.trans = trans;
+        this.config = config;
+        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
+    }
+    AboutusPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AboutusPage');
+    };
+    AboutusPage.prototype.goFacebook = function () {
+        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goTwitter = function () {
+        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goGooglePlus = function () {
+        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goInsta = function () {
+        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-aboutus',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
+    ], AboutusPage);
+    return AboutusPage;
+}());
+
+//# sourceMappingURL=aboutus.js.map
+
+/***/ }),
+
+/***/ 142:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountActivePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -877,7 +933,7 @@ var AccountActivePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 142:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1360,7 +1416,7 @@ var MealInfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 143:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1636,7 +1692,7 @@ var ViewOrderPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 144:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1651,8 +1707,8 @@ var ViewOrderPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_sign_up_sign_up__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__offers_offers__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1821,7 +1877,7 @@ var MoreListPage = /** @class */ (function () {
     };
     MoreListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-more-list',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'more\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n  <ion-list>\n    <div class="logo">\n      <img src="./assets/imgs/sidemenu-logo.png" />\n    </div>\n\n\n    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">\n      <ion-icon name="md-globe"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{langName}}</h2>\n    </button>\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">\n      <ion-icon name="ios-home"></ion-icon>\n      <h2> {{ \'SIDEMENU.home\' | translate }}</h2>\n    </button> -->\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'SIDEMENU.account\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'PAGE_TITLE.signup\' | translate }}</h2>\n    </button>\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >\n      <ion-icon name="ios-basket"></ion-icon>\n      <h2>{{ \'SIDEMENU.basket\' | translate }}</h2>\n    </button> -->\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">\n      <ion-icon name="md-pricetag"></ion-icon>\n      <h2>{{ \'SIDEMENU.discounted\' | translate }}</h2>\n    </button> -->\n\n\n    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">\n      <ion-icon name="ios-people"></ion-icon>\n      <h2>{{ \'SIDEMENU.aboutus\' | translate }}</h2>\n    </button>\n\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">\n      <ion-icon name="md-log-out"></ion-icon>\n      <h2>{{ \'SIDEMENU.logout\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">\n      <ion-icon name="md-log-in"></ion-icon>\n      <h2>{{ \'SIDEMENU.login\' | translate }}</h2>\n    </button>\n\n\n\n    <button  ion-item detail-none class="sidemenu" (click)="appMode()">\n      <ion-icon name="md-cog"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{mode}}</h2>\n    </button>\n\n\n\n\n\n\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/,
+            selector: 'page-more-list',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'more\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n  <ion-list>\n    <div class="logo">\n      <img src="./assets/imgs/sidemenu-logo.png" />\n    </div>\n\n\n    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">\n      <ion-icon name="md-globe"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{langName}}</h2>\n    </button>\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">\n      <ion-icon name="ios-home"></ion-icon>\n      <h2> {{ \'SIDEMENU.home\' | translate }}</h2>\n    </button> -->\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'SIDEMENU.account\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'PAGE_TITLE.signup\' | translate }}</h2>\n    </button>\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >\n      <ion-icon name="ios-basket"></ion-icon>\n      <h2>{{ \'SIDEMENU.basket\' | translate }}</h2>\n    </button> -->\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">\n      <ion-icon name="md-pricetag"></ion-icon>\n      <h2>{{ \'SIDEMENU.discounted\' | translate }}</h2>\n    </button> -->\n\n\n    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">\n      <ion-icon name="ios-people"></ion-icon>\n      <h2>{{ \'SIDEMENU.aboutus\' | translate }}</h2>\n    </button>\n\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">\n      <ion-icon name="md-log-out"></ion-icon>\n      <h2>{{ \'SIDEMENU.logout\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">\n      <ion-icon name="md-log-in"></ion-icon>\n      <h2>{{ \'SIDEMENU.login\' | translate }}</h2>\n    </button>\n\n\n<!-- \n    <button  ion-item detail-none class="sidemenu" (click)="appMode()">\n      <ion-icon name="md-cog"></ion-icon>\n      <h2>{{mode}}</h2>\n    </button> -->\n\n\n\n\n\n\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
     ], MoreListPage);
@@ -1832,7 +1888,7 @@ var MoreListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1878,62 +1934,6 @@ var SettingsPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=settings.js.map
-
-/***/ }),
-
-/***/ 146:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AboutusPage = /** @class */ (function () {
-    function AboutusPage(navCtrl, navParams, trans, config) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.trans = trans;
-        this.config = config;
-        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
-    }
-    AboutusPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AboutusPage');
-    };
-    AboutusPage.prototype.goFacebook = function () {
-        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goTwitter = function () {
-        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goGooglePlus = function () {
-        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goInsta = function () {
-        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-aboutus',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
-    ], AboutusPage);
-    return AboutusPage;
-}());
-
-//# sourceMappingURL=aboutus.js.map
 
 /***/ }),
 
@@ -2268,23 +2268,23 @@ webpackEmptyAsyncContext.id = 161;
 
 var map = {
 	"../pages/aboutus/aboutus.module": [
-		404,
+		402,
 		20
 	],
 	"../pages/account-active/account-active.module": [
-		402,
+		403,
 		19
 	],
 	"../pages/contact-us/contact-us.module": [
-		403,
+		405,
 		18
 	],
 	"../pages/intro-screen/intro-screen.module": [
-		406,
+		404,
 		17
 	],
 	"../pages/login/login.module": [
-		405,
+		406,
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
@@ -2300,51 +2300,51 @@ var map = {
 		13
 	],
 	"../pages/more-list/more-list.module": [
-		411,
+		410,
 		12
 	],
 	"../pages/offers/offers.module": [
-		421,
+		411,
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		410,
+		412,
 		10
 	],
 	"../pages/orders/orders.module": [
-		417,
+		413,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		412,
+		414,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
-		413,
+		416,
 		7
 	],
 	"../pages/resturant-review/resturant-review.module": [
-		416,
+		415,
 		6
 	],
 	"../pages/settings/settings.module": [
-		414,
+		417,
 		5
 	],
 	"../pages/shopping-cart/shopping-cart.module": [
-		415,
+		418,
 		4
 	],
 	"../pages/sign-up/sign-up.module": [
-		420,
+		419,
 		3
 	],
 	"../pages/update-location/update-location.module": [
-		418,
+		420,
 		2
 	],
 	"../pages/view-order/view-order.module": [
-		419,
+		421,
 		1
 	]
 };
@@ -2979,24 +2979,24 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_sign_up_sign_up__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_profile_profile__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_offers_offers__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_ionic2_rating__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_ionic_image_loader__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3096,26 +3096,26 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["HttpModule"],
                 __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["k" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/contact-us/contact-us.module#ContactUsPageModule', name: 'ContactUsPage', segment: 'contact-us', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/contact-us/contact-us.module#ContactUsPageModule', name: 'ContactUsPage', segment: 'contact-us', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__["b" /* TranslateModule */].forRoot({
@@ -3183,7 +3183,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4027,7 +4027,7 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offers_offers__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4205,7 +4205,7 @@ var OffersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(142);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5200,7 +5200,7 @@ var IntroScreenPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__ = __webpack_require__(56);

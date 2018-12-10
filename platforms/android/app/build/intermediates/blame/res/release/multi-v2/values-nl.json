@@ -4,23 +4,6 @@
             "outputFile": "F:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-nl\\values-nl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.5.aar\\d99c2acce24eae2e4f79fe85083c7f61\\res\\values-nl\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "208,304,418",
-                        "endColumns": "95,113,95",
-                        "endOffsets": "303,417,513"
-                    },
-                    "to": {
-                        "startLines": "59,60,61",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "7550,7650,7768",
-                        "endColumns": "99,117,99",
-                        "endOffsets": "7645,7763,7863"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.3.4.aar\\627fe46d7c70d3991fdda0307c1bb04b\\res\\values-nl\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -52,6 +35,23 @@
                         "startOffsets": "105,223,331,454,559,666,752,860,980,1057,1134,1216,1327,1431,1530,1645,1758,1861,1979,7367,7449",
                         "endColumns": "117,107,122,104,106,85,107,119,76,76,81,110,103,98,114,112,102,117,102,81,100",
                         "endOffsets": "218,326,449,554,661,747,855,975,1052,1129,1211,1322,1426,1525,1640,1753,1856,1974,2077,7444,7545"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.6.aar\\22d34aeae6d86930e203f61d9c7cc948\\res\\values-nl\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "208,304,418",
+                        "endColumns": "95,113,95",
+                        "endOffsets": "303,417,513"
+                    },
+                    "to": {
+                        "startLines": "59,60,61",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "7550,7650,7768",
+                        "endColumns": "99,117,99",
+                        "endOffsets": "7645,7763,7863"
                     }
                 },
                 {

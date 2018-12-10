@@ -18,19 +18,21 @@ export class GenratorProvider {
   constructor(public http: Http, public cache: CacheService) {
     console.log('Hello GenratorProvider Provider');
 
-    if (localStorage.getItem('mode') == null) {
-      this.url = this.devlomentURL;
-      localStorage.setItem('mode', "development");
-    }
+    // if (localStorage.getItem('mode') == null) {
+    //   this.url = this.devlomentURL;
+    //   localStorage.setItem('mode', "development");
+    // }
   
 
-    if (localStorage.getItem('mode') == "development") {
-      this.url = this.devlomentURL;
-    } else if (localStorage.getItem('mode') == "Production") {
-      this.url = this.ProductionURL;
-    }
+    // if (localStorage.getItem('mode') == "development") {
+    //   this.url = this.devlomentURL;
+    // } else if (localStorage.getItem('mode') == "Production") {
+    //   this.url = this.ProductionURL;
+    // }
+    
 
 
+    this.url = this.ProductionURL;
   }
 
 
