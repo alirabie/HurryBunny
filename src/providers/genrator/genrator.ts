@@ -22,16 +22,12 @@ export class GenratorProvider {
     //   this.url = this.devlomentURL;
     //   localStorage.setItem('mode', "development");
     // }
-  
-
     // if (localStorage.getItem('mode') == "development") {
     //   this.url = this.devlomentURL;
     // } else if (localStorage.getItem('mode') == "Production") {
     //   this.url = this.ProductionURL;
     // }
     
-
-
     this.url = this.ProductionURL;
   }
 
@@ -442,6 +438,21 @@ export class GenratorProvider {
     let request = this.http.get(this.url + "api/offers");
     let cacheKey = "offers"
     return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+  }
+
+
+  //Change Language
+  changeLanguage(customerId,langId){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/customer/language?customerId='+customerId+'&languageId='+langId, JSON.stringify(location), { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
   }
 
 }

@@ -133,7 +133,7 @@
     <orderEntry type="library" name="com.google.firebase:firebase-measurement-connector-impl-17.0.4" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-interop-16.0.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-abt-16.0.1" level="project" />
-    <orderEntry type="library" name="com.google.firebase:firebase-perf-16.2.2" level="project" />
+    <orderEntry type="library" name="com.google.firebase:firebase-perf-16.2.3" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-config-16.1.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-ads-identifier-16.0.0" level="project" />
     <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-common:1.2.61@jar" level="project" />

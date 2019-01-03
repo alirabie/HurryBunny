@@ -15,6 +15,7 @@ import { ContactUsPage } from '../contact-us/contact-us';
 import { ViewController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GenratorProvider } from '../../providers/genrator/genrator';
 
 
 @IonicPage()
@@ -29,7 +30,7 @@ export class MoreListPage {
   loggedOut = false;
   loggedIn = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public app: App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public generator : GenratorProvider ,public splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public app: App) {
     if (localStorage.getItem('customerid') === null) {
       this.loggedOut = true;
       this.loggedIn = false;
@@ -158,13 +159,19 @@ export class MoreListPage {
 
   toggleIcon(getIcon: string) {
     if (this.langName === "English") {
+
+      if(localStorage.getItem('customerid') != null){
+        this.changeServerLang(localStorage.getItem('customerid'),1);
+      }
       this.langName = "اللغة العربية";
       this.translateService.use("en");
       localStorage.setItem('lang', "en");
       this.splashScreen.show();
       location.reload();
     } else {
-
+      if(localStorage.getItem('customerid') != null){
+        this.changeServerLang(localStorage.getItem('customerid'),2);
+      }
       this.translateService.use("ar");
       localStorage.setItem('lang', "ar");
       this.langName = "English";
@@ -210,6 +217,18 @@ export class MoreListPage {
   }
 
 
+
+  changeServerLang(customerId,langId){
+    this.generator.changeLanguage(customerId,langId).then((result)=>{
+      if(result!=null){
+        console.log(result);
+      }
+    }),(err)=>{
+
+      console.log(err);
+
+    }
+  }
 
 
 }

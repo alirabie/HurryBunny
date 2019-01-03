@@ -75,7 +75,23 @@ export class LoginPage {
 
         localStorage.setItem('customerid', this.data.customers[0].id);
         localStorage.setItem('customerdata', JSON.stringify(this.data.customers[0]));
+        console.log(localStorage.getItem('customerdata'));
 
+        switch(this.data.customers[0].language){
+          case 1 : 
+            this.translate.use("en");
+            localStorage.setItem('lang', "en");
+            localStorage.setItem('langCode','1');
+            break;
+          
+          case 2 : 
+            this.translate.use("ar");
+            localStorage.setItem('lang', "ar");
+            localStorage.setItem('langCode','2');
+            break;
+          
+        }
+      
 
         //Send stored location
         // let location = JSON.parse(localStorage.getItem('locationId'));
