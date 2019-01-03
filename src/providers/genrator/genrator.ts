@@ -28,7 +28,9 @@ export class GenratorProvider {
     //   this.url = this.ProductionURL;
     // }
     
+    
     this.url = this.ProductionURL;
+    
   }
 
 
