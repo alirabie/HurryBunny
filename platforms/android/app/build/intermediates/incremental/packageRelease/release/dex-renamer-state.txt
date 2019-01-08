@@ -1,4 +1,4 @@
-#Thu Jan 03 14:32:17 EET 2019
+#Tue Jan 08 14:53:27 EET 2019
 base.0=F\:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0
 renamed.0=classes.dex
 file.0=F\:\\Ali\\Eng Ali\\Appsmatic\\IONIC\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0\\classes.dex

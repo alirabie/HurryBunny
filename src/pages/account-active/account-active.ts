@@ -36,14 +36,9 @@ export class AccountActivePage {
 
 
 
-
-
-
   SaveChanges(val) {
-
     console.log(val.code);
     let signUpdata = {
-
       customer:
         {
           billing_address: {
@@ -67,7 +62,6 @@ export class AccountActivePage {
           verificationcode: val.code+"",
          
         }
-
     }
 
     console.log(signUpdata);

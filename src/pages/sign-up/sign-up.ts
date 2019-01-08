@@ -74,126 +74,36 @@ export class SignUpPage {
   SaveChanges(val) {
     console.log(val);
     console.log(val.countryCode+val.phone)
-
-
-    console.log(val.code);
-    let signUpdata = {
-
-      customer:
-        {
-          billing_address: {
-            address1: "any add",
-            address2: "null,null,null",
-            city: "5555",
-            country_id : 69,
-            email : val.firstName+"@gmail.com",
-            first_name : val.firstName+"",
-            last_name : val.lastname+"",
-            phone_number : val.phone+"",
-            state_province_id : 40,
-            zip_postal_code: "10021"
-          },
-          role_ids: [3],
-          email :"",
-          password :"",
-          first_name: val.firstName+"",
-          last_name: val.lastname+"",
-          phone: val.phone+"",
-          verificationcode:"",
-         
-        }
-
-    }
-
-    console.log(signUpdata);
-
-
-    let loader = this.loader.create({
-      content: this.translate.instant('LOADING'),
-    });
-    loader.present();
-    this.genrator.signUp(signUpdata).then((result) => {
-
-      loader.dismiss();
-      console.log(result);
-      this.data = result;
-      if (this.data.customers != null) {
-        let alert = this.alertCtrl.create({
-          title: this.translate.instant('PAGE_TITLE.dilog'),
-          subTitle: this.translate.instant('ACTIVE.donecreated'),
-          buttons: [
-            {
-              text:  this.translate.instant('BUTTONS.dissmiss'),
-              handler: () => {
-                //ٌAutomatic login
-                localStorage.setItem('customerid', this.data.customers[0].id);
-                localStorage.setItem('customerdata', JSON.stringify(this.data.customers[0]));
-                this.events.publish('user:login');
-                this.app.getRootNav().push(HomePage).then(() => {
-                        // first we find the index of the current view controller:
-                        const index = this.viewCtrl.index;
-                        // then we remove it from the navigation stack
-                        this.navCtrl.remove(index);
-                      });
-              }
-            
-            }
-           ]
-        });
-        alert.present();
-      } else {
-        let alert = this.alertCtrl.create({
-          title: this.translate.instant('PAGE_TITLE.dilog'),
-          subTitle: this.data.errors.Account,
-          buttons: [this.translate.instant('BUTTONS.dissmiss')]
-        });
-        alert.present();
-      }
-
-    }, (err) => {
-      loader.dismiss();
-      let alert = this.alertCtrl.create({
-        title: "",
-        subTitle: err,
-        buttons: ['Dismss']
+     // Virify phone and go to activation page
+   let loader = this.loader.create({
+        content: this.translate.instant('LOADING'),
       });
-      alert.present();
-
-    });
-
-  }
-
-
-
-
-
-      //Virify phone and go to activation page
-  //  let loader = this.loader.create({
-  //       content: this.translate.instant('LOADING'),
-  //     });
-  //     loader.present();
-  //     this.genrator.VerifyPhon(val.countryCode,val.phone).subscribe((data) => {
-  //       console.log(data);
-  //       if (data.VerificationCode !== "") {
-  //         loader.dismiss();
-  //         this.navCtrl.push(AccountActivePage, {
-  //           fname: val.firstName,
-  //           lname: val.lastname,
-  //           phone: val.phone,
+      loader.present();
+      this.genrator.VerifyPhon(val.countryCode,val.phone).subscribe((data) => {
+        console.log(data);
+        if (data.VerificationCode !== "") {
+          loader.dismiss();
+          this.navCtrl.push(AccountActivePage, {
+            fname: val.firstName,
+            lname: val.lastname,
+            phone: val.phone,
           
-  //         });
-  //       } else {
-  //         loader.dismiss();
-  //         let alert = this.alertCtrl.create({
-  //           title: this.translate.instant('PAGE_TITLE.dilog'),
-  //           subTitle: data.ErrorMessage,
-  //           buttons: [this.translate.instant('BUTTONS.dissmiss')]
-  //         });
-  //         alert.present();
+          });
+        } else {
+          loader.dismiss();
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant('PAGE_TITLE.dilog'),
+            subTitle: data.ErrorMessage,
+            buttons: [this.translate.instant('BUTTONS.dissmiss')]
+          });
+          alert.present();
 
-  //       }
-  //     });
-  //  }
+        }
+      });
+
+
+
+   }
   
 
 
