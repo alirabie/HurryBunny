@@ -26,7 +26,10 @@ page-more-list {
                 ion-label.label {
                     display:flex;
                     text-align:center;
-                    h2{font-weight: bold;}
+                    h2{
+                        font-weight: bold;
+                        width:100%
+                    }
                 }
             }
             ion-icon.icon{

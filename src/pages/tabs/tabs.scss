@@ -1,11 +1,125 @@
 ion-tabs.tabs {
-    .tabbar.show-tabbar {background: #e4dcca; padding:9px 0}
-    ion-icon.tab-button-icon.icon {color: #51423d}
-    .tab-button[aria-selected=true] span.tab-button-text{color:#F77123; 
-        -webkit-transform: scale3d(1, 1, 1);
-        transform: scale3d(1, 1 1);
-        margin:0;
-        font-weight:bold
+    .tabbar, .tabs-ios, .tabs-md {
+        background: #f5f5f5; 
+        padding:9px 0;
+        border-top: 1px solid #dddddd;
+
+        .tab-button-icon {
+            background-repeat:no-repeat;
+            background-position:center;
+            height:40px;
+            width:40px;
+            background-size: 80%;
+            &:before {
+                display:none;
+            }
+        }
     }
-    span.tab-button-text {color: #51423d }
+   
+    span.tab-button-text {opacity: 1;}
+   
+}
+
+.tabs-ios {
+    a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=resturantsico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab1-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=ordersico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab2-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=offersico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab3-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=moreico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab4-icon.png');
+          }
+      }
+    
+    
+    
+    
+    
+    
+      a[aria-selected=true] {
+        .tab-button-icon[ng-reflect-name=resturantsico], .tab-button-icon[aria-label=resturants] {
+           background-image: url('../assets/imgs/tabs-icon/tab1-on-icon.png');
+          }
+          
+        .tab-button-icon[ng-reflect-name=ordersico], .tab-button-icon[aria-label=resturants] {
+           background-image: url('../assets/imgs/tabs-icon/tab2-on-icon.png');
+            } 
+        .tab-button-icon[ng-reflect-name=offersico], .tab-button-icon[aria-label=resturants] {
+            background-image: url('../assets/imgs/tabs-icon/tab3-on-icon.png');
+                }    
+    
+        .tab-button-icon[ng-reflect-name=moreico], .tab-button-icon[aria-label=resturants] {
+            background-image: url('../assets/imgs/tabs-icon/tab4-on-icon.png');
+                    }
+            
+      }
+}
+
+
+
+
+
+
+
+.tabs-md {
+    a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=resturantsico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab1-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=ordersico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab2-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=offersico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab3-icon.png');
+          }
+      }
+    
+      a[aria-selected=false] {
+        .tab-button-icon[ng-reflect-name=moreico], .tab-button-icon[aria-label="resturants outline"] {
+          background-image: url('../assets/imgs/tabs-icon/tab4-icon.png');
+          }
+      }
+    
+    
+    
+    
+    
+    
+      a[aria-selected=true] {
+        .tab-button-icon[ng-reflect-name=resturantsico], .tab-button-icon[aria-label=resturants] {
+           background-image: url('../assets/imgs/tabs-icon/tab1-on-icon.png');
+          }
+          
+        .tab-button-icon[ng-reflect-name=ordersico], .tab-button-icon[aria-label=resturants] {
+           background-image: url('../assets/imgs/tabs-icon/tab2-on-icon.png');
+            } 
+        .tab-button-icon[ng-reflect-name=offersico], .tab-button-icon[aria-label=resturants] {
+            background-image: url('../assets/imgs/tabs-icon/tab3-on-icon.png');
+                }    
+    
+        .tab-button-icon[ng-reflect-name=moreico], .tab-button-icon[aria-label=resturants] {
+            background-image: url('../assets/imgs/tabs-icon/tab4-on-icon.png');
+                    }
+            
+      }
 }

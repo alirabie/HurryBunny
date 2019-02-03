@@ -2,9 +2,10 @@ import { CacheService } from 'ionic-cache';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/map'
+import { map } from 'rxjs/operators';
+import { pipe } from 'rxjs';
 import { retryWhen } from 'rxjs/operators';
+
 
 
 @Injectable()
@@ -28,8 +29,7 @@ export class GenratorProvider {
     //   this.url = this.ProductionURL;
     // }
     
-    
-    this.url = this.ProductionURL;
+    this.url = this.devlomentURL;
     
   }
 
@@ -51,7 +51,7 @@ export class GenratorProvider {
 
   //Get Customer Info
   getCustomerInfo(id) {
-    return this.http.get(this.url + "api/customers/" + id).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/customers/" + id).pipe(map(res => res.json()));
   }
 
 
@@ -90,19 +90,22 @@ export class GenratorProvider {
 
   //Get Countries
   getCountries() {
-    return this.http.get(this.url + "api/countries?ids=52,69").map((res: Response) => res.json());
+    return this.http.get(this.url + "api/countries?ids=52,69").pipe(
+      map(res => res.json()  )  );
   }
 
 
   //Get Cites
   getCities(id) {
-    return this.http.get(this.url + "api/states/" + id).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/states/" + id).pipe(
+      map(res => res.json()  )  );
   }
 
 
   //Get Districts
   getDistructs(country, state) {
-    return this.http.get(this.url + "api/districts/country/" + country + "/state/" + state).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/districts/country/" + country + "/state/" + state).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -115,7 +118,8 @@ export class GenratorProvider {
     let request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat, { headers: headers });
     let delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
     let cacheKey = "vendors";
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+      map(res => res.json()  )  );
 
   }
 
@@ -124,14 +128,16 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/vendor?VendorId=" + resId);
     let cacheKey = "resInfo" + resId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+      map(res => res.json()  )  );
 
   }
 
 
   //Get resturant Info
   getResturantInfoForAds(resId) {
-    return this.http.get(this.url + "api/vendor?VendorId=" + resId).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/vendor?VendorId=" + resId).pipe(
+      map(res => res.json()  )  );
   }
 
   //Get Categories of resturant 
@@ -139,7 +145,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&fields=id,name,description,image");
     let cacheKey = "categores" + id;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -149,7 +156,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,images,currency_code");
     let cacheKey = "meals" + catId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+      map(res => res.json()  )  );
 
   }
 
@@ -159,7 +167,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/restaurant/meals/" + id + "?fields=vendor_id,id,name,short_description,full_description,price,currency_code,attributes,images,rating");
     let cacheKey = "mealsinfo" + id;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -168,7 +177,8 @@ export class GenratorProvider {
   VerifyPhon(countryCode, phoneNum) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(this.url + "api/customers/PhoneVerification?countrycode=" + countryCode + "&phoneno=" + phoneNum, { headers: headers }).map((res: Response) => res.json());
+    return this.http.post(this.url + "api/customers/PhoneVerification?countrycode=" + countryCode + "&phoneno=" + phoneNum, { headers: headers }).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -176,7 +186,8 @@ export class GenratorProvider {
   getRelatedProducts(id) {
     let request = this.http.get(this.url + "api/products/related/" + id);
     let cacheKey = "additionscash" + id;
-    return this.cache.loadFromDelayedObservable(cacheKey, request).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -201,12 +212,14 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/shopping_cart_items/" + customerId);
     let cacheKey = "shoppingcart" + customerId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
   }
 
   //Delete from shopping Cart 
   deleteFromShoppingCart(id) {
-    return this.http.delete(this.url + "api/shopping_cart_items/" + id).map((res: Response) => res.json());
+    return this.http.delete(this.url + "api/shopping_cart_items/" + id).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -227,7 +240,8 @@ export class GenratorProvider {
 
   //Get Resturant reviews 
   getResturantReviews(id) {
-    return this.http.get(this.url + "api/restaurant/rating/" + id).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/restaurant/rating/" + id).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -264,7 +278,8 @@ export class GenratorProvider {
 
   //Get Meal reviews 
   getMealReviews(id) {
-    return this.http.get(this.url + "api/product/rating/" + id).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/product/rating/" + id).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -291,13 +306,15 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/orders/customer/" + id);
     let cacheKey = "customerorders" + id;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
 
   }
 
   //Get customer Orders
   getCustomerOrderNoCashing(id) {
-    return this.http.get(this.url + "api/orders/customer/" + id).map((res: Response) => res.json());
+    return this.http.get(this.url + "api/orders/customer/" + id).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -307,7 +324,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "/api/orders/" + orderId);
     let cacheKey = "orderdetails" + orderId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -430,7 +448,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/ads");
     let cacheKey = "adds"
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
   }
 
 
@@ -439,7 +458,8 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/offers");
     let cacheKey = "offers"
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map((res: Response) => res.json());
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+      map(res => res.json()  )  );
   }
 
 

@@ -8,21 +8,25 @@ $color6:#ccc;
 
 body,html{color:#333}
 
-body, button, page-intro-screen .btn1,.label,ion-title.title ,ion-segment-button,.toolbar-title,.tab-button-text,ion-select.select{
+body, button, page-intro-screen .btn1,.label,ion-title.title ,ion-segment-button,.toolbar-title,.tab-button-text,ion-select.select,p,div,h1,h2,h3,h4,h5{
     font-family: 'Tajawal', sans-serif;
 }
+
+
 ion-title.title {
     text-align: center;
 }
 ion-title.title .toolbar-title {
     font-size: 1.2em;
     font-weight: bold;
-    
+    color:#fff !important
 }
 
+ion-header ion-icon.back-button-icon.icon {
+    color: map-get($colors, light);
+}
 
-
-ion-navbar.toolbar .toolbar-background-md,.toolbar-background.toolbar-background-ios{background:$color3}
+ion-navbar.toolbar .toolbar-background-md,.toolbar-background.toolbar-background-ios{background:$color1; color:#fff}
 
 .checkbox-ios .checkbox-icon{border-color:#777}
 .checkbox-ios .checkbox-checked {

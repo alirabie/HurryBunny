@@ -4873,10 +4873,6 @@ textarea::-webkit-input-placeholder {
   padding-left: 2px;
 }
 
-textarea:-ms-input-placeholder {
-  padding-left: 2px;
-}
-
 textarea::-ms-input-placeholder {
   padding-left: 2px;
 }
@@ -5041,7 +5037,7 @@ ion-input :focus {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
@@ -21370,23 +21366,23 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-container-3d .swiper-slide-shadow-left {
-  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 .swiper-container-3d .swiper-slide-shadow-right {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(transparent));
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 .swiper-container-3d .swiper-slide-shadow-top {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 .swiper-container-3d .swiper-slide-shadow-bottom {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(transparent));
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 .swiper-container-coverflow .swiper-wrapper,
@@ -33448,7 +33444,8 @@ super-tabs.tabs-placement-bottom > super-tabs-toolbar > ion-toolbar.toolbar.scro
   margin-bottom: -2px;
 }
 
-ion-tabs super-tabs ion-content .scroll-content, ion-tabs super-tabs ion-content .fixed-content {
+ion-tabs super-tabs ion-content .scroll-content,
+ion-tabs super-tabs ion-content .fixed-content {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -33495,7 +33492,7 @@ super-tabs-container > div {
   -ms-user-select: none;
   user-select: none;
   -webkit-user-drag: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 super-tabs-toolbar {
@@ -33517,7 +33514,7 @@ super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container {
   -ms-user-select: none;
   user-select: none;
   -webkit-user-drag: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow: hidden;
 }
 
@@ -33570,7 +33567,8 @@ super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons sup
   padding: 0 12px;
 }
 
-super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button:not(.selected) ion-icon, super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button:not(.selected) span:not(.badge) {
+super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button:not(.selected) ion-icon,
+super-tabs-toolbar > ion-toolbar.toolbar .tab-buttons-container .tab-buttons super-tab-button:not(.selected) span:not(.badge) {
   opacity: 0.7;
 }
 
@@ -33642,7 +33640,7 @@ body, html {
   color: #333;
 }
 
-body, button, page-intro-screen .btn1, .label, ion-title.title, ion-segment-button, .toolbar-title, .tab-button-text, ion-select.select {
+body, button, page-intro-screen .btn1, .label, ion-title.title, ion-segment-button, .toolbar-title, .tab-button-text, ion-select.select, p, div, h1, h2, h3, h4, h5 {
   font-family: 'Tajawal', sans-serif;
 }
 
@@ -33653,10 +33651,16 @@ ion-title.title {
 ion-title.title .toolbar-title {
   font-size: 1.2em;
   font-weight: bold;
+  color: #fff !important;
+}
+
+ion-header ion-icon.back-button-icon.icon {
+  color: #eeeeee;
 }
 
 ion-navbar.toolbar .toolbar-background-md, .toolbar-background.toolbar-background-ios {
-  background: #e4dcca;
+  background: #f77123;
+  color: #fff;
 }
 
 .checkbox-ios .checkbox-icon {
@@ -33762,7 +33766,7 @@ ion-navbar.toolbar.toolbar-ios {
 }
 
 page-aboutus ion-row.row {
-  text-align: center;
+  text-align: center !important;
 }
 
 page-aboutus ion-row.row img {
@@ -33772,8 +33776,8 @@ page-aboutus ion-row.row img {
 
 page-aboutus ion-row.row p {
   color: #555;
-  text-align: center;
   line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 @media (min-width: 992px) {
@@ -33842,14 +33846,12 @@ page-contact-us .item-md.item-input.input-has-focus .item-inner {
 page-home #map {
   width: 100%;
   height: 100%;
-  border-top: 0.1em solid #51423d;
   margin-bottom: 5px;
 }
 
 page-home .titlestyle {
   text-align: center;
   font-weight: bold;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 page-home .butn {
@@ -33869,7 +33871,7 @@ page-home .toolbar-content.toolbar-content-md {
 }
 
 page-home ion-icon.icon {
-  color: #f77123;
+  color: #eeeeee;
 }
 
 page-home .locationButton {
@@ -33884,11 +33886,11 @@ page-home .locationButton {
   background-color: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  color: #f77123;
+  color: #eeeeee;
 }
 
 page-home ion-footer.footer {
-  background-color: #e4dcca;
+  background-color: #f5f5f5;
   padding: 5px 15px;
 }
 
@@ -34254,17 +34256,30 @@ page-main-screen .card-background-page .card-subtitle {
 
 page-main-screen ion-item.item.item-block {
   padding: 2px 8px;
-  border-bottom: 0.5px solid #f2f2f2;
+  border-bottom: 0.5px solid #ddd;
+  background: #fff;
 }
 
 page-main-screen ion-item.item.item-block ion-thumbnail {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   margin: 0 5px;
 }
 
 page-main-screen ion-item.item.item-block ion-thumbnail img {
   width: 60px;
   height: 60px;
-  padding: 3px;
+  border: 1px solid #dddddd;
 }
 
 page-main-screen ion-item.item.item-block .item-inner {
@@ -34394,13 +34409,13 @@ ul.rating li ion-icon {
 }
 
 .seg-tabs ion-segment.segment {
-  border-top: 1px solid #51423d;
-  border-bottom: 1px solid #51423d;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .seg-tabs ion-segment.segment ion-segment-button.segment-button {
   opacity: 1;
-  color: #51423d;
+  color: #f77123;
   font-size: 15px;
   text-transform: uppercase;
   border: none;
@@ -34424,10 +34439,11 @@ ul.rating li ion-icon {
   width: 30px;
   height: 30px;
   margin: 5px;
+  display: none;
 }
 
 .seg-tabs ion-segment.segment ion-segment-button.segment-button.segment-activated {
-  background-color: #51423d;
+  background-color: #f77123;
   color: #fff;
 }
 
@@ -34478,15 +34494,15 @@ page-meal-info .header-banner .rating-bar {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #51423d;
+  background-color: #e4dcca;
 }
 
 page-meal-info .header-banner .rating-bar ion-icon.ion-ios-arrow-forward {
-  color: #fff;
+  color: #51423d;
 }
 
 page-meal-info .info-bar {
-  background-color: #eee;
+  background-color: #f5f5f5;
 }
 
 page-meal-info ion-row.qty {
@@ -34521,9 +34537,8 @@ page-meal-info ion-row.qty .box ion-icon {
 }
 
 page-meal-info button.style2 {
-  color: #51423d;
-  border-color: #51423d;
-  border-width: 2px;
+  color: #555555;
+  border-color: #aaa;
   width: 300px;
   height: 35px;
   margin: auto;
@@ -34532,6 +34547,8 @@ page-meal-info button.style2 {
 }
 
 page-meal-info ion-row.addition, page-meal-info ion-row.customization {
+  display: table;
+  margin: 10px auto;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 0 10px;
@@ -34568,7 +34585,7 @@ page-meal-info ion-row.addition {
 }
 
 page-meal-info ion-footer {
-  background: #e4dcca;
+  background: #f5f5f5;
 }
 
 page-meal-info ion-footer .footer {
@@ -34589,16 +34606,22 @@ page-meal-info ion-footer .footer h2.pricestyle {
   text-align: center;
   font-size: 20px;
   width: 50%;
+  color: #51423d;
 }
 
 page-meal-info ion-footer .footer button {
   width: 50%;
-  background: #51423d;
+  background: #f77123;
 }
 
 page-meal-info .slide-zoom {
   height: 100%;
   width: 100%;
+}
+
+page-meal-info .slide-zoom img {
+  width: 100%;
+  height: 100%;
 }
 
 page-meal-info ion-slides {
@@ -34664,6 +34687,7 @@ page-meal-info .options {
   height: 50% !important;
   width: 100% !important;
   margin-top: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 page-meal-info .infotxt {
@@ -34790,6 +34814,7 @@ page-more-list button.sidemenu .item-inner .input-wrapper ion-label.label {
 
 page-more-list button.sidemenu .item-inner .input-wrapper ion-label.label h2 {
   font-weight: bold;
+  width: 100%;
 }
 
 page-more-list button.sidemenu .item-inner ion-icon.icon {
@@ -35088,7 +35113,7 @@ page-resturant-info ion-segment.SwipedTabs-tabs.segment ion-segment-button.segme
   font-weight: bold;
   border: none;
   color: #51423d;
-  background: #e5e5e5;
+  background: #f5f5f5;
   opacity: 1;
   font-size: 14px;
   height: 40px;
@@ -35096,8 +35121,8 @@ page-resturant-info ion-segment.SwipedTabs-tabs.segment ion-segment-button.segme
 }
 
 page-resturant-info ion-segment.SwipedTabs-tabs.segment ion-segment-button.segment-button.SwipedTabs-activeTab {
-  color: #f77123;
-  border-bottom: 2px solid #f77123;
+  color: #fff;
+  background: #f77123;
 }
 
 page-resturant-info .SwipedTabs-indicatorSegment {
@@ -35143,7 +35168,7 @@ page-resturant-info ion-row.filters.row ion-col {
   width: 100%;
   text-align: center;
   font-size: 1.6rem;
-  line-height: 1.9rem;
+  line-height: 1.2rem;
 }
 
 page-resturant-info ion-row.filters.row ion-col ion-icon {
@@ -35173,18 +35198,16 @@ page-resturant-info ion-row.filters.row ion-col .categIcon img {
   height: 40px;
   border-radius: 50%;
   border: 1px solid #ccc;
+  display: none;
 }
 
 page-resturant-info ion-row.filters.row ion-col ion-slide.active h5.categoryTitle {
-  font-size: 12px;
   color: #f77123;
-  margin-top: 0;
 }
 
 page-resturant-info ion-row.filters.row ion-col h5.categoryTitle {
   font-size: 15px;
   color: #51423d;
-  margin-top: 0;
 }
 
 page-resturant-info ion-slide.ratingpage ion-item.addRating {
@@ -36067,25 +36090,90 @@ page-sign-up .btn button {
   }
 }
 
-ion-tabs.tabs .tabbar.show-tabbar {
-  background: #e4dcca;
+ion-tabs.tabs .tabbar, ion-tabs.tabs .tabs-ios, ion-tabs.tabs .tabs-md {
+  background: #f5f5f5;
   padding: 9px 0;
+  border-top: 1px solid #dddddd;
 }
 
-ion-tabs.tabs ion-icon.tab-button-icon.icon {
-  color: #51423d;
+ion-tabs.tabs .tabbar .tab-button-icon, ion-tabs.tabs .tabs-ios .tab-button-icon, ion-tabs.tabs .tabs-md .tab-button-icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  background-size: 80%;
 }
 
-ion-tabs.tabs .tab-button[aria-selected=true] span.tab-button-text {
-  color: #F77123;
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1 1);
-  margin: 0;
-  font-weight: bold;
+ion-tabs.tabs .tabbar .tab-button-icon:before, ion-tabs.tabs .tabs-ios .tab-button-icon:before, ion-tabs.tabs .tabs-md .tab-button-icon:before {
+  display: none;
 }
 
 ion-tabs.tabs span.tab-button-text {
-  color: #51423d;
+  opacity: 1;
+}
+
+.tabs-ios a[aria-selected=false] .tab-button-icon[ng-reflect-name=resturantsico], .tabs-ios a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab1-icon.png");
+}
+
+.tabs-ios a[aria-selected=false] .tab-button-icon[ng-reflect-name=ordersico], .tabs-ios a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab2-icon.png");
+}
+
+.tabs-ios a[aria-selected=false] .tab-button-icon[ng-reflect-name=offersico], .tabs-ios a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab3-icon.png");
+}
+
+.tabs-ios a[aria-selected=false] .tab-button-icon[ng-reflect-name=moreico], .tabs-ios a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab4-icon.png");
+}
+
+.tabs-ios a[aria-selected=true] .tab-button-icon[ng-reflect-name=resturantsico], .tabs-ios a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab1-on-icon.png");
+}
+
+.tabs-ios a[aria-selected=true] .tab-button-icon[ng-reflect-name=ordersico], .tabs-ios a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab2-on-icon.png");
+}
+
+.tabs-ios a[aria-selected=true] .tab-button-icon[ng-reflect-name=offersico], .tabs-ios a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab3-on-icon.png");
+}
+
+.tabs-ios a[aria-selected=true] .tab-button-icon[ng-reflect-name=moreico], .tabs-ios a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab4-on-icon.png");
+}
+
+.tabs-md a[aria-selected=false] .tab-button-icon[ng-reflect-name=resturantsico], .tabs-md a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab1-icon.png");
+}
+
+.tabs-md a[aria-selected=false] .tab-button-icon[ng-reflect-name=ordersico], .tabs-md a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab2-icon.png");
+}
+
+.tabs-md a[aria-selected=false] .tab-button-icon[ng-reflect-name=offersico], .tabs-md a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab3-icon.png");
+}
+
+.tabs-md a[aria-selected=false] .tab-button-icon[ng-reflect-name=moreico], .tabs-md a[aria-selected=false] .tab-button-icon[aria-label="resturants outline"] {
+  background-image: url("../assets/imgs/tabs-icon/tab4-icon.png");
+}
+
+.tabs-md a[aria-selected=true] .tab-button-icon[ng-reflect-name=resturantsico], .tabs-md a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab1-on-icon.png");
+}
+
+.tabs-md a[aria-selected=true] .tab-button-icon[ng-reflect-name=ordersico], .tabs-md a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab2-on-icon.png");
+}
+
+.tabs-md a[aria-selected=true] .tab-button-icon[ng-reflect-name=offersico], .tabs-md a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab3-on-icon.png");
+}
+
+.tabs-md a[aria-selected=true] .tab-button-icon[ng-reflect-name=moreico], .tabs-md a[aria-selected=true] .tab-button-icon[aria-label=resturants] {
+  background-image: url("../assets/imgs/tabs-icon/tab4-on-icon.png");
 }
 
 page-update-location {

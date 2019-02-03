@@ -4,9 +4,10 @@ import { GenratorProvider } from '../../providers/genrator/genrator';
 import { TranslateService } from '@ngx-translate/core';
 import { MealInfoPage } from '../meal-info/meal-info'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SuperTabs } from 'ionic2-super-tabs';
+//import { SuperTabs } from 'ionic2-super-tabs';
 import { LoginPage } from '../login/login';
 import { ShoppingCartPage } from '../shopping-cart/shopping-cart';
+
 
 
 

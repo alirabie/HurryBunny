@@ -190,7 +190,8 @@ typedef enum : NSUInteger {
         _paddingBottom = _paddingBottom + 20;
     }
     NSLog(@"CDVIonicKeyboard: updating frame");
-    CGRect f = [[UIScreen mainScreen] bounds];
+    // NOTE: to handle split screen correctly, the application's window bounds must be used as opposed to the screen's bounds.
+    CGRect f = [[[[UIApplication sharedApplication] delegate] window] bounds];
     CGRect wf = self.webView.frame;
     switch (self.keyboardResizes) {
         case ResizeBody:
@@ -275,6 +276,20 @@ static IMP WKOriginalImp;
 - (void)hide:(CDVInvokedUrlCommand *)command
 {
     [self.webView endEditing:YES];
+}
+
+-(void)setResizeMode:(CDVInvokedUrlCommand *)command
+{
+    NSString * mode = [command.arguments objectAtIndex:0];
+    if ([mode isEqualToString:@"ionic"]) {
+        self.keyboardResizes = ResizeIonic;
+    } else if ([mode isEqualToString:@"body"]) {
+        self.keyboardResizes = ResizeBody;
+    } else if ([mode isEqualToString:@"native"]) {
+        self.keyboardResizes = ResizeNative;
+    } else {
+        self.keyboardResizes = ResizeNone;
+    }
 }
 
 

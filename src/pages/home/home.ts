@@ -181,8 +181,10 @@ export class HomePage {
       let mapOptions = {
         center: latLng,
         zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        disableDefaultUI: true, zoomControl: false ,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
       }
+      
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       let marker = new google.maps.Marker({
         map: this.map,

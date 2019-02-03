@@ -4,7 +4,7 @@
         <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;" (click)="loadCartPage()" start
             right>
             <button ion-button icon-only>
-                <ion-icon name="md-cart"></ion-icon>
+                <ion-icon color="light" name="md-cart"></ion-icon>
                 <ion-badge color="secondary">{{badgeValue}}</ion-badge>
             </button>
         </ion-buttons>
@@ -84,8 +84,6 @@
                         <ion-slide class="categorieSlide" *ngFor="let category of categories" [ngClass]="{'active': category == categoryActive, 'not-selected-item': category != categoryActive}"
                             (tap)="selectPickup(category)">
                             <div class="categIcon" (click)="getMealslist(category.id)">
-                                <img *ngIf="category.image !=null" height="100px" width="100px" [src]="category.image.src" />
-                                <img *ngIf="category.image == null" height="100px" width="100px" src="./assets/imgs/categories-filters/grill.png" />
                                 <h5  class="categoryTitle">{{category.name}}</h5>
                             </div>
                         </ion-slide>

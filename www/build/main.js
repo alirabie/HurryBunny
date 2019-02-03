@@ -1,15 +1,18 @@
 webpackJsonp([21],{
 
-/***/ 11:
+/***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GenratorProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_cache__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResturantInfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,389 +27,752 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GenratorProvider = /** @class */ (function () {
-    function GenratorProvider(http, cache) {
-        this.http = http;
-        this.cache = cache;
-        this.ProductionURL = "https://www.hurrybunny.com/";
-        this.devlomentURL = "http://hurrybunny.appsmatic.net/";
-        console.log('Hello GenratorProvider Provider');
-        // if (localStorage.getItem('mode') == null) {
-        //   this.url = this.devlomentURL;
-        //   localStorage.setItem('mode', "development");
-        // }
-        // if (localStorage.getItem('mode') == "development") {
-        //   this.url = this.devlomentURL;
-        // } else if (localStorage.getItem('mode') == "Production") {
-        //   this.url = this.ProductionURL;
-        // }
-        this.url = this.ProductionURL;
+
+//import { SuperTabs } from 'ionic2-super-tabs';
+
+
+var ResturantInfoPage = /** @class */ (function () {
+    function ResturantInfoPage(navCtrl, navParams, genrator, loader, translate, alertCtrl, _FB, config, platform, events) {
+        // , this.translate.instant('info')
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.genrator = genrator;
+        this.loader = loader;
+        this.translate = translate;
+        this.alertCtrl = alertCtrl;
+        this._FB = _FB;
+        this.config = config;
+        this.platform = platform;
+        this.events = events;
+        this.oriantation = "";
+        this.SwipedTabsIndicator = null;
+        this.tabs = [];
+        this.branchId = "";
+        this.distance = 0;
+        this.categories = [];
+        this.meals = [];
+        this.resturantReviews = [];
+        this.branches = [];
+        this.userRatingInputValue = 0;
+        this.isBusy = false;
+        this.buttonClicked = false; //For Rating button
+        this.tabs = [this.translate.instant('menu'), this.translate.instant('reviews'), this.translate.instant('info')];
+        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
+        this.resturantId = this.navParams.get("resid");
+        this.serviceTypeId = this.navParams.get("serviceType");
+        this.branchId = navParams.get('branchId');
+        this.distance = navParams.get('distace');
+        this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
+        console.log(this.customerLocation);
+        if (localStorage.getItem('lang') == "en") {
+            this.oriantation = "ltr";
+        }
+        else {
+            this.oriantation = "rtl";
+        }
+        this.getResturantInfo(this.resturantId);
+        this.form = _FB.group({
+            reviewtxt: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].maxLength(500), __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])],
+            review_value: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])],
+        });
     }
-    //Registeration
-    GenratorProvider.prototype.signUp = function (registrData) {
+    ResturantInfoPage.prototype.selectPickup = function (categoryActive) {
+        this.categoryActive = categoryActive;
+    };
+    ResturantInfoPage.prototype.ionViewDidEnter = function () {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customers/', JSON.stringify(registrData), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
+        this.SwipedTabsIndicator = document.getElementById("indicator");
+        this.events.subscribe('cart:updated', function () {
+            _this.setCartCount();
+        });
+        if (localStorage.getItem("customerid") != null) {
+            this.getShoppingCartCount(localStorage.getItem("customerid"));
+        }
+    };
+    ResturantInfoPage.prototype.selectTab = function (index) {
+        this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (100 * index) + '%,0,0)';
+        this.SwipedTabsSlider.slideTo(index, 500);
+    };
+    ResturantInfoPage.prototype.updateIndicatorPosition = function () {
+        // this condition is to avoid passing to incorrect index
+        if (this.SwipedTabsSlider.length() > this.SwipedTabsSlider.getActiveIndex()) {
+            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (this.SwipedTabsSlider.getActiveIndex() * 100) + '%,0,0)';
+        }
+    };
+    ResturantInfoPage.prototype.animateIndicator = function ($event) {
+        if (this.SwipedTabsIndicator)
+            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (($event.progress * (this.SwipedTabsSlider.length() - 1)) * 100) + '%,0,0)';
+    };
+    ResturantInfoPage.prototype.onButtonClick = function () {
+        if (localStorage.getItem("customerid") === null) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
+        }
+        else {
+            this.buttonClicked = !this.buttonClicked;
+        }
+    };
+    //get resturant categories
+    ResturantInfoPage.prototype.getResturantCategories = function () {
+        var _this = this;
+        // let loader = this.loader.create({
+        //   content: this.translate.instant('LOADING'),
+        // });
+        // loader.present();
+        return this.genrator.getCategories(this.resturantId).subscribe(function (data) {
+            _this.categories = data['categories'];
+            var category = _this.categories['0'];
+            _this.getMealslist(category.id);
+            _this.selectPickup(category);
+            // loader.dismiss();
+        }, function (err) {
+            // loader.dismiss();
+            // let alert = this.alertCtrl.create({
+            //   title: this.translate.instant('PAGE_TITLE.dilog'),
+            //   subTitle: err,
+            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            // });
+            // alert.present();
+            console.log(err);
         });
     };
-    //Get Customer Info
-    GenratorProvider.prototype.getCustomerInfo = function (id) {
-        return this.http.get(this.url + "api/customers/" + id).map(function (res) { return res.json(); });
+    ResturantInfoPage.prototype.show = function () {
+        this.isBusy = true;
     };
-    //Update Profile data
-    GenratorProvider.prototype.updateProfile = function (credentials, id) {
+    ResturantInfoPage.prototype.hide = function () {
+        this.isBusy = false;
+    };
+    ResturantInfoPage.prototype.getMealslist = function (id) {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.put(_this.url + 'api/customers/' + id, JSON.stringify(credentials), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
+        // let loader = this.loader.create({
+        //   content: this.translate.instant('LOADING'),
+        // });
+        // loader.present();
+        this.show();
+        return this.genrator.getMeals(id).subscribe(function (data) {
+            _this.meals = data['products'];
+            _this.hide();
+        }, function (err) {
+            // this.hide();
+            // let alert = this.alertCtrl.create({
+            //   title: this.translate.instant('PAGE_TITLE.dilog'),
+            //   subTitle: err,
+            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            // });
+            // alert.present();
+            console.log(err);
         });
     };
-    //Login
-    GenratorProvider.prototype.login = function (credentials) {
+    //Get resturant reviews 
+    ResturantInfoPage.prototype.getResturantReviews = function () {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customers/login', JSON.stringify(credentials), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
+        // let loader = this.loader.create({
+        //   content: this.translate.instant('LOADING'),
+        // });
+        // loader.present();
+        return this.genrator.getResturantReviews(this.resturantId).subscribe(function (data) {
+            _this.resturantReviews = data['ratings'];
+            // loader.dismiss();
+        }, function (err) {
+            // loader.dismiss();
+            // let alert = this.alertCtrl.create({
+            //   title: this.translate.instant('PAGE_TITLE.dilog'),
+            //   subTitle: err,
+            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            // });
+            // alert.present();
+            console.log(err);
         });
     };
-    //Get Countries
-    GenratorProvider.prototype.getCountries = function () {
-        return this.http.get(this.url + "api/countries?ids=52,69").map(function (res) { return res.json(); });
-    };
-    //Get Cites
-    GenratorProvider.prototype.getCities = function (id) {
-        return this.http.get(this.url + "api/states/" + id).map(function (res) { return res.json(); });
-    };
-    //Get Districts
-    GenratorProvider.prototype.getDistructs = function (country, state) {
-        return this.http.get(this.url + "api/districts/country/" + country + "/state/" + state).map(function (res) { return res.json(); });
-    };
-    //Get Resturants 
-    GenratorProvider.prototype.getResturants = function (lat, lng) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        var request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat, { headers: headers });
-        var delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
-        var cacheKey = "vendors";
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map(function (res) { return res.json(); });
-    };
-    //Get resturant Info
-    GenratorProvider.prototype.getResturantInfo = function (resId) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/vendor?VendorId=" + resId);
-        var cacheKey = "resInfo" + resId;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map(function (res) { return res.json(); });
-    };
-    //Get resturant Info
-    GenratorProvider.prototype.getResturantInfoForAds = function (resId) {
-        return this.http.get(this.url + "api/vendor?VendorId=" + resId).map(function (res) { return res.json(); });
-    };
-    //Get Categories of resturant 
-    GenratorProvider.prototype.getCategories = function (id) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&fields=id,name,description,image");
-        var cacheKey = "categores" + id;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map(function (res) { return res.json(); });
-    };
-    //Get categorie meals 
-    GenratorProvider.prototype.getMeals = function (catId) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,images,currency_code");
-        var cacheKey = "meals" + catId;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).map(function (res) { return res.json(); });
-    };
-    //Get meals info
-    GenratorProvider.prototype.getMealInfo = function (id) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/meals/" + id + "?fields=vendor_id,id,name,short_description,full_description,price,currency_code,attributes,images,rating");
-        var cacheKey = "mealsinfo" + id;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
-    };
-    //Verify Phone Number
-    GenratorProvider.prototype.VerifyPhon = function (countryCode, phoneNum) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post(this.url + "api/customers/PhoneVerification?countrycode=" + countryCode + "&phoneno=" + phoneNum, { headers: headers }).map(function (res) { return res.json(); });
-    };
-    //Get Addisions 
-    GenratorProvider.prototype.getRelatedProducts = function (id) {
-        var request = this.http.get(this.url + "api/products/related/" + id);
-        var cacheKey = "additionscash" + id;
-        return this.cache.loadFromDelayedObservable(cacheKey, request).map(function (res) { return res.json(); });
-    };
-    //Add to shopping cart
-    GenratorProvider.prototype.addToCart = function (item) {
+    //Add resturant review 
+    ResturantInfoPage.prototype.addResturantReview = function (value) {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/shopping_cart_items/', JSON.stringify(item), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
+        var resturantReview = {
+            "rating": {
+                "customer_id": localStorage.getItem("customerid"),
+                "expert_id": this.resturantId,
+                "review_text": value.reviewtxt + "",
+                "rating": value.review_value + ""
+            }
+        };
+        // console.log(resturantReview);
+        var loader = this.loader.create({
+            content: this.translate.instant('LOADING'),
+        });
+        this.genrator.addResturantReview(resturantReview).then(function (result) {
+            loader.dismiss();
+            console.log(result);
+            if (result['ratings'] != null) {
+                _this.form.reset();
+                _this.getResturantReviews();
+                var alert_1 = _this.alertCtrl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.translate.instant('reviewsucsess'),
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_1.present();
+            }
+            else {
+                var alert_2 = _this.alertCtrl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: result.ErrorMessage,
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_2.present();
+            }
+        }, function (err) {
+            loader.dismiss();
+            var alert = _this.alertCtrl.create({
+                title: "",
+                subTitle: err,
+                buttons: ['Disms']
             });
+            alert.present();
         });
     };
-    //Get shopping cart items
-    GenratorProvider.prototype.getShoppingCartItems = function (customerId) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/shopping_cart_items/" + customerId);
-        var cacheKey = "shoppingcart" + customerId;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
+    ResturantInfoPage.prototype.setCartCount = function () {
+        if (localStorage.getItem("cartCount") == "0") {
+            this.badgeValue = null;
+        }
+        else if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
+            this.badgeValue = localStorage.getItem("cartCount");
+        }
+        else {
+            this.badgeValue = null;
+        }
     };
-    //Delete from shopping Cart 
-    GenratorProvider.prototype.deleteFromShoppingCart = function (id) {
-        return this.http.delete(this.url + "api/shopping_cart_items/" + id).map(function (res) { return res.json(); });
-    };
-    //Update Cart
-    GenratorProvider.prototype.updateCart = function (item, cartItemId) {
+    ResturantInfoPage.prototype.getShoppingCartCount = function (custId) {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.put(_this.url + 'api/shopping_cart_items/' + cartItemId, JSON.stringify(item), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
+        if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
+            this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+                var items = data['shopping_carts'];
+                localStorage.setItem("cartCount", items.length);
+                if (items.length == 0) {
+                    localStorage.removeItem("resId");
+                    localStorage.setItem("resName", "");
+                    localStorage.setItem("deliveryFees", "0");
+                }
+                else {
+                    var item = items[0];
+                    localStorage.setItem("resId", item.product.vendor_id);
+                    console.log(localStorage.getItem("resId"));
+                }
+                _this.events.publish('cart:updated');
             });
+        }
+    };
+    ResturantInfoPage.prototype.compareResturantId = function () {
+        if (this.branchId != null) {
+            if (this.branchId == localStorage.getItem("branchId")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if (this.resturantId == localStorage.getItem("resId")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    };
+    ResturantInfoPage.prototype.loadCartPage = function () {
+        if (localStorage.getItem("customerid") === null) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
+        }
+        else if (localStorage.getItem('cartCount') == '0' || localStorage.getItem("resId") != this.resturantId) {
+            var alert_3 = this.alertCtrl.create({
+                title: this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: this.translate.instant('cartempty'),
+                buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert_3.present();
+        }
+        else {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__["a" /* ShoppingCartPage */], {
+                resName: this.resturantName,
+                resImage: this.resImage,
+                resdescription: this.resDiscription,
+                resServiceTypeId: this.serviceTypeId,
+                menumunCharge: this.resSettings.MinimumOrderAmount,
+                resturantId: this.resturantId
+            });
+        }
+    };
+    ResturantInfoPage.prototype.goMealInfoPage = function (id, name) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__["a" /* MealInfoPage */], {
+            mealId: id,
+            mealName: name,
+            resImage: this.resImage,
+            returantName: this.resturantName,
+            resturantSettings: JSON.stringify(this.resSettings),
+            resdescription: this.resDiscription,
+            resServiceTypeId: this.serviceTypeId,
+            menumunCharge: this.resSettings.MinimumOrderAmount,
+            resturantId: this.resturantId,
+            branchId: this.branchId
         });
     };
-    //Get Resturant reviews 
-    GenratorProvider.prototype.getResturantReviews = function (id) {
-        return this.http.get(this.url + "api/restaurant/rating/" + id).map(function (res) { return res.json(); });
-    };
-    //Add Resturant review
-    GenratorProvider.prototype.addResturantReview = function (item) {
+    //Get resturant info by id
+    ResturantInfoPage.prototype.getResturantInfo = function (resId) {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/restaurant/rating', JSON.stringify(item), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
+        return this.genrator.getResturantInfo(resId).subscribe(function (data) {
+            var vendors = data['vendors'];
+            _this.resturantInfo = vendors[0];
+            _this.resturantName = _this.resturantInfo.name;
+            _this.resrate = _this.resturantInfo.rating;
+            _this.resImage = _this.resturantInfo.profile_image;
+            _this.resSettings = _this.resturantInfo.Settings;
+            _this.openingHours = _this.resturantInfo.OpeningHours;
+            _this.resDiscription = _this.resturantInfo.description;
+            _this.branches = _this.resturantInfo.Branches;
+            _this.getResturantCategories();
+            _this.getResturantReviews();
+            console.log(_this.resturantInfo);
+            // loader.dismiss();
+        }, function (err) {
+            console.log(err);
         });
     };
-    //Add meal review 
-    GenratorProvider.prototype.addMealReview = function (item) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/product/rating', JSON.stringify(item), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
+    ResturantInfoPage.prototype.goMap = function (lat, lng, name) {
+        var destination = lat + ',' + lng;
+        if (this.platform.is('ios')) {
+            window.open('maps://?q=' + destination, '_system');
+        }
+        else {
+            var label = encodeURI(name);
+            window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
+        }
     };
-    //Get Meal reviews 
-    GenratorProvider.prototype.getMealReviews = function (id) {
-        return this.http.get(this.url + "api/product/rating/" + id).map(function (res) { return res.json(); });
-    };
-    //Convert Cart to Order
-    GenratorProvider.prototype.convertCartOrders = function (orderInfo) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/shoppingcart/confirmorder', JSON.stringify(orderInfo), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Get customer Orders
-    GenratorProvider.prototype.getCustomerOrder = function (id) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/orders/customer/" + id);
-        var cacheKey = "customerorders" + id;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
-    };
-    //Get customer Orders
-    GenratorProvider.prototype.getCustomerOrderNoCashing = function (id) {
-        return this.http.get(this.url + "api/orders/customer/" + id).map(function (res) { return res.json(); });
-    };
-    //Get Order details
-    GenratorProvider.prototype.getOrderDetails = function (orderId) {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "/api/orders/" + orderId);
-        var cacheKey = "orderdetails" + orderId;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
-    };
-    //Convert Cart to Order
-    GenratorProvider.prototype.changeOrderStatus = function (orderId, statusId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/order/status?OrderId=' + orderId + "&StatusId=" + statusId, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Get customer locations 
-    GenratorProvider.prototype.getCustomerLocations = function (customerId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customer/addresses?CustomerId=' + customerId, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Get Resturant branches
-    GenratorProvider.prototype.getResturantBranches = function (vendorId, lat, lng) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/restaurant/branches/pickup?VendorId=' + vendorId + '&Longtitude=' + lng + '&Latitude=' + lat, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Apply Discount Copaun
-    GenratorProvider.prototype.ApplyDiscountCoupon = function (discountCode, customerId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + '/api/cart/coupon/apply?discountcouponcode=' + discountCode + '&customerId=' + customerId, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Remove Discount Copaun
-    GenratorProvider.prototype.RemoveDiscountCoupon = function (discountCode, customerId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + '/api/cart/coupon/remove?discountcouponcode=' + discountCode + '&customerId=' + customerId, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    // Delete Location
-    GenratorProvider.prototype.deleteLcation = function (id) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customer/addresses/remove?LocationId=' + id, { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Add new Location
-    GenratorProvider.prototype.addNewLocation = function (location) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customer/addresses/add', JSON.stringify(location), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    //Get Adds 
-    GenratorProvider.prototype.getAdds = function () {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/ads");
-        var cacheKey = "adds";
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
-    };
-    //Get Offers
-    GenratorProvider.prototype.getOffers = function () {
-        var delayType = 'all';
-        var request = this.http.get(this.url + "api/offers");
-        var cacheKey = "offers";
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).map(function (res) { return res.json(); });
-    };
-    //Change Language
-    GenratorProvider.prototype.changeLanguage = function (customerId, langId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customer/language?customerId=' + customerId + '&languageId=' + langId, JSON.stringify(location), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
-    GenratorProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_0_ionic_cache__["b" /* CacheService */]])
-    ], GenratorProvider);
-    return GenratorProvider;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('SwipedTabsSlider'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* Slides */])
+    ], ResturantInfoPage.prototype, "SwipedTabsSlider", void 0);
+    ResturantInfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-resturant-info',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <!--Shopping Cart button-->\n        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;" (click)="loadCartPage()" start\n            right>\n            <button ion-button icon-only>\n                <ion-icon color="light" name="md-cart"></ion-icon>\n                <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n\n    <!-- info for resturant -->\n    <div dir="{{oriantation}}" class="resturantInfoHeader">\n        <ion-item no-lines>\n            <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />\n            <div class="group">\n                <h2>{{resturantName}}</h2>\n                <rating justify-content-center align-items-center style="height: 100%" readOnly="true" [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline"\n                    halfStarIconName="star-half" starIconName="star" nullable="false">\n                </rating>\n            </div>\n\n            <p class="resInfo">{{resDiscription}}</p>\n\n            <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->\n\n            <ion-row class="settingsrow" *ngIf="resSettings!=null">\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'mimimum\' | translate}}</small>\n                    <small>{{resSettings.MinimumOrderAmount}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'distance\' | translate}}</small>\n                    <small>{{distance}} {{\'km\' | translate}}</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n                    <small>{{resSettings.DeliveryFees}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n                    <small>{{resSettings.TimeToPrepareOrder}} min</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n                    <small>{{resSettings.DeliveryTime}} min</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'closetime\' | translate}}</small>\n                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>\n                </p>\n            </ion-row>\n\n        </ion-item>\n    </div>\n\n\n\n\n\n    <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">\n        <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)" [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\'>\n            {{tab}}\n        </ion-segment-button>\n    </ion-segment>\n\n    <!-- here is our dynamic line  "indicator"-->\n    <div dir="{{oriantation}}" id=\'indicator\' class="SwipedTabs-indicatorSegment" [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n</ion-header>\n\n\n<ion-content class="has-header">\n    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()"\n        (ionSlideDidChange)="updateIndicatorPosition()" (pan)="updateIndicatorPosition()" [pager]="true">\n        <ion-slide dir="{{oriantation}}" class="menupage">\n            <!--The filter of categories-->\n            <ion-row class="filters">\n                <ion-col no-padding>\n                    <ion-slides dir="{{oriantation}}"  class="categorieSlide" slidesPerView="4">\n                        <ion-slide class="categorieSlide" *ngFor="let category of categories" [ngClass]="{\'active\': category == categoryActive, \'not-selected-item\': category != categoryActive}"\n                            (tap)="selectPickup(category)">\n                            <div class="categIcon" (click)="getMealslist(category.id)">\n                                <h5  class="categoryTitle">{{category.name}}</h5>\n                            </div>\n                        </ion-slide>\n                    </ion-slides>\n                </ion-col>\n            </ion-row>\n            <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n            <ion-list no-lines>\n                <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">\n                    <ion-thumbnail item-start>\n                        <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />\n                        <img *ngIf="meal.images.length === 0" src="./assets/imgs/categories-filters/meal-placeholder.png" />\n                    </ion-thumbnail>\n                    <h2 class="mealNametxt">{{meal.name}}</h2>\n                    <p class="mealdictxt">{{meal.short_description}}</p>\n                    <h3>\n                        <ion-icon md="md-cash"></ion-icon> {{meal.price}}\n                        <small>{{meal.currency_code}} SR</small>\n                    </h3>\n                </ion-item>\n            </ion-list>\n\n        </ion-slide>\n\n\n        <!--contents of tab#2 \'The Reviews\'-->\n        <ion-slide class="ratingpage">\n            <!-- <ion-item class="addRating" dir="{{oriantation}}"> -->\n            <!--Row of Rating form-->\n            <!-- <button ion-button full (click)="onButtonClick()" class="style2">\n                    <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n                <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)" *ngIf="buttonClicked">\n                    <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n                        halfStarIconName="star-half" starIconName="star"></rating>\n                    <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n                    <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n                </form>\n            </ion-item> -->\n\n            <ion-list dir="{{oriantation}}">\n                <!--Users Rating Part-->\n                <ion-item *ngFor="let review of resturantReviews">\n                    <h3>{{review.customer_name}}</h3>\n                    <p>{{review.review_text}}</p>\n                    <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating"></rating>\n                </ion-item>\n            </ion-list>\n        </ion-slide>\n\n\n        <ion-slide dir="{{oriantation}}" class="menupage">\n\n            <!-- <br> -->\n            <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">\n                <h1 class="tite">{{resturantName}}</h1>\n                <small>{{resDiscription}}</small>\n                <h6 class="hours">{{\'workinghours\' | translate}}</h6>\n                <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>\n            </ion-item>\n\n\n            <!-- <ion-item no-lines *ngIf="branches.length!=0" class="branhesList">\n                <h1 class="branchestitle">{{\'resturantbranches\' | translate}}</h1>\n               \n                    <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">\n                        <img class="pin" item-start src="./assets/imgs/branchIcon.png">\n                        <h1 class="pname">{{branch.branch_name}} -->\n                            <!-- <small end>10Km</small> -->\n                        <!-- </h1>\n                    </ion-item>\n\n            </ion-item> -->\n\n\n\n\n        </ion-slide>\n    </ion-slides>\n\n\n\n\n    <!-- <ion-list>\n          <ion-item *ngFor="let category of categories">\n            <ion-thumbnail item-start>\n              <img [src]="category.image.src">\n            </ion-thumbnail>\n            <h2>{{category.name}}</h2>\n            <button ion-button clear item-end>View</button>\n          </ion-item>\n        </ion-list> -->\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__["a" /* GenratorProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */]])
+    ], ResturantInfoPage);
+    return ResturantInfoPage;
 }());
 
-//# sourceMappingURL=genrator.js.map
+//# sourceMappingURL=resturant-info.js.map
 
 /***/ }),
 
-/***/ 114:
+/***/ 103:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MainScreenPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(42);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var MainScreenPage = /** @class */ (function () {
+    function MainScreenPage(navCtrl, modelCtrl, viewCtrl, platform, navParams, genrator, loadingCtrl, alertCrtl, translate, app, events) {
+        this.navCtrl = navCtrl;
+        this.modelCtrl = modelCtrl;
+        this.viewCtrl = viewCtrl;
+        this.platform = platform;
+        this.navParams = navParams;
+        this.genrator = genrator;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCrtl = alertCrtl;
+        this.translate = translate;
+        this.app = app;
+        this.events = events;
+        this.resturants = [];
+        this.resturansCopy = [];
+        this.ads = [];
+        this.oriantation = "";
+        this.searchTerm = "";
+        this.userLat = 0;
+        this.userLng = 0;
+        this.isBusy = false;
+        this.empty = false;
+        this.buttonClicked = false; //Whatever you want to initialise it as
+        if (localStorage.getItem('lang') == "en") {
+            this.oriantation = "ltr";
+        }
+        else {
+            this.oriantation = "rtl";
+        }
+        this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
+        console.log(this.customerLocation);
+        // if(localStorage.getItem("lastresturant")!=null){
+        //   let modal = this.modelCtrl.create(ResturantReviewPage,{},{showBackdrop:true, enableBackdropDismiss:true  });
+        //   modal.present();
+        // }
+        this.serviceType = "1";
+        this.getResturantsByDeliveryType(1);
+        this.getAds();
+    }
+    MainScreenPage.prototype.onButtonClick = function () {
+        this.buttonClicked = !this.buttonClicked;
+    };
+    MainScreenPage.prototype.show = function () {
+        this.isBusy = true;
+    };
+    MainScreenPage.prototype.hide = function () {
+        this.isBusy = false;
+    };
+    MainScreenPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.events.subscribe('cart:updated', function () {
+            _this.setCartCount();
+            // this.serviceType="2";
+            // this.getResturantsByDeliveryType(2);
+        });
+        if (localStorage.getItem("customerid") != null) {
+            this.getShoppingCartCount(localStorage.getItem("customerid"));
+        }
+    };
+    MainScreenPage.prototype.goToLocationPage = function () {
+        var _this = this;
+        this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_0__home_home__["a" /* HomePage */], {
+            flag: "main"
+        }).then(function () {
+            // first we find the index of the current view controller:
+            var index = _this.viewCtrl.index;
+            // then we remove it from the navigation stack
+        });
+        ;
+    };
+    MainScreenPage.prototype.ionViewDidLoad = function () {
+        this.setCartCount();
+        console.log('ionViewDidLoad MainScreenPage');
+    };
+    MainScreenPage.prototype.loadCartPage = function () {
+        if (localStorage.getItem("customerid") === null) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__login_login__["a" /* LoginPage */]);
+        }
+        else if (localStorage.getItem('cartCount') == '0') {
+            var alert_1 = this.alertCrtl.create({
+                title: this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: this.translate.instant('cartempty'),
+                buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert_1.present();
+        }
+        else {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_shopping_cart_shopping_cart__["a" /* ShoppingCartPage */]);
+        }
+    };
+    //Delivery type segment control
+    MainScreenPage.prototype.switchDeliveryType = function (event) {
+        this.getResturantsByDeliveryType(event.value);
+    };
+    //Loading resturants from server service
+    MainScreenPage.prototype.getResturants = function () {
+        var _this = this;
+        this.show();
+        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
+            _this.resturants = data['vendors'];
+            _this.resturansCopy = data['vendors'];
+            console.log(_this.resturants);
+            _this.hide();
+        }, function (err) {
+            _this.hide();
+            var alert = _this.alertCrtl.create({
+                title: _this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: err,
+                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+            console.log(err);
+        });
+    };
+    //Loading resturants from server and filter by deliveryType
+    MainScreenPage.prototype.getResturantsByDeliveryType = function (type) {
+        var _this = this;
+        this.show();
+        this.resturants = [];
+        this.resturansCopy = [];
+        console.log("lat " + this.customerLocation.location.latitude);
+        console.log("lng " + this.customerLocation.location.longtitude);
+        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
+            _this.resturants = [];
+            _this.resturansCopy = [];
+            var vendors = data['vendors'];
+            for (var i = 0; i < vendors.length; i++) {
+                var vendor = vendors[i];
+                if (vendor.Settings != null) {
+                    if (vendor.Settings.ServiceTypeId == type || vendor.Settings.ServiceTypeId == 3) {
+                        if (type == 2) {
+                            var branches = [];
+                            branches = vendor['Branches'];
+                            for (var _i = 0, _a = vendor['Branches']; _i < _a.length; _i++) {
+                                var branch = _a[_i];
+                                var updatedVendor = {
+                                    id: vendor.id,
+                                    name: vendor.name,
+                                    branchName: branch.branch_name,
+                                    branchid: branch.id,
+                                    lat: branch.latitude,
+                                    lng: branch.longtitude,
+                                    bounds: branch.bounds,
+                                    addressid: vendor.addressid,
+                                    rating: vendor.rating,
+                                    address: vendor.address,
+                                    description: vendor.description,
+                                    PrictureId: vendor.PrictureId,
+                                    profile_image: vendor.profile_image,
+                                    Settings: vendor.Settings,
+                                    OpeningHours: vendor.OpeningHours,
+                                    Branches: []
+                                };
+                                _this.resturants.push(updatedVendor);
+                            }
+                            // this.resturants.push(vendor);
+                        }
+                        else {
+                            _this.resturants.push(vendor);
+                        }
+                    }
+                    if (_this.resturants.length == 0) {
+                        _this.empty = true;
+                    }
+                    else {
+                        _this.empty = false;
+                    }
+                }
+            }
+            console.log(_this.resturants);
+            _this.resturansCopy = _this.resturants;
+            _this.hide();
+        }, function (err) {
+            _this.hide();
+            // let alert = this.alertCrtl.create({
+            //   title: this.translate.instant('PAGE_TITLE.dilog'),
+            //   subTitle: err,
+            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            // });
+            // alert.present();
+            console.log(err);
+        });
+    };
+    //Go resturant info Page 
+    MainScreenPage.prototype.goResturantInfo = function (id, branchid, distance) {
+        this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
+            resid: id,
+            branchId: branchid,
+            serviceType: this.serviceType,
+            distace: distance
+        });
+    };
+    MainScreenPage.prototype.setCartCount = function () {
+        if (localStorage.getItem("cartCount") == "0") {
+            this.badgeValue = null;
+        }
+        else {
+            this.badgeValue = localStorage.getItem("cartCount");
+        }
+    };
+    MainScreenPage.prototype.compareResturantId = function (resId) {
+        if (resId == localStorage.getItem("resId")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    MainScreenPage.prototype.comparebranchId = function (branchId) {
+        if (branchId != null) {
+            if (branchId == localStorage.getItem("branchId")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    };
+    MainScreenPage.prototype.getShoppingCartCount = function (custId) {
+        var _this = this;
+        this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+            var items = data['shopping_carts'];
+            localStorage.setItem("cartCount", items.length);
+            if (items.length == 0) {
+                localStorage.removeItem("resId");
+                localStorage.setItem("resName", "");
+                localStorage.setItem("deliveryFees", "0");
+            }
+            else {
+                var item = items[0];
+                localStorage.setItem("resId", item.product.vendor_id);
+                console.log(localStorage.getItem("resId"));
+            }
+            _this.events.publish('cart:updated');
+        });
+    };
+    MainScreenPage.prototype.setFilteredLocations = function () {
+        var _this = this;
+        if (this.searchTerm && this.searchTerm.trim() !== '') {
+            this.resturants = this.resturants.filter(function (it) {
+                return it.name.includes(_this.searchTerm); // only filter country name
+            });
+            if (this.resturants.length == 0) {
+                this.empty = true;
+            }
+            else {
+                this.empty = false;
+            }
+        }
+        else {
+            this.resturants = this.resturansCopy;
+            this.empty = false;
+        }
+    };
+    MainScreenPage.prototype.onCancel = function () {
+        this.serviceType = 1;
+    };
+    MainScreenPage.prototype.getAds = function () {
+        var _this = this;
+        return this.genrator.getAdds().subscribe(function (data) {
+            _this.ads = data['Advertisements'];
+            _this.ads.length;
+            console.log(_this.ads);
+        }, function (err) {
+            _this.hide();
+            var alert = _this.alertCrtl.create({
+                title: _this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: err,
+                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+        });
+    };
+    MainScreenPage.prototype.goResturantInfoFromAd = function (id) {
+        var _this = this;
+        this.genrator.getResturantInfoForAds(id).subscribe(function (data) {
+            var vendors = data['vendors'];
+            var resturantInfo = vendors[0];
+            switch (resturantInfo.Settings.ServiceTypeId) {
+                case 1:
+                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
+                        resid: id,
+                        branchId: null,
+                        serviceType: "1",
+                        distace: 0
+                    });
+                    break;
+                case 2:
+                    var branches = [];
+                    branches = resturantInfo['Branches'];
+                    var branch = branches[0];
+                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
+                        resid: id,
+                        branchId: branch.id,
+                        distace: _this.getDistance(branch.bounds),
+                        serviceType: "2"
+                    });
+                    break;
+                case 3:
+                    var branches2 = [];
+                    branches2 = resturantInfo['Branches'];
+                    var branch2 = branches[0];
+                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
+                        resid: id,
+                        branchId: branch2.id,
+                        distace: _this.getDistance(branch.bounds),
+                        serviceType: _this.serviceType
+                    });
+                    break;
+            }
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    MainScreenPage.prototype.getDistance = function (bounds) {
+        //Convert bounds to Array of lat/lng and get distance between current location and each item and get Min value
+        if (bounds != null) {
+            var coordsArray = bounds.split(",");
+            var path = [];
+            for (var i = 0; i < coordsArray.length; i++) {
+                path.push(this.checkDistance(coordsArray[i], coordsArray[i + 1]));
+                i++;
+            }
+            console.log(path);
+            return Math.min.apply(Math, path);
+        }
+        else {
+            return 0;
+        }
+    };
+    //Get distance 
+    MainScreenPage.prototype.checkDistance = function (lat, lng) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = this.deg2rad(parseFloat(localStorage.getItem("userLat")) - lat); // deg2rad below
+        var dLon = this.deg2rad(parseFloat(localStorage.getItem("userLng")) - lng);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(this.deg2rad(lat)) * Math.cos(this.deg2rad(parseFloat(localStorage.getItem("userLat")))) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        return Number(d).toFixed(2);
+    };
+    MainScreenPage.prototype.deg2rad = function (deg) {
+        return deg * (Math.PI / 180);
+    };
+    MainScreenPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+            selector: 'page-main-screen',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/'​\n<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\n\n\n<ion-header>\n\n\n  <ion-navbar hideBackButton="true">\n    <!--Shopping Cart button-->\n    <!-- <ion-buttons (click)="loadCartPage()" start left>\n      <button ion-button icon-only>\n        <ion-icon name="md-cart"></ion-icon>\n        <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n      </button>\n    </ion-buttons> -->\n\n    <!--<ion-buttons (click)="goShoppingCartPage()" start>\n        <button ion-button icon-only>\n            <ion-icon name="md-cart"></ion-icon>\n            <ion-badge color="danger">{{badgeValue}}</ion-badge>\n        </button>\n    </ion-buttons>-->\n\n    <!--Title of Page-->\n    <ion-title>\n      {{ \'PAGE_TITLE.home\' | translate }}\n    </ion-title>\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="onButtonClick()" left>\n      <button ion-button icon-only>\n        <ion-icon color="light" name="ios-search"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-buttons (click)="goToLocationPage()" right>\n      <button ion-button icon-only >\n        <ion-icon color="light" name=\'ios-navigate-outline\'></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n  </ion-navbar>\n\n\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar *ngIf="buttonClicked" placeholder="{{\'search\' | translate}}" [(ngModel)]="searchTerm" (ionInput)="setFilteredLocations($event)" (ionCancel)="onCancel()">\n  </ion-searchbar>\n\n  \n  \n\n  <!--Start Advertisements Slider-->\n  <ion-slides pager options="{pagination: true}" autoplay="5000" loop="true" speed="500" dir="{{oriantation}}">\n\n      <ion-slide *ngIf="ads.length==0" style="background-color: bisque; color: #555;">\n          <img class="img" height="100 px" width="100 px" src="./assets/imgs/addsPlaceholder.png" />\n        </ion-slide>\n\n    <ion-slide *ngFor="let ad of ads" style="background-color: bisque; color: #555;"  (click)="goResturantInfoFromAd(ad.vendor_id)">\n      <img class="img" height="100 px" width="100 px" [src]="ad.image.src" />\n      <!-- <h2>Advertising 1</h2> -->\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n\n\n  <!-- Delivery type selection segment  -->\n  <!-- <ion-segment  (ionChange)="switchDeliveryType($event)" full="true"  assertive>\n    <ion-segment-button value="2">\n        <i class=" fa fa-gift" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'pickup\' | translate}}</label>\n        \n    </ion-segment-button>\n    <ion-segment-button value="1">\n        <i class="fa fa-truck" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'delivry\' | translate}}</label>\n    </ion-segment-button>\n  </ion-segment> -->\n\n\n\n\n  <!--Segment Tabs-->\n  <div class="seg-tabs" dir="{{oriantation}}">\n    <ion-segment (ionChange)="switchDeliveryType($event)" [(ngModel)]="serviceType">\n      <ion-segment-button value="1">\n        <img src="./assets/imgs/delivery-icon.png" />{{\'delivry\' | translate}}</ion-segment-button>\n      <ion-segment-button value="2">\n        <img src="./assets/imgs/pickup-icon.png" />{{\'pickup\' | translate}}</ion-segment-button>\n    </ion-segment>\n  </div>\n\n\n\n\n\n\n\n\n  <ion-label class="emptylbl" *ngIf="empty">{{ \'EMPTY\' | translate }}</ion-label>\n  <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n\n  <!--Start The List Of Resturants-->\n  <ion-list *ngIf="serviceType==1">\n\n    <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n      (click)="goResturantInfo(resturant.id,resturant.branchid)">\n      <ion-thumbnail item-start>\n        <!--<img [src]="resturant.profile_image">-->\n        <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n        <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n      </ion-thumbnail>\n\n      <div class="group">\n        <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n        &nbsp;|&nbsp;\n        <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n          emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n        </rating>\n        <ion-badge class="badge" start left *ngIf="compareResturantId(resturant.id)" color="primary">{{badgeValue}}</ion-badge>\n      </div>\n\n\n      <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n\n      <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'mimimum\' | translate}}</small>\n          <small>{{resturant.Settings.MinimumOrderAmount}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryFees}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryTime}} min</small>\n        </p>\n      </ion-row>\n\n    </ion-item>\n  </ion-list>\n\n  <ion-list *ngIf="serviceType==2">\n\n      <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.bounds))">\n        <ion-thumbnail item-start>\n          <!--<img [src]="resturant.profile_image">-->\n          <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n          <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n        </ion-thumbnail>\n  \n        <div class="group">\n          <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n  \n          <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n            emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n          </rating>\n          <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>\n        </div>\n  \n  \n        <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n  \n        <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        \n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'distance\' | translate}}</small>\n            <small>{{getDistance(resturant.bounds)}} {{\'km\' | translate}}</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n            <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'closetime\' | translate}}</small>\n            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>\n          </p>\n        </ion-row>\n  \n      </ion-item>\n    </ion-list>\n</ion-content>\n\n<!-- <ion-footer>\n  <div class="header-banner">\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500" *ngFor="let product of productInfo">\n      <ion-slide *ngFor="let image of product.images">\n        <img class="img" height="100 px" width="100 px" [src]="image.src">\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-footer> -->'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Events */]])
+    ], MainScreenPage);
+    return MainScreenPage;
+}());
+
+//# sourceMappingURL=main-screen.js.map
+
+/***/ }),
+
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -537,8 +903,8 @@ var ProfilePage = /** @class */ (function () {
         });
     };
     ProfilePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-profile',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\profile\profile.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n        <ion-title>{{ \'SIDEMENU.account\' | translate }}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n\n        <div class="pageLogo">\n                <img src="./assets/imgs/login-logo.png" />\n            </div>\n\n    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.fname\' | translate}}</ion-label>\n                <ion-input value="{{fname}}" formControlName="firstName" type="text"></ion-input>\n            </ion-item>\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.lname\' | translate}}</ion-label>\n                <ion-input value="{{lname}}" formControlName="lastname" type="text"></ion-input>\n            </ion-item>\n\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                <ion-input value="{{phonenum}}" formControlName="phone" [disabled]="true" type="text"></ion-input>\n            </ion-item>\n\n\n        </ion-list>\n        <div class="btn">\n            <button ion-button color="primary" [disabled]="!form.valid" block>\n                <span class="fontColor">{{\'update\' | translate}}</span>\n            </button>\n        </div>\n    </form>\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\profile\profile.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-profile',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\profile\profile.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n        <ion-title>{{ \'SIDEMENU.account\' | translate }}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n\n        <div class="pageLogo">\n                <img src="./assets/imgs/login-logo.png" />\n            </div>\n\n    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.fname\' | translate}}</ion-label>\n                <ion-input value="{{fname}}" formControlName="firstName" type="text"></ion-input>\n            </ion-item>\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.lname\' | translate}}</ion-label>\n                <ion-input value="{{lname}}" formControlName="lastname" type="text"></ion-input>\n            </ion-item>\n\n\n            <ion-item class="colr">\n                <ion-label color="primary" floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                <ion-input value="{{phonenum}}" formControlName="phone" [disabled]="true" type="text"></ion-input>\n            </ion-item>\n\n\n        </ion-list>\n        <div class="btn">\n            <button ion-button color="primary" [disabled]="!form.valid" block>\n                <span class="fontColor">{{\'update\' | translate}}</span>\n            </button>\n        </div>\n    </form>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\profile\profile.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
@@ -556,17 +922,412 @@ var ProfilePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 140:
+/***/ 16:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GenratorProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_cache__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(20);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var GenratorProvider = /** @class */ (function () {
+    function GenratorProvider(http, cache) {
+        this.http = http;
+        this.cache = cache;
+        this.ProductionURL = "https://www.hurrybunny.com/";
+        this.devlomentURL = "http://hurrybunny.appsmatic.net/";
+        console.log('Hello GenratorProvider Provider');
+        // if (localStorage.getItem('mode') == null) {
+        //   this.url = this.devlomentURL;
+        //   localStorage.setItem('mode', "development");
+        // }
+        // if (localStorage.getItem('mode') == "development") {
+        //   this.url = this.devlomentURL;
+        // } else if (localStorage.getItem('mode') == "Production") {
+        //   this.url = this.ProductionURL;
+        // }
+        this.url = this.devlomentURL;
+    }
+    //Registeration
+    GenratorProvider.prototype.signUp = function (registrData) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customers/', JSON.stringify(registrData), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Customer Info
+    GenratorProvider.prototype.getCustomerInfo = function (id) {
+        return this.http.get(this.url + "api/customers/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Update Profile data
+    GenratorProvider.prototype.updateProfile = function (credentials, id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.put(_this.url + 'api/customers/' + id, JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Login
+    GenratorProvider.prototype.login = function (credentials) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customers/login', JSON.stringify(credentials), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Countries
+    GenratorProvider.prototype.getCountries = function () {
+        return this.http.get(this.url + "api/countries?ids=52,69").pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Cites
+    GenratorProvider.prototype.getCities = function (id) {
+        return this.http.get(this.url + "api/states/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Districts
+    GenratorProvider.prototype.getDistructs = function (country, state) {
+        return this.http.get(this.url + "api/districts/country/" + country + "/state/" + state).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Resturants 
+    GenratorProvider.prototype.getResturants = function (lat, lng) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat, { headers: headers });
+        var delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
+        var cacheKey = "vendors";
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get resturant Info
+    GenratorProvider.prototype.getResturantInfo = function (resId) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/vendor?VendorId=" + resId);
+        var cacheKey = "resInfo" + resId;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get resturant Info
+    GenratorProvider.prototype.getResturantInfoForAds = function (resId) {
+        return this.http.get(this.url + "api/vendor?VendorId=" + resId).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Categories of resturant 
+    GenratorProvider.prototype.getCategories = function (id) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&fields=id,name,description,image");
+        var cacheKey = "categores" + id;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get categorie meals 
+    GenratorProvider.prototype.getMeals = function (catId) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,images,currency_code");
+        var cacheKey = "meals" + catId;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get meals info
+    GenratorProvider.prototype.getMealInfo = function (id) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/restaurant/meals/" + id + "?fields=vendor_id,id,name,short_description,full_description,price,currency_code,attributes,images,rating");
+        var cacheKey = "mealsinfo" + id;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Verify Phone Number
+    GenratorProvider.prototype.VerifyPhon = function (countryCode, phoneNum) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.url + "api/customers/PhoneVerification?countrycode=" + countryCode + "&phoneno=" + phoneNum, { headers: headers }).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Addisions 
+    GenratorProvider.prototype.getRelatedProducts = function (id) {
+        var request = this.http.get(this.url + "api/products/related/" + id);
+        var cacheKey = "additionscash" + id;
+        return this.cache.loadFromDelayedObservable(cacheKey, request).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Add to shopping cart
+    GenratorProvider.prototype.addToCart = function (item) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/shopping_cart_items/', JSON.stringify(item), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get shopping cart items
+    GenratorProvider.prototype.getShoppingCartItems = function (customerId) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/shopping_cart_items/" + customerId);
+        var cacheKey = "shoppingcart" + customerId;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Delete from shopping Cart 
+    GenratorProvider.prototype.deleteFromShoppingCart = function (id) {
+        return this.http.delete(this.url + "api/shopping_cart_items/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Update Cart
+    GenratorProvider.prototype.updateCart = function (item, cartItemId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.put(_this.url + 'api/shopping_cart_items/' + cartItemId, JSON.stringify(item), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Resturant reviews 
+    GenratorProvider.prototype.getResturantReviews = function (id) {
+        return this.http.get(this.url + "api/restaurant/rating/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Add Resturant review
+    GenratorProvider.prototype.addResturantReview = function (item) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/restaurant/rating', JSON.stringify(item), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Add meal review 
+    GenratorProvider.prototype.addMealReview = function (item) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/product/rating', JSON.stringify(item), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Meal reviews 
+    GenratorProvider.prototype.getMealReviews = function (id) {
+        return this.http.get(this.url + "api/product/rating/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Convert Cart to Order
+    GenratorProvider.prototype.convertCartOrders = function (orderInfo) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/shoppingcart/confirmorder', JSON.stringify(orderInfo), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get customer Orders
+    GenratorProvider.prototype.getCustomerOrder = function (id) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/orders/customer/" + id);
+        var cacheKey = "customerorders" + id;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get customer Orders
+    GenratorProvider.prototype.getCustomerOrderNoCashing = function (id) {
+        return this.http.get(this.url + "api/orders/customer/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Order details
+    GenratorProvider.prototype.getOrderDetails = function (orderId) {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "/api/orders/" + orderId);
+        var cacheKey = "orderdetails" + orderId;
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Convert Cart to Order
+    GenratorProvider.prototype.changeOrderStatus = function (orderId, statusId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/order/status?OrderId=' + orderId + "&StatusId=" + statusId, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get customer locations 
+    GenratorProvider.prototype.getCustomerLocations = function (customerId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customer/addresses?CustomerId=' + customerId, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Resturant branches
+    GenratorProvider.prototype.getResturantBranches = function (vendorId, lat, lng) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/restaurant/branches/pickup?VendorId=' + vendorId + '&Longtitude=' + lng + '&Latitude=' + lat, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Apply Discount Copaun
+    GenratorProvider.prototype.ApplyDiscountCoupon = function (discountCode, customerId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + '/api/cart/coupon/apply?discountcouponcode=' + discountCode + '&customerId=' + customerId, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Remove Discount Copaun
+    GenratorProvider.prototype.RemoveDiscountCoupon = function (discountCode, customerId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + '/api/cart/coupon/remove?discountcouponcode=' + discountCode + '&customerId=' + customerId, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    // Delete Location
+    GenratorProvider.prototype.deleteLcation = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customer/addresses/remove?LocationId=' + id, { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Add new Location
+    GenratorProvider.prototype.addNewLocation = function (location) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customer/addresses/add', JSON.stringify(location), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    //Get Adds 
+    GenratorProvider.prototype.getAdds = function () {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/ads");
+        var cacheKey = "adds";
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Get Offers
+    GenratorProvider.prototype.getOffers = function () {
+        var delayType = 'all';
+        var request = this.http.get(this.url + "api/offers");
+        var cacheKey = "offers";
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    };
+    //Change Language
+    GenratorProvider.prototype.changeLanguage = function (customerId, langId) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.post(_this.url + 'api/customer/language?customerId=' + customerId + '&languageId=' + langId, JSON.stringify(location), { headers: headers })
+                .subscribe(function (res) {
+                resolve(res.json());
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    GenratorProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_0_ionic_cache__["b" /* CacheService */]])
+    ], GenratorProvider);
+    return GenratorProvider;
+}());
+
+//# sourceMappingURL=genrator.js.map
+
+/***/ }),
+
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateLocationPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -737,12 +1498,12 @@ var UpdateLocationPage = /** @class */ (function () {
         this.navCtrl.pop();
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_core__["ElementRef"])
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_core__["u" /* ElementRef */])
     ], UpdateLocationPage.prototype, "mapElement", void 0);
     UpdateLocationPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
-            selector: 'page-update-location',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\update-location\update-location.html"*/'\n<ion-header>\n    <ion-navbar color="primary" hideBackButton="true">\n    \n  \n      <!--Search Bar button-->\n      <ion-buttons (click)="getCurrentLocation()" left>\n        <button ion-button icon-only>\n          <ion-icon name="pin"></ion-icon>\n        </button>\n      </ion-buttons>\n\n     \n      <ion-buttons (click)="close()" right>\n        <button ion-button icon-only>\n          <ion-icon name="close"></ion-icon>\n        </button>\n      </ion-buttons>\n  \n\n    </ion-navbar>\n  \n  \n  \n  </ion-header>\n\n\n\n<ion-content >\n    <div #map id="map"></div>\n    <form [formGroup]="form" (ngSubmit)="updateLocation(form.value)">\n  \n\n            <ion-item class="colr">\n                <!-- <ion-label floating>{{\'SIgNUP.fname\' | translate}}</ion-label> -->\n                <ion-input dir="{{oriantation}}" placeholder="{{\'locationname\' | translate}}" formControlName="locationName" type="text"></ion-input>\n            </ion-item>\n            <ion-item class="colr">\n                <!-- <ion-label floating>{{\'SIgNUP.lname\' | translate}}</ion-label> -->\n                <ion-input dir="{{oriantation}}" placeholder="{{\'notes\' | translate}}" formControlName="locationNote" type="text"></ion-input>\n            </ion-item>\n  \n            <button class="butn" padding ion-button color="softDark" round block  [disabled]="false">{{\'save\' | translate }}</button>\n    </form>\n\n</ion-content>\n<ion-footer>\n    <ion-row class="buttonsrow">\n      \n    </ion-row>\n \n</ion-footer>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\update-location\update-location.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
+            selector: 'page-update-location',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\update-location\update-location.html"*/'\n<ion-header>\n    <ion-navbar color="primary" hideBackButton="true">\n    \n  \n      <!--Search Bar button-->\n      <ion-buttons (click)="getCurrentLocation()" left>\n        <button ion-button icon-only>\n          <ion-icon name="pin"></ion-icon>\n        </button>\n      </ion-buttons>\n\n     \n      <ion-buttons (click)="close()" right>\n        <button ion-button icon-only>\n          <ion-icon name="close"></ion-icon>\n        </button>\n      </ion-buttons>\n  \n\n    </ion-navbar>\n  \n  \n  \n  </ion-header>\n\n\n\n<ion-content >\n    <div #map id="map"></div>\n    <form [formGroup]="form" (ngSubmit)="updateLocation(form.value)">\n  \n\n            <ion-item class="colr">\n                <!-- <ion-label floating>{{\'SIgNUP.fname\' | translate}}</ion-label> -->\n                <ion-input dir="{{oriantation}}" placeholder="{{\'locationname\' | translate}}" formControlName="locationName" type="text"></ion-input>\n            </ion-item>\n            <ion-item class="colr">\n                <!-- <ion-label floating>{{\'SIgNUP.lname\' | translate}}</ion-label> -->\n                <ion-input dir="{{oriantation}}" placeholder="{{\'notes\' | translate}}" formControlName="locationNote" type="text"></ion-input>\n            </ion-item>\n  \n            <button class="butn" padding ion-button color="softDark" round block  [disabled]="false">{{\'save\' | translate }}</button>\n    </form>\n\n</ion-content>\n<ion-footer>\n    <ion-row class="buttonsrow">\n      \n    </ion-row>\n \n</ion-footer>\n'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\update-location\update-location.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["r" /* NavParams */]])
     ], UpdateLocationPage);
@@ -753,14 +1514,14 @@ var UpdateLocationPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 141:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -797,8 +1558,8 @@ var AboutusPage = /** @class */ (function () {
         window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
     };
     AboutusPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-aboutus',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-aboutus',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-row>\n        <img src="./assets/imgs/sidemenu-logo.png" />\n    </ion-row>\n\n    <ion-row>\n        <p>\n                {{\'abouthurrybunny\' | translate}}\n        </p>\n    </ion-row>\n<!-- dsdsd -->\n    <div class="social-group">\n            <h5>{{\'youcanjoinus\' | translate}}</h5>\n            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n        </div>\n</ion-content>\n'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
     ], AboutusPage);
@@ -809,14 +1570,17 @@ var AboutusPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 142:
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactUsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountActivePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -829,42 +1593,133 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ContactUsPage = /** @class */ (function () {
-    function ContactUsPage(navCtrl, navParams, trans, config) {
+
+
+
+
+var AccountActivePage = /** @class */ (function () {
+    function AccountActivePage(navCtrl, navParams, genrator, loadingCtrl, translate, _FB, alertCtrl, config, events, app, viewCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.trans = trans;
-        this.config = config;
-        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
+        this.genrator = genrator;
+        this.loadingCtrl = loadingCtrl;
+        this.translate = translate;
+        this._FB = _FB;
+        this.alertCtrl = alertCtrl;
+        this.events = events;
+        this.app = app;
+        this.viewCtrl = viewCtrl;
+        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
+        this.form = _FB.group({
+            code: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])]
+        });
     }
-    ContactUsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ContactUsPage');
+    AccountActivePage.prototype.ionViewDidLoad = function () {
+        console.log(this.navParams.get("fname"));
+        console.log(this.navParams.get("lname"));
     };
-    ContactUsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-contact-us',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.contactus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <form>\n        <div class="social-group">\n            <h5>You Can Join Us On</h5>\n            <img src="./assets/imgs/social/face.png" />\n            <img src="./assets/imgs/social/tw.png" />\n            <img src="./assets/imgs/social/google.png" />\n            <img src="./assets/imgs/social/instg.png" />\n        </div>\n        <br />\n       <h5>Or Send Your Message Here</h5> \n        <ion-item>\n            <ion-input type="text" name="name" placeholder="Your Name"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-input type="text" name="title" placeholder="Subject Title"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-textarea name="description" placeholder="Your Message"></ion-textarea>\n        </ion-item>\n        <br />\n        <button ion-button type="submit" block>Submit</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/,
+    AccountActivePage.prototype.SaveChanges = function (val) {
+        var _this = this;
+        console.log(val.code);
+        var signUpdata = {
+            customer: {
+                billing_address: {
+                    address1: "any add",
+                    address2: "null,null,null",
+                    city: "5555",
+                    country_id: 69,
+                    email: this.navParams.get("fname") + "@gmail.com",
+                    first_name: this.navParams.get("fname") + "",
+                    last_name: this.navParams.get("lname") + "",
+                    phone_number: this.navParams.get("phone") + "",
+                    state_province_id: 40,
+                    zip_postal_code: "10021"
+                },
+                role_ids: [3],
+                email: "",
+                password: "",
+                first_name: this.navParams.get("fname") + "",
+                last_name: this.navParams.get("lname") + "",
+                phone: this.navParams.get("phone") + "",
+                verificationcode: val.code + "",
+            }
+        };
+        console.log(signUpdata);
+        var loader = this.loadingCtrl.create({
+            content: this.translate.instant('LOADING'),
+        });
+        loader.present();
+        this.genrator.signUp(signUpdata).then(function (result) {
+            loader.dismiss();
+            console.log(result);
+            _this.data = result;
+            if (_this.data.customers != null) {
+                var alert_1 = _this.alertCtrl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.translate.instant('ACTIVE.donecreated'),
+                    buttons: [
+                        {
+                            text: _this.translate.instant('BUTTONS.dissmiss'),
+                            handler: function () {
+                                //ٌAutomatic login
+                                localStorage.setItem('customerid', _this.data.customers[0].id);
+                                localStorage.setItem('customerdata', JSON.stringify(_this.data.customers[0]));
+                                _this.events.publish('user:login');
+                                _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_0__home_home__["a" /* HomePage */]).then(function () {
+                                    // first we find the index of the current view controller:
+                                    var index = _this.viewCtrl.index;
+                                    // then we remove it from the navigation stack
+                                    _this.navCtrl.remove(index);
+                                });
+                            }
+                        }
+                    ]
+                });
+                alert_1.present();
+            }
+            else {
+                var alert_2 = _this.alertCtrl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.data.errors.Account,
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_2.present();
+            }
+        }, function (err) {
+            loader.dismiss();
+            var alert = _this.alertCtrl.create({
+                title: "",
+                subTitle: err,
+                buttons: ['Dismss']
+            });
+            alert.present();
+        });
+    };
+    AccountActivePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+            selector: 'page-account-active',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\account-active\account-active.html"*/'\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{\'PAGE_TITLE.active\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h6 class="title">{{\'ACTIVE.title\' | translate}}</h6>\n\n  <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n  <ion-item class="colr">\n      <ion-label color="primary" floating>{{\'ACTIVE.code\' | translate}}</ion-label>\n      <ion-input formControlName="code" type="text"></ion-input>\n    </ion-item>\n    <span *ngIf="form.controls[\'code\'].hasError(\'required\') && form.controls[\'code\'].touched">\n        <span [hidden]="!form.controls[\'code\'].errors.required">\n            <ion-label style="color: red; margin-left: 16px;">*</ion-label>\n        </span>\n    </span>\n    <div>\n        <button ion-button color="primary" [disabled]="!form.valid" block>\n          <span class="fontColor">{{\'ACTIVE.create\' | translate}}</span>\n        </button>\n      </div>\n</form>\n</ion-content>\n'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\account-active\account-active.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
-    ], ContactUsPage);
-    return ContactUsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["w" /* ViewController */]])
+    ], AccountActivePage);
+    return AccountActivePage;
 }());
 
-//# sourceMappingURL=contact-us.js.map
+//# sourceMappingURL=account-active.js.map
 
 /***/ }),
 
-/***/ 143:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MealInfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shopping_cart_shopping_cart__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__meals_reviews_meals_reviews__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shopping_cart_shopping_cart__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__meals_reviews_meals_reviews__ = __webpack_require__(183);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1317,8 +2172,8 @@ var MealInfoPage = /** @class */ (function () {
         }
     };
     MealInfoPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-meal-info',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\meal-info\meal-info.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{mealName}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="header-banner" *ngFor="let meal of mealInfo">\n    <!--The Slider-->\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500">\n      <ion-slide *ngFor="let image of meal.images">\n        <img class="img" [src]="image.src" />\n      </ion-slide>\n\n      <ion-slide *ngIf="meal.images.length == 0">\n        <img class="img" src="./assets/imgs/categories-filters/meal-placeholder.png" />\n      </ion-slide>\n\n\n\n    </ion-slides>\n    <!--The Rating Bar-->\n    <div class="rating-bar" (click)="goMealReviews()">\n      <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="meal.rating" readOnly="true" max="5"\n        emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n      </rating>\n      <ion-icon name="ios-arrow-forward"></ion-icon>\n    </div>\n  </div>\n\n\n  <!--The escription bar-->\n  <div class="info-bar" *ngFor="let meal of mealInfo">\n    <p class="infotxt">{{meal.short_description}} </p>\n\n    <!-- (ngModelChange)="onModelChange($event)" -->\n    <!--<h1 class="pricestyle">{{count*meal.price+count*optionPrice}}\n              <small>{{meal.currency_code}}</small>\n          </h1>-->\n  </div>\n\n\n  <!--The QTY part-->\n  <ion-row dir="{{oriantation}}" justify-content-center align-items-center class="qty">\n    <label>{{\'count\' | translate}}</label>\n    <div class="box">\n      <button class="cartbutton" ion-button icon-only (click)="up()">\n        <ion-icon name="md-add"></ion-icon>\n      </button>\n      {{count}}\n      <button class="cartbutton" ion-button icon-only (click)="dwon()">\n        <ion-icon name="remove"></ion-icon>\n      </button>\n    </div>\n  </ion-row>\n\n\n\n  <ion-row class="addition">\n    <button *ngIf="mealAdditions.length != 0" ion-button outline (click)="onButtonClick1()" class="style2">{{\'Additions\' | translate}}</button>\n    <div *ngIf="buttonClicked1" class="options" dir="{{oriantation}}">\n      <!-- (ionChange)="print()" -->\n      <ion-list no-lines>\n        <ion-row justify-content-center align-items-center style="height: 100%" *ngFor="let addition of mealAdditions">\n          <ion-checkbox style="padding-left:8px ; padding-right:8px " color="primary" (ionChange)="toggleComponent($event, addition)"></ion-checkbox>\n          <ion-label>{{addition.name}}\n\n\n            <label *ngIf="addition.price!=0">({{addition.price}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>\n            <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n          </ion-label>\n\n          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="incAdditionCount(addition.name,addition.price)">\n            <ion-icon color="primary" name="arrow-dropup"></ion-icon>\n          </button>\n          {{mealAdditionsCountsMap[addition.name]}}\n          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="decAdditionCount(addition.name,addition.price)">\n            <ion-icon color="primary" name="arrow-dropdown"></ion-icon>\n          </button>\n        </ion-row>\n      </ion-list>\n    </div>\n  </ion-row>\n\n\n\n  <ion-row class="customization">\n    <button *ngIf="mealAttr.length != 0" ion-button outline (click)="onButtonClick2()" class="style2">{{\'Customization\' | translate}}</button>\n    <div *ngIf="buttonClicked2">\n\n      <div class="group" *ngFor="let attr of mealAttr" dir="{{oriantation}}">\n        <!-- (ionChange)="print()" -->\n        <ion-list no-lines radio-group>\n          <ion-list-header no-lines>\n            {{attr.product_attribute_name}}\n          </ion-list-header>\n          <ion-item *ngFor="let option of attr.attribute_values">\n            <ion-label>{{option.name}} \n\n              <label *ngIf="option.price_adjustment!=0">(+{{option.price_adjustment}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>  \n              <label color="primary" *ngIf="option.price_adjustment==0">({{\'free\' | translate}})&#x200E;</label>  \n\n            </ion-label>\n            <ion-radio item-start (click)="getOptionPrice(attr.id,option.price_adjustment)" (click)="getOptionId(attr.id,option.id)"></ion-radio>\n          </ion-item>\n        </ion-list>\n      </div>\n    </div>\n  </ion-row>\n\n</ion-content>\n\n<ion-footer class="footer" no-lines>\n\n  <!-- <ion-row justify-content-center align-items-center style="height: 100%">\n    <button class="cartbutton" ion-button icon-only (click)="up()">\n      <ion-icon color="primary" name="ios-arrow-dropup"></ion-icon>\n    </button>\n    {{count}}\n    <button class="cartbutton" ion-button icon-only (click)="dwon()">\n      <ion-icon color="primary" name="ios-arrow-dropdown"></ion-icon>\n    </button>\n  </ion-row>\n  <button color="secondary" ion-button round block (click)="printIds()">{{\'addtocart\' | translate}}</button> -->\n  <ion-row dir="{{oriantation}}" class="footer">\n\n    <button color="secondary" ion-button round block (click)="addToCart()">{{\'addtocart\' | translate}}</button>\n    <h2 *ngFor="let meal of mealInfo" class="pricestyle">\n      <ion-icon name="md-cash"></ion-icon> {{count*meal.price+optionPrice+additionPrice}}\n      <small>{{meal.currency_code}}</small>\n    </h2>\n\n  </ion-row>\n\n</ion-footer>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\meal-info\meal-info.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-meal-info',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\meal-info\meal-info.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{mealName}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="header-banner" *ngFor="let meal of mealInfo">\n    <!--The Slider-->\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500">\n      <ion-slide *ngFor="let image of meal.images">\n        <img class="img" [src]="image.src" />\n      </ion-slide>\n\n      <ion-slide *ngIf="meal.images.length == 0">\n        <img class="img" src="./assets/imgs/categories-filters/meal-placeholder.png" />\n      </ion-slide>\n\n\n\n    </ion-slides>\n    <!--The Rating Bar-->\n    <div class="rating-bar" (click)="goMealReviews()">\n      <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="meal.rating" readOnly="true" max="5"\n        emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n      </rating>\n      <ion-icon name="ios-arrow-forward"></ion-icon>\n    </div>\n  </div>\n\n\n  <!--The escription bar-->\n  <div class="info-bar" *ngFor="let meal of mealInfo">\n    <p class="infotxt">{{meal.short_description}} </p>\n\n    <!-- (ngModelChange)="onModelChange($event)" -->\n    <!--<h1 class="pricestyle">{{count*meal.price+count*optionPrice}}\n              <small>{{meal.currency_code}}</small>\n          </h1>-->\n  </div>\n\n\n  <!--The QTY part-->\n  <ion-row dir="{{oriantation}}" justify-content-center align-items-center class="qty">\n    <label>{{\'count\' | translate}}</label>\n    <div class="box">\n      <button class="cartbutton" ion-button icon-only (click)="up()">\n        <ion-icon name="md-add"></ion-icon>\n      </button>\n      {{count}}\n      <button class="cartbutton" ion-button icon-only (click)="dwon()">\n        <ion-icon name="remove"></ion-icon>\n      </button>\n    </div>\n  </ion-row>\n\n\n\n  <ion-row class="addition">\n    <button *ngIf="mealAdditions.length != 0" ion-button outline (click)="onButtonClick1()" class="style2">{{\'Additions\' | translate}}</button>\n    <div *ngIf="buttonClicked1" class="options" dir="{{oriantation}}">\n      <!-- (ionChange)="print()" -->\n      <ion-list no-lines>\n        <ion-row justify-content-center align-items-center style="height: 100%" *ngFor="let addition of mealAdditions">\n          <ion-checkbox style="padding-left:8px ; padding-right:8px " color="primary" (ionChange)="toggleComponent($event, addition)"></ion-checkbox>\n          <ion-label>{{addition.name}}\n\n\n            <label *ngIf="addition.price!=0">({{addition.price}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>\n            <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n          </ion-label>\n\n          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="incAdditionCount(addition.name,addition.price)">\n            <ion-icon color="primary" name="arrow-dropup"></ion-icon>\n          </button>\n          {{mealAdditionsCountsMap[addition.name]}}\n          <button *ngIf="mealAddisionsStatus[addition.name]" class="cartbutton" ion-button icon-only (click)="decAdditionCount(addition.name,addition.price)">\n            <ion-icon color="primary" name="arrow-dropdown"></ion-icon>\n          </button>\n        </ion-row>\n      </ion-list>\n    </div>\n  </ion-row>\n\n\n\n  <ion-row class="customization">\n    <button *ngIf="mealAttr.length != 0" ion-button outline (click)="onButtonClick2()" class="style2">{{\'Customization\' | translate}}</button>\n    <div *ngIf="buttonClicked2">\n\n      <div class="group" *ngFor="let attr of mealAttr" dir="{{oriantation}}">\n        <!-- (ionChange)="print()" -->\n        <ion-list no-lines radio-group>\n          <ion-list-header no-lines>\n            {{attr.product_attribute_name}}\n          </ion-list-header>\n          <ion-item *ngFor="let option of attr.attribute_values">\n            <ion-label>{{option.name}} \n\n              <label *ngIf="option.price_adjustment!=0">(+{{option.price_adjustment}}<small>{{mealItem.currency_code}}</small>)&#x200E;</label>  \n              <label color="primary" *ngIf="option.price_adjustment==0">({{\'free\' | translate}})&#x200E;</label>  \n\n            </ion-label>\n            <ion-radio item-start (click)="getOptionPrice(attr.id,option.price_adjustment)" (click)="getOptionId(attr.id,option.id)"></ion-radio>\n          </ion-item>\n        </ion-list>\n      </div>\n    </div>\n  </ion-row>\n\n</ion-content>\n\n<ion-footer class="footer" no-lines>\n\n  <!-- <ion-row justify-content-center align-items-center style="height: 100%">\n    <button class="cartbutton" ion-button icon-only (click)="up()">\n      <ion-icon color="primary" name="ios-arrow-dropup"></ion-icon>\n    </button>\n    {{count}}\n    <button class="cartbutton" ion-button icon-only (click)="dwon()">\n      <ion-icon color="primary" name="ios-arrow-dropdown"></ion-icon>\n    </button>\n  </ion-row>\n  <button color="secondary" ion-button round block (click)="printIds()">{{\'addtocart\' | translate}}</button> -->\n  <ion-row dir="{{oriantation}}" class="footer">\n\n    <button color="secondary" ion-button round block (click)="addToCart()">{{\'addtocart\' | translate}}</button>\n    <h2 *ngFor="let meal of mealInfo" class="pricestyle">\n      <ion-icon name="md-cash"></ion-icon> {{count*meal.price+optionPrice+additionPrice}}\n      <small>{{meal.currency_code}}</small>\n    </h2>\n\n  </ion-row>\n\n</ion-footer>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\meal-info\meal-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
@@ -1336,153 +2191,15 @@ var MealInfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 144:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountActivePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(9);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var AccountActivePage = /** @class */ (function () {
-    function AccountActivePage(navCtrl, navParams, genrator, loadingCtrl, translate, _FB, alertCtrl, config, events, app, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.genrator = genrator;
-        this.loadingCtrl = loadingCtrl;
-        this.translate = translate;
-        this._FB = _FB;
-        this.alertCtrl = alertCtrl;
-        this.events = events;
-        this.app = app;
-        this.viewCtrl = viewCtrl;
-        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        this.form = _FB.group({
-            code: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])]
-        });
-    }
-    AccountActivePage.prototype.ionViewDidLoad = function () {
-        console.log(this.navParams.get("fname"));
-        console.log(this.navParams.get("lname"));
-    };
-    AccountActivePage.prototype.SaveChanges = function (val) {
-        var _this = this;
-        console.log(val.code);
-        var signUpdata = {
-            customer: {
-                billing_address: {
-                    address1: "any add",
-                    address2: "null,null,null",
-                    city: "5555",
-                    country_id: 69,
-                    email: this.navParams.get("fname") + "@gmail.com",
-                    first_name: this.navParams.get("fname") + "",
-                    last_name: this.navParams.get("lname") + "",
-                    phone_number: this.navParams.get("phone") + "",
-                    state_province_id: 40,
-                    zip_postal_code: "10021"
-                },
-                role_ids: [3],
-                email: "",
-                password: "",
-                first_name: this.navParams.get("fname") + "",
-                last_name: this.navParams.get("lname") + "",
-                phone: this.navParams.get("phone") + "",
-                verificationcode: val.code + "",
-            }
-        };
-        console.log(signUpdata);
-        var loader = this.loadingCtrl.create({
-            content: this.translate.instant('LOADING'),
-        });
-        loader.present();
-        this.genrator.signUp(signUpdata).then(function (result) {
-            loader.dismiss();
-            console.log(result);
-            _this.data = result;
-            if (_this.data.customers != null) {
-                var alert_1 = _this.alertCtrl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.translate.instant('ACTIVE.donecreated'),
-                    buttons: [
-                        {
-                            text: _this.translate.instant('BUTTONS.dissmiss'),
-                            handler: function () {
-                                //ٌAutomatic login
-                                localStorage.setItem('customerid', _this.data.customers[0].id);
-                                localStorage.setItem('customerdata', JSON.stringify(_this.data.customers[0]));
-                                _this.events.publish('user:login');
-                                _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_0__home_home__["a" /* HomePage */]).then(function () {
-                                    // first we find the index of the current view controller:
-                                    var index = _this.viewCtrl.index;
-                                    // then we remove it from the navigation stack
-                                    _this.navCtrl.remove(index);
-                                });
-                            }
-                        }
-                    ]
-                });
-                alert_1.present();
-            }
-            else {
-                var alert_2 = _this.alertCtrl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.data.errors.Account,
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_2.present();
-            }
-        }, function (err) {
-            loader.dismiss();
-            var alert = _this.alertCtrl.create({
-                title: "",
-                subTitle: err,
-                buttons: ['Dismss']
-            });
-            alert.present();
-        });
-    };
-    AccountActivePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-            selector: 'page-account-active',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\account-active\account-active.html"*/'\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{\'PAGE_TITLE.active\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h6 class="title">{{\'ACTIVE.title\' | translate}}</h6>\n\n  <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n  <ion-item class="colr">\n      <ion-label color="primary" floating>{{\'ACTIVE.code\' | translate}}</ion-label>\n      <ion-input formControlName="code" type="text"></ion-input>\n    </ion-item>\n    <span *ngIf="form.controls[\'code\'].hasError(\'required\') && form.controls[\'code\'].touched">\n        <span [hidden]="!form.controls[\'code\'].errors.required">\n            <ion-label style="color: red; margin-left: 16px;">*</ion-label>\n        </span>\n    </span>\n    <div>\n        <button ion-button color="primary" [disabled]="!form.valid" block>\n          <span class="fontColor">{{\'ACTIVE.create\' | translate}}</span>\n        </button>\n      </div>\n</form>\n</ion-content>\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\account-active\account-active.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["w" /* ViewController */]])
-    ], AccountActivePage);
-    return AccountActivePage;
-}());
-
-//# sourceMappingURL=account-active.js.map
-
-/***/ }),
-
-/***/ 145:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewOrderPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1733,8 +2450,8 @@ var ViewOrderPage = /** @class */ (function () {
         });
     };
     ViewOrderPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-            selector: 'page-view-order',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\view-order\view-order.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{\'orderdetails\'|translate}}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding dir="{{oriantation}}">\n    <!--Restaurant name and logo-->\n    <ion-row class="rest-info">\n        <img *ngIf="order.vendor_logo!=null" [src]="order.vendor_logo">\n        <div>\n            <h3>{{order.vendor_name}}</h3>\n            <!-- <h1>{{\'orderno\' | translate}}#{{orderId}}</h1> -->\n            <span>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</span>\n        </div>\n    </ion-row>\n\n\n\n    <div class="seg-tabs">\n        <ion-segment [(ngModel)]="vieworder">\n            <ion-segment-button [hidden]="false" value="details">{{\'orderdetails\'|translate}} #{{orderId}}</ion-segment-button>\n            <ion-segment-button [hidden]="order.order_status_id==10 || order.order_status_id==40 || order.order_status_id==60" value="status">{{\'orderstatus\'|translate}}</ion-segment-button>\n        </ion-segment>\n    </div>\n\n\n\n\n    <div class="seg-content" [ngSwitch]="vieworder">\n        <ion-list class="status" *ngSwitchCase="\'status\'">\n            <div class="steps-img">\n                <img class="steps" src="{{status}}">\n            </div>\n            <ion-item-group>\n                <div class="{{active1}}">\n                    <p>{{\'pending\' | translate}}</p>\n                    <small>{{\'pendingdetails\' | translate}}</small>\n                </div>\n                <div class="{{active2}}">\n                    <p>{{\'processing\' | translate}}</p>\n                    <small>{{\'processingdetals\' | translate}}</small>\n                </div>\n                <div *ngIf="order.service_type_id==1"  class="{{active3}}">\n                    <p>{{\'completed\' | translate}}</p>\n                    <small>{{\'completeddetails\' | translate}}</small>\n                </div>\n\n                 <div *ngIf="order.service_type_id==2" class="{{active3}}">\n                    <p>{{\'orderreaady\' | translate}}</p>\n                    <small>{{\'orderreaadydetails\' | translate}}</small>\n                </div> \n            </ion-item-group>\n\n\n        </ion-list>\n\n        <ion-list *ngSwitchCase="\'details\'">\n\n\n\n            <!--The Order Details Table-->\n            <table class="details" full>\n                <thead>\n                    <tr>\n                        <th class="order">{{\'order\' | translate}}</th>\n                        <th class="qty">{{\'qty\' | translate}}</th>\n                        <th class="price">{{\'pricc\' | translate}}</th>\n                    </tr>\n                </thead>\n\n                <tbody>\n                    <tr *ngFor="let item of orderItems">\n                        <td class="order">\n                            <!--The Main Meal-->\n                            <div class="main-order">\n                                <h6 class="ordname">{{item.product.name}} ({{item.product.price*item.quantity}}) &#x200E;</h6>\n                            </div>\n                            <!--The List of Addition-->\n                            <ion-list no-lines class="add" *ngIf="item.additions.length != 0">\n                                <p>{{\'Additions\' | translate}}</p>\n                                <ion-item *ngFor="let addition of item.additions">{{addition.addition_name}}\n\n                                    <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>\n                                    <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n                                </ion-item>\n                            </ion-list>\n                            <!--The List of Customisation-->\n                            <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">\n                                <p>{{\'Customization\' | translate}}</p>\n                                <ion-item *ngFor="let customiz of item.customizations">{{customiz.customization_name}}\n\n                                    <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>\n                                    <label color="primary" *ngIf="customiz.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n                                </ion-item>\n                            </ion-list>\n                        </td>\n                        <td class="qty">\n                            <!--The List of Quantity for The Main Meal-->\n                            <ion-item class="main-order">\n\n                                {{item.quantity}}\n\n                            </ion-item>\n                            <!--The List of Quantity for Addition-->\n                            <ion-list no-lines class="add">\n                                <ion-item *ngFor="let addition of item.additions">\n\n                                    {{addition.quantity}}\n\n                                </ion-item>\n                            </ion-list>\n                        </td>\n                        <td class="price">{{calcEachItemPrice(item)}}</td>\n                    </tr>\n\n                </tbody>\n\n                <tfoot>\n\n                    <tr *ngIf="serviceTypeId== 1">\n                        <td>{{\'deliveryfees\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{order.delivery_fees}}</td>\n                    </tr>\n                    <tr *ngFor="let discount of order.applied_codes">\n                        <td>{{\'dicountcopun\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{discount.Value}}</td>\n                    </tr>\n                    <tr>\n                        <td>{{\'total\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{order.order_total}}</td>\n                    </tr>\n                </tfoot>\n\n\n\n\n            </table>\n\n\n            <!-- <ion-item class="item" *ngFor="let item of orderItems">\n          \n          <h2>{{item.product.name}} {{item.quantity}}x</h2>\n          <p class="qty" *ngFor="let add of item.additions">#{{add.addition_name}} {{add.quantity}}x</p>\n          <p class="qty" *ngFor="let cust of item.customizations">#{{cust.customization_name}}</p>\n          <p class="price">{{item.price_incl_tax}}{{order.customer_currency_code}}</p>\n        </ion-item> -->\n\n            <!-- <ion-item>\n                <p>{{\'deliveryfees\' | translate}} {{order.delivery_fees}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p>\n                <p>{{\'discount\' | translate}} 00.00 SR</p>\n                <p>{{\'total\' | translate}} {{order.order_total}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p> -->\n\n\n            <!-- <p>SubTotal {{order.order_subtotal_incl_tax}}{{order.customer_currency_code}}</p> -->\n            <!-- </ion-item> -->\n            <ion-row class="allcash">\n                <p>\n                    <small>{{\'amountreq\' | translate}}</small> {{order.order_total}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p>\n            </ion-row>\n        </ion-list>\n\n    </div>\n\n\n\n    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==10" (click)="cancelOrder()">{{\'cancleorder\' | translate }}</button>\n    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==40" (click)="reOrder()">{{\'reorder\' | translate }}</button>\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\view-order\view-order.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+            selector: 'page-view-order',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\view-order\view-order.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{\'orderdetails\'|translate}}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding dir="{{oriantation}}">\n    <!--Restaurant name and logo-->\n    <ion-row class="rest-info">\n        <img *ngIf="order.vendor_logo!=null" [src]="order.vendor_logo">\n        <div>\n            <h3>{{order.vendor_name}}</h3>\n            <!-- <h1>{{\'orderno\' | translate}}#{{orderId}}</h1> -->\n            <span>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</span>\n        </div>\n    </ion-row>\n\n\n\n    <div class="seg-tabs">\n        <ion-segment [(ngModel)]="vieworder">\n            <ion-segment-button [hidden]="false" value="details">{{\'orderdetails\'|translate}} #{{orderId}}</ion-segment-button>\n            <ion-segment-button [hidden]="order.order_status_id==10 || order.order_status_id==40 || order.order_status_id==60" value="status">{{\'orderstatus\'|translate}}</ion-segment-button>\n        </ion-segment>\n    </div>\n\n\n\n\n    <div class="seg-content" [ngSwitch]="vieworder">\n        <ion-list class="status" *ngSwitchCase="\'status\'">\n            <div class="steps-img">\n                <img class="steps" src="{{status}}">\n            </div>\n            <ion-item-group>\n                <div class="{{active1}}">\n                    <p>{{\'pending\' | translate}}</p>\n                    <small>{{\'pendingdetails\' | translate}}</small>\n                </div>\n                <div class="{{active2}}">\n                    <p>{{\'processing\' | translate}}</p>\n                    <small>{{\'processingdetals\' | translate}}</small>\n                </div>\n                <div *ngIf="order.service_type_id==1"  class="{{active3}}">\n                    <p>{{\'completed\' | translate}}</p>\n                    <small>{{\'completeddetails\' | translate}}</small>\n                </div>\n\n                 <div *ngIf="order.service_type_id==2" class="{{active3}}">\n                    <p>{{\'orderreaady\' | translate}}</p>\n                    <small>{{\'orderreaadydetails\' | translate}}</small>\n                </div> \n            </ion-item-group>\n\n\n        </ion-list>\n\n        <ion-list *ngSwitchCase="\'details\'">\n\n\n\n            <!--The Order Details Table-->\n            <table class="details" full>\n                <thead>\n                    <tr>\n                        <th class="order">{{\'order\' | translate}}</th>\n                        <th class="qty">{{\'qty\' | translate}}</th>\n                        <th class="price">{{\'pricc\' | translate}}</th>\n                    </tr>\n                </thead>\n\n                <tbody>\n                    <tr *ngFor="let item of orderItems">\n                        <td class="order">\n                            <!--The Main Meal-->\n                            <div class="main-order">\n                                <h6 class="ordname">{{item.product.name}} ({{item.product.price*item.quantity}}) &#x200E;</h6>\n                            </div>\n                            <!--The List of Addition-->\n                            <ion-list no-lines class="add" *ngIf="item.additions.length != 0">\n                                <p>{{\'Additions\' | translate}}</p>\n                                <ion-item *ngFor="let addition of item.additions">{{addition.addition_name}}\n\n                                    <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>\n                                    <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n                                </ion-item>\n                            </ion-list>\n                            <!--The List of Customisation-->\n                            <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">\n                                <p>{{\'Customization\' | translate}}</p>\n                                <ion-item *ngFor="let customiz of item.customizations">{{customiz.customization_name}}\n\n                                    <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>\n                                    <label color="primary" *ngIf="customiz.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n                                </ion-item>\n                            </ion-list>\n                        </td>\n                        <td class="qty">\n                            <!--The List of Quantity for The Main Meal-->\n                            <ion-item class="main-order">\n\n                                {{item.quantity}}\n\n                            </ion-item>\n                            <!--The List of Quantity for Addition-->\n                            <ion-list no-lines class="add">\n                                <ion-item *ngFor="let addition of item.additions">\n\n                                    {{addition.quantity}}\n\n                                </ion-item>\n                            </ion-list>\n                        </td>\n                        <td class="price">{{calcEachItemPrice(item)}}</td>\n                    </tr>\n\n                </tbody>\n\n                <tfoot>\n\n                    <tr *ngIf="serviceTypeId== 1">\n                        <td>{{\'deliveryfees\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{order.delivery_fees}}</td>\n                    </tr>\n                    <tr *ngFor="let discount of order.applied_codes">\n                        <td>{{\'dicountcopun\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{discount.Value}}</td>\n                    </tr>\n                    <tr>\n                        <td>{{\'total\' | translate}}</td>\n                        <td></td>\n                        <td class="price">{{order.order_total}}</td>\n                    </tr>\n                </tfoot>\n\n\n\n\n            </table>\n\n\n            <!-- <ion-item class="item" *ngFor="let item of orderItems">\n          \n          <h2>{{item.product.name}} {{item.quantity}}x</h2>\n          <p class="qty" *ngFor="let add of item.additions">#{{add.addition_name}} {{add.quantity}}x</p>\n          <p class="qty" *ngFor="let cust of item.customizations">#{{cust.customization_name}}</p>\n          <p class="price">{{item.price_incl_tax}}{{order.customer_currency_code}}</p>\n        </ion-item> -->\n\n            <!-- <ion-item>\n                <p>{{\'deliveryfees\' | translate}} {{order.delivery_fees}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p>\n                <p>{{\'discount\' | translate}} 00.00 SR</p>\n                <p>{{\'total\' | translate}} {{order.order_total}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p> -->\n\n\n            <!-- <p>SubTotal {{order.order_subtotal_incl_tax}}{{order.customer_currency_code}}</p> -->\n            <!-- </ion-item> -->\n            <ion-row class="allcash">\n                <p>\n                    <small>{{\'amountreq\' | translate}}</small> {{order.order_total}}\n                    <small>{{order.customer_currency_code}}</small>\n                </p>\n            </ion-row>\n        </ion-list>\n\n    </div>\n\n\n\n    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==10" (click)="cancelOrder()">{{\'cancleorder\' | translate }}</button>\n    <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==40" (click)="reOrder()">{{\'reorder\' | translate }}</button>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\view-order\view-order.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */],
@@ -1750,26 +2467,26 @@ var ViewOrderPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 146:
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoreListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_main_screen_main_screen__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_intro_screen_intro_screen__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_profile_profile__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_sign_up_sign_up__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__offers_offers__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_intro_screen_intro_screen__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_profile_profile__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_sign_up_sign_up__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__offers_offers__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1952,8 +2669,8 @@ var MoreListPage = /** @class */ (function () {
         };
     };
     MoreListPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-more-list',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'more\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n  <ion-list>\n    <div class="logo">\n      <img src="./assets/imgs/sidemenu-logo.png" />\n    </div>\n\n\n    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">\n      <ion-icon name="md-globe"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{langName}}</h2>\n    </button>\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">\n      <ion-icon name="ios-home"></ion-icon>\n      <h2> {{ \'SIDEMENU.home\' | translate }}</h2>\n    </button> -->\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'SIDEMENU.account\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'PAGE_TITLE.signup\' | translate }}</h2>\n    </button>\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >\n      <ion-icon name="ios-basket"></ion-icon>\n      <h2>{{ \'SIDEMENU.basket\' | translate }}</h2>\n    </button> -->\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">\n      <ion-icon name="md-pricetag"></ion-icon>\n      <h2>{{ \'SIDEMENU.discounted\' | translate }}</h2>\n    </button> -->\n\n\n    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">\n      <ion-icon name="ios-people"></ion-icon>\n      <h2>{{ \'SIDEMENU.aboutus\' | translate }}</h2>\n    </button>\n\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">\n      <ion-icon name="md-log-out"></ion-icon>\n      <h2>{{ \'SIDEMENU.logout\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">\n      <ion-icon name="md-log-in"></ion-icon>\n      <h2>{{ \'SIDEMENU.login\' | translate }}</h2>\n    </button>\n\n\n<!-- \n    <button  ion-item detail-none class="sidemenu" (click)="appMode()">\n      <ion-icon name="md-cog"></ion-icon>\n      <h2>{{mode}}</h2>\n    </button> -->\n\n\n\n\n\n\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-more-list',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'more\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n  <ion-list>\n    <div class="logo">\n      <img src="./assets/imgs/sidemenu-logo.png" />\n    </div>\n\n\n    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">\n      <ion-icon name="md-globe"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{langName}}</h2>\n    </button>\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">\n      <ion-icon name="ios-home"></ion-icon>\n      <h2> {{ \'SIDEMENU.home\' | translate }}</h2>\n    </button> -->\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'SIDEMENU.account\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'PAGE_TITLE.signup\' | translate }}</h2>\n    </button>\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >\n      <ion-icon name="ios-basket"></ion-icon>\n      <h2>{{ \'SIDEMENU.basket\' | translate }}</h2>\n    </button> -->\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">\n      <ion-icon name="md-pricetag"></ion-icon>\n      <h2>{{ \'SIDEMENU.discounted\' | translate }}</h2>\n    </button> -->\n\n\n    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">\n      <ion-icon name="ios-people"></ion-icon>\n      <h2>{{ \'SIDEMENU.aboutus\' | translate }}</h2>\n    </button>\n\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">\n      <ion-icon name="md-log-out"></ion-icon>\n      <h2>{{ \'SIDEMENU.logout\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">\n      <ion-icon name="md-log-in"></ion-icon>\n      <h2>{{ \'SIDEMENU.login\' | translate }}</h2>\n    </button>\n\n\n<!-- \n    <button  ion-item detail-none class="sidemenu" (click)="appMode()">\n      <ion-icon name="md-cog"></ion-icon>\n      <h2>{{mode}}</h2>\n    </button> -->\n\n\n\n\n\n\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
     ], MoreListPage);
@@ -1964,14 +2681,14 @@ var MoreListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2001,8 +2718,8 @@ var SettingsPage = /** @class */ (function () {
         this.navCtrl.pop();
     };
     SettingsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-settings',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\settings\settings.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.settings\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <ion-list>\n        <ion-item>\n            <ion-label>Notification Sound</ion-label>\n            <ion-toggle></ion-toggle>\n        </ion-item>\n\n        <!--<ion-item>\n            <ion-select placeholder="{{ \'LANG\' | translate }}" [(ngModel)]="language" (ionChange)="onChange($event)">\n                <ion-option value="ar">عربي</ion-option>\n                <ion-option value="en">English</ion-option>\n            </ion-select>\n        </ion-item>-->\n\n        <ion-item>\n            <ion-label>{{ \'LANG\' | translate }}</ion-label>\n            <ion-select [(ngModel)]="language" (ionChange)="onChange($event)">\n                <ion-option value="ar">عربي</ion-option>\n                <ion-option value="en">English</ion-option>\n            </ion-select>\n        </ion-item>        \n\n    </ion-list>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\settings\settings.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-settings',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\settings\settings.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.settings\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <ion-list>\n        <ion-item>\n            <ion-label>Notification Sound</ion-label>\n            <ion-toggle></ion-toggle>\n        </ion-item>\n\n        <!--<ion-item>\n            <ion-select placeholder="{{ \'LANG\' | translate }}" [(ngModel)]="language" (ionChange)="onChange($event)">\n                <ion-option value="ar">عربي</ion-option>\n                <ion-option value="en">English</ion-option>\n            </ion-select>\n        </ion-item>-->\n\n        <ion-item>\n            <ion-label>{{ \'LANG\' | translate }}</ion-label>\n            <ion-select [(ngModel)]="language" (ionChange)="onChange($event)">\n                <ion-option value="ar">عربي</ion-option>\n                <ion-option value="en">English</ion-option>\n            </ion-select>\n        </ion-item>        \n\n    </ion-list>\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\settings\settings.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
     ], SettingsPage);
@@ -2013,17 +2730,61 @@ var SettingsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 148:
+/***/ 182:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactUsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ContactUsPage = /** @class */ (function () {
+    function ContactUsPage(navCtrl, navParams, trans, config) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.trans = trans;
+        this.config = config;
+        config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
+    }
+    ContactUsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ContactUsPage');
+    };
+    ContactUsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-contact-us',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.contactus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <form>\n        <div class="social-group">\n            <h5>You Can Join Us On</h5>\n            <img src="./assets/imgs/social/face.png" />\n            <img src="./assets/imgs/social/tw.png" />\n            <img src="./assets/imgs/social/google.png" />\n            <img src="./assets/imgs/social/instg.png" />\n        </div>\n        <br />\n       <h5>Or Send Your Message Here</h5> \n        <ion-item>\n            <ion-input type="text" name="name" placeholder="Your Name"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-input type="text" name="title" placeholder="Subject Title"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-textarea name="description" placeholder="Your Message"></ion-textarea>\n        </ion-item>\n        <br />\n        <button ion-button type="submit" block>Submit</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
+    ], ContactUsPage);
+    return ContactUsPage;
+}());
+
+//# sourceMappingURL=contact-us.js.map
+
+/***/ }),
+
+/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MealsReviewsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2144,8 +2905,8 @@ var MealsReviewsPage = /** @class */ (function () {
         });
     };
     MealsReviewsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-meals-reviews',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\meals-reviews\meals-reviews.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="ratingpage">\n\n  <ion-item class="addRating"  dir="{{oriantation}}">\n       <!--Row of Rating form-->\n       <button ion-button full (click)="onButtonClick()" class="style2">\n        <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n    <form [formGroup]="form" (ngSubmit)="addMealReview(form.value)" *ngIf="buttonClicked">\n        <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"></rating>\n        <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n        <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n    </form>\n  </ion-item>\n\n  <ion-list dir="{{oriantation}}">\n    <!--Users Rating Part-->\n    <ion-item *ngFor="let review of mealReviews">\n      <h3>{{review.customer_name}}</h3>\n      <p>{{review.review_text}}</p>\n      <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating" ></rating>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\meals-reviews\meals-reviews.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-meals-reviews',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\meals-reviews\meals-reviews.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="ratingpage">\n\n  <ion-item class="addRating"  dir="{{oriantation}}">\n       <!--Row of Rating form-->\n       <button ion-button full (click)="onButtonClick()" class="style2">\n        <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n    <form [formGroup]="form" (ngSubmit)="addMealReview(form.value)" *ngIf="buttonClicked">\n        <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"></rating>\n        <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n        <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n    </form>\n  </ion-item>\n\n  <ion-list dir="{{oriantation}}">\n    <!--Users Rating Part-->\n    <ion-item *ngFor="let review of mealReviews">\n      <h3>{{review.customer_name}}</h3>\n      <p>{{review.review_text}}</p>\n      <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating" ></rating>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\meals-reviews\meals-reviews.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
@@ -2163,16 +2924,16 @@ var MealsReviewsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 149:
+/***/ 184:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResturantReviewPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2266,8 +3027,8 @@ var ResturantReviewPage = /** @class */ (function () {
         this.navCtrl.pop();
     };
     ResturantReviewPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
-            selector: 'page-resturant-review',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\resturant-review\resturant-review.html"*/'<ion-content padding class="ratingpage">\n\n  <button class="cartbutton" ion-button icon-only (click)="closemodal()" start>\n    <ion-icon color=primary name="close"></ion-icon>\n  </button>\n\n  <!--Restaurant name and logo-->\n  <ion-label class="lbll">{{\'reviewrestursant\' | translate}}</ion-label>\n\n  <ion-item class="rest-info">\n    <img *ngIf="resturantData.vendor_logo!=null" [src]="resturantData.vendor_logo">\n    <div>\n      <h3>{{resturantData.vendor_name}}</h3>\n    </div>\n  </ion-item>\n\n  <ion-item class="addRating" dir="{{oriantation}}">\n    <!--Row of Rating form-->\n    <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)">\n      <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n        halfStarIconName="star-half" starIconName="star"></rating>\n      <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n      <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n    </form>\n  </ion-item>\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\resturant-review\resturant-review.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-resturant-review',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-review\resturant-review.html"*/'<ion-content padding class="ratingpage">\n\n  <button class="cartbutton" ion-button icon-only (click)="closemodal()" start>\n    <ion-icon color=primary name="close"></ion-icon>\n  </button>\n\n  <!--Restaurant name and logo-->\n  <ion-label class="lbll">{{\'reviewrestursant\' | translate}}</ion-label>\n\n  <ion-item class="rest-info">\n    <img *ngIf="resturantData.vendor_logo!=null" [src]="resturantData.vendor_logo">\n    <div>\n      <h3>{{resturantData.vendor_name}}</h3>\n    </div>\n  </ion-item>\n\n  <ion-item class="addRating" dir="{{oriantation}}">\n    <!--Row of Rating form-->\n    <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)">\n      <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n        halfStarIconName="star-half" starIconName="star"></rating>\n      <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n      <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n    </form>\n  </ion-item>\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-review\resturant-review.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */]])
     ], ResturantReviewPage);
@@ -2278,7 +3039,7 @@ var ResturantReviewPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 161:
+/***/ 224:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -2291,92 +3052,92 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 161;
+webpackEmptyAsyncContext.id = 224;
 
 /***/ }),
 
-/***/ 210:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/aboutus/aboutus.module": [
-		402,
+		554,
 		20
 	],
 	"../pages/account-active/account-active.module": [
-		421,
+		555,
 		19
 	],
 	"../pages/contact-us/contact-us.module": [
-		403,
+		556,
 		18
 	],
 	"../pages/intro-screen/intro-screen.module": [
-		404,
+		557,
 		17
 	],
 	"../pages/login/login.module": [
-		405,
+		558,
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
-		407,
+		570,
 		15
 	],
 	"../pages/meal-info/meal-info.module": [
-		412,
+		571,
 		14
 	],
 	"../pages/meals-reviews/meals-reviews.module": [
-		406,
+		560,
 		13
 	],
 	"../pages/more-list/more-list.module": [
-		408,
+		559,
 		12
 	],
 	"../pages/offers/offers.module": [
-		416,
+		561,
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		410,
+		562,
 		10
 	],
 	"../pages/orders/orders.module": [
-		409,
+		563,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		411,
+		564,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
-		413,
+		572,
 		7
 	],
 	"../pages/resturant-review/resturant-review.module": [
-		414,
+		565,
 		6
 	],
 	"../pages/settings/settings.module": [
-		415,
+		566,
 		5
 	],
 	"../pages/shopping-cart/shopping-cart.module": [
-		419,
+		573,
 		4
 	],
 	"../pages/sign-up/sign-up.module": [
-		418,
+		567,
 		3
 	],
 	"../pages/update-location/update-location.module": [
-		417,
+		568,
 		2
 	],
 	"../pages/view-order/view-order.module": [
-		420,
+		569,
 		1
 	]
 };
@@ -2391,169 +3152,25 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 210;
+webpackAsyncContext.id = 272;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 26:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(52);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams, genrator, loader, translate, alertCtrl, _FB, config, viewCtrl, events, app, platform) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.genrator = genrator;
-        this.loader = loader;
-        this.translate = translate;
-        this.alertCtrl = alertCtrl;
-        this._FB = _FB;
-        this.viewCtrl = viewCtrl;
-        this.events = events;
-        this.app = app;
-        this.oriantation = "";
-        this.cntryCode = "";
-        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        if (localStorage.getItem('lang') == "en") {
-            this.oriantation = "ltr";
-        }
-        else {
-            this.oriantation = "rtl";
-        }
-        this.signIn = _FB.group({
-            phone: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
-            countryCode: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])]
-        });
-    }
-    //Login Method
-    LoginPage.prototype.doLogin = function (val) {
-        var _this = this;
-        var loginData = {
-            Phone: val.phone, Password: val.phone
-        };
-        // alert(JSON.stringify(loginData))
-        var loader = this.loader.create({
-            content: this.translate.instant('LOADING'),
-        });
-        loader.present();
-        this.genrator.login(loginData).then(function (result) {
-            loader.dismiss();
-            _this.data = result;
-            if (_this.data.customers != null) {
-                localStorage.setItem('customerid', _this.data.customers[0].id);
-                localStorage.setItem('customerdata', JSON.stringify(_this.data.customers[0]));
-                console.log(localStorage.getItem('customerdata'));
-                switch (_this.data.customers[0].language) {
-                    case 1:
-                        _this.translate.use("en");
-                        localStorage.setItem('lang', "en");
-                        localStorage.setItem('langCode', '1');
-                        break;
-                    case 2:
-                        _this.translate.use("ar");
-                        localStorage.setItem('lang', "ar");
-                        localStorage.setItem('langCode', '2');
-                        break;
-                }
-                //Send stored location
-                // let location = JSON.parse(localStorage.getItem('locationId'));
-                // location.id=this.data.customers[0].id
-                // console.log(location);
-                _this.events.publish('user:login');
-                _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */], {
-                    flag: "intro"
-                }).then(function () {
-                    // first we find the index of the current view controller:
-                    var index = _this.viewCtrl.index;
-                    // then we remove it from the navigation stack
-                    _this.navCtrl.remove(index);
-                });
-            }
-            else {
-                var alert_1 = _this.alertCtrl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.data.errors.Account,
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_1.present();
-            }
-        }, function (err) {
-            loader.dismiss();
-            var alert = _this.alertCtrl.create({
-                title: "",
-                subTitle: err,
-                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-        });
-    };
-    LoginPage.prototype.signUp = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up__["a" /* SignUpPage */]);
-    };
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\login\login.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title>{{ \'PAGE_TITLE.login\' | translate }}</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content dir="{{oriantation}}">\n  \n      <!--<h3 class="titlelogin">{{ \'logintoyouraccount\' | translate }}</h3>-->\n      <div class="pageLogo">\n          <img src="./assets/imgs/login-logo.png" />\n      </div>\n  \n      <form class="loginform" [formGroup]="signIn" (ngSubmit)="doLogin(signIn.value)">\n          <ion-list no-lines>\n\n            <ion-item class="colr" > \n                <ion-label floating>{{ \'COUNTRY\' | translate }}</ion-label>\n                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">\n                    <ion-option data-countryCode="SA" value="966" >{{\'Ksa\' | translate}}</ion-option>\n                    <ion-option data-countryCode="EG" value="20">{{\'EG\' | translate}}</ion-option>\n                    <ion-option data-countryCode="US" value="1">{{\'US\' | translate}}</ion-option>\n                    <ion-option data-countryCode="BH" value="973">{{\'bh\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CA" value="1">{{\'CA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CN" value="86">{{\'CN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="FR" value="33">{{\'FR\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IN" value="91">{{\'IN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IQ" value="964">{{\'IQ\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IT" value="39">{{\'IT\' | translate}}</ion-option>\n                    <ion-option data-countryCode="LY" value="218">{{\'LY\' | translate}}</ion-option>\n                    <ion-option data-countryCode="MA" value="212">{{\'MA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="QA" value="974">{{\'QA\' | translate}}</ion-option>\n\n                </ion-select>\n            </ion-item>\n\n              <ion-item>\n                  <ion-label floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                  <ion-input formControlName="phone" required="true" type="text"></ion-input>\n              </ion-item>\n\n\n  \n          </ion-list>\n          \n        \n          <button class="loginbtn" ion-button round color="primary" [disabled]="!signIn.valid" >\n              <ion-icon padding ios="ios-log-in" md="md-log-in"></ion-icon>\n              {{ \'BUTTONS.btn_login\' | translate }}\n          </button>\n        \n        </form>\n        \n\n\n\n          <div class="in-bottom">\n            <ion-row>\n              <button class="btn1" ion-button clear (click)="signUp()" >{{\'donthaveaccount\' | translate}}</button>\n            </ion-row>\n        </div>\n  </ion-content>\n  '/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\login\login.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__["a" /* GenratorProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["w" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* Platform */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 272:
+/***/ 328:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDataPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2715,12 +3332,12 @@ var OrderDataPage = /** @class */ (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"])
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
     ], OrderDataPage.prototype, "mapElement", void 0);
     OrderDataPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
-            selector: 'page-order-data',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-order-data',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
     ], OrderDataPage);
@@ -2731,20 +3348,20 @@ var OrderDataPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 273:
+/***/ 329:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PickupServicePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2962,12 +3579,12 @@ var PickupServicePage = /** @class */ (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"])
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
     ], PickupServicePage.prototype, "mapElement", void 0);
     PickupServicePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
-            selector: 'page-pickup-service',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\pickup-service\pickup-service.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{\'pickup\' | translate}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n        <ion-title>{{\'selectbranch\' | translate}}</ion-title>\n    <div #map id="map"></div>\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n        <ion-list no-line>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n                <ion-input type="text" formControlName="locationName" [disabled]="true"></ion-input>\n            </ion-item>\n\n            <!-- <ion-item class="colr">\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n                <ion-input type="text" formControlName="notes"></ion-input>\n            </ion-item> -->\n\n\n            <!-- <ion-item class="colr">\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n                <ion-select interface="popover">\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n        </ion-list>\n        <button ion-button block round  [disabled]="selected">{{\'makeorder\' | translate}}</button>\n    </form>\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\pickup-service\pickup-service.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-pickup-service',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\pickup-service\pickup-service.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{\'pickup\' | translate}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n        <ion-title>{{\'selectbranch\' | translate}}</ion-title>\n    <div #map id="map"></div>\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n        <ion-list no-line>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n                <ion-input type="text" formControlName="locationName" [disabled]="true"></ion-input>\n            </ion-item>\n\n            <!-- <ion-item class="colr">\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n                <ion-input type="text" formControlName="notes"></ion-input>\n            </ion-item> -->\n\n\n            <!-- <ion-item class="colr">\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n                <ion-select interface="popover">\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n                </ion-select>\n            </ion-item> -->\n\n        </ion-list>\n        <button ion-button block round  [disabled]="selected">{{\'makeorder\' | translate}}</button>\n    </form>\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\pickup-service\pickup-service.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
     ], PickupServicePage);
@@ -2978,13 +3595,13 @@ var PickupServicePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 275:
+/***/ 331:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(463);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2992,58 +3609,201 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 285:
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(74);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, genrator, loader, translate, alertCtrl, _FB, config, viewCtrl, events, app, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.genrator = genrator;
+        this.loader = loader;
+        this.translate = translate;
+        this.alertCtrl = alertCtrl;
+        this._FB = _FB;
+        this.viewCtrl = viewCtrl;
+        this.events = events;
+        this.app = app;
+        this.oriantation = "";
+        this.cntryCode = "";
+        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
+        if (localStorage.getItem('lang') == "en") {
+            this.oriantation = "ltr";
+        }
+        else {
+            this.oriantation = "rtl";
+        }
+        this.signIn = _FB.group({
+            phone: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
+            countryCode: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])]
+        });
+    }
+    //Login Method
+    LoginPage.prototype.doLogin = function (val) {
+        var _this = this;
+        var loginData = {
+            Phone: val.phone, Password: val.phone
+        };
+        // alert(JSON.stringify(loginData))
+        var loader = this.loader.create({
+            content: this.translate.instant('LOADING'),
+        });
+        loader.present();
+        this.genrator.login(loginData).then(function (result) {
+            loader.dismiss();
+            _this.data = result;
+            if (_this.data.customers != null) {
+                localStorage.setItem('customerid', _this.data.customers[0].id);
+                localStorage.setItem('customerdata', JSON.stringify(_this.data.customers[0]));
+                console.log(localStorage.getItem('customerdata'));
+                switch (_this.data.customers[0].language) {
+                    case 1:
+                        _this.translate.use("en");
+                        localStorage.setItem('lang', "en");
+                        localStorage.setItem('langCode', '1');
+                        break;
+                    case 2:
+                        _this.translate.use("ar");
+                        localStorage.setItem('lang', "ar");
+                        localStorage.setItem('langCode', '2');
+                        break;
+                }
+                //Send stored location
+                // let location = JSON.parse(localStorage.getItem('locationId'));
+                // location.id=this.data.customers[0].id
+                // console.log(location);
+                _this.events.publish('user:login');
+                _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */], {
+                    flag: "intro"
+                }).then(function () {
+                    // first we find the index of the current view controller:
+                    var index = _this.viewCtrl.index;
+                    // then we remove it from the navigation stack
+                    _this.navCtrl.remove(index);
+                });
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.data.errors.Account,
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_1.present();
+            }
+        }, function (err) {
+            loader.dismiss();
+            var alert = _this.alertCtrl.create({
+                title: "",
+                subTitle: err,
+                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+        });
+    };
+    LoginPage.prototype.signUp = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up__["a" /* SignUpPage */]);
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\login\login.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n      <ion-title>{{ \'PAGE_TITLE.login\' | translate }}</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content dir="{{oriantation}}">\n  \n      <!--<h3 class="titlelogin">{{ \'logintoyouraccount\' | translate }}</h3>-->\n      <div class="pageLogo">\n          <img src="./assets/imgs/login-logo.png" />\n      </div>\n  \n      <form class="loginform" [formGroup]="signIn" (ngSubmit)="doLogin(signIn.value)">\n          <ion-list no-lines>\n\n            <ion-item class="colr" > \n                <ion-label floating>{{ \'COUNTRY\' | translate }}</ion-label>\n                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">\n                    <ion-option data-countryCode="SA" value="966" >{{\'Ksa\' | translate}}</ion-option>\n                    <ion-option data-countryCode="EG" value="20">{{\'EG\' | translate}}</ion-option>\n                    <ion-option data-countryCode="US" value="1">{{\'US\' | translate}}</ion-option>\n                    <ion-option data-countryCode="BH" value="973">{{\'bh\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CA" value="1">{{\'CA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CN" value="86">{{\'CN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="FR" value="33">{{\'FR\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IN" value="91">{{\'IN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IQ" value="964">{{\'IQ\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IT" value="39">{{\'IT\' | translate}}</ion-option>\n                    <ion-option data-countryCode="LY" value="218">{{\'LY\' | translate}}</ion-option>\n                    <ion-option data-countryCode="MA" value="212">{{\'MA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="QA" value="974">{{\'QA\' | translate}}</ion-option>\n\n                </ion-select>\n            </ion-item>\n\n              <ion-item>\n                  <ion-label floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                  <ion-input formControlName="phone" required="true" type="text"></ion-input>\n              </ion-item>\n\n\n  \n          </ion-list>\n          \n        \n          <button class="loginbtn" ion-button round color="primary" [disabled]="!signIn.valid" >\n              <ion-icon padding ios="ios-log-in" md="md-log-in"></ion-icon>\n              {{ \'BUTTONS.btn_login\' | translate }}\n          </button>\n        \n        </form>\n        \n\n\n\n          <div class="in-bottom">\n            <ion-row>\n              <button class="btn1" ion-button clear (click)="signUp()" >{{\'donthaveaccount\' | translate}}</button>\n            </ion-row>\n        </div>\n  </ion-content>\n  '/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\login\login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__["a" /* GenratorProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["w" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* Platform */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 463:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_update_location_update_location__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_diagnostic__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_update_location_update_location__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_diagnostic__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_geolocation__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_google_maps__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_common_http__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_http_loader__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_component__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_home_home__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_main_screen_main_screen__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_intro_screen_intro_screen__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_sign_up_sign_up__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_profile_profile__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_offers_offers__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_ionic2_rating__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_ionic_image_loader__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_common_http__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_http_loader__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_component__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_home_home__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_intro_screen_intro_screen__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_sign_up_sign_up__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_profile_profile__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_account_active_account_active__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_offers_offers__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_ionic2_rating__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_ionic_image_loader__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_more_list_more_list__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__ = __webpack_require__(541);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3103,7 +3863,7 @@ var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_7__angular_core__["NgModule"])({
+        Object(__WEBPACK_IMPORTED_MODULE_7__angular_core__["J" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_home_home__["a" /* HomePage */],
@@ -3132,7 +3892,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__["LazyLoadImageModule"],
+                __WEBPACK_IMPORTED_MODULE_44_ng_lazyload_image__["a" /* LazyLoadImageModule */],
                 __WEBPACK_IMPORTED_MODULE_14__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__["a" /* SuperTabsModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_41_ionic_image_loader__["a" /* IonicImageLoader */].forRoot(),
@@ -3142,25 +3902,25 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["k" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/contact-us/contact-us.module#ContactUsPageModule', name: 'ContactUsPage', segment: 'contact-us', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__["b" /* TranslateModule */].forRoot({
@@ -3205,7 +3965,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__["a" /* Network */],
                 __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__["a" /* Firebase */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["j" /* IonicErrorHandler */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["j" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_19__providers_genrator_genrator__["a" /* GenratorProvider */],
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_diagnostic__["a" /* Diagnostic */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__["a" /* LocationAccuracy */]
@@ -3219,16 +3979,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 33:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_order_view_order__ = __webpack_require__(179);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3333,12 +4093,12 @@ var OrdersPage = /** @class */ (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Content */]),
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Content */])
     ], OrdersPage.prototype, "content", void 0);
     OrdersPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-            selector: 'page-orders',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{ \'orders\' | translate}}</ion-title>\n        <ion-buttons (click)="reload()" end>\n                <button ion-button icon-only>\n                    <ion-icon color="primary" name="ios-refresh-circle-outline"></ion-icon>\n                </button>\n            </ion-buttons>\n    </ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content padding dir="{{oriantation}}">\n    <table>\n        <thead>\n            <tr>\n                <th>{{\'order\' | translate}}</th>\n                <th>{{\'status\' | translate}}</th>\n            </tr>\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let order of customerOrders.reverse()" (click)="goOrderDetails(order.id)">\n                <td>\n                    <div class="block">\n                        <img [src]="order.vendor_logo" />\n                        <ion-item>\n                            <p>\n                                <span>{{\'orderno\' | translate}}# {{order.id}}</span> |\n                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>\n                            </p>\n                            <p>{{\'from\' | translate}} {{order.vendor_name}}</p>\n                            <p>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</p>\n                            <!-- <p *ngIf="order.service_type_id==2">PickUp</p>\n                            <p *ngIf="order.service_type_id==1">Dlivery</p> -->\n                        </ion-item>\n                    </div>\n                </td>\n                <td *ngIf="order.order_status_id==10">{{\'wait\' | translate}}</td>\n                <td *ngIf="order.order_status_id==70">{{\'acccepted\' | translate}}</td>\n                <td *ngIf="order.order_status_id==20">{{\'processing\' | translate}}</td>\n                <td *ngIf="order.order_status_id==30 || order.order_status_id==50 || order.order_status_id==60 || order.order_status_id==80">{{\'complete\' | translate}}</td>\n                <td *ngIf="order.order_status_id==40">{{\'canceld\' | translate}}</td>\n            </tr>\n\n\n\n\n\n\n            <!-- <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>\n            <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>         -->\n        </tbody>\n    </table>\n\n    <ion-label class="emptylbl" *ngIf="isEmpty">{{ \'emptyorders\' | translate }}</ion-label>\n    <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+            selector: 'page-orders',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{ \'orders\' | translate}}</ion-title>\n        <ion-buttons (click)="reload()" end>\n                <button ion-button icon-only>\n                    <ion-icon color="light" name="ios-refresh-circle-outline"></ion-icon>\n                </button>\n            </ion-buttons>\n    </ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content padding dir="{{oriantation}}">\n    <table>\n        <thead>\n            <tr>\n                <th>{{\'order\' | translate}}</th>\n                <th>{{\'status\' | translate}}</th>\n            </tr>\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let order of customerOrders.reverse()" (click)="goOrderDetails(order.id)">\n                <td>\n                    <div class="block">\n                        <img [src]="order.vendor_logo" />\n                        <ion-item>\n                            <p>\n                                <span>{{\'orderno\' | translate}}# {{order.id}}</span> |\n                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>\n                            </p>\n                            <p>{{\'from\' | translate}} {{order.vendor_name}}</p>\n                            <p>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</p>\n                            <!-- <p *ngIf="order.service_type_id==2">PickUp</p>\n                            <p *ngIf="order.service_type_id==1">Dlivery</p> -->\n                        </ion-item>\n                    </div>\n                </td>\n                <td *ngIf="order.order_status_id==10">{{\'wait\' | translate}}</td>\n                <td *ngIf="order.order_status_id==70">{{\'acccepted\' | translate}}</td>\n                <td *ngIf="order.order_status_id==20">{{\'processing\' | translate}}</td>\n                <td *ngIf="order.order_status_id==30 || order.order_status_id==50 || order.order_status_id==60 || order.order_status_id==80">{{\'complete\' | translate}}</td>\n                <td *ngIf="order.order_status_id==40">{{\'canceld\' | translate}}</td>\n            </tr>\n\n\n\n\n\n\n            <!-- <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>\n            <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>         -->\n        </tbody>\n    </table>\n\n    <ion-label class="emptylbl" *ngIf="isEmpty">{{ \'emptyorders\' | translate }}</ion-label>\n    <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Config */]])
     ], OrdersPage);
@@ -3349,21 +4109,21 @@ var OrdersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 358:
+/***/ 538:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_intro_screen_intro_screen__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_cache__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_intro_screen_intro_screen__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_cache__ = __webpack_require__(123);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3604,11 +4364,11 @@ var MyApp = /** @class */ (function () {
         }
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewChild"])('content'),
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["_9" /* ViewChild */])('content'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["p" /* NavController */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\app\app.html"*/'\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\app\app.html"*/'\n  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["o" /* ModalController */], __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["v" /* ToastController */], __WEBPACK_IMPORTED_MODULE_9_ionic_cache__["b" /* CacheService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_firebase__["a" /* Firebase */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* MenuController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["v" /* ToastController */]])
     ], MyApp);
@@ -3619,27 +4379,27 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 52:
+/***/ 74:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__offers_offers__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__intro_screen_intro_screen__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__offers_offers__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__intro_screen_intro_screen__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_diagnostic__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_location_accuracy__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__update_location_update_location__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__profile_profile__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_diagnostic__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_location_accuracy__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__update_location_update_location__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__profile_profile__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3781,7 +4541,8 @@ var HomePage = /** @class */ (function () {
             var mapOptions = {
                 center: latLng,
                 zoom: 18,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                disableDefaultUI: true, zoomControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
             };
             _this.map = new google.maps.Map(_this.mapElement.nativeElement, mapOptions);
             var marker = new google.maps.Marker({
@@ -4049,12 +4810,12 @@ var HomePage = /** @class */ (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__login_login__["a" /* LoginPage */]);
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_5__angular_core__["ElementRef"])
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_5__angular_core__["u" /* ElementRef */])
     ], HomePage.prototype, "mapElement", void 0);
     HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="primary" hideBackButton="true">\n    <ion-title class="titlestyle">\n      {{ \'PAGE_TITLE.dilog\' | translate }}\n    </ion-title>\n    <!--   \n        <button class="locationButton"  ion-button icon-only (click)="loadMap()" >\n          <ion-icon name=\'ios-locate-outline\' ></ion-icon>\n        </button> -->\n\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="getCustomerLastLocations()" left>\n      <button ion-button icon-only>\n        <ion-icon name="ios-navigate-outline"></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n\n    <ion-buttons *ngIf="loggedIn" right>\n      <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n    </ion-buttons>\n\n    <ion-buttons *ngIf="loggedIn" right>\n      <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="updateCustomerLocation()">\n        <ion-icon color="softDark" name=\'md-create\'></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n\n<ion-content>\n\n\n  <ion-row *ngIf="loggedIn" dir="{{oriantation}}" class="colr">\n\n\n    <ion-select class="selectclass" placeholder="{{\'lastplaces\' | translate}}" interface="popover" [(ngModel)]="selectedLocationForUser">\n      <ion-option (ionSelect)="loadMap()">{{\'addnewLocation\' | translate}}</ion-option>\n      <ion-option *ngFor="let location of customerLocations" (ionSelect)="goAndStoreLocation(location)">{{location.LocationName}}</ion-option>\n    </ion-select>\n\n    <!-- <ion-label>{{\'lastplaces\' | translate}}</ion-label> -->\n\n    <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="deleteLocation()">\n      <ion-icon color="danger" name=\'ios-trash-outline\'></ion-icon>\n    </button>\n\n  </ion-row>\n\n\n\n  <ion-item *ngIf="locationNameIsShowing">\n    <ion-input [(ngModel)]="locationNameInput" placeholder="Clear Input" clearInput></ion-input>\n  </ion-item>\n\n  <div #map id="map"></div>\n</ion-content>\n\n<ion-footer>\n\n\n  <ion-fab top right edge class="fablist">\n    <button color="softDark" ion-fab mini icon-only>\n      <ion-icon class="ic" name="md-more"></ion-icon>\n    </button>\n    <!-- <button  ><ion-icon name="add"></ion-icon></button> -->\n    <ion-fab-list side="top">\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="signOut()">\n        <ion-icon class="ic" name="md-log-out"></ion-icon>\n      </button>\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyProfile()">\n        <ion-icon class="ic" name="ios-contact"></ion-icon>\n      </button>\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyOrders()">\n        <ion-icon class="ic" name="md-paper"></ion-icon>\n      </button>\n      <button *ngIf="!loggedIn" color="softDark" ion-fab (click)="signIn()" >\n        <ion-icon class="ic" name="md-log-in"></ion-icon>\n      </button>\n      <button color="softDark" ion-fab (click)="goToOffers()">\n        <ion-icon class="ic" name="md-megaphone"></ion-icon>\n      </button>\n\n\n      <!-- <button color="softDark" ion-fab><ion-icon class="ic" name="logo-googleplus"></ion-icon></button> -->\n    </ion-fab-list>\n  </ion-fab>\n\n\n\n  <button class="butn" padding ion-button color="primary" round block (click)="gomainsc()" [disabled]="selected">{{\'resturantsList\' | translate }}</button>\n</ion-footer>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\home\home.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["n" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="primary" hideBackButton="true">\n    <ion-title class="titlestyle">\n      {{ \'PAGE_TITLE.dilog\' | translate }}\n    </ion-title>\n    <!--   \n        <button class="locationButton"  ion-button icon-only (click)="loadMap()" >\n          <ion-icon name=\'ios-locate-outline\' ></ion-icon>\n        </button> -->\n\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="getCustomerLastLocations()" left>\n      <button ion-button icon-only>\n        <ion-icon color="light"  name="ios-navigate-outline"></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n\n    <ion-buttons *ngIf="loggedIn" right>\n      <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n    </ion-buttons>\n\n    <ion-buttons *ngIf="loggedIn" right>\n      <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="updateCustomerLocation()">\n        <ion-icon color="softDark" name=\'md-create\'></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n\n<ion-content>\n\n\n  <ion-row *ngIf="loggedIn" dir="{{oriantation}}" class="colr">\n\n\n    <ion-select class="selectclass" placeholder="{{\'lastplaces\' | translate}}" interface="popover" [(ngModel)]="selectedLocationForUser">\n      <ion-option (ionSelect)="loadMap()">{{\'addnewLocation\' | translate}}</ion-option>\n      <ion-option *ngFor="let location of customerLocations" (ionSelect)="goAndStoreLocation(location)">{{location.LocationName}}</ion-option>\n    </ion-select>\n\n    <!-- <ion-label>{{\'lastplaces\' | translate}}</ion-label> -->\n\n    <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="deleteLocation()">\n      <ion-icon color="danger" name=\'ios-trash-outline\'></ion-icon>\n    </button>\n\n  </ion-row>\n\n\n\n  <ion-item *ngIf="locationNameIsShowing">\n    <ion-input [(ngModel)]="locationNameInput" placeholder="Clear Input" clearInput></ion-input>\n  </ion-item>\n\n  <div #map id="map"></div>\n</ion-content>\n\n<ion-footer>\n\n\n  <ion-fab top right edge class="fablist">\n    <button color="softDark" ion-fab mini icon-only>\n      <ion-icon class="ic" name="md-more"></ion-icon>\n    </button>\n    <!-- <button  ><ion-icon name="add"></ion-icon></button> -->\n    <ion-fab-list side="top">\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="signOut()">\n        <ion-icon class="ic" name="md-log-out"></ion-icon>\n      </button>\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyProfile()">\n        <ion-icon class="ic" name="ios-contact"></ion-icon>\n      </button>\n      <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyOrders()">\n        <ion-icon class="ic" name="md-paper"></ion-icon>\n      </button>\n      <button *ngIf="!loggedIn" color="softDark" ion-fab (click)="signIn()" >\n        <ion-icon class="ic" name="md-log-in"></ion-icon>\n      </button>\n      <button color="softDark" ion-fab (click)="goToOffers()">\n        <ion-icon class="ic" name="md-megaphone"></ion-icon>\n      </button>\n\n\n      <!-- <button color="softDark" ion-fab><ion-icon class="ic" name="logo-googleplus"></ion-icon></button> -->\n    </ion-fab-list>\n  </ion-fab>\n\n\n\n  <button class="butn" padding ion-button color="primary" round block (click)="gomainsc()" [disabled]="selected">{{\'resturantsList\' | translate }}</button>\n</ion-footer>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["o" /* ModalController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_11__ionic_native_diagnostic__["a" /* Diagnostic */], __WEBPACK_IMPORTED_MODULE_4__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["n" /* MenuController */], __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_12__ionic_native_location_accuracy__["a" /* LocationAccuracy */]])
     ], HomePage);
@@ -4065,16 +4826,16 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 53:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offers_offers__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offers_offers__ = __webpack_require__(77);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4112,7 +4873,7 @@ var TabsPage = /** @class */ (function () {
         }
     };
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\tabs\tabs.html"*/'<ion-tabs   selectedIndex="4" dir="{{oriantation}}">\n\n  <ion-tab [root]="tab1Root"  tabIcon="ios-restaurant" tabTitle = "{{ \'resturants\' | translate}}" ></ion-tab>\n\n  <ion-tab [root]="tab2Root"  tabIcon="md-paper" tabTitle ="{{ \'orders\' | translate}}" [enabled]="checkLogin()"  ></ion-tab>\n\n  <ion-tab [root]="tab4Root"  tabIcon="md-megaphone" tabTitle="{{ \'offers\' | translate}}" ></ion-tab>\n\n  <ion-tab [root]="tab3Root"  tabIcon="md-more" tabTitle="{{ \'more\' | translate}}" ></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\tabs\tabs.html"*/'<ion-tabs   selectedIndex="4" dir="{{oriantation}}">\n\n  <ion-tab [root]="tab1Root"  tabIcon="resturantsico" tabTitle = "{{ \'resturants\' | translate}}" ></ion-tab>\n\n  <ion-tab [root]="tab2Root"  tabIcon="ordersico" tabTitle ="{{ \'orders\' | translate}}" [enabled]="checkLogin()"  ></ion-tab>\n\n  <ion-tab [root]="tab4Root"  tabIcon="offersico" tabTitle="{{ \'offers\' | translate}}" ></ion-tab>\n\n  <ion-tab [root]="tab3Root"  tabIcon="moreico" tabTitle="{{ \'more\' | translate}}" ></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -4123,126 +4884,16 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 54:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IntroScreenPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sign_up_sign_up__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(8);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var IntroScreenPage = /** @class */ (function () {
-    function IntroScreenPage(navCtrl, navParams, translate, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.translate = translate;
-        this.viewCtrl = viewCtrl;
-        this.langName = "";
-        translate.use(localStorage.getItem('lang'));
-        if (localStorage.getItem('lang') == "ar") {
-            this.langName = "E";
-        }
-        else {
-            this.langName = "ع";
-        }
-    }
-    IntroScreenPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        // this.checNetworkConnection();
-        if (localStorage.getItem('customerid') === null) {
-        }
-        else {
-            console.log("gooooo" + localStorage.getItem('customerid'));
-            // if (localStorage.getItem('customerLocation') === null) {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */], {
-                flag: "intro"
-            }).then(function () {
-                // first we find the index of the current view controller:
-                var index = _this.viewCtrl.index;
-                // then we remove it from the navigation stack
-                _this.navCtrl.remove(index);
-            });
-            // } else {
-            //   this.navCtrl.push(TabsPage).then(() => {
-            //     // first we find the index of the current view controller:
-            //     const index = this.viewCtrl.index;
-            //     // then we remove it from the navigation stack
-            //     this.navCtrl.remove(index);
-            //   });
-            // }
-        }
-    };
-    IntroScreenPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad IntroScreenPage');
-    };
-    IntroScreenPage.prototype.login = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
-    };
-    IntroScreenPage.prototype.signUp = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__sign_up_sign_up__["a" /* SignUpPage */]);
-    };
-    IntroScreenPage.prototype.gust = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */], {
-            flag: "intro"
-        });
-    };
-    IntroScreenPage.prototype.onChange = function (segmentButton) {
-        this.translate.use(segmentButton.value);
-        localStorage.setItem('lang', segmentButton.value + "");
-    };
-    IntroScreenPage.prototype.toggleIcon = function (getIcon) {
-        if (this.langName === 'ع') {
-            this.langName = "E";
-            this.translate.use("ar");
-            localStorage.setItem('lang', "ar");
-        }
-        else {
-            this.langName = "ع";
-            this.translate.use("en");
-            localStorage.setItem('lang', "en");
-        }
-    };
-    IntroScreenPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-intro-screen',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\intro-screen\intro-screen.html"*/'<ion-content class="bg">\n    <div class="langsc" >\n         <button class="cartbutton" #myButton ion-button icon-only (click)="toggleIcon()">\n       <!-- <img class="langlogo" src="./assets/imgs/switchlang.png"> -->\n       <h6 class="langtxt">{{langName}}</h6>\n    </button>\n    </div> \n\n   \n\n\n    <div class="logo">\n        <img src="./assets/imgs/HBlogo.png">\n        <h1 class="appname">HurryBunny</h1>\n    </div>\n\n</ion-content>\n<ion-footer no-shadow class="bg">\n\n    <ion-row>\n        <button class="btn1" ion-button clear (click)="login()">{{ \'BUTTONS.btn_login\' | translate }}</button>\n        <button class="btn1" ion-button clear (click)="signUp()">{{ \'BUTTONS.btn_signup\' | translate }}</button>\n        <button class="btn1" ion-button clear (click)="gust()">{{ \'BUTTONS.btn_gust\' | translate }}</button>\n    </ion-row>\n\n</ion-footer>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\intro-screen\intro-screen.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["w" /* ViewController */]])
-    ], IntroScreenPage);
-    return IntroScreenPage;
-}());
-
-//# sourceMappingURL=intro-screen.js.map
-
-/***/ }),
-
-/***/ 55:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OffersPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resturant_info_resturant_info__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4338,8 +4989,8 @@ var OffersPage = /** @class */ (function () {
         return deg * (Math.PI / 180);
     };
     OffersPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
-            selector: 'page-offers',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\offers\offers.html"*/'\n<ion-header>\n\n    <ion-navbar>\n      <ion-title>{{ \'offers\' | translate}}</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding>\n      <ion-item-group>\n          <ion-item *ngFor="let offer of offers" (click)="goResturantInfoFromAd(offer.vendor_id)">\n              <img [src]="offer.image.src" />\n          </ion-item>\n      </ion-item-group>\n  \n  </ion-content>\n  '/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\offers\offers.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-offers',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\offers\offers.html"*/'\n<ion-header>\n\n    <ion-navbar>\n      <ion-title>{{ \'offers\' | translate}}</ion-title>\n    </ion-navbar>\n  \n  </ion-header>\n  \n  \n  <ion-content padding>\n      <ion-item-group>\n          <ion-item *ngFor="let offer of offers" (click)="goResturantInfoFromAd(offer.vendor_id)">\n              <img [src]="offer.image.src" />\n          </ion-item>\n      </ion-item-group>\n  \n  </ion-content>\n  '/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\offers\offers.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */]])
     ], OffersPage);
@@ -4350,17 +5001,17 @@ var OffersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 56:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignUpPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__account_active_account_active__ = __webpack_require__(177);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4443,8 +5094,8 @@ var SignUpPage = /** @class */ (function () {
         });
     };
     SignUpPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sign-up',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\sign-up\sign-up.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n        <ion-title>{{\'PAGE_TITLE.signup\' | translate}}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n\n    <!--<h5 class="title">{{\'SIgNUP.creat\' | translate}}</h5>-->\n    <div class="pageLogo">\n        <img src="./assets/imgs/login-logo.png" />\n    </div>\n\n    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n        <ion-list no-line>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.fname\' | translate}}</ion-label>\n                <ion-input formControlName="firstName" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'firstName\'].hasError(\'required\') && form.controls[\'firstName\'].touched">\n                <span [hidden]="!form.controls[\'firstName\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.lname\' | translate}}</ion-label>\n                <ion-input formControlName="lastname" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'lastname\'].hasError(\'required\') && form.controls[\'lastname\'].touched">\n                <span [hidden]="!form.controls[\'lastname\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n\n\n            <ion-item class="colr">\n                <ion-label floating>{{ \'COUNTRY\' | translate }}</ion-label>\n                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">\n                    <ion-option data-countryCode="SA" value="966">{{\'Ksa\' | translate}}</ion-option>\n                    <ion-option data-countryCode="EG" value="20">{{\'EG\' | translate}}</ion-option>\n                    <ion-option data-countryCode="US" value="1">{{\'US\' | translate}}</ion-option>\n                    <ion-option data-countryCode="BH" value="973">{{\'bh\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CA" value="1">{{\'CA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CN" value="86">{{\'CN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="FR" value="33">{{\'FR\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IN" value="91">{{\'IN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IQ" value="964">{{\'IQ\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IT" value="39">{{\'IT\' | translate}}</ion-option>\n                    <ion-option data-countryCode="LY" value="218">{{\'LY\' | translate}}</ion-option>\n                    <ion-option data-countryCode="MA" value="212">{{\'MA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="QA" value="974">{{\'QA\' | translate}}</ion-option>\n\n                </ion-select>\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                <ion-input formControlName="phone" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'phone\'].hasError(\'required\') && form.controls[\'phone\'].touched">\n                <span [hidden]="!form.controls[\'phone\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n\n        </ion-list>\n\n        <div class="btn">\n            <button ion-button round color="primary" [disabled]="!form.valid">\n                <span class="fontColor">{{\'SIgNUP.cont\' | translate}}</span>\n            </button>\n        </div>\n\n    </form>\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\sign-up\sign-up.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-sign-up',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\sign-up\sign-up.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n        <ion-title>{{\'PAGE_TITLE.signup\' | translate}}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n\n    <!--<h5 class="title">{{\'SIgNUP.creat\' | translate}}</h5>-->\n    <div class="pageLogo">\n        <img src="./assets/imgs/login-logo.png" />\n    </div>\n\n    <form [formGroup]="form" (ngSubmit)="SaveChanges(form.value)">\n        <ion-list no-line>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.fname\' | translate}}</ion-label>\n                <ion-input formControlName="firstName" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'firstName\'].hasError(\'required\') && form.controls[\'firstName\'].touched">\n                <span [hidden]="!form.controls[\'firstName\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.lname\' | translate}}</ion-label>\n                <ion-input formControlName="lastname" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'lastname\'].hasError(\'required\') && form.controls[\'lastname\'].touched">\n                <span [hidden]="!form.controls[\'lastname\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n\n\n            <ion-item class="colr">\n                <ion-label floating>{{ \'COUNTRY\' | translate }}</ion-label>\n                <ion-select formControlName="countryCode" interface="popover" [(ngModel)]="cntryCode">\n                    <ion-option data-countryCode="SA" value="966">{{\'Ksa\' | translate}}</ion-option>\n                    <ion-option data-countryCode="EG" value="20">{{\'EG\' | translate}}</ion-option>\n                    <ion-option data-countryCode="US" value="1">{{\'US\' | translate}}</ion-option>\n                    <ion-option data-countryCode="BH" value="973">{{\'bh\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CA" value="1">{{\'CA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="CN" value="86">{{\'CN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="FR" value="33">{{\'FR\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IN" value="91">{{\'IN\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IQ" value="964">{{\'IQ\' | translate}}</ion-option>\n                    <ion-option data-countryCode="IT" value="39">{{\'IT\' | translate}}</ion-option>\n                    <ion-option data-countryCode="LY" value="218">{{\'LY\' | translate}}</ion-option>\n                    <ion-option data-countryCode="MA" value="212">{{\'MA\' | translate}}</ion-option>\n                    <ion-option data-countryCode="QA" value="974">{{\'QA\' | translate}}</ion-option>\n\n                </ion-select>\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n                <ion-label floating>{{\'SIgNUP.phone\' | translate}}</ion-label>\n                <ion-input formControlName="phone" type="text"></ion-input>\n            </ion-item>\n            <span class="warning" *ngIf="form.controls[\'phone\'].hasError(\'required\') && form.controls[\'phone\'].touched">\n                <span [hidden]="!form.controls[\'phone\'].errors.required">\n                    <ion-label style="color: red; margin-left: 16px;"> * </ion-label>\n                </span>\n            </span>\n\n\n        </ion-list>\n\n        <div class="btn">\n            <button ion-button round color="primary" [disabled]="!form.valid">\n                <span class="fontColor">{{\'SIgNUP.cont\' | translate}}</span>\n            </button>\n        </div>\n\n    </form>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\sign-up\sign-up.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
@@ -4465,18 +5116,18 @@ var SignUpPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 79:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShoppingCartPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__orders_orders__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tabs_tabs__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_genrator_genrator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_genrator_genrator__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5230,8 +5881,8 @@ var ShoppingCartPage = /** @class */ (function () {
         });
     };
     ShoppingCartPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
-            selector: 'page-shopping-cart',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\shopping-cart\shopping-cart.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'orderdetals\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content dir={{oriantation}}>\n\n\n\n    <!-- Head Part -->\n\n    <!-- <div class="hgroup">\n\n        <h3>{{\'orderdetals\' | translate}}</h3>\n\n    </div>  -->\n\n\n\n\n\n    <!--Restaurant name and logo-->\n\n    <ion-row class="rest-info">\n\n        <img src="{{resImage}}">\n\n        <div>\n\n            <h3>{{resLable}}</h3>\n\n            <small>{{resDescription}}</small>\n\n        </div>\n\n    </ion-row>\n\n\n\n    <div>\n\n        <ion-row dir="{{oriantation}}">\n\n            <form [formGroup]="discountcopun" (ngSubmit)="applyDiscount(discountcopun.value)" class="footer">\n\n                <button color="secondary" ion-button round block [disabled]="!discountcopun.valid">{{\'apply\' | translate}}</button>\n\n                <ion-input formControlName="code" placeholder="{{\'descountcode\' | translate}}"></ion-input>\n\n            </form>\n\n        </ion-row>\n\n    </div>\n\n    <!--The Order Details Table-->\n\n    <table class="details" full>\n\n        <thead>\n\n            <tr>\n\n                <th class="order">{{\'order\' | translate}}</th>\n\n                <th class="qty">{{\'qty\' | translate}}</th>\n\n                <th class="price">{{\'pricc\' | translate}}</th>\n\n            </tr>\n\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let item of cartItemsList">\n\n                <td class="order">\n\n                    <!--The Main Meal-->\n\n                    <div class="main-order">\n\n                        <h6 class="ordname">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delItem(item.id)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{item.product.name}} ({{item.product.price*item.quantity}})&#x200E;</h6>\n\n                    </div>\n\n                    <!--The List of Addition-->\n\n                    <ion-list no-lines class="add" *ngIf="item.additions.length != 0">\n\n                        <p>{{\'Additions\' | translate}}</p>\n\n                        <ion-item *ngFor="let addition of item.additions">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delAddition(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{addition.addition_name}}\n\n\n\n                            <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>\n\n                            <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n\n\n                        </ion-item>\n\n                    </ion-list>\n\n                    <!--The List of Customisation-->\n\n                    <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">\n\n                        <p>{{\'Customization\' | translate}}</p>\n\n                        <ion-item *ngFor="let customiz of item.customizations">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delCustomization(item,customiz.id,item.customizations)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{customiz.customization_name}}\n\n\n\n\n\n                            <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>\n\n                            <label color="primary" *ngIf="customiz.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n                        </ion-item>\n\n                    </ion-list>\n\n                </td>\n\n                <td class="qty">\n\n                    <!--The List of Quantity for The Main Meal-->\n\n                    <ion-item class="main-order">\n\n                        <button ion-button icon-only (click)="downCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">\n\n                            <ion-icon name="remove"></ion-icon>\n\n                        </button>\n\n                        {{item.quantity}}\n\n                        <button ion-button icon-only (click)="upCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">\n\n                            <ion-icon name="add"></ion-icon>\n\n                        </button>\n\n                    </ion-item>\n\n                    <!--The List of Quantity for Addition-->\n\n                    <ion-list no-lines class="add">\n\n                        <ion-item *ngFor="let addition of item.additions">\n\n                            <button ion-button icon-only (click)="downAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">\n\n                                <ion-icon name="remove"></ion-icon>\n\n                            </button>\n\n                            {{addition.quantity}}\n\n                            <button ion-button icon-only (click)="upAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">\n\n                                <ion-icon name="add"></ion-icon>\n\n                            </button>\n\n                        </ion-item>\n\n                    </ion-list>\n\n                </td>\n\n                <td class="price">{{calcEachItemPrice(item)}}</td>\n\n            </tr>\n\n\n\n        </tbody>\n\n        <tfoot>\n\n            <tr>\n\n                <td>{{\'total\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">{{total}}</td>\n\n            </tr>\n\n            <tr *ngIf="serviceTypeId==1">\n\n                <td>{{\'deliveryfees\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">{{deliveryees}}</td>\n\n            </tr>\n\n\n\n\n\n            <!-- <tr>\n\n                <td>{{\'discount\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">00.00</td>\n\n            </tr> -->\n\n            <!-- <tr>\n\n                <td>Subtotal</td>\n\n                <td></td>\n\n                <td class="price">90.00 SR</td>\n\n            </tr> -->\n\n        </tfoot>\n\n    </table>\n\n\n\n\n\n\n\n    <ion-list no-lines class="add" *ngIf="discountCopuns.length != 0">\n\n        <p class="discuntCopuns">{{\'discountCopuns\' | translate}}</p>\n\n        <ion-item *ngFor="let coupon of discountCopuns">\n\n            <ion-icon color="danger" name="ios-close-circle-outline" (click)="removeDiscountCopun(coupon.Key)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>\n\n            {{\'dicountcopun\' | translate}}\n\n            <label> ({{coupon.Value}})&#x200E;</label>\n\n        </ion-item>\n\n    </ion-list>\n\n\n\n\n\n    <ion-item class="notes" dir="{{oriantation}}"> \n\n        <ion-label class="lablee" floating>{{\'notes\' | translate}}</ion-label>\n\n        <ion-input [(ngModel)]="orderNotes"></ion-input>\n\n      </ion-item>\n\n    <!-- <ion-input dir="{{oriantation}}" class="notes" placeholder="{{\'notes\' | translate}}"></ion-input> -->\n\n\n\n    <!--Choose Payment Method Link-->\n\n    <button ion-button clear class="paymethod">{{\'chosepaymethod\' | translate}}</button>\n\n\n\n    <!--The Total Amount Requested-->\n\n    <ion-row class="allcash">\n\n        <p>\n\n            <small>{{\'amountreq\' | translate}}</small> {{total+deliveryees}} SR</p>\n\n    </ion-row>\n\n\n\n    <!--Submit Button & Minimum Order Note-->\n\n    <ion-row class="subtn">\n\n        <button ion-button type="submit" block round (click)="loadOrderData()">{{\'submet\' | translate}}</button>\n\n        <!-- <small>Minimum Order 25.00 SAR</small> -->\n\n    </ion-row>\n\n\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\shopping-cart\shopping-cart.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
+            selector: 'page-shopping-cart',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\shopping-cart\shopping-cart.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'orderdetals\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content dir={{oriantation}}>\n\n\n\n    <!-- Head Part -->\n\n    <!-- <div class="hgroup">\n\n        <h3>{{\'orderdetals\' | translate}}</h3>\n\n    </div>  -->\n\n\n\n\n\n    <!--Restaurant name and logo-->\n\n    <ion-row class="rest-info">\n\n        <img src="{{resImage}}">\n\n        <div>\n\n            <h3>{{resLable}}</h3>\n\n            <small>{{resDescription}}</small>\n\n        </div>\n\n    </ion-row>\n\n\n\n    <div>\n\n        <ion-row dir="{{oriantation}}">\n\n            <form [formGroup]="discountcopun" (ngSubmit)="applyDiscount(discountcopun.value)" class="footer">\n\n                <button color="secondary" ion-button round block [disabled]="!discountcopun.valid">{{\'apply\' | translate}}</button>\n\n                <ion-input formControlName="code" placeholder="{{\'descountcode\' | translate}}"></ion-input>\n\n            </form>\n\n        </ion-row>\n\n    </div>\n\n    <!--The Order Details Table-->\n\n    <table class="details" full>\n\n        <thead>\n\n            <tr>\n\n                <th class="order">{{\'order\' | translate}}</th>\n\n                <th class="qty">{{\'qty\' | translate}}</th>\n\n                <th class="price">{{\'pricc\' | translate}}</th>\n\n            </tr>\n\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let item of cartItemsList">\n\n                <td class="order">\n\n                    <!--The Main Meal-->\n\n                    <div class="main-order">\n\n                        <h6 class="ordname">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delItem(item.id)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{item.product.name}} ({{item.product.price*item.quantity}})&#x200E;</h6>\n\n                    </div>\n\n                    <!--The List of Addition-->\n\n                    <ion-list no-lines class="add" *ngIf="item.additions.length != 0">\n\n                        <p>{{\'Additions\' | translate}}</p>\n\n                        <ion-item *ngFor="let addition of item.additions">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delAddition(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{addition.addition_name}}\n\n\n\n                            <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>\n\n                            <label color="primary" *ngIf="addition.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n\n\n                        </ion-item>\n\n                    </ion-list>\n\n                    <!--The List of Customisation-->\n\n                    <ion-list no-lines class="cust" *ngIf="item.customizations.length != 0">\n\n                        <p>{{\'Customization\' | translate}}</p>\n\n                        <ion-item *ngFor="let customiz of item.customizations">\n\n                            <ion-icon name="ios-close-circle-outline" (click)="delCustomization(item,customiz.id,item.customizations)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{customiz.customization_name}}\n\n\n\n\n\n                            <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>\n\n                            <label color="primary" *ngIf="customiz.price==0">({{\'free\' | translate}})&#x200E;</label>\n\n\n\n                        </ion-item>\n\n                    </ion-list>\n\n                </td>\n\n                <td class="qty">\n\n                    <!--The List of Quantity for The Main Meal-->\n\n                    <ion-item class="main-order">\n\n                        <button ion-button icon-only (click)="downCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">\n\n                            <ion-icon name="remove"></ion-icon>\n\n                        </button>\n\n                        {{item.quantity}}\n\n                        <button ion-button icon-only (click)="upCartItemCount(item)" style="margin-left: 3px;  margin-right: 3px;">\n\n                            <ion-icon name="add"></ion-icon>\n\n                        </button>\n\n                    </ion-item>\n\n                    <!--The List of Quantity for Addition-->\n\n                    <ion-list no-lines class="add">\n\n                        <ion-item *ngFor="let addition of item.additions">\n\n                            <button ion-button icon-only (click)="downAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">\n\n                                <ion-icon name="remove"></ion-icon>\n\n                            </button>\n\n                            {{addition.quantity}}\n\n                            <button ion-button icon-only (click)="upAdditionCount(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;">\n\n                                <ion-icon name="add"></ion-icon>\n\n                            </button>\n\n                        </ion-item>\n\n                    </ion-list>\n\n                </td>\n\n                <td class="price">{{calcEachItemPrice(item)}}</td>\n\n            </tr>\n\n\n\n        </tbody>\n\n        <tfoot>\n\n            <tr>\n\n                <td>{{\'total\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">{{total}}</td>\n\n            </tr>\n\n            <tr *ngIf="serviceTypeId==1">\n\n                <td>{{\'deliveryfees\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">{{deliveryees}}</td>\n\n            </tr>\n\n\n\n\n\n            <!-- <tr>\n\n                <td>{{\'discount\' | translate}}</td>\n\n                <td></td>\n\n                <td class="price">00.00</td>\n\n            </tr> -->\n\n            <!-- <tr>\n\n                <td>Subtotal</td>\n\n                <td></td>\n\n                <td class="price">90.00 SR</td>\n\n            </tr> -->\n\n        </tfoot>\n\n    </table>\n\n\n\n\n\n\n\n    <ion-list no-lines class="add" *ngIf="discountCopuns.length != 0">\n\n        <p class="discuntCopuns">{{\'discountCopuns\' | translate}}</p>\n\n        <ion-item *ngFor="let coupon of discountCopuns">\n\n            <ion-icon color="danger" name="ios-close-circle-outline" (click)="removeDiscountCopun(coupon.Key)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>\n\n            {{\'dicountcopun\' | translate}}\n\n            <label> ({{coupon.Value}})&#x200E;</label>\n\n        </ion-item>\n\n    </ion-list>\n\n\n\n\n\n    <ion-item class="notes" dir="{{oriantation}}"> \n\n        <ion-label class="lablee" floating>{{\'notes\' | translate}}</ion-label>\n\n        <ion-input [(ngModel)]="orderNotes"></ion-input>\n\n      </ion-item>\n\n    <!-- <ion-input dir="{{oriantation}}" class="notes" placeholder="{{\'notes\' | translate}}"></ion-input> -->\n\n\n\n    <!--Choose Payment Method Link-->\n\n    <button ion-button clear class="paymethod">{{\'chosepaymethod\' | translate}}</button>\n\n\n\n    <!--The Total Amount Requested-->\n\n    <ion-row class="allcash">\n\n        <p>\n\n            <small>{{\'amountreq\' | translate}}</small> {{total+deliveryees}} SR</p>\n\n    </ion-row>\n\n\n\n    <!--Submit Button & Minimum Order Note-->\n\n    <ion-row class="subtn">\n\n        <button ion-button type="submit" block round (click)="loadOrderData()">{{\'submet\' | translate}}</button>\n\n        <!-- <small>Minimum Order 25.00 SAR</small> -->\n\n    </ion-row>\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\shopping-cart\shopping-cart.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_6__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
     ], ShoppingCartPage);
@@ -5242,19 +5893,17 @@ var ShoppingCartPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 74:
+/***/ 80:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResturantInfoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IntroScreenPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sign_up_sign_up__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5270,739 +5919,89 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var ResturantInfoPage = /** @class */ (function () {
-    function ResturantInfoPage(navCtrl, navParams, genrator, loader, translate, alertCtrl, _FB, config, platform, events) {
-        // , this.translate.instant('info')
+var IntroScreenPage = /** @class */ (function () {
+    function IntroScreenPage(navCtrl, navParams, translate, viewCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.genrator = genrator;
-        this.loader = loader;
         this.translate = translate;
-        this.alertCtrl = alertCtrl;
-        this._FB = _FB;
-        this.config = config;
-        this.platform = platform;
-        this.events = events;
-        this.oriantation = "";
-        this.SwipedTabsIndicator = null;
-        this.tabs = [];
-        this.branchId = "";
-        this.distance = 0;
-        this.categories = [];
-        this.meals = [];
-        this.resturantReviews = [];
-        this.branches = [];
-        this.userRatingInputValue = 0;
-        this.isBusy = false;
-        this.buttonClicked = false; //For Rating button
-        this.tabs = [this.translate.instant('menu'), this.translate.instant('reviews'), this.translate.instant('info')];
-        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        this.resturantId = this.navParams.get("resid");
-        this.serviceTypeId = this.navParams.get("serviceType");
-        this.branchId = navParams.get('branchId');
-        this.distance = navParams.get('distace');
-        this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
-        console.log(this.customerLocation);
-        if (localStorage.getItem('lang') == "en") {
-            this.oriantation = "ltr";
-        }
-        else {
-            this.oriantation = "rtl";
-        }
-        this.getResturantInfo(this.resturantId);
-        this.form = _FB.group({
-            reviewtxt: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].maxLength(500), __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])],
-            review_value: ['', __WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_5__angular_forms__["f" /* Validators */].required])],
-        });
-    }
-    ResturantInfoPage.prototype.selectPickup = function (categoryActive) {
-        this.categoryActive = categoryActive;
-    };
-    ResturantInfoPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.SwipedTabsIndicator = document.getElementById("indicator");
-        this.events.subscribe('cart:updated', function () {
-            _this.setCartCount();
-        });
-        if (localStorage.getItem("customerid") != null) {
-            this.getShoppingCartCount(localStorage.getItem("customerid"));
-        }
-    };
-    ResturantInfoPage.prototype.selectTab = function (index) {
-        this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (100 * index) + '%,0,0)';
-        this.SwipedTabsSlider.slideTo(index, 500);
-    };
-    ResturantInfoPage.prototype.updateIndicatorPosition = function () {
-        // this condition is to avoid passing to incorrect index
-        if (this.SwipedTabsSlider.length() > this.SwipedTabsSlider.getActiveIndex()) {
-            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (this.SwipedTabsSlider.getActiveIndex() * 100) + '%,0,0)';
-        }
-    };
-    ResturantInfoPage.prototype.animateIndicator = function ($event) {
-        if (this.SwipedTabsIndicator)
-            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (($event.progress * (this.SwipedTabsSlider.length() - 1)) * 100) + '%,0,0)';
-    };
-    ResturantInfoPage.prototype.onButtonClick = function () {
-        if (localStorage.getItem("customerid") === null) {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
-        }
-        else {
-            this.buttonClicked = !this.buttonClicked;
-        }
-    };
-    //get resturant categories
-    ResturantInfoPage.prototype.getResturantCategories = function () {
-        var _this = this;
-        // let loader = this.loader.create({
-        //   content: this.translate.instant('LOADING'),
-        // });
-        // loader.present();
-        return this.genrator.getCategories(this.resturantId).subscribe(function (data) {
-            _this.categories = data['categories'];
-            var category = _this.categories['0'];
-            _this.getMealslist(category.id);
-            _this.selectPickup(category);
-            // loader.dismiss();
-        }, function (err) {
-            // loader.dismiss();
-            // let alert = this.alertCtrl.create({
-            //   title: this.translate.instant('PAGE_TITLE.dilog'),
-            //   subTitle: err,
-            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            // });
-            // alert.present();
-            console.log(err);
-        });
-    };
-    ResturantInfoPage.prototype.show = function () {
-        this.isBusy = true;
-    };
-    ResturantInfoPage.prototype.hide = function () {
-        this.isBusy = false;
-    };
-    ResturantInfoPage.prototype.getMealslist = function (id) {
-        var _this = this;
-        // let loader = this.loader.create({
-        //   content: this.translate.instant('LOADING'),
-        // });
-        // loader.present();
-        this.show();
-        return this.genrator.getMeals(id).subscribe(function (data) {
-            _this.meals = data['products'];
-            _this.hide();
-        }, function (err) {
-            // this.hide();
-            // let alert = this.alertCtrl.create({
-            //   title: this.translate.instant('PAGE_TITLE.dilog'),
-            //   subTitle: err,
-            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            // });
-            // alert.present();
-            console.log(err);
-        });
-    };
-    //Get resturant reviews 
-    ResturantInfoPage.prototype.getResturantReviews = function () {
-        var _this = this;
-        // let loader = this.loader.create({
-        //   content: this.translate.instant('LOADING'),
-        // });
-        // loader.present();
-        return this.genrator.getResturantReviews(this.resturantId).subscribe(function (data) {
-            _this.resturantReviews = data['ratings'];
-            // loader.dismiss();
-        }, function (err) {
-            // loader.dismiss();
-            // let alert = this.alertCtrl.create({
-            //   title: this.translate.instant('PAGE_TITLE.dilog'),
-            //   subTitle: err,
-            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            // });
-            // alert.present();
-            console.log(err);
-        });
-    };
-    //Add resturant review 
-    ResturantInfoPage.prototype.addResturantReview = function (value) {
-        var _this = this;
-        var resturantReview = {
-            "rating": {
-                "customer_id": localStorage.getItem("customerid"),
-                "expert_id": this.resturantId,
-                "review_text": value.reviewtxt + "",
-                "rating": value.review_value + ""
-            }
-        };
-        // console.log(resturantReview);
-        var loader = this.loader.create({
-            content: this.translate.instant('LOADING'),
-        });
-        this.genrator.addResturantReview(resturantReview).then(function (result) {
-            loader.dismiss();
-            console.log(result);
-            if (result['ratings'] != null) {
-                _this.form.reset();
-                _this.getResturantReviews();
-                var alert_1 = _this.alertCtrl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.translate.instant('reviewsucsess'),
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_1.present();
-            }
-            else {
-                var alert_2 = _this.alertCtrl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: result.ErrorMessage,
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_2.present();
-            }
-        }, function (err) {
-            loader.dismiss();
-            var alert = _this.alertCtrl.create({
-                title: "",
-                subTitle: err,
-                buttons: ['Disms']
-            });
-            alert.present();
-        });
-    };
-    ResturantInfoPage.prototype.setCartCount = function () {
-        if (localStorage.getItem("cartCount") == "0") {
-            this.badgeValue = null;
-        }
-        else if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
-            this.badgeValue = localStorage.getItem("cartCount");
-        }
-        else {
-            this.badgeValue = null;
-        }
-    };
-    ResturantInfoPage.prototype.getShoppingCartCount = function (custId) {
-        var _this = this;
-        if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
-            this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
-                var items = data['shopping_carts'];
-                localStorage.setItem("cartCount", items.length);
-                if (items.length == 0) {
-                    localStorage.removeItem("resId");
-                    localStorage.setItem("resName", "");
-                    localStorage.setItem("deliveryFees", "0");
-                }
-                else {
-                    var item = items[0];
-                    localStorage.setItem("resId", item.product.vendor_id);
-                    console.log(localStorage.getItem("resId"));
-                }
-                _this.events.publish('cart:updated');
-            });
-        }
-    };
-    ResturantInfoPage.prototype.compareResturantId = function () {
-        if (this.branchId != null) {
-            if (this.branchId == localStorage.getItem("branchId")) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            if (this.resturantId == localStorage.getItem("resId")) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-    };
-    ResturantInfoPage.prototype.loadCartPage = function () {
-        if (localStorage.getItem("customerid") === null) {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
-        }
-        else if (localStorage.getItem('cartCount') == '0' || localStorage.getItem("resId") != this.resturantId) {
-            var alert_3 = this.alertCtrl.create({
-                title: this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: this.translate.instant('cartempty'),
-                buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert_3.present();
-        }
-        else {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__shopping_cart_shopping_cart__["a" /* ShoppingCartPage */], {
-                resName: this.resturantName,
-                resImage: this.resImage,
-                resdescription: this.resDiscription,
-                resServiceTypeId: this.serviceTypeId,
-                menumunCharge: this.resSettings.MinimumOrderAmount,
-                resturantId: this.resturantId
-            });
-        }
-    };
-    ResturantInfoPage.prototype.goMealInfoPage = function (id, name) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__meal_info_meal_info__["a" /* MealInfoPage */], {
-            mealId: id,
-            mealName: name,
-            resImage: this.resImage,
-            returantName: this.resturantName,
-            resturantSettings: JSON.stringify(this.resSettings),
-            resdescription: this.resDiscription,
-            resServiceTypeId: this.serviceTypeId,
-            menumunCharge: this.resSettings.MinimumOrderAmount,
-            resturantId: this.resturantId,
-            branchId: this.branchId
-        });
-    };
-    //Get resturant info by id
-    ResturantInfoPage.prototype.getResturantInfo = function (resId) {
-        var _this = this;
-        return this.genrator.getResturantInfo(resId).subscribe(function (data) {
-            var vendors = data['vendors'];
-            _this.resturantInfo = vendors[0];
-            _this.resturantName = _this.resturantInfo.name;
-            _this.resrate = _this.resturantInfo.rating;
-            _this.resImage = _this.resturantInfo.profile_image;
-            _this.resSettings = _this.resturantInfo.Settings;
-            _this.openingHours = _this.resturantInfo.OpeningHours;
-            _this.resDiscription = _this.resturantInfo.description;
-            _this.branches = _this.resturantInfo.Branches;
-            _this.getResturantCategories();
-            _this.getResturantReviews();
-            console.log(_this.resturantInfo);
-            // loader.dismiss();
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    ResturantInfoPage.prototype.goMap = function (lat, lng, name) {
-        var destination = lat + ',' + lng;
-        if (this.platform.is('ios')) {
-            window.open('maps://?q=' + destination, '_system');
-        }
-        else {
-            var label = encodeURI(name);
-            window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('SwipedTabsSlider'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["u" /* Slides */])
-    ], ResturantInfoPage.prototype, "SwipedTabsSlider", void 0);
-    ResturantInfoPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-resturant-info',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <!--Shopping Cart button-->\n        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;" (click)="loadCartPage()" start\n            right>\n            <button ion-button icon-only>\n                <ion-icon name="md-cart"></ion-icon>\n                <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n\n    <!-- info for resturant -->\n    <div dir="{{oriantation}}" class="resturantInfoHeader">\n        <ion-item no-lines>\n            <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />\n            <div class="group">\n                <h2>{{resturantName}}</h2>\n                <rating justify-content-center align-items-center style="height: 100%" readOnly="true" [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline"\n                    halfStarIconName="star-half" starIconName="star" nullable="false">\n                </rating>\n            </div>\n\n            <p class="resInfo">{{resDiscription}}</p>\n\n            <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->\n\n            <ion-row class="settingsrow" *ngIf="resSettings!=null">\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'mimimum\' | translate}}</small>\n                    <small>{{resSettings.MinimumOrderAmount}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'distance\' | translate}}</small>\n                    <small>{{distance}} {{\'km\' | translate}}</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n                    <small>{{resSettings.DeliveryFees}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n                    <small>{{resSettings.TimeToPrepareOrder}} min</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n                    <small>{{resSettings.DeliveryTime}} min</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'closetime\' | translate}}</small>\n                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>\n                </p>\n            </ion-row>\n\n        </ion-item>\n    </div>\n\n\n\n\n\n    <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">\n        <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)" [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\'>\n            {{tab}}\n        </ion-segment-button>\n    </ion-segment>\n\n    <!-- here is our dynamic line  "indicator"-->\n    <div dir="{{oriantation}}" id=\'indicator\' class="SwipedTabs-indicatorSegment" [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n</ion-header>\n\n\n<ion-content class="has-header">\n    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()"\n        (ionSlideDidChange)="updateIndicatorPosition()" (pan)="updateIndicatorPosition()" [pager]="true">\n        <ion-slide dir="{{oriantation}}" class="menupage">\n            <!--The filter of categories-->\n            <ion-row class="filters">\n                <ion-col no-padding>\n                    <ion-slides dir="{{oriantation}}"  class="categorieSlide" slidesPerView="4">\n                        <ion-slide class="categorieSlide" *ngFor="let category of categories" [ngClass]="{\'active\': category == categoryActive, \'not-selected-item\': category != categoryActive}"\n                            (tap)="selectPickup(category)">\n                            <div class="categIcon" (click)="getMealslist(category.id)">\n                                <img *ngIf="category.image !=null" height="100px" width="100px" [src]="category.image.src" />\n                                <img *ngIf="category.image == null" height="100px" width="100px" src="./assets/imgs/categories-filters/grill.png" />\n                                <h5  class="categoryTitle">{{category.name}}</h5>\n                            </div>\n                        </ion-slide>\n                    </ion-slides>\n                </ion-col>\n            </ion-row>\n            <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n            <ion-list no-lines>\n                <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">\n                    <ion-thumbnail item-start>\n                        <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />\n                        <img *ngIf="meal.images.length === 0" src="./assets/imgs/categories-filters/meal-placeholder.png" />\n                    </ion-thumbnail>\n                    <h2 class="mealNametxt">{{meal.name}}</h2>\n                    <p class="mealdictxt">{{meal.short_description}}</p>\n                    <h3>\n                        <ion-icon md="md-cash"></ion-icon> {{meal.price}}\n                        <small>{{meal.currency_code}} SR</small>\n                    </h3>\n                </ion-item>\n            </ion-list>\n\n        </ion-slide>\n\n\n        <!--contents of tab#2 \'The Reviews\'-->\n        <ion-slide class="ratingpage">\n            <!-- <ion-item class="addRating" dir="{{oriantation}}"> -->\n            <!--Row of Rating form-->\n            <!-- <button ion-button full (click)="onButtonClick()" class="style2">\n                    <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n                <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)" *ngIf="buttonClicked">\n                    <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n                        halfStarIconName="star-half" starIconName="star"></rating>\n                    <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n                    <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n                </form>\n            </ion-item> -->\n\n            <ion-list dir="{{oriantation}}">\n                <!--Users Rating Part-->\n                <ion-item *ngFor="let review of resturantReviews">\n                    <h3>{{review.customer_name}}</h3>\n                    <p>{{review.review_text}}</p>\n                    <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating"></rating>\n                </ion-item>\n            </ion-list>\n        </ion-slide>\n\n\n        <ion-slide dir="{{oriantation}}" class="menupage">\n\n            <!-- <br> -->\n            <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">\n                <h1 class="tite">{{resturantName}}</h1>\n                <small>{{resDiscription}}</small>\n                <h6 class="hours">{{\'workinghours\' | translate}}</h6>\n                <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>\n            </ion-item>\n\n\n            <!-- <ion-item no-lines *ngIf="branches.length!=0" class="branhesList">\n                <h1 class="branchestitle">{{\'resturantbranches\' | translate}}</h1>\n               \n                    <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">\n                        <img class="pin" item-start src="./assets/imgs/branchIcon.png">\n                        <h1 class="pname">{{branch.branch_name}} -->\n                            <!-- <small end>10Km</small> -->\n                        <!-- </h1>\n                    </ion-item>\n\n            </ion-item> -->\n\n\n\n\n        </ion-slide>\n    </ion-slides>\n\n\n\n\n    <!-- <ion-list>\n          <ion-item *ngFor="let category of categories">\n            <ion-thumbnail item-start>\n              <img [src]="category.image.src">\n            </ion-thumbnail>\n            <h2>{{category.name}}</h2>\n            <button ion-button clear item-end>View</button>\n          </ion-item>\n        </ion-list> -->\n\n</ion-content>'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_genrator_genrator__["a" /* GenratorProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */]])
-    ], ResturantInfoPage);
-    return ResturantInfoPage;
-}());
-
-//# sourceMappingURL=resturant-info.js.map
-
-/***/ }),
-
-/***/ 75:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MainScreenPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_shopping_cart_shopping_cart__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-var MainScreenPage = /** @class */ (function () {
-    function MainScreenPage(navCtrl, modelCtrl, viewCtrl, platform, navParams, genrator, loadingCtrl, alertCrtl, translate, app, events) {
-        this.navCtrl = navCtrl;
-        this.modelCtrl = modelCtrl;
         this.viewCtrl = viewCtrl;
-        this.platform = platform;
-        this.navParams = navParams;
-        this.genrator = genrator;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCrtl = alertCrtl;
-        this.translate = translate;
-        this.app = app;
-        this.events = events;
-        this.resturants = [];
-        this.resturansCopy = [];
-        this.ads = [];
-        this.oriantation = "";
-        this.searchTerm = "";
-        this.userLat = 0;
-        this.userLng = 0;
-        this.isBusy = false;
-        this.empty = false;
-        this.buttonClicked = false; //Whatever you want to initialise it as
-        if (localStorage.getItem('lang') == "en") {
-            this.oriantation = "ltr";
+        this.langName = "";
+        translate.use(localStorage.getItem('lang'));
+        if (localStorage.getItem('lang') == "ar") {
+            this.langName = "E";
         }
         else {
-            this.oriantation = "rtl";
+            this.langName = "ع";
         }
-        this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
-        console.log(this.customerLocation);
-        // if(localStorage.getItem("lastresturant")!=null){
-        //   let modal = this.modelCtrl.create(ResturantReviewPage,{},{showBackdrop:true, enableBackdropDismiss:true  });
-        //   modal.present();
-        // }
-        this.serviceType = "1";
-        this.getResturantsByDeliveryType(1);
-        this.getAds();
     }
-    MainScreenPage.prototype.onButtonClick = function () {
-        this.buttonClicked = !this.buttonClicked;
-    };
-    MainScreenPage.prototype.show = function () {
-        this.isBusy = true;
-    };
-    MainScreenPage.prototype.hide = function () {
-        this.isBusy = false;
-    };
-    MainScreenPage.prototype.ionViewDidEnter = function () {
+    IntroScreenPage.prototype.ionViewDidEnter = function () {
         var _this = this;
-        this.events.subscribe('cart:updated', function () {
-            _this.setCartCount();
-            // this.serviceType="2";
-            // this.getResturantsByDeliveryType(2);
-        });
-        if (localStorage.getItem("customerid") != null) {
-            this.getShoppingCartCount(localStorage.getItem("customerid"));
+        // this.checNetworkConnection();
+        if (localStorage.getItem('customerid') === null) {
         }
-    };
-    MainScreenPage.prototype.goToLocationPage = function () {
-        var _this = this;
-        this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_0__home_home__["a" /* HomePage */], {
-            flag: "main"
-        }).then(function () {
-            // first we find the index of the current view controller:
-            var index = _this.viewCtrl.index;
-            // then we remove it from the navigation stack
-        });
-        ;
-    };
-    MainScreenPage.prototype.ionViewDidLoad = function () {
-        this.setCartCount();
-        console.log('ionViewDidLoad MainScreenPage');
-    };
-    MainScreenPage.prototype.loadCartPage = function () {
-        if (localStorage.getItem("customerid") === null) {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__login_login__["a" /* LoginPage */]);
-        }
-        else if (localStorage.getItem('cartCount') == '0') {
-            var alert_1 = this.alertCrtl.create({
-                title: this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: this.translate.instant('cartempty'),
-                buttons: [this.translate.instant('BUTTONS.dissmiss')]
+        else {
+            console.log("gooooo" + localStorage.getItem('customerid'));
+            // if (localStorage.getItem('customerLocation') === null) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */], {
+                flag: "intro"
+            }).then(function () {
+                // first we find the index of the current view controller:
+                var index = _this.viewCtrl.index;
+                // then we remove it from the navigation stack
+                _this.navCtrl.remove(index);
             });
-            alert_1.present();
-        }
-        else {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pages_shopping_cart_shopping_cart__["a" /* ShoppingCartPage */]);
+            // } else {
+            //   this.navCtrl.push(TabsPage).then(() => {
+            //     // first we find the index of the current view controller:
+            //     const index = this.viewCtrl.index;
+            //     // then we remove it from the navigation stack
+            //     this.navCtrl.remove(index);
+            //   });
+            // }
         }
     };
-    //Delivery type segment control
-    MainScreenPage.prototype.switchDeliveryType = function (event) {
-        this.getResturantsByDeliveryType(event.value);
+    IntroScreenPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad IntroScreenPage');
     };
-    //Loading resturants from server service
-    MainScreenPage.prototype.getResturants = function () {
-        var _this = this;
-        this.show();
-        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
-            _this.resturants = data['vendors'];
-            _this.resturansCopy = data['vendors'];
-            console.log(_this.resturants);
-            _this.hide();
-        }, function (err) {
-            _this.hide();
-            var alert = _this.alertCrtl.create({
-                title: _this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: err,
-                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-            console.log(err);
+    IntroScreenPage.prototype.login = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+    };
+    IntroScreenPage.prototype.signUp = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__sign_up_sign_up__["a" /* SignUpPage */]);
+    };
+    IntroScreenPage.prototype.gust = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */], {
+            flag: "intro"
         });
     };
-    //Loading resturants from server and filter by deliveryType
-    MainScreenPage.prototype.getResturantsByDeliveryType = function (type) {
-        var _this = this;
-        this.show();
-        this.resturants = [];
-        this.resturansCopy = [];
-        console.log("lat " + this.customerLocation.location.latitude);
-        console.log("lng " + this.customerLocation.location.longtitude);
-        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
-            _this.resturants = [];
-            _this.resturansCopy = [];
-            var vendors = data['vendors'];
-            for (var i = 0; i < vendors.length; i++) {
-                var vendor = vendors[i];
-                if (vendor.Settings != null) {
-                    if (vendor.Settings.ServiceTypeId == type || vendor.Settings.ServiceTypeId == 3) {
-                        if (type == 2) {
-                            var branches = [];
-                            branches = vendor['Branches'];
-                            for (var _i = 0, _a = vendor['Branches']; _i < _a.length; _i++) {
-                                var branch = _a[_i];
-                                var updatedVendor = {
-                                    id: vendor.id,
-                                    name: vendor.name,
-                                    branchName: branch.branch_name,
-                                    branchid: branch.id,
-                                    lat: branch.latitude,
-                                    lng: branch.longtitude,
-                                    bounds: branch.bounds,
-                                    addressid: vendor.addressid,
-                                    rating: vendor.rating,
-                                    address: vendor.address,
-                                    description: vendor.description,
-                                    PrictureId: vendor.PrictureId,
-                                    profile_image: vendor.profile_image,
-                                    Settings: vendor.Settings,
-                                    OpeningHours: vendor.OpeningHours,
-                                    Branches: []
-                                };
-                                _this.resturants.push(updatedVendor);
-                            }
-                            // this.resturants.push(vendor);
-                        }
-                        else {
-                            _this.resturants.push(vendor);
-                        }
-                    }
-                    if (_this.resturants.length == 0) {
-                        _this.empty = true;
-                    }
-                    else {
-                        _this.empty = false;
-                    }
-                }
-            }
-            console.log(_this.resturants);
-            _this.resturansCopy = _this.resturants;
-            _this.hide();
-        }, function (err) {
-            _this.hide();
-            // let alert = this.alertCrtl.create({
-            //   title: this.translate.instant('PAGE_TITLE.dilog'),
-            //   subTitle: err,
-            //   buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            // });
-            // alert.present();
-            console.log(err);
-        });
+    IntroScreenPage.prototype.onChange = function (segmentButton) {
+        this.translate.use(segmentButton.value);
+        localStorage.setItem('lang', segmentButton.value + "");
     };
-    //Go resturant info Page 
-    MainScreenPage.prototype.goResturantInfo = function (id, branchid, distance) {
-        this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
-            resid: id,
-            branchId: branchid,
-            serviceType: this.serviceType,
-            distace: distance
-        });
-    };
-    MainScreenPage.prototype.setCartCount = function () {
-        if (localStorage.getItem("cartCount") == "0") {
-            this.badgeValue = null;
+    IntroScreenPage.prototype.toggleIcon = function (getIcon) {
+        if (this.langName === 'ع') {
+            this.langName = "E";
+            this.translate.use("ar");
+            localStorage.setItem('lang', "ar");
         }
         else {
-            this.badgeValue = localStorage.getItem("cartCount");
+            this.langName = "ع";
+            this.translate.use("en");
+            localStorage.setItem('lang', "en");
         }
     };
-    MainScreenPage.prototype.compareResturantId = function (resId) {
-        if (resId == localStorage.getItem("resId")) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    MainScreenPage.prototype.comparebranchId = function (branchId) {
-        if (branchId != null) {
-            if (branchId == localStorage.getItem("branchId")) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return true;
-        }
-    };
-    MainScreenPage.prototype.getShoppingCartCount = function (custId) {
-        var _this = this;
-        this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
-            var items = data['shopping_carts'];
-            localStorage.setItem("cartCount", items.length);
-            if (items.length == 0) {
-                localStorage.removeItem("resId");
-                localStorage.setItem("resName", "");
-                localStorage.setItem("deliveryFees", "0");
-            }
-            else {
-                var item = items[0];
-                localStorage.setItem("resId", item.product.vendor_id);
-                console.log(localStorage.getItem("resId"));
-            }
-            _this.events.publish('cart:updated');
-        });
-    };
-    MainScreenPage.prototype.setFilteredLocations = function () {
-        var _this = this;
-        if (this.searchTerm && this.searchTerm.trim() !== '') {
-            this.resturants = this.resturants.filter(function (it) {
-                return it.name.includes(_this.searchTerm); // only filter country name
-            });
-            if (this.resturants.length == 0) {
-                this.empty = true;
-            }
-            else {
-                this.empty = false;
-            }
-        }
-        else {
-            this.resturants = this.resturansCopy;
-            this.empty = false;
-        }
-    };
-    MainScreenPage.prototype.onCancel = function () {
-        this.serviceType = 1;
-    };
-    MainScreenPage.prototype.getAds = function () {
-        var _this = this;
-        return this.genrator.getAdds().subscribe(function (data) {
-            _this.ads = data['Advertisements'];
-            _this.ads.length;
-            console.log(_this.ads);
-        }, function (err) {
-            _this.hide();
-            var alert = _this.alertCrtl.create({
-                title: _this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: err,
-                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-        });
-    };
-    MainScreenPage.prototype.goResturantInfoFromAd = function (id) {
-        var _this = this;
-        this.genrator.getResturantInfoForAds(id).subscribe(function (data) {
-            var vendors = data['vendors'];
-            var resturantInfo = vendors[0];
-            switch (resturantInfo.Settings.ServiceTypeId) {
-                case 1:
-                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
-                        resid: id,
-                        branchId: null,
-                        serviceType: "1",
-                        distace: 0
-                    });
-                    break;
-                case 2:
-                    var branches = [];
-                    branches = resturantInfo['Branches'];
-                    var branch = branches[0];
-                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
-                        resid: id,
-                        branchId: branch.id,
-                        distace: _this.getDistance(branch.bounds),
-                        serviceType: "2"
-                    });
-                    break;
-                case 3:
-                    var branches2 = [];
-                    branches2 = resturantInfo['Branches'];
-                    var branch2 = branches[0];
-                    _this.app.getRootNav().push(__WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__["a" /* ResturantInfoPage */], {
-                        resid: id,
-                        branchId: branch2.id,
-                        distace: _this.getDistance(branch.bounds),
-                        serviceType: _this.serviceType
-                    });
-                    break;
-            }
-        }, function (err) {
-            console.log(err);
-        });
-    };
-    MainScreenPage.prototype.getDistance = function (bounds) {
-        //Convert bounds to Array of lat/lng and get distance between current location and each item and get Min value
-        if (bounds != null) {
-            var coordsArray = bounds.split(",");
-            var path = [];
-            for (var i = 0; i < coordsArray.length; i++) {
-                path.push(this.checkDistance(coordsArray[i], coordsArray[i + 1]));
-                i++;
-            }
-            console.log(path);
-            return Math.min.apply(Math, path);
-        }
-        else {
-            return 0;
-        }
-    };
-    //Get distance 
-    MainScreenPage.prototype.checkDistance = function (lat, lng) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = this.deg2rad(parseFloat(localStorage.getItem("userLat")) - lat); // deg2rad below
-        var dLon = this.deg2rad(parseFloat(localStorage.getItem("userLng")) - lng);
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(this.deg2rad(lat)) * Math.cos(this.deg2rad(parseFloat(localStorage.getItem("userLat")))) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c; // Distance in km
-        return Number(d).toFixed(2);
-    };
-    MainScreenPage.prototype.deg2rad = function (deg) {
-        return deg * (Math.PI / 180);
-    };
-    MainScreenPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-            selector: 'page-main-screen',template:/*ion-inline-start:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/'​\n<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">\n\n\n<ion-header>\n\n\n  <ion-navbar hideBackButton="true">\n    <!--Shopping Cart button-->\n    <!-- <ion-buttons (click)="loadCartPage()" start left>\n      <button ion-button icon-only>\n        <ion-icon name="md-cart"></ion-icon>\n        <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n      </button>\n    </ion-buttons> -->\n\n    <!--<ion-buttons (click)="goShoppingCartPage()" start>\n        <button ion-button icon-only>\n            <ion-icon name="md-cart"></ion-icon>\n            <ion-badge color="danger">{{badgeValue}}</ion-badge>\n        </button>\n    </ion-buttons>-->\n\n    <!--Title of Page-->\n    <ion-title>\n      {{ \'PAGE_TITLE.home\' | translate }}\n    </ion-title>\n\n    <!--Search Bar button-->\n    <ion-buttons (click)="onButtonClick()" left>\n      <button ion-button icon-only>\n        <ion-icon name="ios-search"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-buttons (click)="goToLocationPage()" right>\n      <button ion-button icon-only >\n        <ion-icon name=\'ios-navigate-outline\'></ion-icon>\n      </button>\n    </ion-buttons>\n\n\n\n\n  </ion-navbar>\n\n\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar *ngIf="buttonClicked" placeholder="{{\'search\' | translate}}" [(ngModel)]="searchTerm" (ionInput)="setFilteredLocations($event)" (ionCancel)="onCancel()">\n  </ion-searchbar>\n\n  \n  \n\n  <!--Start Advertisements Slider-->\n  <ion-slides pager options="{pagination: true}" autoplay="5000" loop="true" speed="500" dir="{{oriantation}}">\n\n      <ion-slide *ngIf="ads.length==0" style="background-color: bisque; color: #555;">\n          <img class="img" height="100 px" width="100 px" src="./assets/imgs/addsPlaceholder.png" />\n        </ion-slide>\n\n    <ion-slide *ngFor="let ad of ads" style="background-color: bisque; color: #555;"  (click)="goResturantInfoFromAd(ad.vendor_id)">\n      <img class="img" height="100 px" width="100 px" [src]="ad.image.src" />\n      <!-- <h2>Advertising 1</h2> -->\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n\n\n  <!-- Delivery type selection segment  -->\n  <!-- <ion-segment  (ionChange)="switchDeliveryType($event)" full="true"  assertive>\n    <ion-segment-button value="2">\n        <i class=" fa fa-gift" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'pickup\' | translate}}</label>\n        \n    </ion-segment-button>\n    <ion-segment-button value="1">\n        <i class="fa fa-truck" style="font-size:18px;  text-align: center;"></i>\n        <label>{{\'delivry\' | translate}}</label>\n    </ion-segment-button>\n  </ion-segment> -->\n\n\n\n\n  <!--Segment Tabs-->\n  <div class="seg-tabs" dir="{{oriantation}}">\n    <ion-segment (ionChange)="switchDeliveryType($event)" [(ngModel)]="serviceType">\n      <ion-segment-button value="1">\n        <img src="./assets/imgs/delivery-icon.png" />{{\'delivry\' | translate}}</ion-segment-button>\n      <ion-segment-button value="2">\n        <img src="./assets/imgs/pickup-icon.png" />{{\'pickup\' | translate}}</ion-segment-button>\n    </ion-segment>\n  </div>\n\n\n\n\n\n\n\n\n  <ion-label class="emptylbl" *ngIf="empty">{{ \'EMPTY\' | translate }}</ion-label>\n  <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n\n  <!--Start The List Of Resturants-->\n  <ion-list *ngIf="serviceType==1">\n\n    <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n      (click)="goResturantInfo(resturant.id,resturant.branchid)">\n      <ion-thumbnail item-start>\n        <!--<img [src]="resturant.profile_image">-->\n        <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n        <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n      </ion-thumbnail>\n\n      <div class="group">\n        <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n\n        <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n          emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n        </rating>\n        <ion-badge class="badge" start left *ngIf="compareResturantId(resturant.id)" color="primary">{{badgeValue}}</ion-badge>\n      </div>\n\n\n      <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n\n      <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'mimimum\' | translate}}</small>\n          <small>{{resturant.Settings.MinimumOrderAmount}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryFees}} {{resturant.Settings.PrimaryStoreCurrencyCode}}</small>\n        </p>\n        |\n        <p class="settings" *ngIf="serviceType==1">\n          <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n          <small>{{resturant.Settings.DeliveryTime}} min</small>\n        </p>\n      </ion-row>\n\n    </ion-item>\n  </ion-list>\n\n  <ion-list *ngIf="serviceType==2">\n\n      <ion-item [color]="even? \'light\' : \'whiteer\'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"\n        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.bounds))">\n        <ion-thumbnail item-start>\n          <!--<img [src]="resturant.profile_image">-->\n          <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />\n          <img *ngIf="resturant.profile_image ==null" src="http://www.adbazar.pk/frontend/images/default-image.jpg" />\n        </ion-thumbnail>\n  \n        <div class="group">\n          <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>\n  \n          <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"\n            emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">\n          </rating>\n          <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>\n        </div>\n  \n  \n        <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->\n  \n        <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">\n        \n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'distance\' | translate}}</small>\n            <small>{{getDistance(resturant.bounds)}} {{\'km\' | translate}}</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n            <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>\n          </p>\n          |\n          <p class="settings" *ngIf="serviceType==2">\n            <small class="settingsname">{{\'closetime\' | translate}}</small>\n            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>\n          </p>\n        </ion-row>\n  \n      </ion-item>\n    </ion-list>\n</ion-content>\n\n<!-- <ion-footer>\n  <div class="header-banner">\n    <ion-slides pager="true" options="{pagination: true}" autoplay="5000" loop="true" speed="500" *ngFor="let product of productInfo">\n      <ion-slide *ngFor="let image of product.images">\n        <img class="img" height="100 px" width="100 px" [src]="image.src">\n      </ion-slide>\n    </ion-slides>\n  </div>\n</ion-footer> -->'/*ion-inline-end:"F:\Ali\Eng Ali\Appsmatic\IONIC\HarryBunny\HarryBunny\src\pages\main-screen\main-screen.html"*/,
+    IntroScreenPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-intro-screen',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\intro-screen\intro-screen.html"*/'<ion-content class="bg">\n    <div class="langsc" >\n         <button class="cartbutton" #myButton ion-button icon-only (click)="toggleIcon()">\n       <!-- <img class="langlogo" src="./assets/imgs/switchlang.png"> -->\n       <h6 class="langtxt">{{langName}}</h6>\n    </button>\n    </div> \n\n   \n\n\n    <div class="logo">\n        <img src="./assets/imgs/HBlogo.png">\n        <h1 class="appname">HurryBunny</h1>\n    </div>\n\n</ion-content>\n<ion-footer no-shadow class="bg">\n\n    <ion-row>\n        <button class="btn1" ion-button clear (click)="login()">{{ \'BUTTONS.btn_login\' | translate }}</button>\n        <button class="btn1" ion-button clear (click)="signUp()">{{ \'BUTTONS.btn_signup\' | translate }}</button>\n        <button class="btn1" ion-button clear (click)="gust()">{{ \'BUTTONS.btn_gust\' | translate }}</button>\n    </ion-row>\n\n</ion-footer>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\intro-screen\intro-screen.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ModalController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["s" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* Events */]])
-    ], MainScreenPage);
-    return MainScreenPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["w" /* ViewController */]])
+    ], IntroScreenPage);
+    return IntroScreenPage;
 }());
 
-//# sourceMappingURL=main-screen.js.map
+//# sourceMappingURL=intro-screen.js.map
 
 /***/ })
 
-},[275]);
+},[331]);
 //# sourceMappingURL=main.js.map

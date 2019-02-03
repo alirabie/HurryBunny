@@ -29,13 +29,13 @@
     <!--Search Bar button-->
     <ion-buttons (click)="onButtonClick()" left>
       <button ion-button icon-only>
-        <ion-icon name="ios-search"></ion-icon>
+        <ion-icon color="light" name="ios-search"></ion-icon>
       </button>
     </ion-buttons>
 
     <ion-buttons (click)="goToLocationPage()" right>
       <button ion-button icon-only >
-        <ion-icon name='ios-navigate-outline'></ion-icon>
+        <ion-icon color="light" name='ios-navigate-outline'></ion-icon>
       </button>
     </ion-buttons>
 
@@ -123,7 +123,7 @@
 
       <div class="group">
         <h2>{{resturant.name}} <h3>{{resturant.branchName}}</h3> </h2>
-
+        &nbsp;|&nbsp;
         <rating justify-content-center align-items-center style="height: 100%" [(ngModel)]="resturant.rating" readOnly="true" max="5"
           emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
         </rating>
