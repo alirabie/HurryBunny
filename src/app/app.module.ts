@@ -38,7 +38,7 @@ import { MealsReviewsPage } from '../pages/meals-reviews/meals-reviews';
 import { ViewOrderPage } from '../pages/view-order/view-order';
 import { Firebase } from '@ionic-native/firebase';
 import { CacheModule } from "ionic-cache";
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { IonicImageLoader } from 'ionic-image-loader';
@@ -137,6 +137,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     GoogleMaps,
     Geolocation,
+    LaunchNavigator,
     Network,
     Firebase,
     SplashScreen,

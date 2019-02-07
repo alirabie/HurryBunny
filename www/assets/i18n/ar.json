@@ -210,7 +210,8 @@
     "acccepted":"مقبول",
     "km":"كم",
     "distance":"المسافة",
-    "errorLocationDetict":"حدث خطأ فى تحديد موقعك"
+    "errorLocationDetict":"حدث خطأ فى تحديد موقعك",
+    "branchlocatio":"موقع الفرع على الخريطة"
 
 
 }

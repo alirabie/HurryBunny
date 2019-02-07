@@ -141,6 +141,10 @@
 		11F81E2756AC4E8ABE2808FC /* FirebaseISASwizzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F717CD2CCAB48EFAA1B93CE /* FirebaseISASwizzler.framework */; };
 		1F6FEB2BC1EF4892BF51686F /* FirebaseMethodSwizzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3CBE9264C2441FA5F57E45 /* FirebaseMethodSwizzler.framework */; };
 		B201082C0E464F1884573F1D /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5C46716AE04851965D0680 /* CDVInAppBrowser.m */; };
+		D4A7E12826FC4D938CFDE350 /* ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7552043B17AD4272BD9B9CC1 /* ActionSheet.m */; };
+		9426870E5D694D3BB5B51641 /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 112104340BA44F27B5616C07 /* CMMapLauncher.m */; };
+		8ADA34BA72844A9E88FA3A4C /* LaunchNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D82811770434F4A9EBCB2ED /* LaunchNavigator.m */; };
+		6FD68A20CCE64740A5D41AF9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A498D4B35B948828C88E34D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,6 +383,13 @@
 		0B3CBE9264C2441FA5F57E45 /* FirebaseMethodSwizzler.framework */ = {isa = PBXFileReference; name = "FirebaseMethodSwizzler.framework"; path = "HurryBunny/Plugins/cordova-plugin-firebase/FirebaseMethodSwizzler.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		9D5C46716AE04851965D0680 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		F327AF92EA3D4441B3E338E3 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7552043B17AD4272BD9B9CC1 /* ActionSheet.m */ = {isa = PBXFileReference; name = "ActionSheet.m"; path = "cordova-plugin-actionsheet/ActionSheet.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		EA42D67BCDCC4115BA35C7D9 /* ActionSheet.h */ = {isa = PBXFileReference; name = "ActionSheet.h"; path = "cordova-plugin-actionsheet/ActionSheet.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		112104340BA44F27B5616C07 /* CMMapLauncher.m */ = {isa = PBXFileReference; name = "CMMapLauncher.m"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/CMMapLauncher.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		1D82811770434F4A9EBCB2ED /* LaunchNavigator.m */ = {isa = PBXFileReference; name = "LaunchNavigator.m"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/LaunchNavigator.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		9F16D439BD5044A08813F69B /* CMMapLauncher.h */ = {isa = PBXFileReference; name = "CMMapLauncher.h"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/CMMapLauncher.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		CDE251D14EC744BA9414163A /* LaunchNavigator.h */ = {isa = PBXFileReference; name = "LaunchNavigator.h"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/LaunchNavigator.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		3A498D4B35B948828C88E34D /* MapKit.framework */ = {isa = PBXFileReference; name = "MapKit.framework"; path = "System/Library/Frameworks/MapKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +441,7 @@
 				5E40EB6060B94C20BA76C2DF /* FirebasePerformance.framework in Frameworks */,
 				11F81E2756AC4E8ABE2808FC /* FirebaseISASwizzler.framework in Frameworks */,
 				1F6FEB2BC1EF4892BF51686F /* FirebaseMethodSwizzler.framework in Frameworks */,
+				6FD68A20CCE64740A5D41AF9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +570,7 @@
 				D4720AE477804EC0815816C5 /* FirebasePerformance.framework */,
 				2F717CD2CCAB48EFAA1B93CE /* FirebaseISASwizzler.framework */,
 				0B3CBE9264C2441FA5F57E45 /* FirebaseMethodSwizzler.framework */,
+				3A498D4B35B948828C88E34D /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -723,6 +736,12 @@
 				E953C3391D2D4F978412CA91 /* Firebase.h */,
 				9D5C46716AE04851965D0680 /* CDVInAppBrowser.m */,
 				F327AF92EA3D4441B3E338E3 /* CDVInAppBrowser.h */,
+				7552043B17AD4272BD9B9CC1 /* ActionSheet.m */,
+				EA42D67BCDCC4115BA35C7D9 /* ActionSheet.h */,
+				112104340BA44F27B5616C07 /* CMMapLauncher.m */,
+				1D82811770434F4A9EBCB2ED /* LaunchNavigator.m */,
+				9F16D439BD5044A08813F69B /* CMMapLauncher.h */,
+				CDE251D14EC744BA9414163A /* LaunchNavigator.h */,
 			);
 			name = Plugins;
 			path = "HurryBunny/Plugins";
@@ -917,6 +936,9 @@
 				5E8868D1E1234D9B8F2029CF /* AppDelegate+FirebasePlugin.m in Sources */,
 				D2A8F22DB1204C418814C519 /* FirebasePlugin.m in Sources */,
 				B201082C0E464F1884573F1D /* CDVInAppBrowser.m in Sources */,
+				D4A7E12826FC4D938CFDE350 /* ActionSheet.m in Sources */,
+				9426870E5D694D3BB5B51641 /* CMMapLauncher.m in Sources */,
+				8ADA34BA72844A9E88FA3A4C /* LaunchNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

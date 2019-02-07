@@ -6,7 +6,7 @@ $color7:#c6bbac;
 
 page-resturant-info {
     ion-header.header{
-        .resturantInfoHeader{height:auto; min-height: 100px !important; width: 100%; align-self: center}
+        .resturantInfoHeader{height:auto !important; max-height: 200px !important; min-height: 100px !important; width: 100%; align-self: center}
         .group {
             display: flex;
             justify-content: space-between;

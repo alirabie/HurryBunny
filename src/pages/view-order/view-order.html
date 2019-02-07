@@ -172,12 +172,20 @@
                     <small>{{order.customer_currency_code}}</small>
                 </p>
             </ion-row>
+
+         
+
+
         </ion-list>
 
     </div>
 
 
-
+    <!-- Branch Location Button -->
+    <button *ngIf="order.service_type_id==2" class="butn" ion-button round block color="secondary" (click)="goBranchLocation(order.branch_bounds)" >
+        <ion-icon padding name="pin"></ion-icon>
+        {{'branchlocatio' | translate}}
+    </button>
     <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==10" (click)="cancelOrder()">{{'cancleorder' | translate }}</button>
     <button class="butn" padding ion-button color="primary" round block *ngIf="order.order_status_id==40" (click)="reOrder()">{{'reorder' | translate }}</button>
 

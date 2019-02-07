@@ -27,6 +27,7 @@
     "@ionic-native/firebase": "^4.19.0",
     "@ionic-native/geolocation": "^4.19.0",
     "@ionic-native/google-maps": "^4.15.1",
+    "@ionic-native/launch-navigator": "^3.14.0",
     "@ionic-native/location-accuracy": "^4.19.0",
     "@ionic-native/network": "^4.19.0",
     "@ionic-native/splash-screen": "4.6.0",
@@ -52,6 +53,7 @@
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
@@ -80,7 +82,8 @@
       "cordova-plugin-request-location-accuracy": {},
       "cordova.plugins.diagnostic": {},
       "cordova-plugin-firebase": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "uk.co.workingedge.phonegap.plugin.launchnavigator": {}
     },
     "platforms": [
       "ios",

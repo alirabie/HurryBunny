@@ -99,6 +99,14 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"ActionSheet\"><param name=\"android-package\" value=\"nl.xservices.plugins.actionsheet.ActionSheet\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"LaunchNavigator\"><param name=\"android-package\" value=\"uk.co.workingedge.phonegap.plugin.LaunchNavigator\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -318,6 +326,12 @@
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },
@@ -875,6 +889,30 @@
         "cordova.InAppBrowser.open",
         "window.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-actionsheet.ActionSheet",
+      "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+      "pluginId": "cordova-plugin-actionsheet",
+      "clobbers": [
+        "window.plugins.actionsheet"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "clobbers": [
+        "launchnavigator"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/android/launchnavigator.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "merges": [
+        "launchnavigator"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -890,6 +928,8 @@
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "cordova.plugins.diagnostic": "4.0.8",
     "cordova-plugin-firebase": "1.0.5",
-    "cordova-plugin-inappbrowser": "3.0.0"
+    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-plugin-actionsheet": "2.3.3",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
   }
 }

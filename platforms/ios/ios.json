@@ -155,6 +155,14 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"ActionSheet\"><param name=\"ios-package\" value=\"ActionSheet\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"LaunchNavigator\"><param name=\"ios-package\" value=\"LaunchNavigator\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -194,6 +202,10 @@
           "LSApplicationQueriesSchemes": [
             {
               "xml": "<array><string>googlechromes</string><string>comgooglemaps</string></array>",
+              "count": 1
+            },
+            {
+              "xml": "<array><string>citymapper</string><string>comgooglemaps</string><string>navigon</string><string>transit</string><string>waze</string><string>yandexnavi</string><string>uber</string><string>tomtomhome</string><string>com.sygic.aura</string><string>here-route</string><string>moovit</string></array>",
               "count": 1
             }
           ],
@@ -325,6 +337,12 @@
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
+    },
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     }
   },
@@ -908,6 +926,30 @@
         "cordova.InAppBrowser.open",
         "window.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-actionsheet.ActionSheet",
+      "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+      "pluginId": "cordova-plugin-actionsheet",
+      "clobbers": [
+        "window.plugins.actionsheet"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "clobbers": [
+        "launchnavigator"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/ios/launchnavigator.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "merges": [
+        "launchnavigator"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -924,6 +966,8 @@
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "cordova.plugins.diagnostic": "4.0.8",
     "cordova-plugin-firebase": "1.0.5",
-    "cordova-plugin-inappbrowser": "3.0.0"
+    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-plugin-actionsheet": "2.3.3",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
   }
 }

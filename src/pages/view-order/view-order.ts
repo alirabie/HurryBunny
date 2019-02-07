@@ -2,6 +2,7 @@ import { GenratorProvider } from './../../providers/genrator/genrator';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 
 
@@ -28,7 +29,7 @@ export class ViewOrderPage {
   statusActive = "step active";
   statusDisActive = "step";
   orderId = "";
-  serviceTypeId="";
+  serviceTypeId = "";
 
   status = "";
   active1 = "";
@@ -58,6 +59,7 @@ export class ViewOrderPage {
     public genrator: GenratorProvider,
     public trans: TranslateService,
     public alertCtrl: AlertController,
+    public launchNavigator: LaunchNavigator,
     public loadingCtrl: LoadingController) {
 
     if (localStorage.getItem('lang') == "en") {
@@ -91,7 +93,7 @@ export class ViewOrderPage {
       this.orderDetalis = data['orders'];
       let orderItem = this.orderDetalis[0];
 
-      this.serviceTypeId=orderItem.service_type_id;
+      this.serviceTypeId = orderItem.service_type_id;
       //Order status by service type id
       if (orderItem.service_type_id == 1) {
         this.changeOrderStatus(orderItem.order_status_id);
@@ -305,6 +307,22 @@ export class ViewOrderPage {
     });
 
 
+  }
+
+
+  goBranchLocation(bounds) {
+    if (bounds != null) {
+
+      var coordsArray = bounds.split(",");
+      let lat = localStorage.getItem("userLat");
+      let lng = localStorage.getItem("userLng");
+     console.log(lat,lng);
+      this.launchNavigator.navigate([parseFloat(coordsArray[0]), parseFloat(coordsArray[1])], {
+        start: lat + "," + lng
+      });
+    } else {
+      alert("No Location");
+    }
   }
 
 }

@@ -74,6 +74,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.7.aar\\c2d5403b1a13a0c603463bad2d4c4401\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "179,245,325",
+                        "endColumns": "65,79,63",
+                        "endOffsets": "244,324,388"
+                    },
+                    "to": {
+                        "startLines": "517,518,519",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "47435,47505,47589",
+                        "endColumns": "69,83,67",
+                        "endOffsets": "47500,47584,47652"
+                    }
+                },
+                {
                     "source": "F:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\cordova-plugin-firebase-strings.xml",
                     "from": {
                         "startLines": "2,3",
@@ -122,23 +139,6 @@
                         "startOffsets": "4157,131628,131804,131926,132188,132383",
                         "endColumns": "88,65,121,60,65,66",
                         "endOffsets": "4241,131689,131921,131982,132249,132445"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-tagmanager-16.0.6.aar\\f7b0b3d99b3948729c6ad3b7256eed17\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "179,245,325",
-                        "endColumns": "65,79,63",
-                        "endOffsets": "244,324,388"
-                    },
-                    "to": {
-                        "startLines": "517,518,519",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "47435,47505,47589",
-                        "endColumns": "69,83,67",
-                        "endOffsets": "47500,47584,47652"
                     }
                 },
                 {

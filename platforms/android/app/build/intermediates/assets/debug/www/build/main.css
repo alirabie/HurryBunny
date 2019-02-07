@@ -35066,7 +35066,8 @@ page-resturant-info {
 }
 
 page-resturant-info ion-header.header .resturantInfoHeader {
-  height: auto;
+  height: auto !important;
+  max-height: 200px !important;
   min-height: 100px !important;
   width: 100%;
   -webkit-align-self: center;

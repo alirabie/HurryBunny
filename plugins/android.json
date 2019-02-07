@@ -48,7 +48,14 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    }
+  }
 }

@@ -48,11 +48,17 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
+    },
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     }
   },
   "dependent_plugins": {
     "com.googlemaps.ios": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     }
   }
 }
