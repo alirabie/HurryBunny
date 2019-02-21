@@ -92,7 +92,7 @@ export class HomePage {
 
         if (!status) {
           this.loadMap();
-          this.enableLocation();
+          // this.enableLocation();
         } else {
 
           this.loadMap();
@@ -199,11 +199,6 @@ export class HomePage {
 
       this.locationId = "0";
 
-
-
-
-
-
       this.map.addListener('center_changed', () => {
         marker.setPosition(this.map.getCenter())
 
@@ -215,33 +210,10 @@ export class HomePage {
 
         // this.presentPrompt();
 
-      })
-
-
-
-      // google.maps.event.addListener(marker, 'dragend', () => {
-
-
-
-
-
-      //   this.presentPrompt();
-
-
-      //   console.log(this.selectedLat);
-      //   console.log(this.selectedLng);
-
-      // });
-
-
+      });
 
     }).catch((error) => {
-      let alert = this.alertCrtl.create({
-        title: this.translate.instant('PAGE_TITLE.dilog'),
-        subTitle: this.translate.instant('errorLocationDetict'),
-        buttons: [this.translate.instant('BUTTONS.dissmiss')]
-      });
-      alert.present();
+      this.loadOfflineMap();
       console.log('Error getting location', error);
     });
 
@@ -544,18 +516,83 @@ export class HomePage {
   goToOffers() {
     this.navCtrl.push(OffersPage);
   }
+  
   signOut() {
-    localStorage.removeItem('customerid');
-    localStorage.removeItem('customerdata');
-    localStorage.setItem('cartCount', "0");
-    localStorage.removeItem("customerLocation");
-    localStorage.removeItem("lastresturant");
-
-    // this.navCtrl.setRoot();
-    this.app.getRootNav().push(IntroScreenPage);
+  this.serverLogout(localStorage.getItem("customerid"));
   }
 
   signIn() {
     this.navCtrl.push(LoginPage);
   }
+
+  
+  
+  
+  
+  
+  loadOfflineMap(){
+    this.lat = 23.8859;
+    this.lng = 45.0792;
+    this.selectedLat =this.lat;
+    this.selectedLng = this.lng;
+    localStorage.setItem("userLat",this.lat+"");
+    localStorage.setItem("userLng",this.lng+"");
+    this.chekSelected();
+    this.locationName = "";
+    let latLng = new google.maps.LatLng(this.lat, this.lng);
+    let mapOptions = {
+      center: latLng,
+      zoom: 18,
+      disableDefaultUI: true, zoomControl: false ,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    }
+    
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: {
+        lat: this.lat,
+        lng: this.lng
+      }, icon: "./assets/imgs/marker.png",
+      draggable: false
+
+    });
+
+    this.locationId = "0";
+    this.map.addListener('center_changed', () => {
+      marker.setPosition(this.map.getCenter())
+      this.selectedLat = marker.position.lat() + "";
+      this.selectedLng = marker.position.lng() + "";
+      console.log(this.selectedLat);
+      console.log(this.selectedLng)
+
+    });
+  }
+
+
+
+
+
+  serverLogout(customerId){
+    this.genrator.logout(customerId).then((result)=>{
+      if(result!=null){
+        console.log(result);
+        localStorage.removeItem('customerid');
+        localStorage.removeItem('customerdata');
+        localStorage.setItem('cartCount', "0");
+        localStorage.removeItem("customerLocation");
+        localStorage.removeItem("lastresturant");
+    
+        // this.navCtrl.setRoot();
+        this.app.getRootNav().push(IntroScreenPage);
+      }
+    }),(err)=>{
+
+      console.log(err);
+
+    }
+
+  }
+
 }

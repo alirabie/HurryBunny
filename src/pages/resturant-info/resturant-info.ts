@@ -81,6 +81,8 @@ export class ResturantInfoPage {
 
 
     this.getResturantInfo(this.resturantId);
+    this.getResturantCategories();
+      this.getResturantReviews();
    
     
 
@@ -430,8 +432,6 @@ export class ResturantInfoPage {
       this.openingHours = this.resturantInfo.OpeningHours;
       this.resDiscription = this.resturantInfo.description;
       this.branches = this.resturantInfo.Branches;
-      this.getResturantCategories();
-      this.getResturantReviews();
       console.log(this.resturantInfo);
       // loader.dismiss();
     }, (err) => {

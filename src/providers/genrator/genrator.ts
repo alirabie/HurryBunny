@@ -29,7 +29,7 @@ export class GenratorProvider {
     //   this.url = this.ProductionURL;
     // }
     
-    this.url = this.ProductionURL;
+    this.url = this.devlomentURL;
     
   }
 
@@ -118,7 +118,7 @@ export class GenratorProvider {
     let request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat, { headers: headers });
     let delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
     let cacheKey = "vendors";
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
       map(res => res.json()  )  );
 
   }
@@ -128,7 +128,7 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/vendor?VendorId=" + resId);
     let cacheKey = "resInfo" + resId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
       map(res => res.json()  )  );
 
   }
@@ -145,7 +145,7 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&fields=id,name,description,image");
     let cacheKey = "categores" + id;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
       map(res => res.json()  )  );
   }
 
@@ -156,7 +156,7 @@ export class GenratorProvider {
     let delayType = 'all';
     let request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,images,currency_code");
     let cacheKey = "meals" + catId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(
+    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
       map(res => res.json()  )  );
 
   }
@@ -477,4 +477,23 @@ export class GenratorProvider {
     });
   }
 
+
+
+  logout(customerId){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/customers/logout?customerId='+customerId, JSON.stringify(location), { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+ 
+
 }
+
+
+//api/customers/logout?customerId=

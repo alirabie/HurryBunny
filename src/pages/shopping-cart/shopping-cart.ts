@@ -120,13 +120,13 @@ export class ShoppingCartPage {
   //Check Delivery method
   loadOrderData() {
 
-    
 
-      if (this.serviceTypeId == "1") {
-        //Devlivery Option
 
-        //Check menumumCharge value
-    if (this.total >= this.menumumCharge) {
+    if (this.serviceTypeId == "1") {
+      //Devlivery Option
+
+      //Check menumumCharge value
+      if (this.total >= this.menumumCharge) {
 
         let confirmationData = {
           "order_info": {
@@ -170,7 +170,22 @@ export class ShoppingCartPage {
 
 
           }
-          console.log(data);
+
+
+          let errorMessage: any = data;
+          if (errorMessage.message != null) {
+            this.dismissLoading();
+            let alert = this.alertCtrl.create({
+              title: this.translate.instant('PAGE_TITLE.dilog'),
+              subTitle: errorMessage.message,
+              buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+          }
+
+
+
+
           this.dismissLoading();
         }, (err) => {
           this.dismissLoading();
@@ -194,159 +209,184 @@ export class ShoppingCartPage {
         alert.present();
       }
 
-      } else if (this.serviceTypeId == "2") {
+    } else if (this.serviceTypeId == "2") {
 
-        //Pickup Option
-        let confirmationData = {
-          "order_info": {
-            "order_id": "0",
-            "customer_id": localStorage.getItem("customerid"),
-            "vendor_id": this.resturantId,
-            "branch_id": localStorage.getItem("branchId"),
-            "order_note": this.orderNotes,
-            "service_type_id": this.serviceTypeId,
-            "location_id": "0"
-          }
+      //Pickup Option
+      let confirmationData = {
+        "order_info": {
+          "order_id": "0",
+          "customer_id": localStorage.getItem("customerid"),
+          "vendor_id": this.resturantId,
+          "branch_id": localStorage.getItem("branchId"),
+          "order_note": this.orderNotes,
+          "service_type_id": this.serviceTypeId,
+          "location_id": "0"
         }
-        console.log(confirmationData);
-        let loader = this.loader.create({
-          content: this.translate.instant('LOADING'),
-        });
-        loader.present();
-        return this.genrator.convertCartOrders(confirmationData).then((data) => {
-          this.conversionResponse = data['orders'];
-          if (data['orders'] != null) {
-            let resData = {
-              id: this.resturantId,
-              name: this.resLable,
-              img: this.resImage,
-            }
-            localStorage.setItem("rated", "0");
-            console.log(localStorage.getItem("rated"));
-
-            localStorage.removeItem("resId");
-            localStorage.removeItem("branchId");
-
-
-            let alert = this.alertCtrl.create({
-              title: this.translate.instant('PAGE_TITLE.dilog'),
-              subTitle: this.translate.instant('orderplaced'),
-              buttons: [this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-            this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.push(OrdersPage);
-
-
+      }
+      console.log(confirmationData);
+      let loader = this.loader.create({
+        content: this.translate.instant('LOADING'),
+      });
+      loader.present();
+      return this.genrator.convertCartOrders(confirmationData).then((data) => {
+        this.conversionResponse = data['orders'];
+        if (data['orders'] != null) {
+          let resData = {
+            id: this.resturantId,
+            name: this.resLable,
+            img: this.resImage,
           }
-          console.log(data);
-          loader.dismiss();
-        }, (err) => {
-          loader.dismiss();
+          localStorage.setItem("rated", "0");
+          console.log(localStorage.getItem("rated"));
+
+          localStorage.removeItem("resId");
+          localStorage.removeItem("branchId");
+
+
           let alert = this.alertCtrl.create({
             title: this.translate.instant('PAGE_TITLE.dilog'),
-            subTitle: err,
+            subTitle: this.translate.instant('orderplaced'),
             buttons: [this.translate.instant('BUTTONS.dissmiss')]
           });
           alert.present();
-          console.log(err);
-        });
+          this.navCtrl.setRoot(TabsPage);
+          this.navCtrl.push(OrdersPage);
 
 
+        }
 
-        // this.navCtrl.push(PickupServicePage, {
-        //   resId: this.resturantId,
-        //   serviceId: this.serviceTypeId,
-        //   name:this.resLable,
-        //   img:this.resImage,
-        //   notes:this.orderNotes
-        // });
 
-      } else if (this.serviceTypeId == "3") {
+        let errorMessage: any = data;
+        if (errorMessage.message != null) {
+          this.dismissLoading();
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant('PAGE_TITLE.dilog'),
+            subTitle: errorMessage.message,
+            buttons: [this.translate.instant('BUTTONS.dissmiss')]
+          });
+          alert.present();
+        }
 
-        //Both Option
+        loader.dismiss();
+      }, (err) => {
+        loader.dismiss();
         let alert = this.alertCtrl.create({
           title: this.translate.instant('PAGE_TITLE.dilog'),
-          subTitle: this.translate.instant('selectservice'),
-          enableBackdropDismiss: false,
-          buttons: [
-            {
-              text: this.translate.instant('pickup'),
-              handler: () => {
-                //Pickup Selection
-                this.serviceTypeId = "2";
-                let confirmationData = {
-                  "order_info": {
-                    "order_id": "0",
-                    "customer_id": localStorage.getItem("customerid"),
-                    "vendor_id": this.resturantId,
-                    "branch_id": localStorage.getItem("branchId"),
-                    "order_note": this.orderNotes,
-                    "service_type_id": this.serviceTypeId,
-                    "location_id": "0"
-                  }
+          subTitle: err,
+          buttons: [this.translate.instant('BUTTONS.dissmiss')]
+        });
+        alert.present();
+        console.log(err);
+      });
+
+
+
+      // this.navCtrl.push(PickupServicePage, {
+      //   resId: this.resturantId,
+      //   serviceId: this.serviceTypeId,
+      //   name:this.resLable,
+      //   img:this.resImage,
+      //   notes:this.orderNotes
+      // });
+
+    } else if (this.serviceTypeId == "3") {
+
+      //Both Option
+      let alert = this.alertCtrl.create({
+        title: this.translate.instant('PAGE_TITLE.dilog'),
+        subTitle: this.translate.instant('selectservice'),
+        enableBackdropDismiss: false,
+        buttons: [
+          {
+            text: this.translate.instant('pickup'),
+            handler: () => {
+              //Pickup Selection
+              this.serviceTypeId = "2";
+              let confirmationData = {
+                "order_info": {
+                  "order_id": "0",
+                  "customer_id": localStorage.getItem("customerid"),
+                  "vendor_id": this.resturantId,
+                  "branch_id": localStorage.getItem("branchId"),
+                  "order_note": this.orderNotes,
+                  "service_type_id": this.serviceTypeId,
+                  "location_id": "0"
                 }
-                console.log(confirmationData);
-                let loader = this.loader.create({
-                  content: this.translate.instant('LOADING'),
-                });
-                loader.present();
-                this.genrator.convertCartOrders(confirmationData).then((data) => {
-                  this.conversionResponse = data['orders'];
-                  if (data['orders'] != null) {
-                    let resData = {
-                      id: this.resturantId,
-                      name: this.resLable,
-                      img: this.resImage,
-                    }
-                    localStorage.setItem("rated", "0");
-                    console.log(localStorage.getItem("rated"));
-
-                    localStorage.removeItem("resId");
-                    localStorage.removeItem("branchId");
-
-                    let alert = this.alertCtrl.create({
-                      title: this.translate.instant('PAGE_TITLE.dilog'),
-                      subTitle: this.translate.instant('orderplaced'),
-                      buttons: [this.translate.instant('BUTTONS.dissmiss')]
-                    });
-                    alert.present();
-                    this.navCtrl.setRoot(TabsPage);
-                    this.navCtrl.push(OrdersPage);
-
-
+              }
+              console.log(confirmationData);
+              let loader = this.loader.create({
+                content: this.translate.instant('LOADING'),
+              });
+              loader.present();
+              this.genrator.convertCartOrders(confirmationData).then((data) => {
+                this.conversionResponse = data['orders'];
+                if (data['orders'] != null) {
+                  let resData = {
+                    id: this.resturantId,
+                    name: this.resLable,
+                    img: this.resImage,
                   }
-                  console.log(data);
-                  loader.dismiss();
-                }, (err) => {
-                  loader.dismiss();
+                  localStorage.setItem("rated", "0");
+                  console.log(localStorage.getItem("rated"));
+
+                  localStorage.removeItem("resId");
+                  localStorage.removeItem("branchId");
+
                   let alert = this.alertCtrl.create({
                     title: this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: err,
+                    subTitle: this.translate.instant('orderplaced'),
                     buttons: [this.translate.instant('BUTTONS.dissmiss')]
                   });
                   alert.present();
-                  console.log(err);
+                  this.navCtrl.setRoot(TabsPage);
+                  this.navCtrl.push(OrdersPage);
+
+
+                }
+
+
+                let errorMessage: any = data;
+                if (errorMessage.message != null) {
+                  this.dismissLoading();
+                  let alert = this.alertCtrl.create({
+                    title: this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: errorMessage.message,
+                    buttons: [this.translate.instant('BUTTONS.dissmiss')]
+                  });
+                  alert.present();
+                }
+
+
+                loader.dismiss();
+              }, (err) => {
+                loader.dismiss();
+                let alert = this.alertCtrl.create({
+                  title: this.translate.instant('PAGE_TITLE.dilog'),
+                  subTitle: err,
+                  buttons: [this.translate.instant('BUTTONS.dissmiss')]
                 });
+                alert.present();
+                console.log(err);
+              });
 
 
-                // this.navCtrl.push(PickupServicePage, {
-                //   resId: this.resturantId,
-                //   serviceId: this.serviceTypeId,
-                //   name:this.resLable,
-                //   img:this.resImage,
-                //   notes:this.orderNotes
-                // });
+              // this.navCtrl.push(PickupServicePage, {
+              //   resId: this.resturantId,
+              //   serviceId: this.serviceTypeId,
+              //   name:this.resLable,
+              //   img:this.resImage,
+              //   notes:this.orderNotes
+              // });
 
-              }
-            },
-            {
-              text: this.translate.instant('delivry'),
-              handler: () => {
-                //Devlivery Selection
-                
-//Check menumumCharge value
-if (this.total >= this.menumumCharge) {
+            }
+          },
+          {
+            text: this.translate.instant('delivry'),
+            handler: () => {
+              //Devlivery Selection
+
+              //Check menumumCharge value
+              if (this.total >= this.menumumCharge) {
 
 
                 this.serviceTypeId = "1";
@@ -395,6 +435,18 @@ if (this.total >= this.menumumCharge) {
 
                   }
                   console.log(data);
+
+                  let errorMessage: any = data;
+                  if (errorMessage.message != null) {
+                    this.dismissLoading();
+                    let alert = this.alertCtrl.create({
+                      title: this.translate.instant('PAGE_TITLE.dilog'),
+                      subTitle: errorMessage.message,
+                      buttons: [this.translate.instant('BUTTONS.dissmiss')]
+                    });
+                    alert.present();
+                  }
+
                   loader.dismiss();
                 }, (err) => {
                   loader.dismiss();
@@ -407,7 +459,7 @@ if (this.total >= this.menumumCharge) {
                   console.log(err);
                 });
 
-              }else{
+              } else {
 
                 let alert = this.alertCtrl.create({
                   title: this.translate.instant('PAGE_TITLE.dilog'),
@@ -418,14 +470,14 @@ if (this.total >= this.menumumCharge) {
 
               }
             }
-            }
-          ]
-        });
-        alert.present();
+          }
+        ]
+      });
+      alert.present();
 
-      }
+    }
 
-   
+
 
 
   }
@@ -940,6 +992,7 @@ if (this.total >= this.menumumCharge) {
   //   }
   //   console.log(this.cartItemsIdsList);
   // }
+
 
 
 

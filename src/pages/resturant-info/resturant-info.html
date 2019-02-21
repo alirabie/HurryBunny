@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar color="primary">
         <!--Shopping Cart button-->
-        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;" (click)="loadCartPage()" start
-            right>
+        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;"
+            (click)="loadCartPage()" start right>
             <button ion-button icon-only>
                 <ion-icon color="light" name="md-cart"></ion-icon>
                 <ion-badge color="secondary">{{badgeValue}}</ion-badge>
@@ -16,12 +16,14 @@
             <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />
             <div class="group">
                 <h2>{{resturantName}}</h2>
-                <rating justify-content-center align-items-center style="height: 100%" readOnly="true" [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline"
-                    halfStarIconName="star-half" starIconName="star" nullable="false">
+                <rating justify-content-center align-items-center style="height: 100%" readOnly="true"
+                    [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"
+                    starIconName="star" nullable="false">
                 </rating>
             </div>
-
-            <p class="resInfo">{{resDiscription}}</p>
+            <p class="resInfo">
+                {{resDiscription}}
+            </p>
 
             <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->
 
@@ -62,29 +64,33 @@
 
 
     <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">
-        <ion-segment-button *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)" [ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }'>
+        <ion-segment-button *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)"
+            [ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }'>
             {{tab}}
         </ion-segment-button>
     </ion-segment>
 
     <!-- here is our dynamic line  "indicator"-->
-    <div dir="{{oriantation}}" id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
+    <div dir="{{oriantation}}" id='indicator' class="SwipedTabs-indicatorSegment"
+        [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
 
 </ion-header>
 
 
 <ion-content class="has-header">
-    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()"
-        (ionSlideDidChange)="updateIndicatorPosition()" (pan)="updateIndicatorPosition()" [pager]="true">
+    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)"
+        (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition()"
+        (pan)="updateIndicatorPosition()" [pager]="true">
         <ion-slide dir="{{oriantation}}" class="menupage">
             <!--The filter of categories-->
             <ion-row class="filters">
                 <ion-col no-padding>
-                    <ion-slides dir="{{oriantation}}"  class="categorieSlide" slidesPerView="4">
-                        <ion-slide class="categorieSlide" *ngFor="let category of categories" [ngClass]="{'active': category == categoryActive, 'not-selected-item': category != categoryActive}"
+                    <ion-slides dir="{{oriantation}}" class="categorieSlide" slidesPerView="4">
+                        <ion-slide class="categorieSlide" *ngFor="let category of categories"
+                            [ngClass]="{'active': category == categoryActive, 'not-selected-item': category != categoryActive}"
                             (tap)="selectPickup(category)">
                             <div class="categIcon" (click)="getMealslist(category.id)">
-                                <h5  class="categoryTitle">{{category.name}}</h5>
+                                <h5 class="categoryTitle">{{category.name}}</h5>
                             </div>
                         </ion-slide>
                     </ion-slides>
@@ -95,7 +101,8 @@
                 <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">
                     <ion-thumbnail item-start>
                         <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />
-                        <img *ngIf="meal.images.length === 0" src="./assets/imgs/categories-filters/meal-placeholder.png" />
+                        <img *ngIf="meal.images.length === 0"
+                            src="./assets/imgs/categories-filters/meal-placeholder.png" />
                     </ion-thumbnail>
                     <h2 class="mealNametxt">{{meal.name}}</h2>
                     <p class="mealdictxt">{{meal.short_description}}</p>
@@ -128,7 +135,8 @@
                 <ion-item *ngFor="let review of resturantReviews">
                     <h3>{{review.customer_name}}</h3>
                     <p>{{review.review_text}}</p>
-                    <rating justify-content-center align-items-center max="5" readOnly="true" [(ngModel)]="review.rating"></rating>
+                    <rating justify-content-center align-items-center max="5" readOnly="true"
+                        [(ngModel)]="review.rating"></rating>
                 </ion-item>
             </ion-list>
         </ion-slide>
@@ -151,8 +159,8 @@
                     <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">
                         <img class="pin" item-start src="./assets/imgs/branchIcon.png">
                         <h1 class="pname">{{branch.branch_name}} -->
-                            <!-- <small end>10Km</small> -->
-                        <!-- </h1>
+            <!-- <small end>10Km</small> -->
+            <!-- </h1>
                     </ion-item>
 
             </ion-item> -->

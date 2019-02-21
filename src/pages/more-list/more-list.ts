@@ -80,15 +80,7 @@ export class MoreListPage {
 
   //Logout
   logout() {
-    localStorage.removeItem('customerid');
-    localStorage.removeItem('customerdata');
-    localStorage.setItem('cartCount', "0");
-    localStorage.removeItem("customerLocation");
-    localStorage.removeItem("rated");
-
-    // this.navCtrl.setRoot();
-    this.app.getRootNav().push(IntroScreenPage);
-
+    this.serverLogout(localStorage.getItem('customerid'));
   }
 
   //Login
@@ -163,20 +155,12 @@ export class MoreListPage {
       if(localStorage.getItem('customerid') != null){
         this.changeServerLang(localStorage.getItem('customerid'),1);
       }
-      this.langName = "اللغة العربية";
-      this.translateService.use("en");
-      localStorage.setItem('lang', "en");
-      this.splashScreen.show();
-      location.reload();
+     
     } else {
       if(localStorage.getItem('customerid') != null){
         this.changeServerLang(localStorage.getItem('customerid'),2);
       }
-      this.translateService.use("ar");
-      localStorage.setItem('lang', "ar");
-      this.langName = "English";
-      this.splashScreen.show();
-      location.reload();
+
     }
   }
 
@@ -222,6 +206,26 @@ export class MoreListPage {
     this.generator.changeLanguage(customerId,langId).then((result)=>{
       if(result!=null){
         console.log(result);
+        switch(langId){
+          case 1 :{
+            this.langName = "اللغة العربية";
+            this.translateService.use("en");
+            localStorage.setItem('lang', "en");
+            this.splashScreen.show();
+            location.reload();
+            break;
+          }
+
+          case 2 : {
+            this.translateService.use("ar");
+            localStorage.setItem('lang', "ar");
+            this.langName = "English";
+            this.splashScreen.show();
+            location.reload();
+            break;
+
+          }
+        }
       }
     }),(err)=>{
 
@@ -230,5 +234,25 @@ export class MoreListPage {
     }
   }
 
+
+  serverLogout(customerId){
+    this.generator.logout(customerId).then((result)=>{
+      if(result!=null){
+        console.log(result);
+        localStorage.removeItem('customerid');
+        localStorage.removeItem('customerdata');
+        localStorage.setItem('cartCount', "0");
+        localStorage.removeItem("customerLocation");
+        localStorage.removeItem("rated");
+        // this.navCtrl.setRoot();
+        this.app.getRootNav().push(IntroScreenPage); 
+      }
+    }),(err)=>{
+
+      console.log(err);
+
+    }
+
+  }
 
 }

@@ -133,7 +133,7 @@
 
     <button color="secondary" ion-button round block (click)="addToCart()">{{'addtocart' | translate}}</button>
     <h2 *ngFor="let meal of mealInfo" class="pricestyle">
-      <ion-icon name="md-cash"></ion-icon> {{count*meal.price+optionPrice+additionPrice}}
+      <ion-icon name="md-cash"></ion-icon> {{count*meal.price+optionPrice+additionPrice | number :'2.1-2'}}
       <small>{{meal.currency_code}}</small>
     </h2>
 

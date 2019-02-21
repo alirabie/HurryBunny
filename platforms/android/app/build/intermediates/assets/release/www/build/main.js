@@ -3099,11 +3099,11 @@ var map = {
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
-		570,
+		571,
 		15
 	],
 	"../pages/meal-info/meal-info.module": [
-		569,
+		570,
 		14
 	],
 	"../pages/meals-reviews/meals-reviews.module": [
@@ -3111,35 +3111,35 @@ var map = {
 		13
 	],
 	"../pages/more-list/more-list.module": [
-		562,
+		561,
 		12
 	],
 	"../pages/offers/offers.module": [
-		561,
+		562,
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		564,
+		563,
 		10
 	],
 	"../pages/orders/orders.module": [
-		567,
+		564,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		563,
+		565,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
-		571,
+		572,
 		7
 	],
 	"../pages/resturant-review/resturant-review.module": [
-		566,
+		567,
 		6
 	],
 	"../pages/settings/settings.module": [
-		565,
+		566,
 		5
 	],
 	"../pages/shopping-cart/shopping-cart.module": [
@@ -3151,11 +3151,11 @@ var map = {
 		3
 	],
 	"../pages/update-location/update-location.module": [
-		573,
+		569,
 		2
 	],
 	"../pages/view-order/view-order.module": [
-		572,
+		573,
 		1
 	]
 };
@@ -3176,6 +3176,197 @@ module.exports = webpackAsyncContext;
 /***/ }),
 
 /***/ 329:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDataPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var OrderDataPage = /** @class */ (function () {
+    function OrderDataPage(navCtrl, app, navParams, _FB, geo, googleMaps, altCtrl, translate, viewCtrl, config, alertCrtl, genrator, loader, platform) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.navParams = navParams;
+        this._FB = _FB;
+        this.geo = geo;
+        this.googleMaps = googleMaps;
+        this.altCtrl = altCtrl;
+        this.translate = translate;
+        this.viewCtrl = viewCtrl;
+        this.alertCrtl = alertCrtl;
+        this.genrator = genrator;
+        this.loader = loader;
+        this.markers = [];
+        this.customerLocations = [];
+        this.selected = true;
+        this.oriantation = "";
+        this.resturantId = "";
+        this.servicID = "";
+        this.locationName = "";
+        this.notes = "";
+        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+        this.resturantId = navParams.get('resId');
+        this.servicID = navParams.get('serviceId');
+        this.customerLocationName = JSON.parse(localStorage.getItem('customerLocation'));
+        console.log(this.customerLocationName);
+        this.form = _FB.group({
+            locationName: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].required])],
+            notes: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20)])],
+        });
+        if (localStorage.getItem('lang') == "en") {
+            this.oriantation = "ltr";
+        }
+        else {
+            this.oriantation = "rtl";
+        }
+        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
+        // Wait the native plugin is ready.
+        platform.ready().then(function () {
+            _this.defaultloadMap();
+        });
+    }
+    OrderDataPage.prototype.ionViewWillEnter = function () {
+        this.tabBarElement.style.display = 'none';
+        this.defaultloadMap();
+    };
+    OrderDataPage.prototype.ionViewWillLeave = function () {
+        this.tabBarElement.style.display = 'flex';
+    };
+    OrderDataPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OrderDataPage');
+    };
+    OrderDataPage.prototype.setFormElemnt = function (val) {
+        this.form.controls['locationName'].setValue(val);
+    };
+    OrderDataPage.prototype.defaultloadMap = function () {
+        this.lat = parseFloat(this.customerLocationName.lat);
+        this.lng = parseFloat(this.customerLocationName.lng);
+        var latLng = new google.maps.LatLng(parseFloat(this.customerLocationName.lat), parseFloat(this.customerLocationName.lng));
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var marker = new google.maps.Marker({
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            position: {
+                lat: this.lat,
+                lng: this.lng
+            }, icon: "./assets/imgs/marker.png",
+            draggable: false
+        });
+        this.setFormElemnt(this.customerLocationName.locationName + "");
+    };
+    //Confirm Order convert cart items to order
+    OrderDataPage.prototype.confirmOrder = function (value) {
+        var _this = this;
+        var confirmationData;
+        if (this.form.valid) {
+            confirmationData = {
+                "order_info": {
+                    "order_id": "0",
+                    "customer_id": localStorage.getItem("customerid"),
+                    "vendor_id": this.resturantId,
+                    "pickup_branch_id": null,
+                    "order_note": value.notes,
+                    "service_type_id": this.servicID,
+                    "longtitude": this.customerLocationName.lng,
+                    "latitude": this.customerLocationName.lat,
+                    "location_name": value.locationName
+                }
+            };
+        }
+        else {
+            confirmationData = {
+                "order_info": {
+                    "order_id": "0",
+                    "customer_id": localStorage.getItem("customerid"),
+                    "vendor_id": this.resturantId,
+                    "pickup_branch_id": null,
+                    "order_note": value.notes,
+                    "service_type_id": this.servicID,
+                    "longtitude": this.customerLocationName.lng,
+                    "latitude": this.customerLocationName.lat,
+                    "location_name": "UserLocation"
+                }
+            };
+        }
+        console.log(confirmationData);
+        var loader = this.loader.create({
+            content: this.translate.instant('LOADING'),
+        });
+        loader.present();
+        return this.genrator.convertCartOrders(confirmationData).then(function (data) {
+            _this.conversionResponse = data['orders'];
+            if (data['orders'] != null) {
+                var alert_1 = _this.alertCrtl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.translate.instant('orderplaced'),
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_1.present();
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_0__tabs_tabs__["a" /* TabsPage */]);
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__orders_orders__["a" /* OrdersPage */]);
+            }
+            console.log(data);
+            loader.dismiss();
+        }, function (err) {
+            loader.dismiss();
+            var alert = _this.alertCrtl.create({
+                title: _this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: err,
+                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+            console.log(err);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
+    ], OrderDataPage.prototype, "mapElement", void 0);
+    OrderDataPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-order-data',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
+    ], OrderDataPage);
+    return OrderDataPage;
+}());
+
+//# sourceMappingURL=order-data.js.map
+
+/***/ }),
+
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3422,197 +3613,6 @@ var PickupServicePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 330:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDataPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-var OrderDataPage = /** @class */ (function () {
-    function OrderDataPage(navCtrl, app, navParams, _FB, geo, googleMaps, altCtrl, translate, viewCtrl, config, alertCrtl, genrator, loader, platform) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.app = app;
-        this.navParams = navParams;
-        this._FB = _FB;
-        this.geo = geo;
-        this.googleMaps = googleMaps;
-        this.altCtrl = altCtrl;
-        this.translate = translate;
-        this.viewCtrl = viewCtrl;
-        this.alertCrtl = alertCrtl;
-        this.genrator = genrator;
-        this.loader = loader;
-        this.markers = [];
-        this.customerLocations = [];
-        this.selected = true;
-        this.oriantation = "";
-        this.resturantId = "";
-        this.servicID = "";
-        this.locationName = "";
-        this.notes = "";
-        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-        this.resturantId = navParams.get('resId');
-        this.servicID = navParams.get('serviceId');
-        this.customerLocationName = JSON.parse(localStorage.getItem('customerLocation'));
-        console.log(this.customerLocationName);
-        this.form = _FB.group({
-            locationName: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].required])],
-            notes: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20)])],
-        });
-        if (localStorage.getItem('lang') == "en") {
-            this.oriantation = "ltr";
-        }
-        else {
-            this.oriantation = "rtl";
-        }
-        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        // Wait the native plugin is ready.
-        platform.ready().then(function () {
-            _this.defaultloadMap();
-        });
-    }
-    OrderDataPage.prototype.ionViewWillEnter = function () {
-        this.tabBarElement.style.display = 'none';
-        this.defaultloadMap();
-    };
-    OrderDataPage.prototype.ionViewWillLeave = function () {
-        this.tabBarElement.style.display = 'flex';
-    };
-    OrderDataPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OrderDataPage');
-    };
-    OrderDataPage.prototype.setFormElemnt = function (val) {
-        this.form.controls['locationName'].setValue(val);
-    };
-    OrderDataPage.prototype.defaultloadMap = function () {
-        this.lat = parseFloat(this.customerLocationName.lat);
-        this.lng = parseFloat(this.customerLocationName.lng);
-        var latLng = new google.maps.LatLng(parseFloat(this.customerLocationName.lat), parseFloat(this.customerLocationName.lng));
-        var mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        var marker = new google.maps.Marker({
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            position: {
-                lat: this.lat,
-                lng: this.lng
-            }, icon: "./assets/imgs/marker.png",
-            draggable: false
-        });
-        this.setFormElemnt(this.customerLocationName.locationName + "");
-    };
-    //Confirm Order convert cart items to order
-    OrderDataPage.prototype.confirmOrder = function (value) {
-        var _this = this;
-        var confirmationData;
-        if (this.form.valid) {
-            confirmationData = {
-                "order_info": {
-                    "order_id": "0",
-                    "customer_id": localStorage.getItem("customerid"),
-                    "vendor_id": this.resturantId,
-                    "pickup_branch_id": null,
-                    "order_note": value.notes,
-                    "service_type_id": this.servicID,
-                    "longtitude": this.customerLocationName.lng,
-                    "latitude": this.customerLocationName.lat,
-                    "location_name": value.locationName
-                }
-            };
-        }
-        else {
-            confirmationData = {
-                "order_info": {
-                    "order_id": "0",
-                    "customer_id": localStorage.getItem("customerid"),
-                    "vendor_id": this.resturantId,
-                    "pickup_branch_id": null,
-                    "order_note": value.notes,
-                    "service_type_id": this.servicID,
-                    "longtitude": this.customerLocationName.lng,
-                    "latitude": this.customerLocationName.lat,
-                    "location_name": "UserLocation"
-                }
-            };
-        }
-        console.log(confirmationData);
-        var loader = this.loader.create({
-            content: this.translate.instant('LOADING'),
-        });
-        loader.present();
-        return this.genrator.convertCartOrders(confirmationData).then(function (data) {
-            _this.conversionResponse = data['orders'];
-            if (data['orders'] != null) {
-                var alert_1 = _this.alertCrtl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.translate.instant('orderplaced'),
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_1.present();
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_0__tabs_tabs__["a" /* TabsPage */]);
-                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__orders_orders__["a" /* OrdersPage */]);
-            }
-            console.log(data);
-            loader.dismiss();
-        }, function (err) {
-            loader.dismiss();
-            var alert = _this.alertCrtl.create({
-                title: _this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: err,
-                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-            console.log(err);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
-    ], OrderDataPage.prototype, "mapElement", void 0);
-    OrderDataPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
-            selector: 'page-order-data',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
-    ], OrderDataPage);
-    return OrderDataPage;
-}());
-
-//# sourceMappingURL=order-data.js.map
-
-/***/ }),
-
 /***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3779,7 +3779,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_update_location_update_location__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_diagnostic__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(537);
@@ -3812,7 +3812,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(323);
@@ -3927,19 +3927,19 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -5275,7 +5275,16 @@ var ShoppingCartPage = /** @class */ (function () {
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
                         _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__orders_orders__["a" /* OrdersPage */]);
                     }
-                    console.log(data);
+                    var errorMessage = data;
+                    if (errorMessage.message != null) {
+                        _this.dismissLoading();
+                        var alert_2 = _this.alertCtrl.create({
+                            title: _this.translate.instant('PAGE_TITLE.dilog'),
+                            subTitle: errorMessage.message,
+                            buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                        });
+                        alert_2.present();
+                    }
                     _this.dismissLoading();
                 }, function (err) {
                     _this.dismissLoading();
@@ -5289,12 +5298,12 @@ var ShoppingCartPage = /** @class */ (function () {
                 });
             }
             else {
-                var alert_2 = this.alertCtrl.create({
+                var alert_3 = this.alertCtrl.create({
                     title: this.translate.instant('PAGE_TITLE.dilog'),
                     subTitle: this.translate.instant('menumum') + this.menumumCharge,
                     buttons: [this.translate.instant('BUTTONS.dissmiss')]
                 });
-                alert_2.present();
+                alert_3.present();
             }
         }
         else if (this.serviceTypeId == "2") {
@@ -5327,16 +5336,25 @@ var ShoppingCartPage = /** @class */ (function () {
                     console.log(localStorage.getItem("rated"));
                     localStorage.removeItem("resId");
                     localStorage.removeItem("branchId");
-                    var alert_3 = _this.alertCtrl.create({
+                    var alert_4 = _this.alertCtrl.create({
                         title: _this.translate.instant('PAGE_TITLE.dilog'),
                         subTitle: _this.translate.instant('orderplaced'),
                         buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                     });
-                    alert_3.present();
+                    alert_4.present();
                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
                     _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__orders_orders__["a" /* OrdersPage */]);
                 }
-                console.log(data);
+                var errorMessage = data;
+                if (errorMessage.message != null) {
+                    _this.dismissLoading();
+                    var alert_5 = _this.alertCtrl.create({
+                        title: _this.translate.instant('PAGE_TITLE.dilog'),
+                        subTitle: errorMessage.message,
+                        buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                    });
+                    alert_5.present();
+                }
                 loader_1.dismiss();
             }, function (err) {
                 loader_1.dismiss();
@@ -5358,7 +5376,7 @@ var ShoppingCartPage = /** @class */ (function () {
         }
         else if (this.serviceTypeId == "3") {
             //Both Option
-            var alert_4 = this.alertCtrl.create({
+            var alert_6 = this.alertCtrl.create({
                 title: this.translate.instant('PAGE_TITLE.dilog'),
                 subTitle: this.translate.instant('selectservice'),
                 enableBackdropDismiss: false,
@@ -5396,16 +5414,25 @@ var ShoppingCartPage = /** @class */ (function () {
                                     console.log(localStorage.getItem("rated"));
                                     localStorage.removeItem("resId");
                                     localStorage.removeItem("branchId");
-                                    var alert_5 = _this.alertCtrl.create({
+                                    var alert_7 = _this.alertCtrl.create({
                                         title: _this.translate.instant('PAGE_TITLE.dilog'),
                                         subTitle: _this.translate.instant('orderplaced'),
                                         buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                                     });
-                                    alert_5.present();
+                                    alert_7.present();
                                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
                                     _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__orders_orders__["a" /* OrdersPage */]);
                                 }
-                                console.log(data);
+                                var errorMessage = data;
+                                if (errorMessage.message != null) {
+                                    _this.dismissLoading();
+                                    var alert_8 = _this.alertCtrl.create({
+                                        title: _this.translate.instant('PAGE_TITLE.dilog'),
+                                        subTitle: errorMessage.message,
+                                        buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                                    });
+                                    alert_8.present();
+                                }
                                 loader.dismiss();
                             }, function (err) {
                                 loader.dismiss();
@@ -5461,16 +5488,26 @@ var ShoppingCartPage = /** @class */ (function () {
                                         console.log(localStorage.getItem("rated"));
                                         localStorage.removeItem("resId");
                                         localStorage.removeItem("branchId");
-                                        var alert_6 = _this.alertCtrl.create({
+                                        var alert_9 = _this.alertCtrl.create({
                                             title: _this.translate.instant('PAGE_TITLE.dilog'),
                                             subTitle: _this.translate.instant('orderplaced'),
                                             buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                                         });
-                                        alert_6.present();
+                                        alert_9.present();
                                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
                                         _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__orders_orders__["a" /* OrdersPage */]);
                                     }
                                     console.log(data);
+                                    var errorMessage = data;
+                                    if (errorMessage.message != null) {
+                                        _this.dismissLoading();
+                                        var alert_10 = _this.alertCtrl.create({
+                                            title: _this.translate.instant('PAGE_TITLE.dilog'),
+                                            subTitle: errorMessage.message,
+                                            buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                                        });
+                                        alert_10.present();
+                                    }
                                     loader_2.dismiss();
                                 }, function (err) {
                                     loader_2.dismiss();
@@ -5484,18 +5521,18 @@ var ShoppingCartPage = /** @class */ (function () {
                                 });
                             }
                             else {
-                                var alert_7 = _this.alertCtrl.create({
+                                var alert_11 = _this.alertCtrl.create({
                                     title: _this.translate.instant('PAGE_TITLE.dilog'),
                                     subTitle: _this.translate.instant('menumum') + _this.menumumCharge,
                                     buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                                 });
-                                alert_7.present();
+                                alert_11.present();
                             }
                         }
                     }
                 ]
             });
-            alert_4.present();
+            alert_6.present();
         }
     };
     ShoppingCartPage.prototype.ionViewDidLoad = function () {
@@ -5862,12 +5899,12 @@ var ShoppingCartPage = /** @class */ (function () {
             if (data['shopping_carts'] != null) {
                 _this.getCartItems();
                 _this.discountcopun.controls['code'].setValue("");
-                var alert_8 = _this.alertCtrl.create({
+                var alert_12 = _this.alertCtrl.create({
                     title: _this.translate.instant('PAGE_TITLE.dilog'),
                     subTitle: _this.translate.instant('discountdone'),
                     buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                 });
-                alert_8.present();
+                alert_12.present();
             }
         }, function (err) {
             var alert = _this.alertCtrl.create({
@@ -5884,12 +5921,12 @@ var ShoppingCartPage = /** @class */ (function () {
         this.genrator.RemoveDiscountCoupon(key, localStorage.getItem("customerid")).then(function (data) {
             if (data['shopping_carts'] != null) {
                 _this.getCartItems();
-                var alert_9 = _this.alertCtrl.create({
+                var alert_13 = _this.alertCtrl.create({
                     title: _this.translate.instant('PAGE_TITLE.dilog'),
                     subTitle: _this.translate.instant('coupoundeleted'),
                     buttons: [_this.translate.instant('BUTTONS.dissmiss')]
                 });
-                alert_9.present();
+                alert_13.present();
             }
         }, function (err) {
             var alert = _this.alertCtrl.create({

@@ -153,7 +153,7 @@
     <!--The Total Amount Requested-->
     <ion-row class="allcash">
         <p>
-            <small>{{'amountreq' | translate}}</small> {{total+deliveryees}} SR</p>
+            <small>{{'amountreq' | translate}}</small> {{total+deliveryees | number :'2.1-2'}} SR</p>
     </ion-row>
 
     <!--Submit Button & Minimum Order Note-->
