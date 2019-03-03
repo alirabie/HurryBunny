@@ -6,7 +6,7 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.0"
-    timestamp="1550736248617"
+    timestamp="1551560477889"
     token="-1091104461386136693"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -25,8 +25,8 @@
 
     <build
         build-mode="FULL"
-        timestamp="1550736137601"
-        verifier="FULL_BUILD_REQUESTED" >
+        timestamp="1551560389695"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
@@ -66,7 +66,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1550736248617"
+        timestamp="1551560477889"
         verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

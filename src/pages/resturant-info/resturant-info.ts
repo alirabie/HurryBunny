@@ -35,6 +35,7 @@ export class ResturantInfoPage {
   resturantInfo;
   branchId="";
   distance=0;
+  aboutRes;
 
   categories = [];
   meals = [];
@@ -73,7 +74,7 @@ export class ResturantInfoPage {
     this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
     console.log(this.customerLocation);
 
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -146,7 +147,7 @@ export class ResturantInfoPage {
     //   content: this.translate.instant('LOADING'),
     // });
     // loader.present();
-    return this.genrator.getCategories(this.resturantId).subscribe((data) => {
+    return this.genrator.getCategories(this.resturantId,localStorage.getItem('lang')).subscribe((data) => {
 
       this.categories = data['categories'];
       let category = this.categories['0'];
@@ -183,7 +184,7 @@ export class ResturantInfoPage {
     // });
     // loader.present();
     this.show();
-    return this.genrator.getMeals(id).subscribe((data) => {
+    return this.genrator.getMeals(id,localStorage.getItem('lang')).subscribe((data) => {
 
       this.meals = data['products'];
       this.hide();
@@ -307,7 +308,7 @@ export class ResturantInfoPage {
 
   getShoppingCartCount(custId) {
     if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
-      this.genrator.getShoppingCartItems(custId).subscribe((data) => {
+      this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
         let items = data['shopping_carts'];
         localStorage.setItem("cartCount", items.length);
 
@@ -420,7 +421,7 @@ export class ResturantInfoPage {
 
   //Get resturant info by id
   getResturantInfo(resId) {
-    return this.genrator.getResturantInfo(resId).subscribe((data) => {
+    return this.genrator.getResturantInfo(resId,localStorage.getItem('lang')).subscribe((data) => {
       let vendors = data['vendors'];
       this.resturantInfo = vendors[0];
 
@@ -430,7 +431,8 @@ export class ResturantInfoPage {
       this.resImage = this.resturantInfo.profile_image;
       this.resSettings = this.resturantInfo.Settings;
       this.openingHours = this.resturantInfo.OpeningHours;
-      this.resDiscription = this.resturantInfo.description;
+      this.resDiscription = this.resturantInfo.about_us;
+      this.aboutRes=this.resturantInfo.description;
       this.branches = this.resturantInfo.Branches;
       console.log(this.resturantInfo);
       // loader.dismiss();

@@ -143,11 +143,9 @@
 
 
         <ion-slide dir="{{oriantation}}" class="menupage">
-
+            <p *ngIf="aboutRes!=null">{{aboutRes}}</p>
             <!-- <br> -->
             <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">
-                <h1 class="tite">{{resturantName}}</h1>
-                <small>{{resDiscription}}</small>
                 <h6 class="hours">{{'workinghours' | translate}}</h6>
                 <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>
             </ion-item>

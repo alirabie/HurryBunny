@@ -36,7 +36,7 @@ export class LoginPage {
     platform : Platform) {
 
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-    if(localStorage.getItem('lang')=="en"){
+    if(localStorage.getItem('lang')=="1"){
       this.oriantation="ltr";
     }else{
       this.oriantation="rtl";
@@ -76,30 +76,10 @@ export class LoginPage {
         localStorage.setItem('customerid', this.data.customers[0].id);
         localStorage.setItem('customerdata', JSON.stringify(this.data.customers[0]));
         console.log(localStorage.getItem('customerdata'));
-
-        switch(this.data.customers[0].language){
-          case 1 : 
-            this.translate.use("en");
-            localStorage.setItem('lang', "en");
-            localStorage.setItem('langCode','1');
-            break;
-          
-          case 2 : 
-            this.translate.use("ar");
-            localStorage.setItem('lang', "ar");
-            localStorage.setItem('langCode','2');
-            break;
-          
-        }
-      
-
         //Send stored location
         // let location = JSON.parse(localStorage.getItem('locationId'));
         // location.id=this.data.customers[0].id
         // console.log(location);
-
-
-
 
         this.events.publish('user:login');
         this.app.getRootNav().push(HomePage, {

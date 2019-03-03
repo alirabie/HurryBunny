@@ -27,7 +27,7 @@
 
         <tbody>
 
-            <tr *ngFor="let order of customerOrders.reverse()" (click)="goOrderDetails(order.id)">
+            <tr *ngFor="let order of customerOrders" (click)="goOrderDetails(order.id)">
                 <td>
                     <div class="block">
                         <img [src]="order.vendor_logo" />

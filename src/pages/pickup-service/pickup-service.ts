@@ -63,7 +63,7 @@ export class PickupServicePage {
 
 
 
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";

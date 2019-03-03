@@ -30,7 +30,7 @@ export class UpdateLocationPage {
       locationName: ['', Validators.compose([Validators.maxLength(20), Validators.required])],
       locationNote: ['', Validators.compose([Validators.maxLength(20)])],
     });
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";

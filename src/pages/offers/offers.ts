@@ -49,7 +49,7 @@ export class OffersPage {
 
   goResturantInfoFromAd(id) {
 
-    this.genrator.getResturantInfoForAds(id).subscribe((data) => {
+    this.genrator.getResturantInfoForAds(id,localStorage.getItem('lang')).subscribe((data) => {
       let vendors = data['vendors'];
       let resturantInfo = vendors[0];
 

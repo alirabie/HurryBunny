@@ -1,4 +1,4 @@
-#Sun Feb 10 18:30:35 EET 2019
+#Sun Mar 03 10:08:47 EET 2019
 base.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0
 renamed.0=classes.dex
 file.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0\\classes.dex

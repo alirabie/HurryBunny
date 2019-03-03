@@ -20,11 +20,19 @@ export class IntroScreenPage {
   langName: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams , public translate: TranslateService , public viewCtrl : ViewController) {
-    translate.use(localStorage.getItem('lang'));
-    if(localStorage.getItem('lang')=="ar"){
-      this.langName="E";
+  
+  
+   
+    if(localStorage.getItem('lang')=="1"){
+      translate.use('en');
     }else{
+      translate.use('ar');
+    } 
+    
+    if(localStorage.getItem('lang')=="1"){
       this.langName="ع";
+    }else{
+      this.langName="E";
     }
 
   
@@ -97,7 +105,11 @@ export class IntroScreenPage {
 
   onChange(segmentButton : SegmentButton) {
     this.translate.use(segmentButton.value);
-    localStorage.setItem('lang',segmentButton.value+"");
+    if(segmentButton.value=='ar'){
+      localStorage.setItem('lang',"2");
+    }else{
+      localStorage.setItem('lang',"1");
+}
 }
 
 
@@ -106,11 +118,11 @@ toggleIcon(getIcon: string) {
     if (this.langName === 'ع') {
       this.langName = "E";
       this.translate.use("ar");
-      localStorage.setItem('lang',"ar");
+      localStorage.setItem('lang',"2");
     }else{
       this.langName = "ع";
       this.translate.use("en");
-      localStorage.setItem('lang',"en");
+      localStorage.setItem('lang',"1");
     }
   }
 }

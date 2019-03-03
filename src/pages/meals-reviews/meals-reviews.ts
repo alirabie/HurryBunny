@@ -34,7 +34,7 @@ export class MealsReviewsPage {
       this.title = navParams.get("mealname");
       this.mealId = navParams.get("mealid");
 
-      if(localStorage.getItem('lang')=="en"){
+      if(localStorage.getItem('lang')=="1"){
         this.oriantation="ltr";
       }else{
         this.oriantation="rtl";

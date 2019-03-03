@@ -62,7 +62,7 @@ export class ViewOrderPage {
     public launchNavigator: LaunchNavigator,
     public loadingCtrl: LoadingController) {
 
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -89,7 +89,7 @@ export class ViewOrderPage {
   //Get Order Details
   getOrderDetails(orderId) {
     this.showLoading();
-    return this.genrator.getOrderDetails(orderId).subscribe((data) => {
+    return this.genrator.getOrderDetails(orderId,localStorage.getItem('lang')).subscribe((data) => {
       this.orderDetalis = data['orders'];
       let orderItem = this.orderDetalis[0];
 

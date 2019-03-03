@@ -43,7 +43,7 @@ export class MainScreenPage {
 
   constructor(public navCtrl: NavController, public modelCtrl: ModalController, public viewCtrl: ViewController, public platform: Platform, public navParams: NavParams, public genrator: GenratorProvider, public loadingCtrl: LoadingController, public alertCrtl: AlertController, public translate: TranslateService, public app: App, public events: Events) {
 
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -65,9 +65,13 @@ export class MainScreenPage {
     this.serviceType = "1";
     this.getResturantsByDeliveryType(1);
     this.getAds();
+    
 
+  
 
   }
+
+  
 
 
   show() {
@@ -86,6 +90,7 @@ export class MainScreenPage {
       // this.getResturantsByDeliveryType(2);
     });
 
+  
     if (localStorage.getItem("customerid") != null) {
 
       this.getShoppingCartCount(localStorage.getItem("customerid"))
@@ -114,6 +119,12 @@ export class MainScreenPage {
   ionViewDidLoad() {
     this.setCartCount();
     console.log('ionViewDidLoad MainScreenPage');
+    this.events.subscribe('user:locationchangedaction', () => {
+      this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
+      this.serviceType = "1";
+      this.getResturantsByDeliveryType(1);
+      this.getAds();
+    });
   }
 
 
@@ -149,7 +160,7 @@ export class MainScreenPage {
   getResturants() {
     this.show();
 
-    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe((data) => {
+    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).subscribe((data) => {
 
 
       this.resturants = data['vendors'];
@@ -182,7 +193,7 @@ export class MainScreenPage {
 
     console.log("lat " + this.customerLocation.location.latitude);
     console.log("lng " + this.customerLocation.location.longtitude);
-    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe((data) => {
+    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).subscribe((data) => {
       this.resturants = [];
       this.resturansCopy = [];
       let vendors = data['vendors'];
@@ -306,7 +317,7 @@ export class MainScreenPage {
 
 
   getShoppingCartCount(custId) {
-    this.genrator.getShoppingCartItems(custId).subscribe((data) => {
+    this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
       let items = data['shopping_carts'];
       localStorage.setItem("cartCount", items.length);
 
@@ -391,7 +402,7 @@ export class MainScreenPage {
 
   goResturantInfoFromAd(id) {
 
-    this.genrator.getResturantInfoForAds(id).subscribe((data) => {
+    this.genrator.getResturantInfoForAds(id,localStorage.getItem('lang')).subscribe((data) => {
       let vendors = data['vendors'];
       let resturantInfo = vendors[0];
 

@@ -66,7 +66,7 @@ export class ShoppingCartPage {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
     this.customerLocationName = JSON.parse(localStorage.getItem('locationId'));
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -489,7 +489,7 @@ export class ShoppingCartPage {
 
   getCartItems() {
     this.showLoading();
-    this.genrator.getShoppingCartItems(localStorage.getItem("customerid")).subscribe((data) => {
+    this.genrator.getShoppingCartItems(localStorage.getItem("customerid"),localStorage.getItem('lang')).subscribe((data) => {
       this.cartItemsList = data['shopping_carts'];
       this.discountCopuns = data['applied_codes'];
       let cartItem = this.cartItemsList[0];
@@ -515,7 +515,7 @@ export class ShoppingCartPage {
   }
 
   getShoppingCartCount(custId) {
-    this.genrator.getShoppingCartItems(custId).subscribe((data) => {
+    this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
       let items = data['shopping_carts'];
       localStorage.setItem("cartCount", items.length + "");
       if (items.length == 0) {

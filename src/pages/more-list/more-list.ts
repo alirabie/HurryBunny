@@ -16,6 +16,7 @@ import { ViewController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GenratorProvider } from '../../providers/genrator/genrator';
+import { CacheService } from 'ionic-cache';
 
 
 @IonicPage()
@@ -30,7 +31,7 @@ export class MoreListPage {
   loggedOut = false;
   loggedIn = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public generator : GenratorProvider ,public splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public app: App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cacheService : CacheService,public generator: GenratorProvider, public splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public app: App) {
     if (localStorage.getItem('customerid') === null) {
       this.loggedOut = true;
       this.loggedIn = false;
@@ -39,14 +40,14 @@ export class MoreListPage {
       this.loggedIn = true;
     }
 
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
     }
 
-    
-    
+
+
     if (localStorage.getItem('mode') == "development") {
       this.mode = "Production";
     } else {
@@ -55,7 +56,7 @@ export class MoreListPage {
 
 
 
-    if (localStorage.getItem('lang') == "ar") {
+    if (localStorage.getItem('lang') == "2") {
       this.langName = "English";
     } else {
       this.langName = "اللغة العربية";
@@ -80,7 +81,13 @@ export class MoreListPage {
 
   //Logout
   logout() {
-    this.serverLogout(localStorage.getItem('customerid'));
+    localStorage.removeItem('customerid');
+    localStorage.removeItem('customerdata');
+    localStorage.setItem('cartCount', "0");
+    localStorage.removeItem("customerLocation");
+    localStorage.removeItem("rated");
+    // this.navCtrl.setRoot();
+    this.app.getRootNav().push(IntroScreenPage);
   }
 
   //Login
@@ -151,17 +158,22 @@ export class MoreListPage {
 
   toggleIcon(getIcon: string) {
     if (this.langName === "English") {
-
-      if(localStorage.getItem('customerid') != null){
-        this.changeServerLang(localStorage.getItem('customerid'),1);
-      }
      
-    } else {
-      if(localStorage.getItem('customerid') != null){
-        this.changeServerLang(localStorage.getItem('customerid'),2);
-      }
+        this.langName = "اللغة العربية";
+        this.translateService.use("en");
+        localStorage.setItem('lang', "1");
+        this.splashScreen.show();
+        location.reload();
+  
 
-    }
+    } else {
+     
+        this.translateService.use("ar");
+        localStorage.setItem('lang', "2");
+        this.langName = "English";
+        this.splashScreen.show();
+        location.reload();
+      }
   }
 
 
@@ -179,7 +191,7 @@ export class MoreListPage {
 
   //Change App mode 
   appMode() {
-    
+
     if (this.mode === "Production") {
       localStorage.setItem('mode', "Production");
       this.mode = "Development";
@@ -194,65 +206,12 @@ export class MoreListPage {
       this.splashScreen.show();
       location.reload();
 
-
-
-
     }
   }
 
 
 
-  changeServerLang(customerId,langId){
-    this.generator.changeLanguage(customerId,langId).then((result)=>{
-      if(result!=null){
-        console.log(result);
-        switch(langId){
-          case 1 :{
-            this.langName = "اللغة العربية";
-            this.translateService.use("en");
-            localStorage.setItem('lang', "en");
-            this.splashScreen.show();
-            location.reload();
-            break;
-          }
+  
 
-          case 2 : {
-            this.translateService.use("ar");
-            localStorage.setItem('lang', "ar");
-            this.langName = "English";
-            this.splashScreen.show();
-            location.reload();
-            break;
-
-          }
-        }
-      }
-    }),(err)=>{
-
-      console.log(err);
-
-    }
-  }
-
-
-  serverLogout(customerId){
-    this.generator.logout(customerId).then((result)=>{
-      if(result!=null){
-        console.log(result);
-        localStorage.removeItem('customerid');
-        localStorage.removeItem('customerdata');
-        localStorage.setItem('cartCount', "0");
-        localStorage.removeItem("customerLocation");
-        localStorage.removeItem("rated");
-        // this.navCtrl.setRoot();
-        this.app.getRootNav().push(IntroScreenPage); 
-      }
-    }),(err)=>{
-
-      console.log(err);
-
-    }
-
-  }
 
 }

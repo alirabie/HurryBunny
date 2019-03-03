@@ -47,7 +47,7 @@ export class HomePage {
   isBusy = true;
   selectedLat: any;
   selectedLng: any;
-  constructor(public navCtrl: NavController, public app: App, events: Events, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
+  constructor(public navCtrl: NavController, public app: App,public events: Events, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
 
     this.flag = this.navParams.get('flag');
@@ -144,7 +144,6 @@ export class HomePage {
 
   enableLocation() {
     this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-
       if (canRequest) {
         // the accuracy option will be ignored by iOS
         this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
@@ -172,8 +171,8 @@ export class HomePage {
       this.lng = resp.coords.longitude;
       this.selectedLat = resp.coords.latitude;
       this.selectedLng = resp.coords.longitude;
-      localStorage.setItem("userLat",resp.coords.latitude+"");
-      localStorage.setItem("userLng",resp.coords.longitude+"");
+      localStorage.setItem("userLat", resp.coords.latitude + "");
+      localStorage.setItem("userLng", resp.coords.longitude + "");
       this.chekSelected();
       // this.checkCustomerLocation();
       this.locationName = "";
@@ -181,10 +180,10 @@ export class HomePage {
       let mapOptions = {
         center: latLng,
         zoom: 18,
-        disableDefaultUI: true, zoomControl: false ,
+        disableDefaultUI: true, zoomControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       }
-      
+
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       let marker = new google.maps.Marker({
         map: this.map,
@@ -270,6 +269,7 @@ export class HomePage {
       console.log(localStorage.getItem('locationId'));
 
       if (this.flag == "main") {
+        this.events.publish('user:locationchangedaction');
         this.navCtrl.pop();
       } else if (this.flag == "intro") {
 
@@ -282,24 +282,8 @@ export class HomePage {
 
 
       }
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
   }
-
 
 
 
@@ -463,7 +447,7 @@ export class HomePage {
           text: this.translate.instant('yes'),
           handler: () => {
             this.genrator.deleteLcation(this.locationId + "").then((data) => {
-              
+
               this.getCustomerLastLocations();
 
               this.locationId = "0";
@@ -516,37 +500,44 @@ export class HomePage {
   goToOffers() {
     this.navCtrl.push(OffersPage);
   }
-  
+
   signOut() {
-  this.serverLogout(localStorage.getItem("customerid"));
+    localStorage.removeItem('customerid');
+    localStorage.removeItem('customerdata');
+    localStorage.setItem('cartCount', "0");
+    localStorage.removeItem("customerLocation");
+    localStorage.removeItem("lastresturant");
+
+    // this.navCtrl.setRoot();
+    this.app.getRootNav().push(IntroScreenPage);
   }
 
   signIn() {
     this.navCtrl.push(LoginPage);
   }
 
-  
-  
-  
-  
-  
-  loadOfflineMap(){
+
+
+
+
+
+  loadOfflineMap() {
     this.lat = 23.8859;
     this.lng = 45.0792;
-    this.selectedLat =this.lat;
+    this.selectedLat = this.lat;
     this.selectedLng = this.lng;
-    localStorage.setItem("userLat",this.lat+"");
-    localStorage.setItem("userLng",this.lng+"");
+    localStorage.setItem("userLat", this.lat + "");
+    localStorage.setItem("userLng", this.lng + "");
     this.chekSelected();
     this.locationName = "";
     let latLng = new google.maps.LatLng(this.lat, this.lng);
     let mapOptions = {
       center: latLng,
       zoom: 18,
-      disableDefaultUI: true, zoomControl: false ,
+      disableDefaultUI: true, zoomControl: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     }
-    
+
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     let marker = new google.maps.Marker({
       map: this.map,
@@ -571,28 +562,5 @@ export class HomePage {
   }
 
 
-
-
-
-  serverLogout(customerId){
-    this.genrator.logout(customerId).then((result)=>{
-      if(result!=null){
-        console.log(result);
-        localStorage.removeItem('customerid');
-        localStorage.removeItem('customerdata');
-        localStorage.setItem('cartCount', "0");
-        localStorage.removeItem("customerLocation");
-        localStorage.removeItem("lastresturant");
-    
-        // this.navCtrl.setRoot();
-        this.app.getRootNav().push(IntroScreenPage);
-      }
-    }),(err)=>{
-
-      console.log(err);
-
-    }
-
-  }
 
 }

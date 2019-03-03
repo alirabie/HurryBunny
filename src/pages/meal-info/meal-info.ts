@@ -78,7 +78,7 @@ export class MealInfoPage {
     public config: Config,
     public genrator: GenratorProvider,
     public events: Events) {
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -116,7 +116,7 @@ export class MealInfoPage {
 
   getMealInfoo() {
     this.showLoading();
-    return this.genrator.getMealInfo(this.mealId).subscribe((data) => {
+    return this.genrator.getMealInfo(this.mealId,localStorage.getItem('lang')).subscribe((data) => {
 
       this.dismissLoading();
       this.mealInfo = data['products'];
@@ -190,7 +190,7 @@ export class MealInfoPage {
 
 
   getAddistios() {
-    return this.genrator.getRelatedProducts(this.mealId).subscribe((data) => {
+    return this.genrator.getRelatedProducts(this.mealId,localStorage.getItem('lang')).subscribe((data) => {
       if (data != null) {
         this.mealAdditions = data['products']
       }
@@ -419,7 +419,7 @@ export class MealInfoPage {
 
 
   getShoppingCartCount(custId) {
-    this.genrator.getShoppingCartItems(custId).subscribe((data) => {
+    this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
       let items = data['shopping_carts'];
       localStorage.setItem("cartCount", items.length);
 

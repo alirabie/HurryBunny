@@ -1,6 +1,6 @@
 webpackJsonp([21],{
 
-/***/ 102:
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64,7 +64,7 @@ var ResturantInfoPage = /** @class */ (function () {
         this.distance = navParams.get('distace');
         this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
         console.log(this.customerLocation);
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -120,7 +120,7 @@ var ResturantInfoPage = /** @class */ (function () {
         //   content: this.translate.instant('LOADING'),
         // });
         // loader.present();
-        return this.genrator.getCategories(this.resturantId).subscribe(function (data) {
+        return this.genrator.getCategories(this.resturantId, localStorage.getItem('lang')).subscribe(function (data) {
             _this.categories = data['categories'];
             var category = _this.categories['0'];
             _this.getMealslist(category.id);
@@ -150,7 +150,7 @@ var ResturantInfoPage = /** @class */ (function () {
         // });
         // loader.present();
         this.show();
-        return this.genrator.getMeals(id).subscribe(function (data) {
+        return this.genrator.getMeals(id, localStorage.getItem('lang')).subscribe(function (data) {
             _this.meals = data['products'];
             _this.hide();
         }, function (err) {
@@ -245,7 +245,7 @@ var ResturantInfoPage = /** @class */ (function () {
     ResturantInfoPage.prototype.getShoppingCartCount = function (custId) {
         var _this = this;
         if (localStorage.getItem("resId") == null || localStorage.getItem("resId") == this.resturantId) {
-            this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+            this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe(function (data) {
                 var items = data['shopping_carts'];
                 localStorage.setItem("cartCount", items.length);
                 if (items.length == 0) {
@@ -320,7 +320,7 @@ var ResturantInfoPage = /** @class */ (function () {
     //Get resturant info by id
     ResturantInfoPage.prototype.getResturantInfo = function (resId) {
         var _this = this;
-        return this.genrator.getResturantInfo(resId).subscribe(function (data) {
+        return this.genrator.getResturantInfo(resId, localStorage.getItem('lang')).subscribe(function (data) {
             var vendors = data['vendors'];
             _this.resturantInfo = vendors[0];
             _this.resturantName = _this.resturantInfo.name;
@@ -328,7 +328,8 @@ var ResturantInfoPage = /** @class */ (function () {
             _this.resImage = _this.resturantInfo.profile_image;
             _this.resSettings = _this.resturantInfo.Settings;
             _this.openingHours = _this.resturantInfo.OpeningHours;
-            _this.resDiscription = _this.resturantInfo.description;
+            _this.resDiscription = _this.resturantInfo.about_us;
+            _this.aboutRes = _this.resturantInfo.description;
             _this.branches = _this.resturantInfo.Branches;
             console.log(_this.resturantInfo);
             // loader.dismiss();
@@ -352,7 +353,7 @@ var ResturantInfoPage = /** @class */ (function () {
     ], ResturantInfoPage.prototype, "SwipedTabsSlider", void 0);
     ResturantInfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-resturant-info',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <!--Shopping Cart button-->\n        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;"\n            (click)="loadCartPage()" start right>\n            <button ion-button icon-only>\n                <ion-icon color="light" name="md-cart"></ion-icon>\n                <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n\n    <!-- info for resturant -->\n    <div dir="{{oriantation}}" class="resturantInfoHeader">\n        <ion-item no-lines>\n            <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />\n            <div class="group">\n                <h2>{{resturantName}}</h2>\n                <rating justify-content-center align-items-center style="height: 100%" readOnly="true"\n                    [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"\n                    starIconName="star" nullable="false">\n                </rating>\n            </div>\n            <p class="resInfo">\n                {{resDiscription}}\n            </p>\n\n            <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->\n\n            <ion-row class="settingsrow" *ngIf="resSettings!=null">\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'mimimum\' | translate}}</small>\n                    <small>{{resSettings.MinimumOrderAmount}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'distance\' | translate}}</small>\n                    <small>{{distance}} {{\'km\' | translate}}</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n                    <small>{{resSettings.DeliveryFees}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n                    <small>{{resSettings.TimeToPrepareOrder}} min</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n                    <small>{{resSettings.DeliveryTime}} min</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'closetime\' | translate}}</small>\n                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>\n                </p>\n            </ion-row>\n\n        </ion-item>\n    </div>\n\n\n\n\n\n    <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">\n        <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)"\n            [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\'>\n            {{tab}}\n        </ion-segment-button>\n    </ion-segment>\n\n    <!-- here is our dynamic line  "indicator"-->\n    <div dir="{{oriantation}}" id=\'indicator\' class="SwipedTabs-indicatorSegment"\n        [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n</ion-header>\n\n\n<ion-content class="has-header">\n    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)"\n        (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition()"\n        (pan)="updateIndicatorPosition()" [pager]="true">\n        <ion-slide dir="{{oriantation}}" class="menupage">\n            <!--The filter of categories-->\n            <ion-row class="filters">\n                <ion-col no-padding>\n                    <ion-slides dir="{{oriantation}}" class="categorieSlide" slidesPerView="4">\n                        <ion-slide class="categorieSlide" *ngFor="let category of categories"\n                            [ngClass]="{\'active\': category == categoryActive, \'not-selected-item\': category != categoryActive}"\n                            (tap)="selectPickup(category)">\n                            <div class="categIcon" (click)="getMealslist(category.id)">\n                                <h5 class="categoryTitle">{{category.name}}</h5>\n                            </div>\n                        </ion-slide>\n                    </ion-slides>\n                </ion-col>\n            </ion-row>\n            <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n            <ion-list no-lines>\n                <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">\n                    <ion-thumbnail item-start>\n                        <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />\n                        <img *ngIf="meal.images.length === 0"\n                            src="./assets/imgs/categories-filters/meal-placeholder.png" />\n                    </ion-thumbnail>\n                    <h2 class="mealNametxt">{{meal.name}}</h2>\n                    <p class="mealdictxt">{{meal.short_description}}</p>\n                    <h3>\n                        <ion-icon md="md-cash"></ion-icon> {{meal.price}}\n                        <small>{{meal.currency_code}} SR</small>\n                    </h3>\n                </ion-item>\n            </ion-list>\n\n        </ion-slide>\n\n\n        <!--contents of tab#2 \'The Reviews\'-->\n        <ion-slide class="ratingpage">\n            <!-- <ion-item class="addRating" dir="{{oriantation}}"> -->\n            <!--Row of Rating form-->\n            <!-- <button ion-button full (click)="onButtonClick()" class="style2">\n                    <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n                <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)" *ngIf="buttonClicked">\n                    <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n                        halfStarIconName="star-half" starIconName="star"></rating>\n                    <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n                    <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n                </form>\n            </ion-item> -->\n\n            <ion-list dir="{{oriantation}}">\n                <!--Users Rating Part-->\n                <ion-item *ngFor="let review of resturantReviews">\n                    <h3>{{review.customer_name}}</h3>\n                    <p>{{review.review_text}}</p>\n                    <rating justify-content-center align-items-center max="5" readOnly="true"\n                        [(ngModel)]="review.rating"></rating>\n                </ion-item>\n            </ion-list>\n        </ion-slide>\n\n\n        <ion-slide dir="{{oriantation}}" class="menupage">\n\n            <!-- <br> -->\n            <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">\n                <h1 class="tite">{{resturantName}}</h1>\n                <small>{{resDiscription}}</small>\n                <h6 class="hours">{{\'workinghours\' | translate}}</h6>\n                <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>\n            </ion-item>\n\n\n            <!-- <ion-item no-lines *ngIf="branches.length!=0" class="branhesList">\n                <h1 class="branchestitle">{{\'resturantbranches\' | translate}}</h1>\n               \n                    <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">\n                        <img class="pin" item-start src="./assets/imgs/branchIcon.png">\n                        <h1 class="pname">{{branch.branch_name}} -->\n            <!-- <small end>10Km</small> -->\n            <!-- </h1>\n                    </ion-item>\n\n            </ion-item> -->\n\n\n\n\n        </ion-slide>\n    </ion-slides>\n\n\n\n\n    <!-- <ion-list>\n          <ion-item *ngFor="let category of categories">\n            <ion-thumbnail item-start>\n              <img [src]="category.image.src">\n            </ion-thumbnail>\n            <h2>{{category.name}}</h2>\n            <button ion-button clear item-end>View</button>\n          </ion-item>\n        </ion-list> -->\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/,
+            selector: 'page-resturant-info',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <!--Shopping Cart button-->\n        <ion-buttons *ngIf="compareResturantId()" style="margin-right: 15px;  margin-left: 15px;"\n            (click)="loadCartPage()" start right>\n            <button ion-button icon-only>\n                <ion-icon color="light" name="md-cart"></ion-icon>\n                <ion-badge color="secondary">{{badgeValue}}</ion-badge>\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n\n    <!-- info for resturant -->\n    <div dir="{{oriantation}}" class="resturantInfoHeader">\n        <ion-item no-lines>\n            <img *ngIf="resImage!=null" item-start padding width="80px" height="80px" [src]="resImage" />\n            <div class="group">\n                <h2>{{resturantName}}</h2>\n                <rating justify-content-center align-items-center style="height: 100%" readOnly="true"\n                    [(ngModel)]="resrate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"\n                    starIconName="star" nullable="false">\n                </rating>\n            </div>\n            <p class="resInfo">\n                {{resDiscription}}\n            </p>\n\n            <!-- <p class="worktime"> {{resSettings.DeliveryTime}}</p> -->\n\n            <ion-row class="settingsrow" *ngIf="resSettings!=null">\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'mimimum\' | translate}}</small>\n                    <small>{{resSettings.MinimumOrderAmount}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'distance\' | translate}}</small>\n                    <small>{{distance}} {{\'km\' | translate}}</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliveryfees\' | translate}}</small>\n                    <small>{{resSettings.DeliveryFees}} {{resSettings.PrimaryStoreCurrencyCode}}</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'mealpreparetime\' | translate}}</small>\n                    <small>{{resSettings.TimeToPrepareOrder}} min</small>\n                </p>\n                |\n                <p class="settings" *ngIf="serviceTypeId==1">\n                    <small class="settingsname">{{\'deliverytime\' | translate}}</small>\n                    <small>{{resSettings.DeliveryTime}} min</small>\n                </p>\n                <p class="settings" *ngIf="serviceTypeId==2">\n                    <small class="settingsname">{{\'closetime\' | translate}}</small>\n                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>\n                </p>\n            </ion-row>\n\n        </ion-item>\n    </div>\n\n\n\n\n\n    <ion-segment class="SwipedTabs-tabs" dir="{{oriantation}}">\n        <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)"\n            [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\'>\n            {{tab}}\n        </ion-segment-button>\n    </ion-segment>\n\n    <!-- here is our dynamic line  "indicator"-->\n    <div dir="{{oriantation}}" id=\'indicator\' class="SwipedTabs-indicatorSegment"\n        [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n</ion-header>\n\n\n<ion-content class="has-header">\n    <ion-slides #SwipedTabsSlider dir="{{oriantation}}" (ionSlideDrag)="animateIndicator($event)"\n        (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition()"\n        (pan)="updateIndicatorPosition()" [pager]="true">\n        <ion-slide dir="{{oriantation}}" class="menupage">\n            <!--The filter of categories-->\n            <ion-row class="filters">\n                <ion-col no-padding>\n                    <ion-slides dir="{{oriantation}}" class="categorieSlide" slidesPerView="4">\n                        <ion-slide class="categorieSlide" *ngFor="let category of categories"\n                            [ngClass]="{\'active\': category == categoryActive, \'not-selected-item\': category != categoryActive}"\n                            (tap)="selectPickup(category)">\n                            <div class="categIcon" (click)="getMealslist(category.id)">\n                                <h5 class="categoryTitle">{{category.name}}</h5>\n                            </div>\n                        </ion-slide>\n                    </ion-slides>\n                </ion-col>\n            </ion-row>\n            <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>\n            <ion-list no-lines>\n                <ion-item *ngFor="let meal of meals" (click)="goMealInfoPage(meal.id,meal.name)">\n                    <ion-thumbnail item-start>\n                        <img *ngIf="meal.images.length != 0" src="{{meal.images[0].src}}" />\n                        <img *ngIf="meal.images.length === 0"\n                            src="./assets/imgs/categories-filters/meal-placeholder.png" />\n                    </ion-thumbnail>\n                    <h2 class="mealNametxt">{{meal.name}}</h2>\n                    <p class="mealdictxt">{{meal.short_description}}</p>\n                    <h3>\n                        <ion-icon md="md-cash"></ion-icon> {{meal.price}}\n                        <small>{{meal.currency_code}} SR</small>\n                    </h3>\n                </ion-item>\n            </ion-list>\n\n        </ion-slide>\n\n\n        <!--contents of tab#2 \'The Reviews\'-->\n        <ion-slide class="ratingpage">\n            <!-- <ion-item class="addRating" dir="{{oriantation}}"> -->\n            <!--Row of Rating form-->\n            <!-- <button ion-button full (click)="onButtonClick()" class="style2">\n                    <ion-icon name="add"></ion-icon>{{\'addrating\' | translate}}</button>\n                <form [formGroup]="form" (ngSubmit)="addResturantReview(form.value)" *ngIf="buttonClicked">\n                    <rating justify-content-center align-items-center max="5" formControlName="review_value" emptyStarIconName="star-outline"\n                        halfStarIconName="star-half" starIconName="star"></rating>\n                    <textarea formControlName="reviewtxt" type="text" placeholder="{{\'addyourreview\' | translate}}"></textarea>\n                    <button ion-button round [disabled]="!form.valid">{{\'send\' | translate}}</button>\n                </form>\n            </ion-item> -->\n\n            <ion-list dir="{{oriantation}}">\n                <!--Users Rating Part-->\n                <ion-item *ngFor="let review of resturantReviews">\n                    <h3>{{review.customer_name}}</h3>\n                    <p>{{review.review_text}}</p>\n                    <rating justify-content-center align-items-center max="5" readOnly="true"\n                        [(ngModel)]="review.rating"></rating>\n                </ion-item>\n            </ion-list>\n        </ion-slide>\n\n\n        <ion-slide dir="{{oriantation}}" class="menupage">\n            <p *ngIf="aboutRes!=null">{{aboutRes}}</p>\n            <!-- <br> -->\n            <ion-item no-lines class="ptitle" *ngIf="openingHours!=null">\n                <h6 class="hours">{{\'workinghours\' | translate}}</h6>\n                <small>{{openingHours.TimeFrom}} {{openingHours.TimeTo}}</small>\n            </ion-item>\n\n\n            <!-- <ion-item no-lines *ngIf="branches.length!=0" class="branhesList">\n                <h1 class="branchestitle">{{\'resturantbranches\' | translate}}</h1>\n               \n                    <ion-item class="locationitem" no-lines *ngFor="let branch of branches" (click)="goMap(branch.latitude,branch.longtitude,branch.branch_name)">\n                        <img class="pin" item-start src="./assets/imgs/branchIcon.png">\n                        <h1 class="pname">{{branch.branch_name}} -->\n            <!-- <small end>10Km</small> -->\n            <!-- </h1>\n                    </ion-item>\n\n            </ion-item> -->\n\n\n\n\n        </ion-slide>\n    </ion-slides>\n\n\n\n\n    <!-- <ion-list>\n          <ion-item *ngFor="let category of categories">\n            <ion-thumbnail item-start>\n              <img [src]="category.image.src">\n            </ion-thumbnail>\n            <h2>{{category.name}}</h2>\n            <button ion-button clear item-end>View</button>\n          </ion-item>\n        </ion-list> -->\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\resturant-info\resturant-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */],
@@ -372,7 +373,7 @@ var ResturantInfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 103:
+/***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -382,7 +383,7 @@ var ResturantInfoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_resturant_info_resturant_info__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -425,7 +426,7 @@ var MainScreenPage = /** @class */ (function () {
         this.isBusy = false;
         this.empty = false;
         this.buttonClicked = false; //Whatever you want to initialise it as
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -473,8 +474,15 @@ var MainScreenPage = /** @class */ (function () {
         ;
     };
     MainScreenPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         this.setCartCount();
         console.log('ionViewDidLoad MainScreenPage');
+        this.events.subscribe('user:locationchangedaction', function () {
+            _this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
+            _this.serviceType = "1";
+            _this.getResturantsByDeliveryType(1);
+            _this.getAds();
+        });
     };
     MainScreenPage.prototype.loadCartPage = function () {
         if (localStorage.getItem("customerid") === null) {
@@ -500,7 +508,7 @@ var MainScreenPage = /** @class */ (function () {
     MainScreenPage.prototype.getResturants = function () {
         var _this = this;
         this.show();
-        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
+        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude, localStorage.getItem('lang')).subscribe(function (data) {
             _this.resturants = data['vendors'];
             _this.resturansCopy = data['vendors'];
             console.log(_this.resturants);
@@ -524,7 +532,7 @@ var MainScreenPage = /** @class */ (function () {
         this.resturansCopy = [];
         console.log("lat " + this.customerLocation.location.latitude);
         console.log("lng " + this.customerLocation.location.longtitude);
-        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude).subscribe(function (data) {
+        return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude, localStorage.getItem('lang')).subscribe(function (data) {
             _this.resturants = [];
             _this.resturansCopy = [];
             var vendors = data['vendors'];
@@ -625,7 +633,7 @@ var MainScreenPage = /** @class */ (function () {
     };
     MainScreenPage.prototype.getShoppingCartCount = function (custId) {
         var _this = this;
-        this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+        this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe(function (data) {
             var items = data['shopping_carts'];
             localStorage.setItem("cartCount", items.length);
             if (items.length == 0) {
@@ -680,7 +688,7 @@ var MainScreenPage = /** @class */ (function () {
     };
     MainScreenPage.prototype.goResturantInfoFromAd = function (id) {
         var _this = this;
-        this.genrator.getResturantInfoForAds(id).subscribe(function (data) {
+        this.genrator.getResturantInfoForAds(id, localStorage.getItem('lang')).subscribe(function (data) {
             var vendors = data['vendors'];
             var resturantInfo = vendors[0];
             switch (resturantInfo.Settings.ServiceTypeId) {
@@ -813,7 +821,7 @@ var ProfilePage = /** @class */ (function () {
             lastname: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
             phone: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])]
         });
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -927,7 +935,7 @@ var ProfilePage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GenratorProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_cache__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_cache__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(20);
@@ -949,7 +957,7 @@ var GenratorProvider = /** @class */ (function () {
         this.http = http;
         this.cache = cache;
         this.ProductionURL = "https://www.hurrybunny.com/";
-        this.devlomentURL = "http://hurrybunny.appsmatic.net/";
+        this.devlomentURL = "https://hurrybunny.appsmatic.net/";
         console.log('Hello GenratorProvider Provider');
         // if (localStorage.getItem('mode') == null) {
         //   this.url = this.devlomentURL;
@@ -960,7 +968,7 @@ var GenratorProvider = /** @class */ (function () {
         // } else if (localStorage.getItem('mode') == "Production") {
         //   this.url = this.ProductionURL;
         // }
-        this.url = this.devlomentURL;
+        this.url = this.ProductionURL;
     }
     //Registeration
     GenratorProvider.prototype.signUp = function (registrData) {
@@ -1021,44 +1029,44 @@ var GenratorProvider = /** @class */ (function () {
         return this.http.get(this.url + "api/districts/country/" + country + "/state/" + state).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get Resturants 
-    GenratorProvider.prototype.getResturants = function (lat, lng) {
+    GenratorProvider.prototype.getResturants = function (lat, lng, langId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        var request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat, { headers: headers });
+        var request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat + "&language_id=" + langId, { headers: headers });
         var delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
-        var cacheKey = "vendors";
+        var cacheKey = "vendors" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get resturant Info
-    GenratorProvider.prototype.getResturantInfo = function (resId) {
+    GenratorProvider.prototype.getResturantInfo = function (resId, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/vendor?VendorId=" + resId);
-        var cacheKey = "resInfo" + resId;
+        var request = this.http.get(this.url + "api/vendor?VendorId=" + resId + "&language_id=" + langId);
+        var cacheKey = "resInfo" + resId + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get resturant Info
-    GenratorProvider.prototype.getResturantInfoForAds = function (resId) {
-        return this.http.get(this.url + "api/vendor?VendorId=" + resId).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    GenratorProvider.prototype.getResturantInfoForAds = function (resId, langId) {
+        return this.http.get(this.url + "api/vendor?VendorId=" + resId + "&language_id=" + langId).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get Categories of resturant 
-    GenratorProvider.prototype.getCategories = function (id) {
+    GenratorProvider.prototype.getCategories = function (id, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&fields=id,name,description,image");
-        var cacheKey = "categores" + id;
+        var request = this.http.get(this.url + "api/restaurant/categories?vendorid=" + id + "&language_id=" + langId + "&fields=id,name,description,image");
+        var cacheKey = "categores" + id + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get categorie meals 
-    GenratorProvider.prototype.getMeals = function (catId) {
+    GenratorProvider.prototype.getMeals = function (catId, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,images,currency_code");
-        var cacheKey = "meals" + catId;
+        var request = this.http.get(this.url + "api/restaurant/meals?CategoryId=" + catId + "&fields=vendor_id,id,name,short_description,full_description,price,attributes,images&language_id=" + langId);
+        var cacheKey = "meals" + catId + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get meals info
-    GenratorProvider.prototype.getMealInfo = function (id) {
+    GenratorProvider.prototype.getMealInfo = function (id, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/restaurant/meals/" + id + "?fields=vendor_id,id,name,short_description,full_description,price,currency_code,attributes,images,rating");
-        var cacheKey = "mealsinfo" + id;
+        var request = this.http.get(this.url + "api/restaurant/meal/info?id=" + id + "&language_id=" + langId);
+        var cacheKey = "mealsinfo" + id + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Verify Phone Number
@@ -1068,9 +1076,9 @@ var GenratorProvider = /** @class */ (function () {
         return this.http.post(this.url + "api/customers/PhoneVerification?countrycode=" + countryCode + "&phoneno=" + phoneNum, { headers: headers }).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get Addisions 
-    GenratorProvider.prototype.getRelatedProducts = function (id) {
-        var request = this.http.get(this.url + "api/products/related/" + id);
-        var cacheKey = "additionscash" + id;
+    GenratorProvider.prototype.getRelatedProducts = function (id, langId) {
+        var request = this.http.get(this.url + "api/products/related?id=" + id + "&language_id=" + langId);
+        var cacheKey = "additionscash" + id + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Add to shopping cart
@@ -1088,11 +1096,11 @@ var GenratorProvider = /** @class */ (function () {
         });
     };
     //Get shopping cart items
-    GenratorProvider.prototype.getShoppingCartItems = function (customerId) {
+    GenratorProvider.prototype.getShoppingCartItems = function (customerId, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/shopping_cart_items/" + customerId);
+        var request = this.http.get(this.url + "api/shopping_cart_items?customerId=" + customerId + "&language_id=" + langId);
         var cacheKey = "shoppingcart" + customerId;
-        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+        return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey, 60 * 60, delayType).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Delete from shopping Cart 
     GenratorProvider.prototype.deleteFromShoppingCart = function (id) {
@@ -1163,21 +1171,21 @@ var GenratorProvider = /** @class */ (function () {
         });
     };
     //Get customer Orders
-    GenratorProvider.prototype.getCustomerOrder = function (id) {
+    GenratorProvider.prototype.getCustomerOrder = function (id, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "api/orders/customer/" + id);
-        var cacheKey = "customerorders" + id;
+        var request = this.http.get(this.url + "api/orders/customer?customer_id=" + id + "&language_id=" + langId);
+        var cacheKey = "customerorders" + id + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get customer Orders
-    GenratorProvider.prototype.getCustomerOrderNoCashing = function (id) {
-        return this.http.get(this.url + "api/orders/customer/" + id).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
+    GenratorProvider.prototype.getCustomerOrderNoCashing = function (id, langId) {
+        return this.http.get(this.url + "api/orders/customer?customer_id=" + id + "&language_id=" + langId).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Get Order details
-    GenratorProvider.prototype.getOrderDetails = function (orderId) {
+    GenratorProvider.prototype.getOrderDetails = function (orderId, langId) {
         var delayType = 'all';
-        var request = this.http.get(this.url + "/api/orders/" + orderId);
-        var cacheKey = "orderdetails" + orderId;
+        var request = this.http.get(this.url + "api/orders?id=" + orderId + "&language_id=" + langId);
+        var cacheKey = "orderdetails" + orderId + "lang" + langId;
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
     //Convert Cart to Order
@@ -1292,20 +1300,6 @@ var GenratorProvider = /** @class */ (function () {
         var cacheKey = "offers";
         return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (res) { return res.json(); }));
     };
-    //Change Language
-    GenratorProvider.prototype.changeLanguage = function (customerId, langId) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["Headers"]();
-            headers.append('Content-Type', 'application/json');
-            _this.http.post(_this.url + 'api/customer/language?customerId=' + customerId + '&languageId=' + langId, JSON.stringify(location), { headers: headers })
-                .subscribe(function (res) {
-                resolve(res.json());
-            }, function (err) {
-                reject(err);
-            });
-        });
-    };
     GenratorProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_0_ionic_cache__["b" /* CacheService */]])
@@ -1359,7 +1353,7 @@ var UpdateLocationPage = /** @class */ (function () {
             locationName: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required])],
             locationNote: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].maxLength(20)])],
         });
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -1720,7 +1714,7 @@ var MealInfoPage = /** @class */ (function () {
         this.selectedAdditions = [];
         this.buttonClicked1 = false; //For expand1
         this.buttonClicked2 = false; //For expand2
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -1761,7 +1755,7 @@ var MealInfoPage = /** @class */ (function () {
     MealInfoPage.prototype.getMealInfoo = function () {
         var _this = this;
         this.showLoading();
-        return this.genrator.getMealInfo(this.mealId).subscribe(function (data) {
+        return this.genrator.getMealInfo(this.mealId, localStorage.getItem('lang')).subscribe(function (data) {
             _this.dismissLoading();
             _this.mealInfo = data['products'];
             _this.mealItem = _this.mealInfo['0'];
@@ -1812,7 +1806,7 @@ var MealInfoPage = /** @class */ (function () {
     };
     MealInfoPage.prototype.getAddistios = function () {
         var _this = this;
-        return this.genrator.getRelatedProducts(this.mealId).subscribe(function (data) {
+        return this.genrator.getRelatedProducts(this.mealId, localStorage.getItem('lang')).subscribe(function (data) {
             if (data != null) {
                 _this.mealAdditions = data['products'];
             }
@@ -1956,7 +1950,7 @@ var MealInfoPage = /** @class */ (function () {
     };
     MealInfoPage.prototype.getShoppingCartCount = function (custId) {
         var _this = this;
-        this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+        this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe(function (data) {
             var items = data['shopping_carts'];
             localStorage.setItem("cartCount", items.length);
             if (items.length == 0) {
@@ -2186,7 +2180,7 @@ var ViewOrderPage = /** @class */ (function () {
         this.active1 = "";
         this.active2 = "";
         this.active3 = "";
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -2217,7 +2211,7 @@ var ViewOrderPage = /** @class */ (function () {
     ViewOrderPage.prototype.getOrderDetails = function (orderId) {
         var _this = this;
         this.showLoading();
-        return this.genrator.getOrderDetails(orderId).subscribe(function (data) {
+        return this.genrator.getOrderDetails(orderId, localStorage.getItem('lang')).subscribe(function (data) {
             _this.orderDetalis = data['orders'];
             var orderItem = _this.orderDetalis[0];
             _this.serviceTypeId = orderItem.service_type_id;
@@ -2437,7 +2431,7 @@ var ViewOrderPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_main_screen_main_screen__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_intro_screen_intro_screen__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_profile_profile__ = __webpack_require__(149);
@@ -2447,8 +2441,9 @@ var ViewOrderPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ionic_cache__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2474,10 +2469,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MoreListPage = /** @class */ (function () {
-    function MoreListPage(navCtrl, navParams, generator, splashScreen, translateService, events, app) {
+    function MoreListPage(navCtrl, navParams, cacheService, generator, splashScreen, translateService, events, app) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.cacheService = cacheService;
         this.generator = generator;
         this.splashScreen = splashScreen;
         this.translateService = translateService;
@@ -2495,7 +2492,7 @@ var MoreListPage = /** @class */ (function () {
             this.loggedOut = false;
             this.loggedIn = true;
         }
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -2507,7 +2504,7 @@ var MoreListPage = /** @class */ (function () {
         else {
             this.mode = "Development";
         }
-        if (localStorage.getItem('lang') == "ar") {
+        if (localStorage.getItem('lang') == "2") {
             this.langName = "English";
         }
         else {
@@ -2576,14 +2573,18 @@ var MoreListPage = /** @class */ (function () {
     };
     MoreListPage.prototype.toggleIcon = function (getIcon) {
         if (this.langName === "English") {
-            if (localStorage.getItem('customerid') != null) {
-                this.changeServerLang(localStorage.getItem('customerid'), 1);
-            }
+            this.langName = "اللغة العربية";
+            this.translateService.use("en");
+            localStorage.setItem('lang', "1");
+            this.splashScreen.show();
+            location.reload();
         }
         else {
-            if (localStorage.getItem('customerid') != null) {
-                this.changeServerLang(localStorage.getItem('customerid'), 2);
-            }
+            this.translateService.use("ar");
+            localStorage.setItem('lang', "2");
+            this.langName = "English";
+            this.splashScreen.show();
+            location.reload();
         }
     };
     MoreListPage.prototype.checkLogin = function () {
@@ -2611,39 +2612,11 @@ var MoreListPage = /** @class */ (function () {
             location.reload();
         }
     };
-    MoreListPage.prototype.changeServerLang = function (customerId, langId) {
-        var _this = this;
-        this.generator.changeLanguage(customerId, langId).then(function (result) {
-            if (result != null) {
-                console.log(result);
-                switch (langId) {
-                    case 1: {
-                        _this.langName = "اللغة العربية";
-                        _this.translateService.use("en");
-                        localStorage.setItem('lang', "en");
-                        _this.splashScreen.show();
-                        location.reload();
-                        break;
-                    }
-                    case 2: {
-                        _this.translateService.use("ar");
-                        localStorage.setItem('lang', "ar");
-                        _this.langName = "English";
-                        _this.splashScreen.show();
-                        location.reload();
-                        break;
-                    }
-                }
-            }
-        }), function (err) {
-            console.log(err);
-        };
-    };
     MoreListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'page-more-list',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'more\' | translate}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content dir="{{oriantation}}">\n  <ion-list>\n    <div class="logo">\n      <img src="./assets/imgs/sidemenu-logo.png" />\n    </div>\n\n\n    <button ion-item detail-none class="sidemenu" (click)="toggleIcon()">\n      <ion-icon name="md-globe"></ion-icon>\n      <!-- <ion-icon color="primary" name="ios-pricetags" item-end></ion-icon> -->\n      <h2>{{langName}}</h2>\n    </button>\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="gohome()">\n      <ion-icon name="ios-home"></ion-icon>\n      <h2> {{ \'SIDEMENU.home\' | translate }}</h2>\n    </button> -->\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="goProfile()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'SIDEMENU.account\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="signUp()">\n      <ion-icon name="ios-contact"></ion-icon>\n      <h2>{{ \'PAGE_TITLE.signup\' | translate }}</h2>\n    </button>\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOrdersPage()" *ngIf="checkLogin()" >\n      <ion-icon name="ios-basket"></ion-icon>\n      <h2>{{ \'SIDEMENU.basket\' | translate }}</h2>\n    </button> -->\n\n\n    <!-- <button ion-item detail-none class="sidemenu" (click)="goOffersPage()">\n      <ion-icon name="md-pricetag"></ion-icon>\n      <h2>{{ \'SIDEMENU.discounted\' | translate }}</h2>\n    </button> -->\n\n\n    <button ion-item detail-none class="sidemenu" (click)="goAboutUs()">\n      <ion-icon name="ios-people"></ion-icon>\n      <h2>{{ \'SIDEMENU.aboutus\' | translate }}</h2>\n    </button>\n\n\n    <button *ngIf="loggedIn" ion-item detail-none class="sidemenu" (click)="logout()">\n      <ion-icon name="md-log-out"></ion-icon>\n      <h2>{{ \'SIDEMENU.logout\' | translate }}</h2>\n    </button>\n\n    <button *ngIf="loggedOut" ion-item detail-none class="sidemenu" (click)="login()">\n      <ion-icon name="md-log-in"></ion-icon>\n      <h2>{{ \'SIDEMENU.login\' | translate }}</h2>\n    </button>\n\n\n<!-- \n    <button  ion-item detail-none class="sidemenu" (click)="appMode()">\n      <ion-icon name="md-cog"></ion-icon>\n      <h2>{{mode}}</h2>\n    </button> -->\n\n\n\n\n\n\n  </ion-list>\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\more-list\more-list.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_15_ionic_cache__["b" /* CacheService */], __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
     ], MoreListPage);
     return MoreListPage;
 }());
@@ -2844,7 +2817,7 @@ var MealsReviewsPage = /** @class */ (function () {
         config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
         this.title = navParams.get("mealname");
         this.mealId = navParams.get("mealid");
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -2988,7 +2961,7 @@ var ResturantReviewPage = /** @class */ (function () {
             reviewtxt: ['', __WEBPACK_IMPORTED_MODULE_0__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_0__angular_forms__["f" /* Validators */].maxLength(500), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["f" /* Validators */].required])],
             review_value: ['', __WEBPACK_IMPORTED_MODULE_0__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_0__angular_forms__["f" /* Validators */].required])],
         });
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -3108,11 +3081,11 @@ var map = {
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
-		570,
+		571,
 		15
 	],
 	"../pages/meal-info/meal-info.module": [
-		571,
+		570,
 		14
 	],
 	"../pages/meals-reviews/meals-reviews.module": [
@@ -3128,15 +3101,15 @@ var map = {
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		565,
+		563,
 		10
 	],
 	"../pages/orders/orders.module": [
-		563,
+		564,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		564,
+		565,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
@@ -3188,13 +3161,204 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDataPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var OrderDataPage = /** @class */ (function () {
+    function OrderDataPage(navCtrl, app, navParams, _FB, geo, googleMaps, altCtrl, translate, viewCtrl, config, alertCrtl, genrator, loader, platform) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.navParams = navParams;
+        this._FB = _FB;
+        this.geo = geo;
+        this.googleMaps = googleMaps;
+        this.altCtrl = altCtrl;
+        this.translate = translate;
+        this.viewCtrl = viewCtrl;
+        this.alertCrtl = alertCrtl;
+        this.genrator = genrator;
+        this.loader = loader;
+        this.markers = [];
+        this.customerLocations = [];
+        this.selected = true;
+        this.oriantation = "";
+        this.resturantId = "";
+        this.servicID = "";
+        this.locationName = "";
+        this.notes = "";
+        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+        this.resturantId = navParams.get('resId');
+        this.servicID = navParams.get('serviceId');
+        this.customerLocationName = JSON.parse(localStorage.getItem('customerLocation'));
+        console.log(this.customerLocationName);
+        this.form = _FB.group({
+            locationName: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].required])],
+            notes: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20)])],
+        });
+        if (localStorage.getItem('lang') == "1") {
+            this.oriantation = "ltr";
+        }
+        else {
+            this.oriantation = "rtl";
+        }
+        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
+        // Wait the native plugin is ready.
+        platform.ready().then(function () {
+            _this.defaultloadMap();
+        });
+    }
+    OrderDataPage.prototype.ionViewWillEnter = function () {
+        this.tabBarElement.style.display = 'none';
+        this.defaultloadMap();
+    };
+    OrderDataPage.prototype.ionViewWillLeave = function () {
+        this.tabBarElement.style.display = 'flex';
+    };
+    OrderDataPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OrderDataPage');
+    };
+    OrderDataPage.prototype.setFormElemnt = function (val) {
+        this.form.controls['locationName'].setValue(val);
+    };
+    OrderDataPage.prototype.defaultloadMap = function () {
+        this.lat = parseFloat(this.customerLocationName.lat);
+        this.lng = parseFloat(this.customerLocationName.lng);
+        var latLng = new google.maps.LatLng(parseFloat(this.customerLocationName.lat), parseFloat(this.customerLocationName.lng));
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var marker = new google.maps.Marker({
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            position: {
+                lat: this.lat,
+                lng: this.lng
+            }, icon: "./assets/imgs/marker.png",
+            draggable: false
+        });
+        this.setFormElemnt(this.customerLocationName.locationName + "");
+    };
+    //Confirm Order convert cart items to order
+    OrderDataPage.prototype.confirmOrder = function (value) {
+        var _this = this;
+        var confirmationData;
+        if (this.form.valid) {
+            confirmationData = {
+                "order_info": {
+                    "order_id": "0",
+                    "customer_id": localStorage.getItem("customerid"),
+                    "vendor_id": this.resturantId,
+                    "pickup_branch_id": null,
+                    "order_note": value.notes,
+                    "service_type_id": this.servicID,
+                    "longtitude": this.customerLocationName.lng,
+                    "latitude": this.customerLocationName.lat,
+                    "location_name": value.locationName
+                }
+            };
+        }
+        else {
+            confirmationData = {
+                "order_info": {
+                    "order_id": "0",
+                    "customer_id": localStorage.getItem("customerid"),
+                    "vendor_id": this.resturantId,
+                    "pickup_branch_id": null,
+                    "order_note": value.notes,
+                    "service_type_id": this.servicID,
+                    "longtitude": this.customerLocationName.lng,
+                    "latitude": this.customerLocationName.lat,
+                    "location_name": "UserLocation"
+                }
+            };
+        }
+        console.log(confirmationData);
+        var loader = this.loader.create({
+            content: this.translate.instant('LOADING'),
+        });
+        loader.present();
+        return this.genrator.convertCartOrders(confirmationData).then(function (data) {
+            _this.conversionResponse = data['orders'];
+            if (data['orders'] != null) {
+                var alert_1 = _this.alertCrtl.create({
+                    title: _this.translate.instant('PAGE_TITLE.dilog'),
+                    subTitle: _this.translate.instant('orderplaced'),
+                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+                });
+                alert_1.present();
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_0__tabs_tabs__["a" /* TabsPage */]);
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__orders_orders__["a" /* OrdersPage */]);
+            }
+            console.log(data);
+            loader.dismiss();
+        }, function (err) {
+            loader.dismiss();
+            var alert = _this.alertCrtl.create({
+                title: _this.translate.instant('PAGE_TITLE.dilog'),
+                subTitle: err,
+                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
+            });
+            alert.present();
+            console.log(err);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
+    ], OrderDataPage.prototype, "mapElement", void 0);
+    OrderDataPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+            selector: 'page-order-data',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
+    ], OrderDataPage);
+    return OrderDataPage;
+}());
+
+//# sourceMappingURL=order-data.js.map
+
+/***/ }),
+
+/***/ 330:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PickupServicePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
@@ -3249,7 +3413,7 @@ var PickupServicePage = /** @class */ (function () {
             locationName: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].required])],
             notes: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20)])],
         });
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -3431,197 +3595,6 @@ var PickupServicePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 330:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDataPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tabs_tabs__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orders_orders__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(13);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-var OrderDataPage = /** @class */ (function () {
-    function OrderDataPage(navCtrl, app, navParams, _FB, geo, googleMaps, altCtrl, translate, viewCtrl, config, alertCrtl, genrator, loader, platform) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.app = app;
-        this.navParams = navParams;
-        this._FB = _FB;
-        this.geo = geo;
-        this.googleMaps = googleMaps;
-        this.altCtrl = altCtrl;
-        this.translate = translate;
-        this.viewCtrl = viewCtrl;
-        this.alertCrtl = alertCrtl;
-        this.genrator = genrator;
-        this.loader = loader;
-        this.markers = [];
-        this.customerLocations = [];
-        this.selected = true;
-        this.oriantation = "";
-        this.resturantId = "";
-        this.servicID = "";
-        this.locationName = "";
-        this.notes = "";
-        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-        this.resturantId = navParams.get('resId');
-        this.servicID = navParams.get('serviceId');
-        this.customerLocationName = JSON.parse(localStorage.getItem('customerLocation'));
-        console.log(this.customerLocationName);
-        this.form = _FB.group({
-            locationName: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].required])],
-            notes: ['', __WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_8__angular_forms__["f" /* Validators */].maxLength(20)])],
-        });
-        if (localStorage.getItem('lang') == "en") {
-            this.oriantation = "ltr";
-        }
-        else {
-            this.oriantation = "rtl";
-        }
-        config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        // Wait the native plugin is ready.
-        platform.ready().then(function () {
-            _this.defaultloadMap();
-        });
-    }
-    OrderDataPage.prototype.ionViewWillEnter = function () {
-        this.tabBarElement.style.display = 'none';
-        this.defaultloadMap();
-    };
-    OrderDataPage.prototype.ionViewWillLeave = function () {
-        this.tabBarElement.style.display = 'flex';
-    };
-    OrderDataPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OrderDataPage');
-    };
-    OrderDataPage.prototype.setFormElemnt = function (val) {
-        this.form.controls['locationName'].setValue(val);
-    };
-    OrderDataPage.prototype.defaultloadMap = function () {
-        this.lat = parseFloat(this.customerLocationName.lat);
-        this.lng = parseFloat(this.customerLocationName.lng);
-        var latLng = new google.maps.LatLng(parseFloat(this.customerLocationName.lat), parseFloat(this.customerLocationName.lng));
-        var mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        var marker = new google.maps.Marker({
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            position: {
-                lat: this.lat,
-                lng: this.lng
-            }, icon: "./assets/imgs/marker.png",
-            draggable: false
-        });
-        this.setFormElemnt(this.customerLocationName.locationName + "");
-    };
-    //Confirm Order convert cart items to order
-    OrderDataPage.prototype.confirmOrder = function (value) {
-        var _this = this;
-        var confirmationData;
-        if (this.form.valid) {
-            confirmationData = {
-                "order_info": {
-                    "order_id": "0",
-                    "customer_id": localStorage.getItem("customerid"),
-                    "vendor_id": this.resturantId,
-                    "pickup_branch_id": null,
-                    "order_note": value.notes,
-                    "service_type_id": this.servicID,
-                    "longtitude": this.customerLocationName.lng,
-                    "latitude": this.customerLocationName.lat,
-                    "location_name": value.locationName
-                }
-            };
-        }
-        else {
-            confirmationData = {
-                "order_info": {
-                    "order_id": "0",
-                    "customer_id": localStorage.getItem("customerid"),
-                    "vendor_id": this.resturantId,
-                    "pickup_branch_id": null,
-                    "order_note": value.notes,
-                    "service_type_id": this.servicID,
-                    "longtitude": this.customerLocationName.lng,
-                    "latitude": this.customerLocationName.lat,
-                    "location_name": "UserLocation"
-                }
-            };
-        }
-        console.log(confirmationData);
-        var loader = this.loader.create({
-            content: this.translate.instant('LOADING'),
-        });
-        loader.present();
-        return this.genrator.convertCartOrders(confirmationData).then(function (data) {
-            _this.conversionResponse = data['orders'];
-            if (data['orders'] != null) {
-                var alert_1 = _this.alertCrtl.create({
-                    title: _this.translate.instant('PAGE_TITLE.dilog'),
-                    subTitle: _this.translate.instant('orderplaced'),
-                    buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-                });
-                alert_1.present();
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_0__tabs_tabs__["a" /* TabsPage */]);
-                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__orders_orders__["a" /* OrdersPage */]);
-            }
-            console.log(data);
-            loader.dismiss();
-        }, function (err) {
-            loader.dismiss();
-            var alert = _this.alertCrtl.create({
-                title: _this.translate.instant('PAGE_TITLE.dilog'),
-                subTitle: err,
-                buttons: [_this.translate.instant('BUTTONS.dissmiss')]
-            });
-            alert.present();
-            console.log(err);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ElementRef */])
-    ], OrderDataPage.prototype, "mapElement", void 0);
-    OrderDataPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
-            selector: 'page-order-data',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <ion-title>{{\'delivery\' | translate}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content dir="{{oriantation}}">\n\n     \n\n   \n\n    <div #map id="map"></div>\n\n    <form [formGroup]="form" (ngSubmit)="confirmOrder(form.value)">\n\n        <ion-list no-line>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'locationname\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="locationName"></ion-input>\n\n            </ion-item>\n\n\n\n            <ion-item class="colr">\n\n                <ion-label floating>{{\'note\' | translate}}</ion-label>\n\n                <ion-input type="text" formControlName="notes"></ion-input>\n\n            </ion-item>\n\n\n\n\n\n            <!-- <ion-item class="colr">\n\n                <ion-label floating>{{\'places\' | translate}}</ion-label>\n\n                <ion-select interface="popover">\n\n                    <ion-option (click)="chekSelected()" *ngFor="let location of customerLocations">{{location.LocationName}}</ion-option>\n\n                </ion-select>\n\n            </ion-item> -->\n\n\n\n        </ion-list>\n\n        <button ion-button block round [disabled]="!form.valid">{{\'makeorder\' | translate}}</button>\n\n    </form>\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\order-data\order-data.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_maps__["a" /* GoogleMaps */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["w" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["s" /* Platform */]])
-    ], OrderDataPage);
-    return OrderDataPage;
-}());
-
-//# sourceMappingURL=order-data.js.map
-
-/***/ }),
-
 /***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3680,7 +3653,7 @@ var LoginPage = /** @class */ (function () {
         this.oriantation = "";
         this.cntryCode = "";
         config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -3709,18 +3682,6 @@ var LoginPage = /** @class */ (function () {
                 localStorage.setItem('customerid', _this.data.customers[0].id);
                 localStorage.setItem('customerdata', JSON.stringify(_this.data.customers[0]));
                 console.log(localStorage.getItem('customerdata'));
-                switch (_this.data.customers[0].language) {
-                    case 1:
-                        _this.translate.use("en");
-                        localStorage.setItem('lang', "en");
-                        localStorage.setItem('langCode', '1');
-                        break;
-                    case 2:
-                        _this.translate.use("ar");
-                        localStorage.setItem('lang', "ar");
-                        localStorage.setItem('langCode', '2');
-                        break;
-                }
                 //Send stored location
                 // let location = JSON.parse(localStorage.getItem('locationId'));
                 // location.id=this.data.customers[0].id
@@ -3788,17 +3749,17 @@ var LoginPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_update_location_update_location__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_resturant_review_resturant_review__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_pickup_service_pickup_service__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_diagnostic__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_geolocation__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_google_maps__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_common_http__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ngx_translate_core__ = __webpack_require__(12);
@@ -3806,11 +3767,11 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_component__ = __webpack_require__(539);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_home_home__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_genrator_genrator__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_main_screen_main_screen__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_intro_screen_intro_screen__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_login_login__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_sign_up_sign_up__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_resturant_info_resturant_info__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_ionic2_super_tabs__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_meal_info_meal_info__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_profile_profile__ = __webpack_require__(149);
@@ -3821,11 +3782,11 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_view_order_view_order__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_firebase__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39_ionic_cache__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_launch_navigator__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_ionic2_rating__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42_ionic_image_loader__ = __webpack_require__(328);
@@ -3938,15 +3899,15 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meal-info/meal-info.module#MealInfoPageModule', name: 'MealInfoPage', segment: 'meal-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/shopping-cart/shopping-cart.module#ShoppingCartPageModule', name: 'ShoppingCartPage', segment: 'shopping-cart', priority: 'low', defaultHistory: [] }
@@ -4050,7 +4011,7 @@ var OrdersPage = /** @class */ (function () {
         this.isBusy = false;
         this.isEmpty = false;
         config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -4088,7 +4049,7 @@ var OrdersPage = /** @class */ (function () {
         // });
         // loader.present();
         this.show();
-        return this.genrator.getCustomerOrder(customerId).subscribe(function (data) {
+        return this.genrator.getCustomerOrder(customerId, localStorage.getItem('lang')).subscribe(function (data) {
             _this.customerOrders = data['orders'];
             var orders = [];
             orders = data['orders'];
@@ -4128,7 +4089,7 @@ var OrdersPage = /** @class */ (function () {
     ], OrdersPage.prototype, "content", void 0);
     OrdersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-            selector: 'page-orders',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{ \'orders\' | translate}}</ion-title>\n        <ion-buttons (click)="reload()" end>\n                <button ion-button icon-only>\n                    <ion-icon color="light" name="ios-refresh-circle-outline"></ion-icon>\n                </button>\n            </ion-buttons>\n    </ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content padding dir="{{oriantation}}">\n    <table>\n        <thead>\n            <tr>\n                <th>{{\'order\' | translate}}</th>\n                <th>{{\'status\' | translate}}</th>\n            </tr>\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let order of customerOrders.reverse()" (click)="goOrderDetails(order.id)">\n                <td>\n                    <div class="block">\n                        <img [src]="order.vendor_logo" />\n                        <ion-item>\n                            <p>\n                                <span>{{\'orderno\' | translate}}# {{order.id}}</span> |\n                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>\n                            </p>\n                            <p>{{\'from\' | translate}} {{order.vendor_name}}</p>\n                            <p>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</p>\n                            <!-- <p *ngIf="order.service_type_id==2">PickUp</p>\n                            <p *ngIf="order.service_type_id==1">Dlivery</p> -->\n                        </ion-item>\n                    </div>\n                </td>\n                <td *ngIf="order.order_status_id==10">{{\'wait\' | translate}}</td>\n                <td *ngIf="order.order_status_id==70">{{\'acccepted\' | translate}}</td>\n                <td *ngIf="order.order_status_id==20">{{\'processing\' | translate}}</td>\n                <td *ngIf="order.order_status_id==30 || order.order_status_id==50 || order.order_status_id==60 || order.order_status_id==80">{{\'complete\' | translate}}</td>\n                <td *ngIf="order.order_status_id==40">{{\'canceld\' | translate}}</td>\n            </tr>\n\n\n\n\n\n\n            <!-- <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>\n            <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>         -->\n        </tbody>\n    </table>\n\n    <ion-label class="emptylbl" *ngIf="isEmpty">{{ \'emptyorders\' | translate }}</ion-label>\n    <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/,
+            selector: 'page-orders',template:/*ion-inline-start:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{ \'orders\' | translate}}</ion-title>\n        <ion-buttons (click)="reload()" end>\n                <button ion-button icon-only>\n                    <ion-icon color="light" name="ios-refresh-circle-outline"></ion-icon>\n                </button>\n            </ion-buttons>\n    </ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content padding dir="{{oriantation}}">\n    <table>\n        <thead>\n            <tr>\n                <th>{{\'order\' | translate}}</th>\n                <th>{{\'status\' | translate}}</th>\n            </tr>\n        </thead>\n\n\n\n        <tbody>\n\n            <tr *ngFor="let order of customerOrders" (click)="goOrderDetails(order.id)">\n                <td>\n                    <div class="block">\n                        <img [src]="order.vendor_logo" />\n                        <ion-item>\n                            <p>\n                                <span>{{\'orderno\' | translate}}# {{order.id}}</span> |\n                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>\n                            </p>\n                            <p>{{\'from\' | translate}} {{order.vendor_name}}</p>\n                            <p>{{ order.created_on_utc | date :\'MM/dd/yyyy hh:mm a\'}}</p>\n                            <!-- <p *ngIf="order.service_type_id==2">PickUp</p>\n                            <p *ngIf="order.service_type_id==1">Dlivery</p> -->\n                        </ion-item>\n                    </div>\n                </td>\n                <td *ngIf="order.order_status_id==10">{{\'wait\' | translate}}</td>\n                <td *ngIf="order.order_status_id==70">{{\'acccepted\' | translate}}</td>\n                <td *ngIf="order.order_status_id==20">{{\'processing\' | translate}}</td>\n                <td *ngIf="order.order_status_id==30 || order.order_status_id==50 || order.order_status_id==60 || order.order_status_id==80">{{\'complete\' | translate}}</td>\n                <td *ngIf="order.order_status_id==40">{{\'canceld\' | translate}}</td>\n            </tr>\n\n\n\n\n\n\n            <!-- <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>\n            <tr class="done">\n                <td>\n                    <div class="block">\n                        <img src="./assets/imgs/restaurants_logo/bking.png" />\n                        <ion-item>\n                            <p><span>Order NO# 1597</span>  | <span>125.00 SR</span></p>\n                            <p>From \'Domino\'s Pizza\' in 10/05/2018</p>\n                        </ion-item>\n                    </div>\n                </td>\n                <td>Done</td>\n            </tr>         -->\n        </tbody>\n    </table>\n\n    <ion-label class="emptylbl" *ngIf="isEmpty">{{ \'emptyorders\' | translate }}</ion-label>\n    <ion-spinner class="spin" *ngIf="isBusy" name="bubbles"></ion-spinner>\n\n</ion-content>'/*ion-inline-end:"F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\orders\orders.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_0__providers_genrator_genrator__["a" /* GenratorProvider */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Config */]])
     ], OrdersPage);
@@ -4150,10 +4111,10 @@ var OrdersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_intro_screen_intro_screen__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_cache__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_cache__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4236,9 +4197,9 @@ var MyApp = /** @class */ (function () {
                 _this.listenToNotifications();
             }
             _this.listenConnection();
-            translateService.setDefaultLang('en');
+            translateService.setDefaultLang('ar');
             if (localStorage.getItem('lang') == null) {
-                localStorage.setItem('lang', 'en');
+                localStorage.setItem('lang', "2");
             }
             statusBar.styleDefault();
             splashScreen.hide();
@@ -4371,10 +4332,9 @@ var MyApp = /** @class */ (function () {
         var _this = this;
         if (localStorage.getItem("customerid") != null) {
             if (localStorage.getItem("rated") != null) {
-                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid")).subscribe(function (data) {
+                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid"), localStorage.getItem('lang')).subscribe(function (data) {
                     var customerOrders = [];
                     customerOrders = data['orders'];
-                    customerOrders.reverse();
                     if (customerOrders.length != 0) {
                         var order = customerOrders[0];
                         console.log(order);
@@ -4422,12 +4382,12 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_google_maps__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs_tabs__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_diagnostic__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_location_accuracy__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__update_location_update_location__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__profile_profile__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4461,6 +4421,7 @@ var HomePage = /** @class */ (function () {
         var _this = this;
         this.navCtrl = navCtrl;
         this.app = app;
+        this.events = events;
         this.modelCtrl = modelCtrl;
         this.navParams = navParams;
         this.diagnostic = diagnostic;
@@ -4635,6 +4596,7 @@ var HomePage = /** @class */ (function () {
             }
             console.log(localStorage.getItem('locationId'));
             if (this.flag == "main") {
+                this.events.publish('user:locationchangedaction');
                 this.navCtrl.pop();
             }
             else if (this.flag == "intro") {
@@ -4888,7 +4850,7 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_screen_main_screen__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__orders_orders__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__offers_offers__ = __webpack_require__(77);
@@ -4913,7 +4875,7 @@ var TabsPage = /** @class */ (function () {
         this.tab2Root = __WEBPACK_IMPORTED_MODULE_3__orders_orders__["a" /* OrdersPage */];
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__more_list_more_list__["a" /* MoreListPage */];
         this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__offers_offers__["a" /* OffersPage */];
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -4945,7 +4907,7 @@ var TabsPage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OffersPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resturant_info_resturant_info__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__resturant_info_resturant_info__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(5);
@@ -4996,7 +4958,7 @@ var OffersPage = /** @class */ (function () {
     };
     OffersPage.prototype.goResturantInfoFromAd = function (id) {
         var _this = this;
-        this.genrator.getResturantInfoForAds(id).subscribe(function (data) {
+        this.genrator.getResturantInfoForAds(id, localStorage.getItem('lang')).subscribe(function (data) {
             var vendors = data['vendors'];
             var resturantInfo = vendors[0];
             switch (resturantInfo.Settings.ServiceTypeId) {
@@ -5109,7 +5071,7 @@ var SignUpPage = /** @class */ (function () {
             countryCode: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(20), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required])],
             phone: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].maxLength(11), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["f" /* Validators */].minLength(9)])]
         });
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -5227,7 +5189,7 @@ var ShoppingCartPage = /** @class */ (function () {
         this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
         config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
         this.customerLocationName = JSON.parse(localStorage.getItem('locationId'));
-        if (localStorage.getItem('lang') == "en") {
+        if (localStorage.getItem('lang') == "1") {
             this.oriantation = "ltr";
         }
         else {
@@ -5576,7 +5538,7 @@ var ShoppingCartPage = /** @class */ (function () {
     ShoppingCartPage.prototype.getCartItems = function () {
         var _this = this;
         this.showLoading();
-        this.genrator.getShoppingCartItems(localStorage.getItem("customerid")).subscribe(function (data) {
+        this.genrator.getShoppingCartItems(localStorage.getItem("customerid"), localStorage.getItem('lang')).subscribe(function (data) {
             _this.cartItemsList = data['shopping_carts'];
             _this.discountCopuns = data['applied_codes'];
             var cartItem = _this.cartItemsList[0];
@@ -5599,7 +5561,7 @@ var ShoppingCartPage = /** @class */ (function () {
     };
     ShoppingCartPage.prototype.getShoppingCartCount = function (custId) {
         var _this = this;
-        this.genrator.getShoppingCartItems(custId).subscribe(function (data) {
+        this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe(function (data) {
             var items = data['shopping_carts'];
             localStorage.setItem("cartCount", items.length + "");
             if (items.length == 0) {
@@ -6019,12 +5981,17 @@ var IntroScreenPage = /** @class */ (function () {
         this.translate = translate;
         this.viewCtrl = viewCtrl;
         this.langName = "";
-        translate.use(localStorage.getItem('lang'));
-        if (localStorage.getItem('lang') == "ar") {
-            this.langName = "E";
+        if (localStorage.getItem('lang') == "1") {
+            translate.use('en');
         }
         else {
+            translate.use('ar');
+        }
+        if (localStorage.getItem('lang') == "1") {
             this.langName = "ع";
+        }
+        else {
+            this.langName = "E";
         }
     }
     IntroScreenPage.prototype.ionViewDidEnter = function () {
@@ -6069,18 +6036,23 @@ var IntroScreenPage = /** @class */ (function () {
     };
     IntroScreenPage.prototype.onChange = function (segmentButton) {
         this.translate.use(segmentButton.value);
-        localStorage.setItem('lang', segmentButton.value + "");
+        if (segmentButton.value == 'ar') {
+            localStorage.setItem('lang', "2");
+        }
+        else {
+            localStorage.setItem('lang', "1");
+        }
     };
     IntroScreenPage.prototype.toggleIcon = function (getIcon) {
         if (this.langName === 'ع') {
             this.langName = "E";
             this.translate.use("ar");
-            localStorage.setItem('lang', "ar");
+            localStorage.setItem('lang', "2");
         }
         else {
             this.langName = "ع";
             this.translate.use("en");
-            localStorage.setItem('lang', "en");
+            localStorage.setItem('lang', "1");
         }
     };
     IntroScreenPage = __decorate([

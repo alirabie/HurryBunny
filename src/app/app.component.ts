@@ -55,10 +55,10 @@ export class MyApp {
             }
 
             this.listenConnection();
-            translateService.setDefaultLang('en');
+            translateService.setDefaultLang('ar');
 
             if (localStorage.getItem('lang') == null) {
-                localStorage.setItem('lang', 'en');
+                localStorage.setItem('lang', "2");
             }
 
 
@@ -223,12 +223,9 @@ export class MyApp {
     checkLastOrder() {
         if (localStorage.getItem("customerid") != null) {
             if (localStorage.getItem("rated") != null) {
-                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid")).subscribe((data) => {
+                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid"),localStorage.getItem('lang')).subscribe((data) => {
                     let customerOrders = [];
-
                     customerOrders = data['orders'];
-                    customerOrders.reverse();
-
                     if (customerOrders.length != 0) {
 
                         let order = customerOrders[0]
@@ -251,7 +248,6 @@ export class MyApp {
 
         }
     }
-
 
 }
 

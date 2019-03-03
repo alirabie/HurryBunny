@@ -41,7 +41,7 @@ export class OrdersPage {
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public genrator: GenratorProvider, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public trans: TranslateService, public config: Config) {
     config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
-    if (localStorage.getItem('lang') == "en") {
+    if (localStorage.getItem('lang') == "1") {
       this.oriantation = "ltr";
     } else {
       this.oriantation = "rtl";
@@ -69,7 +69,7 @@ export class OrdersPage {
     // });
     // loader.present();
     this.show();
-    return this.genrator.getCustomerOrder(customerId).subscribe((data) => {
+    return this.genrator.getCustomerOrder(customerId,localStorage.getItem('lang')).subscribe((data) => {
       this.customerOrders = data['orders'];
       let orders = [];
       orders = data['orders'];
