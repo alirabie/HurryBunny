@@ -153,6 +153,13 @@ export class ShoppingCartPage {
               img: this.resImage,
             }
 
+            //Send Discount Code
+            let orders = data['orders'];
+            let order = orders['0'];
+            console.log(order);
+            this.sendDiscontCode(order.id);
+
+
             localStorage.setItem("rated", "0");
             console.log(localStorage.getItem("rated"));
 
@@ -236,6 +243,13 @@ export class ShoppingCartPage {
             name: this.resLable,
             img: this.resImage,
           }
+
+          //Send Discount Code
+          let orders = data['orders'];
+          let order = orders['0'];
+          console.log(order);
+          this.sendDiscontCode(order.id);
+
           localStorage.setItem("rated", "0");
           console.log(localStorage.getItem("rated"));
 
@@ -326,6 +340,14 @@ export class ShoppingCartPage {
                     name: this.resLable,
                     img: this.resImage,
                   }
+
+                  //Send Discount Code
+                  let orders = data['orders'];
+                  let order = orders['0'];
+                  console.log(order);
+                  this.sendDiscontCode(order.id);
+
+
                   localStorage.setItem("rated", "0");
                   console.log(localStorage.getItem("rated"));
 
@@ -416,6 +438,13 @@ export class ShoppingCartPage {
                       name: this.resLable,
                       img: this.resImage,
                     }
+
+                    //Send Discount Code
+                    let orders = data['orders'];
+                    let order = orders['0'];
+                    console.log(order);
+                    this.sendDiscontCode(order.id);
+
                     localStorage.setItem("rated", "0");
                     console.log(localStorage.getItem("rated"));
 
@@ -489,7 +518,7 @@ export class ShoppingCartPage {
 
   getCartItems() {
     this.showLoading();
-    this.genrator.getShoppingCartItems(localStorage.getItem("customerid"),localStorage.getItem('lang')).subscribe((data) => {
+    this.genrator.getShoppingCartItems(localStorage.getItem("customerid"), localStorage.getItem('lang')).subscribe((data) => {
       this.cartItemsList = data['shopping_carts'];
       this.discountCopuns = data['applied_codes'];
       let cartItem = this.cartItemsList[0];
@@ -497,6 +526,17 @@ export class ShoppingCartPage {
       if (this.serviceTypeId == "1") {
         this.deliveryees = data.delivery_fees;
       }
+
+      if (this.discountCopuns.length != 0) {
+        let coupon = this.discountCopuns['0'];
+        //Save discount code
+        localStorage.setItem("discountcode", coupon.Key.toUpperCase());
+        console.log(localStorage.getItem("discountcode"));
+      } else {
+        localStorage.removeItem("discountcode");
+        console.log(localStorage.getItem("discountcode"));
+      }
+
 
       console.log(data)
       this.dismissLoading();
@@ -515,7 +555,7 @@ export class ShoppingCartPage {
   }
 
   getShoppingCartCount(custId) {
-    this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
+    this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe((data) => {
       let items = data['shopping_carts'];
       localStorage.setItem("cartCount", items.length + "");
       if (items.length == 0) {
@@ -931,6 +971,9 @@ export class ShoppingCartPage {
 
         this.getCartItems();
         this.discountcopun.controls['code'].setValue("");
+        //Save discount code
+        localStorage.setItem("discountcode", val.code.toUpperCase());
+
         let alert = this.alertCtrl.create({
           title: this.translate.instant('PAGE_TITLE.dilog'),
           subTitle: this.translate.instant('discountdone'),
@@ -961,7 +1004,7 @@ export class ShoppingCartPage {
     this.genrator.RemoveDiscountCoupon(key, localStorage.getItem("customerid")).then((data) => {
 
       if (data['shopping_carts'] != null) {
-
+        localStorage.removeItem("discountcode");
         this.getCartItems()
         let alert = this.alertCtrl.create({
           title: this.translate.instant('PAGE_TITLE.dilog'),
@@ -983,15 +1026,17 @@ export class ShoppingCartPage {
   }
 
 
-  //Collecting Cart Items ids
-  //  getCartItemsIds(){
-  //   this.cartItemsIdsList=[];
-  //   for(let i=0;i<this.cartItemsList.length;i++){
-  //     let cartItem=this.cartItemsList[i];
-  //     this.cartItemsIdsList.push(cartItem.id);
-  //   }
-  //   console.log(this.cartItemsIdsList);
-  // }
+  //Send Discount code to server 
+  sendDiscontCode(orderId) {
+    if (localStorage.getItem("discountcode") != null) {
+      this.genrator.sendDiscountCodeToServer(localStorage.getItem("discountcode"), orderId).then((result) => {
+        console.log(result);
+        localStorage.removeItem("discountcode");
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
 
 
 

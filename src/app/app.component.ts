@@ -174,6 +174,9 @@ export class MyApp {
             await this.fcm.grantPermission();
         }
 
+        localStorage.setItem("FirebaseToken",token);
+
+        console.log("Token : "+localStorage.getItem("FirebaseToken"))
         // return this.saveTokenToFirestore(token)
 
         //Save token any wahere

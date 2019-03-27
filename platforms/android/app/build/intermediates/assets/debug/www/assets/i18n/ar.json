@@ -211,7 +211,10 @@
     "km":"كم",
     "distance":"المسافة",
     "errorLocationDetict":"حدث خطأ فى تحديد موقعك",
-    "branchlocatio":"موقع الفرع على الخريطة"
-
+    "branchlocatio":"موقع الفرع على الخريطة",
+    "dicount":"قيمة الخصم",
+    "cancle":"إلغاء",
+    "clearlastcart":"حذف السلة السابقة",
+    "invalidusername":"رقم الجوال غير صحيح"
 
 }

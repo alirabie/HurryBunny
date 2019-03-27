@@ -113,13 +113,24 @@ export class GenratorProvider {
 
   //Get Resturants 
   getResturants(lat, lng,langId) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat+"&language_id="+langId, { headers: headers });
-    let delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
-    let cacheKey = "vendors"+langId;
-    return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
-      map(res => res.json()  )  );
+    // let headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // let request = this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat+"&language_id="+langId, { headers: headers });
+    // let delayType = 'all'; // this indicates that it should send a new request to the server every time, you can also set it to 'none' which indicates that it should only send a new request when it's expired
+    // let cacheKey = "vendors"+langId;
+    // return this.cache.loadFromDelayedObservable(cacheKey, request, cacheKey).pipe(
+    //   map(res => res.json()  )  );
+
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + "api/restaurants?Longtitude=" + lng + "&Latitude=" + lat+"&language_id="+langId, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
 
   }
 
@@ -461,8 +472,52 @@ export class GenratorProvider {
   }
 
 
+  //Send Discount Coupon to server 
+  sendDiscountCodeToServer(discountCode, orderId) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/order/savediscount?orderId='+orderId+'&discountCouponCode='+discountCode, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
  
  
+
+  //Clear Cart
+  clearCart(customerId) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/shopping_cart_items/clear?customerId=' + customerId, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+
+    // Reorder
+    reorder(orderId) {
+      return new Promise((resolve, reject) => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post(this.url + 'api/order/reorder?OrderId=' + orderId, { headers: headers })
+          .subscribe(res => {
+            resolve(res.json());
+          }, (err) => {
+            reject(err);
+          });
+      });
+  }
+
+  
 
 }
 

@@ -116,7 +116,7 @@ export class MealInfoPage {
 
   getMealInfoo() {
     this.showLoading();
-    return this.genrator.getMealInfo(this.mealId,localStorage.getItem('lang')).subscribe((data) => {
+    return this.genrator.getMealInfo(this.mealId, localStorage.getItem('lang')).subscribe((data) => {
 
       this.dismissLoading();
       this.mealInfo = data['products'];
@@ -190,7 +190,7 @@ export class MealInfoPage {
 
 
   getAddistios() {
-    return this.genrator.getRelatedProducts(this.mealId,localStorage.getItem('lang')).subscribe((data) => {
+    return this.genrator.getRelatedProducts(this.mealId, localStorage.getItem('lang')).subscribe((data) => {
       if (data != null) {
         this.mealAdditions = data['products']
       }
@@ -326,17 +326,26 @@ export class MealInfoPage {
 
             this.showLoading();
 
-          this.addToShoppingCart(cartItem)
+            this.addToShoppingCart(cartItem)
 
 
           } else {
 
 
 
+            //One resturant dialog
             let alert = this.alertCtrl.create({
               title: this.translate.instant('PAGE_TITLE.dilog'),
-              subTitle: this.translate.instant('oneResturant') + localStorage.getItem("resName") + "",
-              buttons: [this.translate.instant('BUTTONS.dissmiss')]
+              subTitle: this.translate.instant('oneResturant'),
+              buttons: [{
+                text: this.translate.instant('clearlastcart'),
+                handler: () => {
+                  this.clearCart(localStorage.getItem("customerid"));
+                }
+              }, {
+                text: this.translate.instant('cancle'),
+                handler: () => { }
+              }]
             });
             alert.present();
 
@@ -387,16 +396,25 @@ export class MealInfoPage {
 
           this.showLoading();
 
-        this.addToShoppingCart(cartItem);
+          this.addToShoppingCart(cartItem);
 
         } else {
 
 
 
+          //One resturant dialog
           let alert = this.alertCtrl.create({
             title: this.translate.instant('PAGE_TITLE.dilog'),
-            subTitle: this.translate.instant('oneResturant') + localStorage.getItem("resName"),
-            buttons: [this.translate.instant('BUTTONS.dissmiss')]
+            subTitle: this.translate.instant('oneResturant'),
+            buttons: [{
+              text: this.translate.instant('clearlastcart'),
+              handler: () => {
+                this.clearCart(localStorage.getItem("customerid"));
+              }
+            }, {
+              text: this.translate.instant('cancle'),
+              handler: () => { }
+            }]
           });
           alert.present();
 
@@ -416,10 +434,22 @@ export class MealInfoPage {
 
 
 
+  clearCart(customerId) {
+    this.genrator.clearCart(customerId).then((reult) => {
+      localStorage.removeItem("resId");
+      localStorage.removeItem("branchId");
+      localStorage.setItem("resName", "");
+      localStorage.setItem("deliveryFees", "0");
+
+      this.addToCart();
+    }, (err) => {
+      alert(err);
+    });
+  }
 
 
   getShoppingCartCount(custId) {
-    this.genrator.getShoppingCartItems(custId,localStorage.getItem('lang')).subscribe((data) => {
+    this.genrator.getShoppingCartItems(custId, localStorage.getItem('lang')).subscribe((data) => {
       let items = data['shopping_carts'];
       localStorage.setItem("cartCount", items.length);
 
@@ -447,32 +477,30 @@ export class MealInfoPage {
 
 
 
-  addToShoppingCart(cartItem){
+  addToShoppingCart(cartItem) {
 
-    
+    if (this.branchId != null) {
 
-    if(this.branchId!=null){
-
-      if(localStorage.getItem("branchId")==null || localStorage.getItem("branchId")==this.branchId ){
+      if (localStorage.getItem("branchId") == null || localStorage.getItem("branchId") == this.branchId) {
 
         this.genrator.addToCart(cartItem).then((result) => {
           if (result['shopping_carts'] != null) {
             console.log(result);
-    
+
             localStorage.setItem("resName", this.resturantName);
             console.log("goooooooooooooooooooggg" + localStorage.getItem("resName"))
-    
+
             localStorage.setItem("branchId", this.branchId);
-    
+
             if (JSON.parse(this.navParams.get("resturantSettings")) != null) {
               let settings = JSON.parse(this.navParams.get("resturantSettings"));
               localStorage.setItem("deliveryFees", settings.DeliveryFees);
             } else {
               localStorage.setItem("deliveryFees", "0");
             }
-    
+
             this.navCtrl.pop();
-    
+
             let alert = this.alertCtrl.create({
               title: this.translate.instant('PAGE_TITLE.dilog'),
               subTitle: this.translate.instant('ADEDD'),
@@ -482,8 +510,8 @@ export class MealInfoPage {
                   text: this.translate.instant('CONTINE'),
                   handler: () => {
                     //ٌResume Shopping
-    
-    
+
+
                     console.log(localStorage.getItem("cartCount"))
                     //Update cart count for badge
                     this.getShoppingCartCount(localStorage.getItem("customerid"));
@@ -492,9 +520,9 @@ export class MealInfoPage {
                 {
                   text: this.translate.instant('END'),
                   handler: () => {
-    
+
                     //Go to shopping cart
-    
+
                     this.navCtrl.push(ShoppingCartPage, {
                       resName: this.resturantName,
                       resImage: this.resImage,
@@ -504,14 +532,14 @@ export class MealInfoPage {
                       resturantId: this.resturantId
                     });
                     this.getShoppingCartCount(localStorage.getItem("customerid"));
-    
+
                   }
                 }
               ]
             });
             alert.present();
-    
-    
+
+
             this.dismissLoading();
           }
         }, (err) => {
@@ -526,94 +554,103 @@ export class MealInfoPage {
           alert.present();
         });
 
-      }else{
+      } else {
         this.dismissLoading();
+                //One resturant dialog
+                let alert = this.alertCtrl.create({
+                  title: this.translate.instant('PAGE_TITLE.dilog'),
+                  subTitle: this.translate.instant('oneResturant'),
+                  buttons: [{
+                    text: this.translate.instant('clearlastcart'),
+                    handler: () => {
+                      this.clearCart(localStorage.getItem("customerid"));
+                    }
+                  }, {
+                    text: this.translate.instant('cancle'),
+                    handler: () => { }
+                  }]
+                });
+                alert.present();
+
+      }
+
+      this.dismissLoading();
+
+
+    } else {
+
+
+
+      this.genrator.addToCart(cartItem).then((result) => {
+        if (result['shopping_carts'] != null) {
+          console.log(result);
+
+          localStorage.setItem("resName", this.resturantName);
+          console.log("goooooooooooooooooooggg" + localStorage.getItem("resName"))
+
+          localStorage.setItem("branchId", this.branchId);
+
+          if (JSON.parse(this.navParams.get("resturantSettings")) != null) {
+            let settings = JSON.parse(this.navParams.get("resturantSettings"));
+            localStorage.setItem("deliveryFees", settings.DeliveryFees);
+          } else {
+            localStorage.setItem("deliveryFees", "0");
+          }
+
+          this.navCtrl.pop();
+
+          let alert = this.alertCtrl.create({
+            title: this.translate.instant('PAGE_TITLE.dilog'),
+            subTitle: this.translate.instant('ADEDD'),
+            enableBackdropDismiss: false,
+            buttons: [
+              {
+                text: this.translate.instant('CONTINE'),
+                handler: () => {
+                  //ٌResume Shopping
+
+
+                  console.log(localStorage.getItem("cartCount"))
+                  //Update cart count for badge
+                  this.getShoppingCartCount(localStorage.getItem("customerid"));
+                }
+              },
+              {
+                text: this.translate.instant('END'),
+                handler: () => {
+
+                  //Go to shopping cart
+
+                  this.navCtrl.push(ShoppingCartPage, {
+                    resName: this.resturantName,
+                    resImage: this.resImage,
+                    resdescription: this.resDiscription,
+                    resServiceTypeId: this.serviceTypeId,
+                    menumunCharge: this.menumumCharge,
+                    resturantId: this.resturantId
+                  });
+                  this.getShoppingCartCount(localStorage.getItem("customerid"));
+
+                }
+              }
+            ]
+          });
+          alert.present();
+
+
+          this.dismissLoading();
+        }
+      }, (err) => {
+        this.dismissLoading();
+        console.log(err._body);
+        let errString = JSON.stringify(err._body);
         let alert = this.alertCtrl.create({
           title: this.translate.instant('PAGE_TITLE.dilog'),
-          subTitle: this.translate.instant('oneResturant') + localStorage.getItem("resName") + "",
+          subTitle: errString,
           buttons: [this.translate.instant('BUTTONS.dissmiss')]
         });
         alert.present();
-
-      }
-
-    this.dismissLoading();
-
-
-    }else{
-      
-   
-
-    this.genrator.addToCart(cartItem).then((result) => {
-      if (result['shopping_carts'] != null) {
-        console.log(result);
-
-        localStorage.setItem("resName", this.resturantName);
-        console.log("goooooooooooooooooooggg" + localStorage.getItem("resName"))
-
-        localStorage.setItem("branchId", this.branchId);
-
-        if (JSON.parse(this.navParams.get("resturantSettings")) != null) {
-          let settings = JSON.parse(this.navParams.get("resturantSettings"));
-          localStorage.setItem("deliveryFees", settings.DeliveryFees);
-        } else {
-          localStorage.setItem("deliveryFees", "0");
-        }
-
-        this.navCtrl.pop();
-
-        let alert = this.alertCtrl.create({
-          title: this.translate.instant('PAGE_TITLE.dilog'),
-          subTitle: this.translate.instant('ADEDD'),
-          enableBackdropDismiss: false,
-          buttons: [
-            {
-              text: this.translate.instant('CONTINE'),
-              handler: () => {
-                //ٌResume Shopping
-
-
-                console.log(localStorage.getItem("cartCount"))
-                //Update cart count for badge
-                this.getShoppingCartCount(localStorage.getItem("customerid"));
-              }
-            },
-            {
-              text: this.translate.instant('END'),
-              handler: () => {
-
-                //Go to shopping cart
-
-                this.navCtrl.push(ShoppingCartPage, {
-                  resName: this.resturantName,
-                  resImage: this.resImage,
-                  resdescription: this.resDiscription,
-                  resServiceTypeId: this.serviceTypeId,
-                  menumunCharge: this.menumumCharge,
-                  resturantId: this.resturantId
-                });
-                this.getShoppingCartCount(localStorage.getItem("customerid"));
-
-              }
-            }
-          ]
-        });
-        alert.present();
-
-
-        this.dismissLoading();
-      }
-    }, (err) => {
-      this.dismissLoading();
-      console.log(err._body);
-      let errString = JSON.stringify(err._body);
-      let alert = this.alertCtrl.create({
-        title: this.translate.instant('PAGE_TITLE.dilog'),
-        subTitle: errString,
-        buttons: [this.translate.instant('BUTTONS.dissmiss')]
       });
-      alert.present();
-    });
+    }
   }
-}
 }

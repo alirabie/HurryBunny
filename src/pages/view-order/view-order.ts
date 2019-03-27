@@ -306,6 +306,28 @@ export class ViewOrderPage {
       console.log(err);
     });
 
+//     this.showLoading();
+//     this.genrator.reorder(this.orderId).then((data) => {
+//       if (data['orders'] != null) {
+//         let alert = this.alertCtrl.create({
+//           title: this.trans.instant('PAGE_TITLE.dilog'),
+//           subTitle: this.trans.instant('reorderdone'),
+//           buttons: [this.trans.instant('BUTTONS.dissmiss')]
+//         });
+//         alert.present();
+//         this.navCtrl.pop();
+//       }
+//       this.dismissLoading();
+//     }, (err) => {
+//       this.dismissLoading();
+//       let alert = this.alertCtrl.create({
+//         title: this.trans.instant('PAGE_TITLE.dilog'),
+//         subTitle: err,
+//         buttons: [this.trans.instant('BUTTONS.dissmiss')]
+//       });
+//       alert.present();
+//       console.log(err);
+// });
 
   }
 

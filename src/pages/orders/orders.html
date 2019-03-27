@@ -34,7 +34,8 @@
                         <ion-item>
                             <p>
                                 <span>{{'orderno' | translate}}# {{order.id}}</span> |
-                                <span>{{order.order_total}} {{order.customer_currency_code}}</span>
+                                <span *ngIf="order.order_discount!=0">{{order.order_total_after_discount}} {{order.customer_currency_code}}</span>
+                                <span *ngIf="order.order_discount==0">{{order.order_total}} {{order.customer_currency_code}}</span>
                             </p>
                             <p>{{'from' | translate}} {{order.vendor_name}}</p>
                             <p>{{ order.created_on_utc | date :'MM/dd/yyyy hh:mm a'}}</p>

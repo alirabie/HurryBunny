@@ -113,6 +113,10 @@ export class HomePage {
   }
 
 
+  ionViewDidEnter() {
+    this.loadMap();
+  }
+ 
 
   // ngOnInit() {
   //   this.loadMap();
@@ -125,8 +129,7 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.menu.enable(false);
-    // this.loadMap();
-
+    this.loadMap();
   }
 
 
@@ -165,8 +168,7 @@ export class HomePage {
 
 
   loadMap() {
-
-    this.geo.getCurrentPosition().then((resp) => {
+    this.geo.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       this.selectedLat = resp.coords.latitude;
@@ -276,6 +278,7 @@ export class HomePage {
         this.app.getRootNav().push(TabsPage).then(() => {
           // first we find the index of the current view controller:
           const index = this.viewCtrl.index;
+          this.events.publish('user:locationchangedaction');
           // then we remove it from the navigation stack
           this.navCtrl.remove(index);
         });

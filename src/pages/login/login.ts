@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Platform , IonicPage, NavController, NavParams, LoadingController, AlertController, Config , ViewController , App } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams, LoadingController, AlertController, Config, ViewController, App } from 'ionic-angular';
 import { GenratorProvider } from '../../providers/genrator/genrator';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,11 +15,11 @@ import { Events } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
- 
+
   data: any;
   public signIn: FormGroup;
   oriantation = "";
-  cntryCode="";
+  cntryCode = "";
 
   constructor(
     public navCtrl: NavController,
@@ -29,21 +29,21 @@ export class LoginPage {
     public translate: TranslateService,
     public alertCtrl: AlertController,
     private _FB: FormBuilder,
-    config: Config , 
-    public viewCtrl : ViewController ,
-    public events : Events ,
-    public app : App,
-    platform : Platform) {
+    config: Config,
+    public viewCtrl: ViewController,
+    public events: Events,
+    public app: App,
+    platform: Platform) {
 
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
-    if(localStorage.getItem('lang')=="1"){
-      this.oriantation="ltr";
-    }else{
-      this.oriantation="rtl";
+    if (localStorage.getItem('lang') == "1") {
+      this.oriantation = "ltr";
+    } else {
+      this.oriantation = "rtl";
     }
     this.signIn = _FB.group({
       phone: ['', Validators.compose([Validators.maxLength(20), Validators.required])],
-      countryCode : ['', Validators.compose([Validators.maxLength(20), Validators.required])]
+      countryCode: ['', Validators.compose([Validators.maxLength(20), Validators.required])]
     });
 
   }
@@ -54,12 +54,12 @@ export class LoginPage {
   doLogin(val) {
 
 
-    let loginData ={
-      	Phone : val.phone , Password : val.phone
+    let loginData = {
+      Phone: val.phone, Password: val.phone
     }
 
     // alert(JSON.stringify(loginData))
-          
+
     let loader = this.loader.create({
       content: this.translate.instant('LOADING'),
     });
@@ -83,12 +83,13 @@ export class LoginPage {
 
         this.events.publish('user:login');
         this.app.getRootNav().push(HomePage, {
-          flag:"intro"}).then(() => {
-                // first we find the index of the current view controller:
-                const index = this.viewCtrl.index;
-                // then we remove it from the navigation stack
-                this.navCtrl.remove(index);
-              });
+          flag: "intro"
+        }).then(() => {
+          // first we find the index of the current view controller:
+          const index = this.viewCtrl.index;
+          // then we remove it from the navigation stack
+          this.navCtrl.remove(index);
+        });
 
 
       } else {
@@ -103,16 +104,12 @@ export class LoginPage {
     }, (err) => {
       loader.dismiss();
       let alert = this.alertCtrl.create({
-        title: "",
-        subTitle: err,
+        title: this.translate.instant('PAGE_TITLE.dilog'),
+        subTitle: this.translate.instant('invalidusername'),
         buttons: [this.translate.instant('BUTTONS.dissmiss')]
       });
       alert.present();
-
     });
-
-
-
   }
 
 

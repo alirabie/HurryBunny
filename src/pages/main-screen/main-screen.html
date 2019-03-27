@@ -157,7 +157,7 @@
   <ion-list *ngIf="serviceType==2">
 
       <ion-item [color]="even? 'light' : 'whiteer'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"
-        (click)="goResturantInfo(resturant.id,resturant.branchid,getDistance(resturant.bounds))">
+        (click)="goResturantInfo(resturant.id,resturant.branchid,resturant.bounds)">
         <ion-thumbnail item-start>
           <!--<img [src]="resturant.profile_image">-->
           <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />
@@ -180,7 +180,7 @@
         
           <p class="settings" *ngIf="serviceType==2">
             <small class="settingsname">{{'distance' | translate}}</small>
-            <small>{{getDistance(resturant.bounds)}} {{'km' | translate}}</small>
+            <small>{{resturant.bounds}} {{'km' | translate}}</small>
           </p>
           |
           <p class="settings" *ngIf="serviceType==2">

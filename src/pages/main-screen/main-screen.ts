@@ -84,6 +84,13 @@ export class MainScreenPage {
 
   ionViewDidEnter() {
 
+    this.serviceType = "1";
+    this.getResturantsByDeliveryType(1);
+    this.getAds();
+
+    //*************************** */
+
+
     this.events.subscribe('cart:updated', () => {
       this.setCartCount();
       // this.serviceType="2";
@@ -160,7 +167,7 @@ export class MainScreenPage {
   getResturants() {
     this.show();
 
-    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).subscribe((data) => {
+    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).then((data) => {
 
 
       this.resturants = data['vendors'];
@@ -193,7 +200,7 @@ export class MainScreenPage {
 
     console.log("lat " + this.customerLocation.location.latitude);
     console.log("lng " + this.customerLocation.location.longtitude);
-    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).subscribe((data) => {
+    return this.genrator.getResturants(this.customerLocation.location.latitude, this.customerLocation.location.longtitude,localStorage.getItem('lang')).then((data) => {
       this.resturants = [];
       this.resturansCopy = [];
       let vendors = data['vendors'];
@@ -214,7 +221,7 @@ export class MainScreenPage {
                   branchid: branch.id,
                   lat: branch.latitude,
                   lng: branch.longtitude,
-                  bounds: branch.bounds,
+                  bounds: this.getDistance(branch.bounds),
                   addressid: vendor.addressid,
                   rating: vendor.rating,
                   address: vendor.address,
@@ -225,17 +232,18 @@ export class MainScreenPage {
                   OpeningHours: vendor.OpeningHours,
                   Branches: []
                 }
-
-
-
                 this.resturants.push(updatedVendor);
-
               }
+
 
               // this.resturants.push(vendor);
             } else {
               this.resturants.push(vendor);
             }
+
+            this.resturants.sort(function (a, b) {
+              return a.bounds - b.bounds;
+            });
 
           }
 

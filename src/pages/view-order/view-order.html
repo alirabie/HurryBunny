@@ -128,15 +128,15 @@
                         <td></td>
                         <td class="price">{{order.delivery_fees}}</td>
                     </tr>
-                    <tr *ngFor="let discount of order.applied_codes">
-                        <td>{{'dicountcopun' | translate}}</td>
-                        <td></td>
-                        <td class="price">{{discount.Value}}</td>
-                    </tr>
                     <tr>
                         <td>{{'total' | translate}}</td>
                         <td></td>
                         <td class="price">{{order.order_total}}</td>
+                    </tr>
+                    <tr *ngIf="order.order_discount!=0">
+                        <td>{{'dicount' | translate}}</td>
+                        <td></td>
+                        <td class="price">{{order.order_discount}}</td>
                     </tr>
                 </tfoot>
 
@@ -167,7 +167,11 @@
             <!-- <p>SubTotal {{order.order_subtotal_incl_tax}}{{order.customer_currency_code}}</p> -->
             <!-- </ion-item> -->
             <ion-row class="allcash">
-                <p>
+                <p *ngIf="order.order_discount!=0">
+                    <small>{{'amountreq' | translate}}</small> {{order.order_total_after_discount}}
+                    <small>{{order.customer_currency_code}}</small>
+                </p>
+                <p *ngIf="order.order_discount==0">
                     <small>{{'amountreq' | translate}}</small> {{order.order_total}}
                     <small>{{order.customer_currency_code}}</small>
                 </p>
