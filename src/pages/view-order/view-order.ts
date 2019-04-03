@@ -89,7 +89,7 @@ export class ViewOrderPage {
   //Get Order Details
   getOrderDetails(orderId) {
     this.showLoading();
-    return this.genrator.getOrderDetails(orderId,localStorage.getItem('lang')).subscribe((data) => {
+    return this.genrator.getOrderDetails(orderId, localStorage.getItem('lang')).subscribe((data) => {
       this.orderDetalis = data['orders'];
       let orderItem = this.orderDetalis[0];
 
@@ -284,16 +284,16 @@ export class ViewOrderPage {
 
   reOrder() {
     this.showLoading();
-    this.genrator.changeOrderStatus(this.orderId, 10).then((data) => {
-
-      let alert = this.alertCtrl.create({
-        title: this.trans.instant('PAGE_TITLE.dilog'),
-        subTitle: this.trans.instant('reorderdone'),
-        buttons: [this.trans.instant('BUTTONS.dissmiss')]
-      });
-      alert.present();
-      this.getOrderDetails(this.orderId);
-
+    this.genrator.reorder(this.orderId).then((data) => {
+      if (data['orders'] != null) {
+        let alert = this.alertCtrl.create({
+          title: this.trans.instant('PAGE_TITLE.dilog'),
+          subTitle: this.trans.instant('reorderdone'),
+          buttons: [this.trans.instant('BUTTONS.dissmiss')]
+        });
+        alert.present();
+        this.navCtrl.pop();
+      }
       this.dismissLoading();
     }, (err) => {
       this.dismissLoading();
@@ -305,30 +305,6 @@ export class ViewOrderPage {
       alert.present();
       console.log(err);
     });
-
-//     this.showLoading();
-//     this.genrator.reorder(this.orderId).then((data) => {
-//       if (data['orders'] != null) {
-//         let alert = this.alertCtrl.create({
-//           title: this.trans.instant('PAGE_TITLE.dilog'),
-//           subTitle: this.trans.instant('reorderdone'),
-//           buttons: [this.trans.instant('BUTTONS.dissmiss')]
-//         });
-//         alert.present();
-//         this.navCtrl.pop();
-//       }
-//       this.dismissLoading();
-//     }, (err) => {
-//       this.dismissLoading();
-//       let alert = this.alertCtrl.create({
-//         title: this.trans.instant('PAGE_TITLE.dilog'),
-//         subTitle: err,
-//         buttons: [this.trans.instant('BUTTONS.dissmiss')]
-//       });
-//       alert.present();
-//       console.log(err);
-// });
-
   }
 
 
@@ -338,7 +314,7 @@ export class ViewOrderPage {
       var coordsArray = bounds.split(",");
       let lat = localStorage.getItem("userLat");
       let lng = localStorage.getItem("userLng");
-     console.log(lat,lng);
+      console.log(lat, lng);
       this.launchNavigator.navigate([parseFloat(coordsArray[0]), parseFloat(coordsArray[1])], {
         start: lat + "," + lng
       });

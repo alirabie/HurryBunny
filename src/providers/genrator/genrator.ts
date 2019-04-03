@@ -12,7 +12,7 @@ import { retryWhen } from 'rxjs/operators';
 export class GenratorProvider {
 
   ProductionURL = "https://www.hurrybunny.com/";
-  devlomentURL = "https://hurrybunny.appsmatic.net/";
+  devlomentURL = "http://hurrybunny.appsmatic.net/";
 
   private url;
 

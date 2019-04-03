@@ -1,19 +1,19 @@
-#Wed Mar 27 18:40:34 EET 2019
+#Wed Apr 03 20:23:00 EET 2019
 renamed.5=classes6.dex
 renamed.4=classes5.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.5=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\74
-base.4=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\72
-base.3=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\69
-base.2=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\70
-base.1=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\73
-base.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\71
-file.5=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\74\\classes.dex
-file.4=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\72\\classes.dex
-file.3=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\69\\classes.dex
-file.2=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\70\\classes.dex
-file.1=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\73\\classes.dex
-file.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\71\\classes.dex
+base.5=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\91
+base.4=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\89
+base.3=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\90
+base.2=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\93
+base.1=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\88
+base.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\92
+file.5=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\91\\classes.dex
+file.4=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\89\\classes.dex
+file.3=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\90\\classes.dex
+file.2=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\93\\classes.dex
+file.1=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\88\\classes.dex
+file.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\92\\classes.dex
