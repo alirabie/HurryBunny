@@ -48,7 +48,7 @@
                     <!--The Main Meal-->
                     <div class="main-order">
                         <h6 class="ordname">
-                            <ion-icon name="ios-close-circle-outline" (click)="delItem(item.id)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{item.product.name}} ({{item.product.price*item.quantity}})&#x200E;</h6>
+                            <ion-icon name="ios-close-circle-outline" (click)="delItem(item.id)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{item.product.name}} ({{item.product.price*item.quantity | number :'2.1-2'}})&#x200E;</h6>
                     </div>
                     <!--The List of Addition-->
                     <ion-list no-lines class="add" *ngIf="item.additions.length != 0">
@@ -56,7 +56,7 @@
                         <ion-item *ngFor="let addition of item.additions">
                             <ion-icon name="ios-close-circle-outline" (click)="delAddition(item,addition.id,item.additions)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{addition.addition_name}}
 
-                            <label *ngIf="addition.price!=0">({{addition.price*addition.quantity}})&#x200E;</label>
+                            <label *ngIf="addition.price!=0">({{addition.price*addition.quantity | number :'2.1-2'}})&#x200E;</label>
                             <label color="primary" *ngIf="addition.price==0">({{'free' | translate}})&#x200E;</label>
 
 
@@ -69,7 +69,7 @@
                             <ion-icon name="ios-close-circle-outline" (click)="delCustomization(item,customiz.id,item.customizations)" style="margin-left: 5px;  margin-right: 5px;"></ion-icon>{{customiz.customization_name}}
 
 
-                            <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity}})&#x200E;</label>
+                            <label *ngIf="customiz.price!=0">(+{{customiz.price*customiz.quantity | number :'2.1-2'}})&#x200E;</label>
                             <label color="primary" *ngIf="customiz.price==0">({{'free' | translate}})&#x200E;</label>
 
                         </ion-item>
@@ -99,7 +99,7 @@
                         </ion-item>
                     </ion-list>
                 </td>
-                <td class="price">{{calcEachItemPrice(item)}}</td>
+                <td class="price">{{calcEachItemPrice(item) | number :'2.1-2'}}</td>
             </tr>
 
         </tbody>

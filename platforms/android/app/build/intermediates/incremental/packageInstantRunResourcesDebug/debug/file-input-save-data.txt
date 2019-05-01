@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Apr 03 20:22:12 EET 2019
+#Tue Apr 30 10:30:50 EET 2019
 20.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 143.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 439.set=ASSET
@@ -135,7 +135,7 @@
 264.set=ASSET
 24.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml
 142.set=ANDROID_RESOURCE
-57.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png
+57.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color-v23\\abc_btn_colored_text_material.xml
 187.set=ASSET
 361.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 440.set=ANDROID_RESOURCE
@@ -185,7 +185,7 @@
 94.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 218.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 415.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png
-277.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_left_mtrl_light.png
+277.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\abc_alert_dialog_button_bar_material.xml
 448.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\assets\\fonts\\noto-sans-bold.ttf
 78.set=ANDROID_RESOURCE
 312.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
@@ -214,7 +214,7 @@
 215.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\20.js.map
 405.set=ANDROID_RESOURCE
 32.set=ASSET
-248.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color\\abc_btn_colored_text_material.xml
+248.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout-v26\\abc_screen_toolbar.xml
 206.set=ASSET
 112.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 145.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -292,7 +292,7 @@
 430.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\common_google_signin_btn_icon_light.xml
 413.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 421.set=ANDROID_RESOURCE
-292.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_ic_search_api_material.xml
+292.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\abc_screen_toolbar.xml
 275.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 446.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 376.set=ANDROID_RESOURCE
@@ -322,7 +322,7 @@
 199.set=ASSET
 29.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 178.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\17.js.map
-349.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_cab_background_top_material.xml
+349.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\common_google_signin_btn_text_light.xml
 452.set=ANDROID_RESOURCE
 350.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 330.set=ANDROID_RESOURCE
@@ -379,7 +379,7 @@
 5.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 233.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\2.js.map
 404.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png
-266.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png
+266.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\xml\\config.xml
 299.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png
 129.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout-v21\\notification_template_icon_group.xml
 13.set=ANDROID_RESOURCE
@@ -469,7 +469,7 @@
 47.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 257.set=ANDROID_RESOURCE
 196.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\notification_template_big_media_narrow_custom.xml
-367.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png
+367.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-v21\\abc_action_bar_item_background_material.xml
 135.set=ASSET
 231.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 433.set=ANDROID_RESOURCE
@@ -567,8 +567,8 @@
 435.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova-plugin-file\\www\\Flags.js
 381.set=ASSET
 25.set=ANDROID_RESOURCE
-118.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png
-28.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png
+118.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\notification_template_lines_media.xml
+28.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_seekbar_track_material.xml
 332.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 194.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 365.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -621,7 +621,7 @@
 188.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 82.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova-plugin-file\\www\\FileSystem.js
 437.set=ANDROID_RESOURCE
-385.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_right_mtrl_light.png
+385.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png
 64.set=ASSET
 315.set=ANDROID_RESOURCE
 4.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png
@@ -930,7 +930,7 @@
 274.set=ASSET
 25.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color\\abc_tint_spinner.xml
 152.set=ASSET
-58.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color-v23\\abc_btn_colored_text_material.xml
+58.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png
 6.set=ANDROID_RESOURCE
 197.set=ANDROID_RESOURCE
 362.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -952,7 +952,7 @@
 4.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 232.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\8.js.map
 403.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova.plugins.diagnostic\\www\\android\\diagnostic.notifications.js
-265.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\xml\\config.xml
+265.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png
 419.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 298.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png
 128.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\uk.co.workingedge.phonegap.plugin.launchnavigator\\www\\android\\launchnavigator.js
@@ -982,7 +982,7 @@
 219.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 416.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-v23\\abc_control_background_material.xml
 208.set=ANDROID_RESOURCE
-278.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\abc_alert_dialog_button_bar_material.xml
+278.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_left_mtrl_light.png
 449.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\abc_screen_content_include.xml
 450.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 10.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
@@ -1015,7 +1015,7 @@
 216.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova-plugin-network-information\\www\\Connection.js
 415.set=ANDROID_RESOURCE
 42.set=ANDROID_RESOURCE
-249.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout-v26\\abc_screen_toolbar.xml
+249.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color\\abc_btn_colored_text_material.xml
 216.set=ASSET
 113.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 310.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_action_previous_item.png
@@ -1101,7 +1101,7 @@
 431.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\color\\abc_primary_text_material_dark.xml
 414.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 431.set=ANDROID_RESOURCE
-293.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\abc_screen_toolbar.xml
+293.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_ic_search_api_material.xml
 276.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 447.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 386.set=ANDROID_RESOURCE
@@ -1151,9 +1151,9 @@
 408.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 371.set=ANDROID_RESOURCE
 15.set=ANDROID_RESOURCE
-117.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_edit_text_material.xml
+117.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png
 294.set=ASSET
-27.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_seekbar_track_material.xml
+27.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png
 331.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 61.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 193.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -1166,7 +1166,7 @@
 107.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png
 3.set=ANDROID_RESOURCE
 194.set=ANDROID_RESOURCE
-17.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\anim\\abc_popup_enter.xml
+17.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png
 141.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 419.set=ANDROID_RESOURCE
 46.set=ANDROID_RESOURCE
@@ -1203,7 +1203,7 @@ count=459
 187.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 81.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\14.js.map
 427.set=ANDROID_RESOURCE
-384.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png
+384.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_right_mtrl_light.png
 54.set=ASSET
 305.set=ASSET
 3.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png
@@ -1263,7 +1263,7 @@ count=459
 48.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 267.set=ANDROID_RESOURCE
 197.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout-v16\\notification_template_custom_big.xml
-368.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-v21\\abc_action_bar_item_background_material.xml
+368.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png
 145.set=ASSET
 232.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 443.set=ASSET
@@ -1328,7 +1328,7 @@ count=459
 285.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\cordova-plugin-googlemaps\\www\\Polygon.js
 456.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_switch_track_mtrl_alpha.9.png
 439.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-16.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png
+16.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\anim\\abc_popup_enter.xml
 148.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\mipmap-ldpi-v4\\icon.png
 319.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\anim\\abc_slide_in_bottom.xml
 320.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
@@ -1360,12 +1360,12 @@ count=459
 408.set=ANDROID_RESOURCE
 391.set=ASSET
 35.set=ANDROID_RESOURCE
-119.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\notification_template_lines_media.xml
+119.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_edit_text_material.xml
 29.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\plugins\\uk.co.workingedge.phonegap.plugin.launchnavigator\\www\\localforage.v1.5.0.min.js
 209.set=ANDROID_RESOURCE
 30.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 333.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
-350.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\common_google_signin_btn_text_light.xml
+350.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\drawable\\abc_cab_background_top_material.xml
 195.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 366.base=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 213.file=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\build\\13.js.map

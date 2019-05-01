@@ -38,6 +38,7 @@
                                 <span *ngIf="order.order_discount==0">{{order.order_total}} {{order.customer_currency_code}}</span>
                             </p>
                             <p>{{'from' | translate}} {{order.vendor_name}}</p>
+                            <p>{{order.branch_name}} <br></p>
                             <p>{{ order.created_on_utc | date :'MM/dd/yyyy hh:mm a'}}</p>
                             <!-- <p *ngIf="order.service_type_id==2">PickUp</p>
                             <p *ngIf="order.service_type_id==1">Dlivery</p> -->

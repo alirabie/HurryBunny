@@ -23,6 +23,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.6.0.aar\\d99880aa9a2877ee4db17d976359fbb1\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "176",
+                        "endColumns": "77",
+                        "endOffsets": "253"
+                    },
+                    "to": {
+                        "startLines": "494",
+                        "startColumns": "4",
+                        "startOffsets": "44455",
+                        "endColumns": "81",
+                        "endOffsets": "44532"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-crash-16.2.1.aar\\cb985f294c79e47e0d7d60480afb1b3e\\res\\values\\values.xml",
                     "from": {
                         "startLines": "5",
@@ -37,23 +54,6 @@
                         "startOffsets": "38722",
                         "endColumns": "52",
                         "endOffsets": "38770"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-messaging-17.5.0.aar\\322dd86aa26f092967c46566fb7e4837\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "176",
-                        "endColumns": "77",
-                        "endOffsets": "253"
-                    },
-                    "to": {
-                        "startLines": "494",
-                        "startColumns": "4",
-                        "startOffsets": "44455",
-                        "endColumns": "81",
-                        "endOffsets": "44532"
                     }
                 },
                 {

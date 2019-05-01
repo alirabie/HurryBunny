@@ -1,7 +1,7 @@
 {
     "PAGE_TITLE": {
         "home": "Home",
-        "dilog": "HarryBunny",
+        "dilog": "Hurrybunny",
         "login": "SignIn",
         "menu": "Menu",
         "cart": "Shopping Cart",
@@ -103,7 +103,7 @@
     "ordercreated": "Your Order has been Created Successfully",
     "IN_APP": "Internal app translation",
     "logintoyouraccount": "Login to Your Account",
-    "resturantsList": "Detect your Location",
+    "resturantsList": "Confirm Location",
     "resturants": "Restaurants",
     "orders": "Orders",
     "offers": "Offers",
@@ -216,5 +216,10 @@
     "dicount":"Discount Amount",
     "cancle":"Cancel",
     "clearlastcart":"Clear last Cart",
-    "invalidusername":"Invalid Phone number !"
+    "invalidusername":"Invalid Phone number !",
+    "online":"Open Now",
+    "offline":"Closed Now",
+    "version":"Version",
+    "ordernotes":"Order Notes",
+    "connectionlost":"Check your internet Connection !"
 }

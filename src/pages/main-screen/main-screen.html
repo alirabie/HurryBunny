@@ -157,7 +157,7 @@
   <ion-list *ngIf="serviceType==2">
 
       <ion-item [color]="even? 'light' : 'whiteer'" dir="{{oriantation}}" *ngFor="let resturant of resturants ; let even = even"
-        (click)="goResturantInfo(resturant.id,resturant.branchid,resturant.bounds)">
+        (click)="goResturantInfo(resturant.id,resturant.branchid,resturant.bounds)" [ngClass]="{'disabled' : !resturant.online}">
         <ion-thumbnail item-start>
           <!--<img [src]="resturant.profile_image">-->
           <img *ngIf="resturant.profile_image !=null" [src]="resturant.profile_image" />
@@ -173,7 +173,6 @@
           <ion-badge  class="badge" start left *ngIf="comparebranchId(resturant.branchid)" color="primary">{{badgeValue}}</ion-badge>
         </div>
   
-  
         <!-- <small style="white-space: initial;">{{resturant.description}}</small> -->
   
         <ion-row  class="settingsrow" *ngIf="resturant.Settings!=null">
@@ -187,11 +186,12 @@
             <small class="settingsname">{{'mealpreparetime' | translate}}</small>
             <small>{{resturant.Settings.TimeToPrepareOrder}} min</small>
           </p>
-          |
+
           <p class="settings" *ngIf="serviceType==2">
-            <small class="settingsname">{{'closetime' | translate}}</small>
-            <small *ngIf="resturant.OpeningHours!=null">{{resturant.OpeningHours.TimeTo}}</small>
+            <small class="online" *ngIf="resturant.online">{{'online' | translate}}</small>
+            <small class="offline" *ngIf="!resturant.online">{{'offline' | translate}}</small>
           </p>
+
         </ion-row>
   
       </ion-item>

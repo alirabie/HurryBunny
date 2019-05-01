@@ -178,6 +178,24 @@ width: 20px;
           padding: 5pt;
 }
 
+.online{
+    color:rgb(30, 255, 0) !important;
+    font-size: 9px;
+    margin-inline-start: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.offline{
+    color:rgb(255, 0, 0) !important;
+    font-size: 9px;
+    margin-inline-start: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.disabled {
+    pointer-events:none; //This makes it not clickable
+    opacity:0.6;         //This grays it out to look disabled
+}
+
 .seg-tabs{
     position:relative;
     top:0;

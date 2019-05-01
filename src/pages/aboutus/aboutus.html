@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -9,21 +8,23 @@
 
 
 <ion-content padding>
-    <ion-row>
-        <img src="./assets/imgs/sidemenu-logo.png" />
-    </ion-row>
+  <ion-row>
+    <img src="./assets/imgs/sidemenu-logo.png" />
+  </ion-row>
 
-    <ion-row>
-        <p>
-                {{'abouthurrybunny' | translate}}
-        </p>
-    </ion-row>
-<!-- dsdsd -->
-    <div class="social-group">
-            <h5>{{'youcanjoinus' | translate}}</h5>
-            <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />
-            <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />
-            <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />
-            <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />
-        </div>
+  <ion-row>
+    <p>
+      {{'abouthurrybunny' | translate}}
+    </p>
+  </ion-row>
+  <!-- dsdsd -->
+  <div class="social-group">
+    <h5>{{'youcanjoinus' | translate}}</h5>
+    <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />
+    <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />
+    <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />
+    <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />
+    <!-- Change this every time updated app -->
+    <h5 class="contactus">{{'version' | translate}} 0.1.8</h5>
+  </div>
 </ion-content>

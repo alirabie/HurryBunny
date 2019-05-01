@@ -227,6 +227,7 @@ export class MainScreenPage {
                   address: vendor.address,
                   description: vendor.description,
                   PrictureId: vendor.PrictureId,
+                  online:branch.online,
                   profile_image: vendor.profile_image,
                   Settings: vendor.Settings,
                   OpeningHours: vendor.OpeningHours,
@@ -430,12 +431,14 @@ export class MainScreenPage {
           let branches = [];
           branches = resturantInfo['Branches'];
           let branch = branches[0];
+          if(branch.online){
           this.app.getRootNav().push(ResturantInfoPage, {
             resid: id,
             branchId: branch.id,
             distace: this.getDistance(branch.bounds),
             serviceType: "2"
           });
+        }
           break;
 
         case 3:

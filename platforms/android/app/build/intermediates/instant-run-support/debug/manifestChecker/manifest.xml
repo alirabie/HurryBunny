@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appsmatic.ionic.hurrybunnyy"
     android:hardwareAccelerated="true"
-    android:versionCode="107"
-    android:versionName="0.1.7" >
+    android:versionCode="108"
+    android:versionName="0.1.8" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -143,7 +143,7 @@
         -->
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
-            android:exported="true" >
+            android:exported="false" >
             <intent-filter android:priority="-500" >
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -1,7 +1,7 @@
 {
     "PAGE_TITLE": {
         "home": "الرئيسية",
-        "dilog": "HurryBunny",
+        "dilog": "Hurrybunny",
         "login": "تسجيل الدخول",
         "menu": "القائمة",
         "cart": "سلة المشتريات",
@@ -101,7 +101,7 @@
     "acceptrules": "الموافقة على الشروط والاحكام",
     "accetptplease": "من فضلك قم بالموافقة على الشروط والأحكام",
     "logintoyouraccount": "سجل دخول لحسابك",
-    "resturantsList": "حدد موقعك",
+    "resturantsList": "أكد موقعك",
     "resturants": "المطاعم",
     "orders": "الطلبات",
     "offers": "العروض",
@@ -215,6 +215,10 @@
     "dicount":"قيمة الخصم",
     "cancle":"إلغاء",
     "clearlastcart":"حذف السلة السابقة",
-    "invalidusername":"رقم الجوال غير صحيح"
+    "invalidusername":"رقم الجوال غير صحيح",
+    "online":"مفتوح الان",
+    "offline":"مغلق الان",
+    "version":"إصدار",
+    "ordernotes":"ملاحظات الطلب"
 
 }
