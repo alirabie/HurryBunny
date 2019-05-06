@@ -965,10 +965,9 @@ export class ShoppingCartPage {
   //Apply Discount Coupon
   applyDiscount(val) {
 
-    this.genrator.ApplyDiscountCoupon(val.code.toUpperCase(), localStorage.getItem("customerid")).then((data) => {
+    this.genrator.ApplyDiscountCoupon(val.code.toUpperCase(), localStorage.getItem("customerid")).then((data : any) => {
 
       if (data['shopping_carts'] != null) {
-
         this.getCartItems();
         this.discountcopun.controls['code'].setValue("");
         //Save discount code
@@ -980,7 +979,13 @@ export class ShoppingCartPage {
           buttons: [this.translate.instant('BUTTONS.dissmiss')]
         });
         alert.present();
-
+      }else{
+        let alert = this.alertCtrl.create({
+          title: this.translate.instant('PAGE_TITLE.dilog'),
+          subTitle: data.errors.Coupon,
+          buttons: [this.translate.instant('BUTTONS.dissmiss')]
+        });
+alert.present();
       }
     }, (err) => {
       let alert = this.alertCtrl.create({

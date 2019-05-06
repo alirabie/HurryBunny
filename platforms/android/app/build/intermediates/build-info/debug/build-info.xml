@@ -6,7 +6,7 @@
     density="420dpi"
     format="10"
     plugin-version="3.0.0"
-    timestamp="1556711631656"
+    timestamp="1557148409821"
     token="-1091104461386136693"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -18,10 +18,10 @@
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="316" />
     <task
         name="verifier"
-        duration="0" />
+        duration="481" />
 
     <artifact
         location="F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
@@ -62,7 +62,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1556711631656"
+        timestamp="1557148409821"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\split-apk\debug\dep\dependencies.apk"

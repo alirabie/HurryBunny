@@ -50,10 +50,6 @@
                     <small class="settingsname">{{'deliverytime' | translate}}</small>
                     <small>{{resSettings.DeliveryTime}} min</small>
                 </p>
-                <p class="settings" *ngIf="serviceTypeId==2">
-                    <small class="settingsname">{{'closetime' | translate}}</small>
-                    <small *ngIf="resturantInfo.OpeningHours!=null">{{resturantInfo.OpeningHours.TimeTo}}</small>
-                </p>
             </ion-row>
 
         </ion-item>

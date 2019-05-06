@@ -1,0 +1,224 @@
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\39.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\41.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\15.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\17.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\34.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\36.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\51.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\53.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\1.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\3.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\42.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\44.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\25.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\27.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\32.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\34.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\52.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\54.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\7.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\9.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\intermediate-jars\release\classes.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\0.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\44.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\46.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\4.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\6.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\2.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\4.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\31.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\33.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\5.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\7.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\13.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\15.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\35.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\37.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\20.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\22.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\9.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\11.jar
+--input
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\37.jar
+--output
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\desugar\release\39.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\intermediate-jars\release\classes.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\classes\release
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\0.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\1.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\2.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\3.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\4.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\5.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\6.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\7.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\8.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\9.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\10.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\11.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\12.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\13.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\14.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\15.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\16.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\17.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\18.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\19.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\20.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\21.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\22.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\23.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\24.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\25.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\26.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\27.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\28.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\29.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\30.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\31.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\32.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\33.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\34.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\35.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\36.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\37.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\38.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\39.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\40.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\41.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\42.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\43.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\44.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\45.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\46.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\47.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\48.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\49.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\50.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\51.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\52.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\53.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\54.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\55.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\56.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\57.jar
+--classpath_entry
+F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\transforms\stackFramesFixer\release\58.jar
+--bootclasspath_entry
+F:\Android Devlopments Work\sdk\platforms\android-26\android.jar
+--bootclasspath_entry
+F:\Android Devlopments Work\sdk\platforms\android-26\optional\org.apache.http.legacy.jar
+--bootclasspath_entry
+C:\Program Files\Android\Android Studio\jre\jre\lib\resources.jar
+--bootclasspath_entry
+C:\Program Files\Android\Android Studio\jre\jre\lib\rt.jar
+--bootclasspath_entry
+C:\Program Files\Android\Android Studio\jre\jre\lib\jsse.jar
+--bootclasspath_entry
+C:\Program Files\Android\Android Studio\jre\jre\lib\jce.jar
+--bootclasspath_entry
+C:\Program Files\Android\Android Studio\jre\jre\lib\charsets.jar
+--min_sdk_version
+19
+--nodesugar_try_with_resources_if_needed
+--desugar_try_with_resources_omit_runtime_classes
