@@ -17,7 +17,8 @@ import { ViewController } from 'ionic-angular';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { tap } from 'rxjs/operators';
 import { CacheService } from "ionic-cache";
-
+import { OrdersPage } from '../pages/orders/orders';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 
@@ -39,8 +40,8 @@ export class MyApp {
     showedAlert: boolean;
     confirmAlert;
 
-    constructor(public platform: Platform, public modelCtrl: ModalController, public genrator: GenratorProvider, public tost: ToastController, cache: CacheService, public evnts: Events, statusBar: StatusBar, public fcm: Firebase, public alertCtrl: AlertController, splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public menuCtrl: MenuController, toastCtrl: ToastController) {
-    
+    constructor(public platform: Platform, public localNotifications: LocalNotifications, public modelCtrl: ModalController, public genrator: GenratorProvider, public tost: ToastController, cache: CacheService, public evnts: Events, statusBar: StatusBar, public fcm: Firebase, public alertCtrl: AlertController, splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public menuCtrl: MenuController, toastCtrl: ToastController) {
+
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -163,8 +164,6 @@ export class MyApp {
     async getToken() {
 
         let token;
-
-
         if (this.platform.is('android')) {
             token = await this.fcm.getToken()
         }
@@ -174,23 +173,27 @@ export class MyApp {
             await this.fcm.grantPermission();
         }
 
-        localStorage.setItem("FirebaseToken",token);
+        if (localStorage.getItem('customerid') === null) {
 
-        console.log("Token : "+localStorage.getItem("FirebaseToken"))
-        // return this.saveTokenToFirestore(token)
-
+        } else {
+            this.sendTokenToServer(localStorage.getItem('customerid'), token);
+        }
+        localStorage.setItem("notificationToken", token);
         //Save token any wahere
+        console.log("TOKEN : " + token);
+
     }
 
 
     listenToNotifications() {
+        //Notifications
+        var self = this
         //Notifications
         this.fcm.subscribe('all');
         this.fcm.onNotificationOpen().subscribe(data => {
             if (data.wasTapped) {
                 // alert("Received in background");
             } else {
-
 
                 let messageText: string;
                 if (this.platform.is('android')) {
@@ -201,32 +204,60 @@ export class MyApp {
                     messageText = data.aps.alert;
                 }
 
-                let alert = this.alertCtrl.create({
-                    title: this.translateService.instant('PAGE_TITLE.dilog'),
-                    subTitle: messageText,
-                    buttons: [this.translateService.instant('BUTTONS.dissmiss')]
-                });
-                alert.present();
+                if (localStorage.getItem('customerid') === null) {
 
-
-            };
-        })
-        this.fcm.onTokenRefresh().subscribe(token => {
-            console.log(token);
+                } else {
+                    if (messageText.length != 0) {
+                        let alert = this.alertCtrl.create({
+                            title: this.translateService.instant('PAGE_TITLE.dilog'),
+                            subTitle: messageText,
+                            buttons: [this.translateService.instant('BUTTONS.dissmiss')]
+                        });
+                        alert.present();
+                    }
+                    this.nav.push(OrdersPage);
+                    this.sendLocalNotification(messageText, false);
+                }
+            }
         });
+
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+            if (localStorage.getItem('customerid') === null) {
+
+            } else {
+                this.sendTokenToServer(localStorage.getItem('customerid'), token);
+
+            }
+            localStorage.setItem("notificationToken", token);
+        });
+        //end notifications.
         //end notifications.
 
     }
 
 
+    //Send Local Notification
+    sendLocalNotification(msg, isAndroid: boolean) {
+        // Schedule a single notification
+        this.localNotifications.schedule({
+            title: "SEFERY",
+            text: msg + ""
+        });
+    }
 
-
-
+    sendTokenToServer(customerid, token) {
+        this.genrator.sendNotificationToken(customerid, token).then((data: any) => {
+            console.log("TOKEN SENT : "+JSON.stringify(data));
+        }, (err) => {
+          console.log("TOKEN SEND ERROR "+JSON.stringify(err));
+        });
+    }
 
     checkLastOrder() {
         if (localStorage.getItem("customerid") != null) {
             if (localStorage.getItem("rated") != null) {
-                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid"),localStorage.getItem('lang')).subscribe((data) => {
+                return this.genrator.getCustomerOrderNoCashing(localStorage.getItem("customerid"), localStorage.getItem('lang')).subscribe((data) => {
                     let customerOrders = [];
                     customerOrders = data['orders'];
                     if (customerOrders.length != 0) {

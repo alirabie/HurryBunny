@@ -45,6 +45,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MoreListPage } from '../pages/more-list/more-list';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 
@@ -144,7 +145,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     GenratorProvider,
     Diagnostic,
-    LocationAccuracy
+    LocationAccuracy,
+    LocalNotifications
 
 
   ]

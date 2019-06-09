@@ -81,6 +81,9 @@ export class LoginPage {
         // location.id=this.data.customers[0].id
         // console.log(location);
 
+        //Send notification token to server 
+        this.sendTokenToServer(this.data.customers[0].id, localStorage.getItem("notificationToken"));
+
         this.events.publish('user:login');
         this.app.getRootNav().push(HomePage, {
           flag: "intro"
@@ -117,4 +120,13 @@ export class LoginPage {
     this.navCtrl.push(SignUpPage);
   }
 
+
+
+  sendTokenToServer(customerid, token) {
+    this.genrator.sendNotificationToken(customerid, token).then((data: any) => {
+      console.log("TOKEN SENT : "+JSON.stringify(data));
+    }, (err) => {
+      console.log("TOKEN SEND ERROR "+JSON.stringify(err));
+    });
+  }
 }

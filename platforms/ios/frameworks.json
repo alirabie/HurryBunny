@@ -1,6 +1,6 @@
 {
     "libz.tbd": 3,
-    "CoreLocation.framework": 5,
+    "CoreLocation.framework": 6,
     "WebKit.framework": 1,
     "Accelerate.framework": 1,
     "CoreData.framework": 1,
@@ -17,7 +17,7 @@
     "CoreBluetooth.framework": 1,
     "Photos.framework": 1,
     "AVFoundation.framework": 2,
-    "UserNotifications.framework": 1,
+    "UserNotifications.framework": 2,
     "Contacts.framework": 1,
     "AddressBook.framework": 1,
     "EventKit.framework": 2,

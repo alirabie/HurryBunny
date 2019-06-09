@@ -51,6 +51,9 @@
     },
     "uk.co.workingedge.phonegap.plugin.launchnavigator": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     }
   },
   "dependent_plugins": {
@@ -58,6 +61,9 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
+    },
+    "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunny"
     }
   }

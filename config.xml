@@ -110,6 +110,7 @@
         <variable name="API_KEY_FOR_IOS" value="(API_KEY_FOR_IOS)" />
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="3.2.2" />
+    <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~7.0.0" />
 </widget>

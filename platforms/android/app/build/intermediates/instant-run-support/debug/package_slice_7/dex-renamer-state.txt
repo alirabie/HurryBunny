@@ -1,4 +1,4 @@
-#Mon May 06 15:15:00 EET 2019
-base.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\46
+#Sun Jun 09 15:50:20 EET 2019
+base.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\8
 renamed.0=classes.dex
-file.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\46\\classes.dex
+file.0=F\:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\8\\classes.dex
