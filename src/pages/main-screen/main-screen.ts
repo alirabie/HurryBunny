@@ -135,7 +135,7 @@ export class MainScreenPage {
   }
 
 
-
+  
   loadCartPage() {
     if (localStorage.getItem("customerid") === null) {
       this.navCtrl.push(LoginPage);

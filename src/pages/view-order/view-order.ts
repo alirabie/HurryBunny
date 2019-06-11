@@ -256,8 +256,7 @@ export class ViewOrderPage {
 
   cancelOrder() {
     this.showLoading();
-    this.genrator.changeOrderStatus(this.orderId, 40).then((data) => {
-
+    this.genrator.changeOrderStatus(localStorage.getItem("customerid"), this.orderId, 40).then((data) => {
       let alert = this.alertCtrl.create({
         title: this.trans.instant('PAGE_TITLE.dilog'),
         subTitle: this.trans.instant('ordercanceld'),

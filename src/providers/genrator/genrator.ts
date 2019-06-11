@@ -340,11 +340,11 @@ export class GenratorProvider {
 
 
   //Convert Cart to Order
-  changeOrderStatus(orderId, statusId) {
+  changeOrderStatus(customerId,orderId, statusId) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post(this.url + 'api/order/status?OrderId=' + orderId + "&StatusId=" + statusId, { headers: headers })
+      this.http.post(this.url + 'api/v2/order/status?CustomerId='+customerId+"&OrderId=" + orderId + "&StatusId=" + statusId, { headers: headers })
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {
