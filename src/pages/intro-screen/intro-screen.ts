@@ -55,6 +55,7 @@ export class IntroScreenPage {
           // then we remove it from the navigation stack
           this.navCtrl.remove(index);
         });
+
       // } else {
       //   this.navCtrl.push(TabsPage).then(() => {
       //     // first we find the index of the current view controller:
@@ -63,6 +64,9 @@ export class IntroScreenPage {
       //     this.navCtrl.remove(index);
       //   });
       // }
+
+
+      
       
 
 
