@@ -61,7 +61,7 @@
     "CITY": "City",
     "NHOOD": "District",
     "CAT": "Category",
-    "EMPTY": "No Restaurants",
+    "EMPTY": "No available restaurants near your current area",
     "VIEW": "View",
     "ADEDD": "Order has been Added to Shopping Cart",
     "CONTINE": "Continue",

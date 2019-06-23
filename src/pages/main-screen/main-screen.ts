@@ -247,15 +247,13 @@ export class MainScreenPage {
             });
 
           }
-
-          if (this.resturants.length == 0) {
-            this.empty = true;
-          } else {
-            this.empty = false;
-          }
         }
       }
-
+      if (this.resturants.length == 0) {
+        this.empty = true;
+      } else {
+        this.empty = false;
+      }
       console.log(this.resturants);
 
       this.resturansCopy = this.resturants;
@@ -396,7 +394,7 @@ export class MainScreenPage {
       this.hide();
       let alert = this.alertCrtl.create({
         title: this.translate.instant('PAGE_TITLE.dilog'),
-        subTitle: err,
+        subTitle: "We were unable to show ads. Please try again",
         buttons: [this.translate.instant('BUTTONS.dissmiss')]
       });
       alert.present();
