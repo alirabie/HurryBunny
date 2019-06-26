@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="28"
+    api-level="27"
     build-mode="FULL"
     density="420dpi"
     format="10"
     plugin-version="3.0.0"
-    timestamp="1561279124422"
+    timestamp="1561551911593"
     token="-1091104461386136693"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -62,7 +62,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1561279124422"
+        timestamp="1561551911593"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="F:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\build\intermediates\split-apk\debug\dep\dependencies.apk"

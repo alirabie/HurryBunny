@@ -28,8 +28,8 @@ export class GenratorProvider {
     // } else if (localStorage.getItem('mode') == "Production") {
     //   this.url = this.ProductionURL;
     // }
-
-    this.url = this.devlomentURL;
+    
+    this.url = this.ProductionURL;
 
   }
 
