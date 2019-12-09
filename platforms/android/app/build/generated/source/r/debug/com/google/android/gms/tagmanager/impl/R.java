@@ -8,8 +8,8 @@ package com.google.android.gms.tagmanager.impl;
 
 public final class R {
     public static final class string {
-        public static final int tagmanager_preview_dialog_button = 0x7f0b004c;
-        public static final int tagmanager_preview_dialog_message = 0x7f0b004d;
-        public static final int tagmanager_preview_dialog_title = 0x7f0b004e;
+        public static final int tagmanager_preview_dialog_button = 0x7f0b0054;
+        public static final int tagmanager_preview_dialog_message = 0x7f0b0055;
+        public static final int tagmanager_preview_dialog_title = 0x7f0b0056;
     }
 }

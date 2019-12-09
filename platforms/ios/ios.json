@@ -185,26 +185,26 @@
           ],
           "NSLocationWhenInUseUsageDescription": [
             {
-              "xml": "<string>Required to send machine location.</string>",
+              "xml": "<string>This app requires access to your location when the screen is on and the app is displayed.</string>",
+              "count": 1
+            },
+            {
+              "xml": "<string>your location won't be shared without your permissione , we need your location to detect nearest restaurants of you , and use it if you use delivery service.</string>",
               "count": 1,
               "mode": "merge",
               "id": "config.xml"
-            },
-            {
-              "xml": "<string>This app requires access to your location when the screen is on and the app is displayed.</string>",
-              "count": 1
             }
           ],
           "NSLocationAlwaysUsageDescription": [
             {
-              "xml": "<string>Required to send machine location</string>",
+              "xml": "<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>",
+              "count": 1
+            },
+            {
+              "xml": "<string>your location won't be shared without your permissione , we need your location to detect nearest restaurants of you , and use it if you use delivery service</string>",
               "count": 1,
               "mode": "merge",
               "id": "config.xml"
-            },
-            {
-              "xml": "<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>",
-              "count": 1
             }
           ],
           "LSApplicationQueriesSchemes": [
