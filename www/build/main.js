@@ -1594,7 +1594,7 @@ var UpdateLocationPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactUsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
@@ -1610,39 +1610,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AboutusPage = /** @class */ (function () {
-    function AboutusPage(navCtrl, navParams, trans, config) {
+var ContactUsPage = /** @class */ (function () {
+    function ContactUsPage(navCtrl, navParams, trans, config) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.trans = trans;
         this.config = config;
         config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
     }
-    AboutusPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AboutusPage');
+    ContactUsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ContactUsPage');
     };
-    AboutusPage.prototype.goFacebook = function () {
-        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goTwitter = function () {
-        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goGooglePlus = function () {
-        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage.prototype.goInsta = function () {
-        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
-    };
-    AboutusPage = __decorate([
+    ContactUsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-aboutus',template:/*ion-inline-start:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-row>\n    <img src="./assets/imgs/sidemenu-logo.png" />\n  </ion-row>\n\n  <ion-row>\n    <p>\n      {{\'abouthurrybunny\' | translate}}\n    </p>\n  </ion-row>\n  <!-- dsdsd -->\n  <div class="social-group">\n    <h5>{{\'youcanjoinus\' | translate}}</h5>\n    <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n    <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n    <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n    <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n    <!-- Change this every time updated app -->\n    <h5 class="contactus">{{\'version\' | translate}} 0.2.0</h5>\n  </div>\n</ion-content>'/*ion-inline-end:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
+            selector: 'page-contact-us',template:/*ion-inline-start:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.contactus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <form>\n        <div class="social-group">\n            <h5>You Can Join Us On</h5>\n            <img src="./assets/imgs/social/face.png" />\n            <img src="./assets/imgs/social/tw.png" />\n            <img src="./assets/imgs/social/google.png" />\n            <img src="./assets/imgs/social/instg.png" />\n        </div>\n        <br />\n       <h5>Or Send Your Message Here</h5> \n        <ion-item>\n            <ion-input type="text" name="name" placeholder="Your Name"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-input type="text" name="title" placeholder="Subject Title"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-textarea name="description" placeholder="Your Message"></ion-textarea>\n        </ion-item>\n        <br />\n        <button ion-button type="submit" block>Submit</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
-    ], AboutusPage);
-    return AboutusPage;
+    ], ContactUsPage);
+    return ContactUsPage;
 }());
 
-//# sourceMappingURL=aboutus.js.map
+//# sourceMappingURL=contact-us.js.map
 
 /***/ }),
 
@@ -2628,8 +2616,8 @@ var ViewOrderPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__offers_offers__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__orders_orders__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__settings_settings__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__aboutus_aboutus__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__contact_us_contact_us__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_genrator_genrator__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ionic_cache__ = __webpack_require__(91);
@@ -2867,7 +2855,7 @@ var SettingsPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactUsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutusPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(12);
@@ -2883,27 +2871,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ContactUsPage = /** @class */ (function () {
-    function ContactUsPage(navCtrl, navParams, trans, config) {
+var AboutusPage = /** @class */ (function () {
+    function AboutusPage(navCtrl, navParams, trans, config) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.trans = trans;
         this.config = config;
         config.set('ios', 'backButtonText', this.trans.instant('BUTTONS.back'));
     }
-    ContactUsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ContactUsPage');
+    AboutusPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AboutusPage');
     };
-    ContactUsPage = __decorate([
+    AboutusPage.prototype.goFacebook = function () {
+        window.open('https://www.facebook.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goTwitter = function () {
+        window.open('https://twitter.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goGooglePlus = function () {
+        window.open('https://plus.google.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage.prototype.goInsta = function () {
+        window.open('https://www.instagram.com/', '_blank', 'location=no,closebuttoncaption="close"');
+    };
+    AboutusPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-contact-us',template:/*ion-inline-start:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.contactus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <form>\n        <div class="social-group">\n            <h5>You Can Join Us On</h5>\n            <img src="./assets/imgs/social/face.png" />\n            <img src="./assets/imgs/social/tw.png" />\n            <img src="./assets/imgs/social/google.png" />\n            <img src="./assets/imgs/social/instg.png" />\n        </div>\n        <br />\n       <h5>Or Send Your Message Here</h5> \n        <ion-item>\n            <ion-input type="text" name="name" placeholder="Your Name"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-input type="text" name="title" placeholder="Subject Title"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-textarea name="description" placeholder="Your Message"></ion-textarea>\n        </ion-item>\n        <br />\n        <button ion-button type="submit" block>Submit</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\contact-us\contact-us.html"*/,
+            selector: 'page-aboutus',template:/*ion-inline-start:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'SIDEMENU.aboutus\' | translate }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-row>\n    <img src="./assets/imgs/sidemenu-logo.png" />\n  </ion-row>\n\n  <ion-row>\n    <p>\n      {{\'abouthurrybunny\' | translate}}\n    </p>\n  </ion-row>\n  <!-- dsdsd -->\n  <div class="social-group">\n    <h5>{{\'youcanjoinus\' | translate}}</h5>\n    <img (click)="goFacebook()" src="./assets/imgs/social/face.png" />\n    <img (click)="goTwitter()" src="./assets/imgs/social/tw.png" />\n    <img (click)="goGooglePlus()" src="./assets/imgs/social/google.png" />\n    <img (click)="goInsta()" src="./assets/imgs/social/instg.png" />\n    <!-- Change this every time updated app -->\n    <h5 class="contactus">{{\'version\' | translate}} 0.2.0</h5>\n  </div>\n</ion-content>'/*ion-inline-end:"E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\src\pages\aboutus\aboutus.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]])
-    ], ContactUsPage);
-    return ContactUsPage;
+    ], AboutusPage);
+    return AboutusPage;
 }());
 
-//# sourceMappingURL=contact-us.js.map
+//# sourceMappingURL=aboutus.js.map
 
 /***/ }),
 
@@ -3194,7 +3194,7 @@ webpackEmptyAsyncContext.id = 224;
 
 var map = {
 	"../pages/aboutus/aboutus.module": [
-		556,
+		559,
 		20
 	],
 	"../pages/account-active/account-active.module": [
@@ -3202,15 +3202,15 @@ var map = {
 		19
 	],
 	"../pages/contact-us/contact-us.module": [
-		559,
+		556,
 		18
 	],
 	"../pages/intro-screen/intro-screen.module": [
-		558,
+		560,
 		17
 	],
 	"../pages/login/login.module": [
-		560,
+		558,
 		16
 	],
 	"../pages/main-screen/main-screen.module": [
@@ -3222,27 +3222,27 @@ var map = {
 		14
 	],
 	"../pages/meals-reviews/meals-reviews.module": [
-		561,
+		565,
 		13
 	],
 	"../pages/more-list/more-list.module": [
-		562,
+		561,
 		12
 	],
 	"../pages/offers/offers.module": [
-		563,
+		562,
 		11
 	],
 	"../pages/order-data/order-data.module": [
-		564,
+		563,
 		10
 	],
 	"../pages/orders/orders.module": [
-		567,
+		564,
 		9
 	],
 	"../pages/pickup-service/pickup-service.module": [
-		569,
+		566,
 		8
 	],
 	"../pages/resturant-info/resturant-info.module": [
@@ -3250,11 +3250,11 @@ var map = {
 		7
 	],
 	"../pages/resturant-review/resturant-review.module": [
-		566,
+		568,
 		6
 	],
 	"../pages/settings/settings.module": [
-		565,
+		567,
 		5
 	],
 	"../pages/shopping-cart/shopping-cart.module": [
@@ -3262,11 +3262,11 @@ var map = {
 		4
 	],
 	"../pages/sign-up/sign-up.module": [
-		568,
+		570,
 		3
 	],
 	"../pages/update-location/update-location.module": [
-		570,
+		569,
 		2
 	],
 	"../pages/view-order/view-order.module": [
@@ -4051,8 +4051,8 @@ var OrdersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_orders_orders__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_offers_offers__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_settings_settings__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_aboutus_aboutus__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_contact_us_contact_us__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_shopping_cart_shopping_cart__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_order_data_order_data__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_meals_reviews_meals_reviews__ = __webpack_require__(183);
@@ -4165,21 +4165,21 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["HttpModule"],
                 __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["k" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_17__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/contact-us/contact-us.module#ContactUsPageModule', name: 'ContactUsPage', segment: 'contact-us', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/account-active/account-active.module#AccountActivePageModule', name: 'AccountActivePage', segment: 'account-active', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/intro-screen/intro-screen.module#IntroScreenPageModule', name: 'IntroScreenPage', segment: 'intro-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/more-list/more-list.module#MoreListPageModule', name: 'MoreListPage', segment: 'more-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/order-data/order-data.module#OrderDataPageModule', name: 'OrderDataPage', segment: 'order-data', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/meals-reviews/meals-reviews.module#MealsReviewsPageModule', name: 'MealsReviewsPage', segment: 'meals-reviews', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-review/resturant-review.module#ResturantReviewPageModule', name: 'ResturantReviewPage', segment: 'resturant-review', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/pickup-service/pickup-service.module#PickupServicePageModule', name: 'PickupServicePage', segment: 'pickup-service', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-location/update-location.module#UpdateLocationPageModule', name: 'UpdateLocationPage', segment: 'update-location', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/sign-up/sign-up.module#SignUpPageModule', name: 'SignUpPage', segment: 'sign-up', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-screen/main-screen.module#MainScreenPageModule', name: 'MainScreenPage', segment: 'main-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resturant-info/resturant-info.module#ResturantInfoPageModule', name: 'ResturantInfoPage', segment: 'resturant-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/view-order/view-order.module#ViewOrderPageModule', name: 'ViewOrderPage', segment: 'view-order', priority: 'low', defaultHistory: [] },
