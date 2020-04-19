@@ -65,7 +65,11 @@
     <ion-input [(ngModel)]="locationNameInput" placeholder="Clear Input" clearInput></ion-input>
   </ion-item>
 
-  <div #map id="map"></div>
+  <div  #map id="map">
+    <h1 *ngIf="shoLocationError" class="nolocation">{{'locationalert' | translate}}</h1>
+  </div>
+
+  
 </ion-content>
 
 <ion-footer>

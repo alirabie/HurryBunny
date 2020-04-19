@@ -33907,6 +33907,20 @@ page-home ion-label {
   text-align: start;
 }
 
+page-home .nolocation {
+  -webkit-box-pack: center !important;
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+  justify-self: center !important;
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center;
+  font-size: 18px;
+}
+
 .optionAdd {
   font-family: SFNSDisplay;
   font-size: 8px;

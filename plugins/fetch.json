@@ -23,22 +23,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-splashscreen": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-splashscreen@^5.0.2"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-ionic-webview": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-ionic-webview@^1.2.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-ionic-keyboard": {
     "source": {
       "type": "registry",
@@ -156,6 +140,30 @@
       "id": "cordova-plugin-badge@>=0.8.5"
     },
     "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-wkwebview-engine": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-wkwebview-engine"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@4.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@5.0.3"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }

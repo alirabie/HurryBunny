@@ -222,22 +222,6 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
-    "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
-    "pluginId": "cordova-plugin-ionic-webview",
-    "clobbers": [
-      "cordova.exec"
-    ]
-  },
-  {
-    "id": "cordova-plugin-splashscreen.SplashScreen",
-    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-    "pluginId": "cordova-plugin-splashscreen",
-    "clobbers": [
-      "navigator.splashscreen"
-    ]
-  },
-  {
     "id": "cordova-plugin-googlemaps.BaseClass",
     "file": "plugins/cordova-plugin-googlemaps/www/BaseClass.js",
     "pluginId": "cordova-plugin-googlemaps",
@@ -636,6 +620,46 @@ module.exports = [
       "cordova.plugins.notification.local.core",
       "plugin.notification.local.core"
     ]
+  },
+  {
+    "id": "cordova-plugin-wkwebview-engine.ios-wkwebview-exec",
+    "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview-exec.js",
+    "pluginId": "cordova-plugin-wkwebview-engine",
+    "clobbers": [
+      "cordova.exec"
+    ]
+  },
+  {
+    "id": "cordova-plugin-wkwebview-engine.ios-wkwebview",
+    "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview.js",
+    "pluginId": "cordova-plugin-wkwebview-engine",
+    "clobbers": [
+      "window.WkWebView"
+    ]
+  },
+  {
+    "id": "cordova-plugin-ionic-webview.IonicWebView",
+    "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+    "pluginId": "cordova-plugin-ionic-webview",
+    "clobbers": [
+      "Ionic.WebView"
+    ]
+  },
+  {
+    "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
+    "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
+    "pluginId": "cordova-plugin-ionic-webview",
+    "clobbers": [
+      "cordova.exec"
+    ]
+  },
+  {
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -645,8 +669,6 @@ module.exports.metadata =
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-ionic-keyboard": "2.0.5",
-  "cordova-plugin-ionic-webview": "1.2.0",
-  "cordova-plugin-splashscreen": "5.0.2",
   "cordova-plugin-whitelist": "1.3.3",
   "com.googlemaps.ios": "2.6.0",
   "cordova-plugin-googlemaps": "2.3.1",
@@ -658,7 +680,10 @@ module.exports.metadata =
   "cordova-plugin-actionsheet": "2.3.3",
   "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2",
   "cordova-plugin-badge": "0.8.8",
-  "cordova-plugin-local-notification": "0.9.0-beta.2"
+  "cordova-plugin-local-notification": "0.9.0-beta.2",
+  "cordova-plugin-wkwebview-engine": "1.2.1",
+  "cordova-plugin-ionic-webview": "4.2.0",
+  "cordova-plugin-splashscreen": "5.0.3"
 };
 // BOTTOM OF METADATA
 });

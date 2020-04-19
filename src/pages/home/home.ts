@@ -4,7 +4,7 @@ import { IntroScreenPage } from './../intro-screen/intro-screen';
 import { OrdersPage } from './../orders/orders';
 import { GenratorProvider } from './../../providers/genrator/genrator';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NavController, AlertController, ViewController, Config, Platform, App, NavParams, ModalController, Events } from 'ionic-angular';
+import { NavController, AlertController, ViewController, Config, Platform, App, NavParams, ModalController, Events, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
@@ -47,7 +47,9 @@ export class HomePage {
   isBusy = true;
   selectedLat: any;
   selectedLng: any;
-  constructor(public navCtrl: NavController, public app: App,public events: Events, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
+  shoLocationError = false;
+
+  constructor(public navCtrl: NavController,public modalCtrl : ModalController ,public app: App,public events: Events,public toastCtrl : ToastController, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
 
     this.flag = this.navParams.get('flag');
@@ -91,8 +93,9 @@ export class HomePage {
       diagnostic.isLocationEnabled().then((status: boolean) => {
 
         if (!status) {
-          this.loadMap();
+          // this.loadOfflineMap();
           // this.enableLocation();
+          this.shoLocationError=true;
         } else {
 
           this.loadMap();
@@ -100,6 +103,8 @@ export class HomePage {
 
       }, (err) => {
         console.log(err);
+        // this.loadOfflineMap();
+        this.shoLocationError=true;
       });
 
 
@@ -210,12 +215,18 @@ export class HomePage {
         console.log(this.selectedLng);
 
         // this.presentPrompt();
-
+        //if location not detected
+        if(this.lat==0&&this.lng==0){
+          this.shoLocationError=true;
+          // this.loadOfflineMap();
+        }
       });
 
+      this.shoLocationError=false;
+
     }).catch((error) => {
-      this.loadOfflineMap();
-      console.log('Error getting location', error);
+      // this.loadOfflineMap();
+      this.shoLocationError=true;
     });
 
 
@@ -565,5 +576,16 @@ export class HomePage {
   }
 
 
+
+
+
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
+  }
 
 }

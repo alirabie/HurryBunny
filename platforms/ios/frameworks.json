@@ -1,7 +1,7 @@
 {
-    "libz.tbd": 3,
+    "libz.tbd": 2,
     "CoreLocation.framework": 6,
-    "WebKit.framework": 1,
+    "WebKit.framework": 2,
     "Accelerate.framework": 1,
     "CoreData.framework": 1,
     "CoreTelephony.framework": 2,
