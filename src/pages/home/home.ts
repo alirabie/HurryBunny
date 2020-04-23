@@ -4,7 +4,7 @@ import { IntroScreenPage } from './../intro-screen/intro-screen';
 import { OrdersPage } from './../orders/orders';
 import { GenratorProvider } from './../../providers/genrator/genrator';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NavController, AlertController, ViewController, Config, Platform, App, NavParams, ModalController, Events, ToastController } from 'ionic-angular';
+import { NavController, AlertController, ViewController, Config, Platform, App, NavParams, ModalController, Events, ToastController, Alert } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,9 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UpdateLocationPage } from '../update-location/update-location';
 import { ProfilePage } from '../profile/profile';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+
+
 
 
 declare let google;
@@ -48,8 +51,16 @@ export class HomePage {
   selectedLat: any;
   selectedLng: any;
   shoLocationError = false;
+  currentLocation = "";
+  geoAddress = "";
 
-  constructor(public navCtrl: NavController,public modalCtrl : ModalController ,public app: App,public events: Events,public toastCtrl : ToastController, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
+  //Geocoder configuration
+  geoencoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5
+  };
+
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public nativeGeocoder: NativeGeocoder, public app: App, public events: Events, public toastCtrl: ToastController, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
 
     this.flag = this.navParams.get('flag');
@@ -66,7 +77,9 @@ export class HomePage {
     } else {
       this.loggedIn = false;
     }
-    this.getCustomerLastLocations();
+
+
+
 
 
     events.subscribe('location:locationUpdated', (recivedLocation, time) => {
@@ -95,7 +108,7 @@ export class HomePage {
         if (!status) {
           // this.loadOfflineMap();
           // this.enableLocation();
-          this.shoLocationError=true;
+          this.shoLocationError = true;
         } else {
 
           this.loadMap();
@@ -104,7 +117,7 @@ export class HomePage {
       }, (err) => {
         console.log(err);
         // this.loadOfflineMap();
-        this.shoLocationError=true;
+        this.shoLocationError = true;
       });
 
 
@@ -121,7 +134,41 @@ export class HomePage {
   ionViewDidEnter() {
     this.loadMap();
   }
- 
+
+
+  //Show resturants while not logged in
+  notLoggedInShowResurants() {
+    let locationdata = {
+      location: {
+        id: 0,
+        customer_id: "",
+        location_name: "",
+        latitude: this.selectedLat,
+        longtitude: this.selectedLng,
+        location_note: ""
+      }
+    }
+
+    localStorage.setItem('locationId', JSON.stringify(locationdata))
+    console.log("notloggedIn : " + localStorage.getItem('locationId'));
+
+    if (this.flag == "main") {
+      this.events.publish('user:locationchangedaction');
+      this.navCtrl.pop();
+    } else if (this.flag == "intro") {
+
+      this.app.getRootNav().push(TabsPage).then(() => {
+        // first we find the index of the current view controller:
+        const index = this.viewCtrl.index;
+        this.events.publish('user:locationchangedaction');
+        // then we remove it from the navigation stack
+        this.navCtrl.remove(index);
+      });
+
+    }
+  }
+
+
 
   // ngOnInit() {
   //   this.loadMap();
@@ -178,10 +225,14 @@ export class HomePage {
       this.lng = resp.coords.longitude;
       this.selectedLat = resp.coords.latitude;
       this.selectedLng = resp.coords.longitude;
+
+      //Get Geo 
+      this.getGeoencoder(resp.coords.latitude, resp.coords.longitude);
+
       localStorage.setItem("userLat", resp.coords.latitude + "");
       localStorage.setItem("userLng", resp.coords.longitude + "");
       this.chekSelected();
-      // this.checkCustomerLocation();
+      this.getCustomerLastLocations();
       this.locationName = "";
       let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
       let mapOptions = {
@@ -214,19 +265,24 @@ export class HomePage {
         console.log(this.selectedLat);
         console.log(this.selectedLng);
 
+        //Get Geo 
+        this.getGeoencoder(marker.position.lat(), marker.position.lng());
+
+
+
         // this.presentPrompt();
         //if location not detected
-        if(this.lat==0&&this.lng==0){
-          this.shoLocationError=true;
+        if (this.lat == 0 && this.lng == 0) {
+          this.shoLocationError = true;
           // this.loadOfflineMap();
         }
       });
 
-      this.shoLocationError=false;
+      this.shoLocationError = false;
 
     }).catch((error) => {
       // this.loadOfflineMap();
-      this.shoLocationError=true;
+      this.shoLocationError = true;
     });
 
 
@@ -336,6 +392,115 @@ export class HomePage {
   }
 
 
+
+
+  //Add new Location
+  addNewLocation() {
+    this.presentPrompt();
+  }
+
+
+
+
+
+  //Store New Location
+  storeNewLocation(name, note) {
+
+    if (localStorage.getItem("customerid") != null) {
+
+      let locationdata = {
+        location: {
+          id: 0,
+          customer_id: localStorage.getItem("customerid"),
+          location_name: this.locationName,
+          latitude: this.selectedLat,
+          longtitude: this.selectedLng,
+          location_note: this.notes
+        }
+      }
+
+      this.genrator.addNewLocation(locationdata).then((result) => {
+        // console.log(result);
+        let locations = result['locations'];
+        let location = locations[0];
+        this.locationId = location.id + "";
+
+        let newLocation = {
+          location: {
+            id: location.id + "",
+            customer_id: location.customer_id + "",
+            latitude: location.latitude + "",
+            longtitude: location.longtitude + "",
+            location_name: location.location_name + "",
+            location_note: location.location_note + ""
+          }
+        }
+        localStorage.setItem('locationId', JSON.stringify(newLocation))
+        console.log(localStorage.getItem('locationId'));
+
+        if (this.flag == "main") {
+          this.events.publish('user:locationchangedaction');
+          this.navCtrl.pop();
+        } else if (this.flag == "intro") {
+
+          this.app.getRootNav().push(TabsPage).then(() => {
+            // first we find the index of the current view controller:
+            const index = this.viewCtrl.index;
+            this.events.publish('user:locationchangedaction');
+            // then we remove it from the navigation stack
+            this.navCtrl.remove(index);
+          });
+
+        }
+
+      }, (err) => {
+        console.log(err);
+
+      });
+    }
+  }
+
+  //Select currnt location and go Main if user logged in
+  selectCurrentLocation(location) {
+    console.log(name);
+    console.log(location.Latitude);
+    console.log(location.Longtitude);
+
+    this.locationName = location.LocationName + "";
+    this.selectedLat = location.Latitude + "";
+    this.selectedLng = location.Longtitude + "";
+    this.locationId = location.Id + "";
+
+    let locationData = {
+      location: {
+        id: location.Id + "",
+        customer_id: location.CustomerId + "",
+        latitude: location.Latitude + "",
+        longtitude: location.Longtitude + "",
+        location_name: location.LocationName + "",
+        location_note: location.LocationNote + ""
+      }
+    }
+    localStorage.setItem('locationId', JSON.stringify(locationData))
+    console.log(localStorage.getItem('locationId'));
+
+    if (this.flag == "main") {
+      this.events.publish('user:locationchangedaction');
+      this.navCtrl.pop();
+    } else if (this.flag == "intro") {
+
+      this.app.getRootNav().push(TabsPage).then(() => {
+        // first we find the index of the current view controller:
+        const index = this.viewCtrl.index;
+        this.events.publish('user:locationchangedaction');
+        // then we remove it from the navigation stack
+        this.navCtrl.remove(index);
+      });
+    }
+  }
+
+
+
   goAndStoreLocation(location) {
 
     //console.log("Recived from LOC "+location.Latitude + "")
@@ -406,6 +571,7 @@ export class HomePage {
           handler: data => {
             this.locationName = data.locationName + ""
             this.notes = data.locationNote + ""
+            this.storeNewLocation(this.locationName, this.notes);
             this.chekSelected();
           }
 
@@ -419,17 +585,27 @@ export class HomePage {
 
 
   getDistancebetweenLocations(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
-    var dLon = this.deg2rad(lon2 - lon1);
-    var a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2)
-      ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d * 1000;
+
+
+
+    var myLatLng1 = { lat: lat1, lng: lon1 };
+    var myLatLng2 = { lat: lat2, lng: lon2 };
+    var loc1 = new google.maps.LatLng(lat1, lon1);
+    var loc2 = new google.maps.LatLng(lat2, lon2);
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(loc1, loc2);
+
+    return parseInt(dist + "");
+    // var R = 6371; // Radius of the earth in km
+    // var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
+    // var dLon = this.deg2rad(lon2 - lon1);
+    // var a =
+    //   Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //   Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+    //   Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    //   ;
+    // var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    // var d = R * c; // Distance in km
+    // return d * 1000;
   }
 
   deg2rad(deg) {
@@ -438,18 +614,23 @@ export class HomePage {
 
 
   checkCustomerLocation() {
-    this.customerLocations.forEach(element => {
+    this.customerLocations.forEach((element: any) => {
       console.log(element)
-      console.log(this.getDistancebetweenLocations(this.selectedLat, this.selectedLng, element.Latitude, element.Longtitude))
-      if (this.getDistancebetweenLocations(this.selectedLat, this.selectedLng, element.Latitude, element.Longtitude) < 100) {
+      console.log(this.getDistancebetweenLocations(this.lat, this.lng, element.Latitude, element.Longtitude))
+      if (this.getDistancebetweenLocations(this.lat, this.lng, element.Latitude, element.Longtitude) < 300) {
         this.goAndStoreLocation(element);
-        this.selectedLocationForUser = element.LocationName;
+        this.selectedLocationForUser = element.LocationName + "";
+        console.log("Location Is  : " + element.LocationName)
+        this.currentLocation = element;
         return;
       }
     });
   }
 
-  deleteLocation() {
+
+
+
+  deleteLocation(id) {
 
     //Both Option
     let alert = this.alertCrtl.create({
@@ -460,7 +641,7 @@ export class HomePage {
         {
           text: this.translate.instant('yes'),
           handler: () => {
-            this.genrator.deleteLcation(this.locationId + "").then((data) => {
+            this.genrator.deleteLcation(id + "").then((data) => {
 
               this.getCustomerLastLocations();
 
@@ -495,7 +676,8 @@ export class HomePage {
   }
 
 
-  updateCustomerLocation() {
+  updateCustomerLocation(location) {
+    localStorage.setItem('locationforupdate', JSON.stringify(location));
     let modal = this.modelCtrl.create(UpdateLocationPage, {}, { showBackdrop: true, enableBackdropDismiss: true });
     modal.present();
   }
@@ -588,4 +770,33 @@ export class HomePage {
     toast.present();
   }
 
+
+
+
+
+  //geocoder method to fetch address from coordinates passed as arguments
+  getGeoencoder(latitude, longitude) {
+    this.nativeGeocoder.reverseGeocode(latitude, longitude, this.geoencoderOptions)
+      .then((result: NativeGeocoderReverseResult[]) => {
+        this.geoAddress = this.generateAddress(result[0]);
+      })
+      .catch((error: any) => {
+        console.log('Error getting location' + JSON.stringify(error));
+      });
+  }
+
+  //Return Comma saperated address
+  generateAddress(addressObj) {
+    let obj = [];
+    let address = "";
+    for (let key in addressObj) {
+      obj.push(addressObj[key]);
+    }
+    obj.reverse();
+    for (let val in obj) {
+      if (obj[val].length)
+        address += obj[val] + ', ';
+    }
+    return address.slice(0, -2);
+  }
 }

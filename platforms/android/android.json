@@ -111,6 +111,10 @@
             {
               "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"NativeGeocoder\"><param name=\"android-package\" value=\"cordova.plugin.nativegeocoder.NativeGeocoder\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -136,7 +140,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 2
+              "count": 3
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
@@ -144,7 +148,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
@@ -390,6 +394,9 @@
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     },
     "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "cordova-plugin-nativegeocoder": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },
@@ -1013,6 +1020,14 @@
       "clobbers": [
         "navigator.splashscreen"
       ]
+    },
+    {
+      "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+      "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+      "pluginId": "cordova-plugin-nativegeocoder",
+      "clobbers": [
+        "nativegeocoder"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1033,6 +1048,7 @@
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-wkwebview-engine": "1.2.1",
     "cordova-plugin-ionic-webview": "4.2.0",
-    "cordova-plugin-splashscreen": "5.0.3"
+    "cordova-plugin-splashscreen": "5.0.3",
+    "cordova-plugin-nativegeocoder": "3.4.0"
   }
 }

@@ -58,6 +58,9 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },
   "dependent_plugins": {

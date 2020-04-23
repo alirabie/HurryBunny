@@ -57,6 +57,10 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },
   "dependent_plugins": {

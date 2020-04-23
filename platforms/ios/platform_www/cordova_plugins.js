@@ -660,6 +660,14 @@ module.exports = [
     "clobbers": [
       "navigator.splashscreen"
     ]
+  },
+  {
+    "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+    "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+    "pluginId": "cordova-plugin-nativegeocoder",
+    "clobbers": [
+      "nativegeocoder"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -683,7 +691,8 @@ module.exports.metadata =
   "cordova-plugin-local-notification": "0.9.0-beta.2",
   "cordova-plugin-wkwebview-engine": "1.2.1",
   "cordova-plugin-ionic-webview": "4.2.0",
-  "cordova-plugin-splashscreen": "5.0.3"
+  "cordova-plugin-splashscreen": "5.0.3",
+  "cordova-plugin-nativegeocoder": "3.4.0"
 };
 // BOTTOM OF METADATA
 });

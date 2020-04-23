@@ -139,6 +139,7 @@
 		D25DE4823E6B4E738BF9E32C /* IONAssetHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 138A7E41E37F447EB9786296 /* IONAssetHandler.m */; };
 		BAB61B5F0DD94CFDB5FB7810 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0A29C83B794A55A2FF5430 /* CDVSplashScreen.m */; };
 		E0ADE2CE89624C0EB42162B3 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9224B566453D438D8B8E8691 /* CDVViewController+SplashScreen.m */; };
+		828A6ADA54A0413690DD74CA /* NativeGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766CB64C905D4B51821DAF53 /* NativeGeocoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,6 +377,8 @@
 		9224B566453D438D8B8E8691 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		2043B9121CF243ECAD0B5536 /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		EE0AD2D83DBB4F95891A4B0C /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		766CB64C905D4B51821DAF53 /* NativeGeocoder.swift */ = {isa = PBXFileReference; name = "NativeGeocoder.swift"; path = "cordova-plugin-nativegeocoder/NativeGeocoder.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		79CD8570BE8949888474130E /* NativeGeocoder-Bridging-Header.h */ = {isa = PBXFileReference; name = "NativeGeocoder-Bridging-Header.h"; path = "cordova-plugin-nativegeocoder/NativeGeocoder-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -720,6 +723,8 @@
 				9224B566453D438D8B8E8691 /* CDVViewController+SplashScreen.m */,
 				2043B9121CF243ECAD0B5536 /* CDVSplashScreen.h */,
 				EE0AD2D83DBB4F95891A4B0C /* CDVViewController+SplashScreen.h */,
+				766CB64C905D4B51821DAF53 /* NativeGeocoder.swift */,
+				79CD8570BE8949888474130E /* NativeGeocoder-Bridging-Header.h */,
 			);
 			name = Plugins;
 			path = "HurryBunny/Plugins";
@@ -914,6 +919,7 @@
 				D25DE4823E6B4E738BF9E32C /* IONAssetHandler.m in Sources */,
 				BAB61B5F0DD94CFDB5FB7810 /* CDVSplashScreen.m in Sources */,
 				E0ADE2CE89624C0EB42162B3 /* CDVViewController+SplashScreen.m in Sources */,
+				828A6ADA54A0413690DD74CA /* NativeGeocoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

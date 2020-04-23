@@ -35,9 +35,9 @@ export class UpdateLocationPage {
     } else {
       this.oriantation = "rtl";
     }
-    this.customerLocation = JSON.parse(localStorage.getItem('locationId'));
-    this.form.controls['locationName'].setValue(this.customerLocation.location.location_name + "");
-    this.form.controls['locationNote'].setValue(this.customerLocation.location.location_note + "");
+    this.customerLocation = JSON.parse(localStorage.getItem('locationforupdate'));
+    this.form.controls['locationName'].setValue(this.customerLocation.LocationName + "");
+    this.form.controls['locationNote'].setValue(this.customerLocation.LocationNote + "");
     console.log(this.customerLocation);
     // Wait the native plugin is ready.
     platform.ready().then(() => {
@@ -124,9 +124,9 @@ export class UpdateLocationPage {
 
   loadMap() {
 
-    this.lat = parseFloat(this.customerLocation.location.latitude + "");
-    this.lng = parseFloat(this.customerLocation.location.longtitude + "");
-    let latLng = new google.maps.LatLng(parseFloat(this.customerLocation.location.latitude + ""), parseFloat(this.customerLocation.location.longtitude + ""));
+    this.lat = parseFloat(this.customerLocation.Latitude + "");
+    this.lng = parseFloat(this.customerLocation.Longtitude + "");
+    let latLng = new google.maps.LatLng(parseFloat(this.customerLocation.Latitude + ""), parseFloat(this.customerLocation.Longtitude + ""));
     let mapOptions = {
       center: latLng,
       zoom: 18,
@@ -168,7 +168,7 @@ export class UpdateLocationPage {
     } else {
       let locationdata = {
         location: {
-          id: this.customerLocation.location.id,
+          id: this.customerLocation.Id,
           customer_id: localStorage.getItem("customerid"),
           location_name: val.locationName,
           latitude: this.selectedLat,

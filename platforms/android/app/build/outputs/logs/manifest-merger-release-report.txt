@@ -56,7 +56,6 @@ MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Eng Ali\.grad
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\bce493ecffe2541d8dba209bb75362db\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\06618b182cdd5bc467f7512029016860\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\7f3bdddd6a0d0cb0be306ee586581949\AndroidManifest.xml:17:1-22:12
-MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:20:1-27:12
 MERGED from [com.android.support:loader:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\579c81fe553e2913eca4260551135c01\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\bd6c666844c8b2c398f570f49db4c209\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\f85727b2e998f1338566ceb1e00cdad8\AndroidManifest.xml:17:1-22:12
@@ -79,6 +78,7 @@ MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Eng Ali\.gradle\c
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\e82503cc4b2a9a9bc69d3c1fc1a58b33\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\657d626422146ecb46e0f8bb98e9a5fb\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e307484482e38c8e753925c213ee5e26\AndroidManifest.xml:17:1-22:12
+MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:20:1-27:12
 INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\src\main\AndroidManifest.xml:2:1-44:12
 INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\src\main\AndroidManifest.xml:2:1-44:12
 INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\src\main\AndroidManifest.xml:2:1-44:12
@@ -404,8 +404,6 @@ MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Eng Ali\.gradl
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\06618b182cdd5bc467f7512029016860\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\7f3bdddd6a0d0cb0be306ee586581949\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\7f3bdddd6a0d0cb0be306ee586581949\AndroidManifest.xml:20:5-44
-MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:25:5-44
-MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:25:5-44
 MERGED from [com.android.support:loader:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\579c81fe553e2913eca4260551135c01\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:loader:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\579c81fe553e2913eca4260551135c01\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\bd6c666844c8b2c398f570f49db4c209\AndroidManifest.xml:20:5-44
@@ -450,6 +448,8 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Eng Ali\.gradl
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\657d626422146ecb46e0f8bb98e9a5fb\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e307484482e38c8e753925c213ee5e26\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Eng Ali\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e307484482e38c8e753925c213ee5e26\AndroidManifest.xml:20:5-44
+MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\build\intermediates\manifests\full\release\AndroidManifest.xml:25:5-44
 	android:targetSdkVersion
 		ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\app\src\main\AndroidManifest.xml:34:42-71
 	android:minSdkVersion

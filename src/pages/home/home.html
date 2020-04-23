@@ -12,23 +12,10 @@
     <!--Search Bar button-->
     <ion-buttons (click)="getCustomerLastLocations()" left>
       <button ion-button icon-only>
-        <ion-icon color="light"  name="ios-navigate-outline"></ion-icon>
+        <ion-icon color="light" name="ios-navigate-outline"></ion-icon>
       </button>
     </ion-buttons>
 
-
-
-
-
-    <ion-buttons *ngIf="loggedIn" right>
-      <ion-spinner *ngIf="isBusy" name="bubbles"></ion-spinner>
-    </ion-buttons>
-
-    <ion-buttons *ngIf="loggedIn" right>
-      <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="updateCustomerLocation()">
-        <ion-icon color="softDark" name='md-create'></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
 
@@ -42,35 +29,28 @@
 
 <ion-content>
 
-
-  <ion-row *ngIf="loggedIn" dir="{{oriantation}}" class="colr">
-
-
-    <ion-select class="selectclass" placeholder="{{'lastplaces' | translate}}" interface="popover" [(ngModel)]="selectedLocationForUser">
-      <ion-option (ionSelect)="loadMap()">{{'addnewLocation' | translate}}</ion-option>
-      <ion-option *ngFor="let location of customerLocations" (ionSelect)="goAndStoreLocation(location)">{{location.LocationName}}</ion-option>
-    </ion-select>
-
-    <!-- <ion-label>{{'lastplaces' | translate}}</ion-label> -->
-
-    <button class="delButton" *ngIf="locationId != 0" left ion-button icon-only (click)="deleteLocation()">
-      <ion-icon color="danger" name='ios-trash-outline'></ion-icon>
-    </button>
-
-  </ion-row>
-
-
+  <ion-item *ngIf="loggedIn" no-lines class="current-loc" (click)="selectCurrentLocation(currentLocation)">
+    <ion-icon color="light" name="ios-home" item-left></ion-icon>
+    <h1>{{currentLocation.LocationName}}</h1>
+  </ion-item>
+  <ion-item *ngIf="!loggedIn" no-lines class="current-loc" (click)="selectCurrentLocation(currentLocation)">
+    <ion-icon color="light" name="ios-home" item-left></ion-icon>
+    <h1>{{geoAddress}}</h1>
+  </ion-item>
 
   <ion-item *ngIf="locationNameIsShowing">
     <ion-input [(ngModel)]="locationNameInput" placeholder="Clear Input" clearInput></ion-input>
   </ion-item>
 
-  <div  #map id="map">
+  <div #map id="map" >
     <h1 *ngIf="shoLocationError" class="nolocation">{{'locationalert' | translate}}</h1>
   </div>
 
-  
+
 </ion-content>
+
+
+
 
 <ion-footer>
 
@@ -90,7 +70,7 @@
       <button *ngIf="loggedIn" color="softDark" ion-fab (click)="goToMyOrders()">
         <ion-icon class="ic" name="md-paper"></ion-icon>
       </button>
-      <button *ngIf="!loggedIn" color="softDark" ion-fab (click)="signIn()" >
+      <button *ngIf="!loggedIn" color="softDark" ion-fab (click)="signIn()">
         <ion-icon class="ic" name="md-log-in"></ion-icon>
       </button>
       <button color="softDark" ion-fab (click)="goToOffers()">
@@ -101,8 +81,41 @@
       <!-- <button color="softDark" ion-fab><ion-icon class="ic" name="logo-googleplus"></ion-icon></button> -->
     </ion-fab-list>
   </ion-fab>
+  <button  *ngIf="!loggedIn" class="butn" padding ion-button color="primary" round block (click)="notLoggedInShowResurants()"
+        [disabled]="selected">{{'go' | translate}}</button>
 
+  <!--New Button for Location-->
+  <div class="tab" *ngIf="loggedIn">
+    <input type="radio" id="rd1" name="rd">
+    <!--main tap/btn-->
+    <label class="tab-label" for="rd1">
+      <p>{{'lastplaces' | translate}}</p>
+    </label>
+    <div class="tab-content">
+      <!--close btn-->
+      <div class="tab">
+        <input type="radio" id="rd3" name="rd">
+        <label for="rd3" class="tab-close">&times;</label>
+      </div>
+      <!--content list-->
+      <button padding ion-button color="primary" round block (click)="addNewLocation()">
+        {{'addnewLocation' | translate}}
+      </button>
+      <div class="locations-list">
+        <ion-list>
+          <ion-item-sliding class="item"  *ngFor="let location of customerLocations">
+            <ion-item no-lines (click)="selectCurrentLocation(location)">
+              <ion-icon class="ico" name="ios-home" item-left></ion-icon>
+            <h2 class="txt">{{location.LocationName}}</h2>
+            </ion-item >
+            <ion-item-options  side="end">
+              <button class="btn" ion-button color="secondary" (click)="updateCustomerLocation(location)"><ion-icon name="md-create"></ion-icon></button>
+              <button class="btn" ion-button color="danger" (click)="deleteLocation(location.Id)"><ion-icon name="trash"></ion-icon></button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+    </div>
+  </div>
 
-
-  <button class="butn" padding ion-button color="primary" round block (click)="gomainsc()" [disabled]="selected">{{'resturantsList' | translate }}</button>
 </ion-footer>

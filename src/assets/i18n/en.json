@@ -222,5 +222,6 @@
     "version":"Version",
     "ordernotes":"Order Notes",
     "connectionlost":"Check your internet Connection !",
-    "locationalert" :"We can not detect your location Please check Location Services in your Phone"
+    "locationalert" :"We can not detect your location Please check Location Services in your Phone",
+    "go":"let's Go"
 }
