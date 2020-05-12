@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountActivePage } from '../account-active/account-active';
 
-@IonicPage()
+
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',

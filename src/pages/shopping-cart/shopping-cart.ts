@@ -3,14 +3,13 @@ import { TabsPage } from './../tabs/tabs';
 import { PickupServicePage } from './../pickup-service/pickup-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Config, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Config, LoadingController, AlertController, Alert } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { OrderDataPage } from '../../pages/order-data/order-data';
 import { GenratorProvider } from '../../providers/genrator/genrator';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
-
-@IonicPage()
 @Component({
   selector: 'page-shopping-cart',
   templateUrl: 'shopping-cart.html',
@@ -31,6 +30,7 @@ export class ShoppingCartPage {
   menumumCharge = 0;
   resturantId = "";
   orderNotes = "";
+  paymentType = "cod";
   customerLocationName: any;
   public discountcouponclicked: boolean = false;
   public dicountbuttonclick() {
@@ -62,7 +62,7 @@ export class ShoppingCartPage {
       this.loading = null;
     }
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _FB: FormBuilder, public genrator: GenratorProvider, public loader: LoadingController, public alertCtrl: AlertController, config: Config, public translate: TranslateService) {
+  constructor(public navCtrl: NavController ,public navParams: NavParams ,private iab: InAppBrowser ,private _FB: FormBuilder, public genrator: GenratorProvider, public loader: LoadingController, public alertCtrl: AlertController, config: Config, public translate: TranslateService) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
     this.customerLocationName = JSON.parse(localStorage.getItem('locationId'));
@@ -71,17 +71,6 @@ export class ShoppingCartPage {
     } else {
       this.oriantation = "rtl";
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     this.discountcopun = _FB.group({
@@ -117,11 +106,29 @@ export class ShoppingCartPage {
   }
 
 
+
+
+  //Payment selection
+  paymentMethod(type) {
+    this.paymentType = type;
+  }
+
+
+
   //Check Delivery method
   loadOrderData() {
 
 
+    if (this.paymentType === "cod") {
+      this.confirmOrder();
+    } else {
+      //Launch Payment Online
+      this.payTaps();
+    }
+  }
 
+
+  confirmOrder() {
     if (this.serviceTypeId == "1") {
       //Devlivery Option
 
@@ -505,12 +512,7 @@ export class ShoppingCartPage {
       alert.present();
 
     }
-
-
-
-
   }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShoppingCartPage');
@@ -965,7 +967,7 @@ export class ShoppingCartPage {
   //Apply Discount Coupon
   applyDiscount(val) {
 
-    this.genrator.ApplyDiscountCoupon(val.code.toUpperCase(), localStorage.getItem("customerid")).then((data : any) => {
+    this.genrator.ApplyDiscountCoupon(val.code.toUpperCase(), localStorage.getItem("customerid")).then((data: any) => {
 
       if (data['shopping_carts'] != null) {
         this.getCartItems();
@@ -979,13 +981,13 @@ export class ShoppingCartPage {
           buttons: [this.translate.instant('BUTTONS.dissmiss')]
         });
         alert.present();
-      }else{
+      } else {
         let alert = this.alertCtrl.create({
           title: this.translate.instant('PAGE_TITLE.dilog'),
           subTitle: data.errors.Coupon,
           buttons: [this.translate.instant('BUTTONS.dissmiss')]
         });
-alert.present();
+        alert.present();
       }
     }, (err) => {
       let alert = this.alertCtrl.create({
@@ -1044,7 +1046,81 @@ alert.present();
   }
 
 
+  
 
 
 
+  // pay() {
+  //   let options = {
+  //     requireExpiry: true,
+  //     requireCVV: true,
+  //     noCamera: true,
+  //     requireCardholderName: true,
+  //     requirePostalCode: false
+  //   };
+
+  //   this.cardIO.scan(options).then((response) => {
+  //     var cardIOResponseFields = [
+  //       "cardType",
+  //       "redactedCardNumber",
+  //       "cardNumber",
+  //       "expiryMonth",
+  //       "cardholderName",
+  //       "expiryYear",
+  //       "cvv",
+  //       "postalCode"
+  //     ];
+  //     let card = {
+  //       number : response['cardNumber'],
+  //       name: response['cardholderName'],
+  //       expMonth: response['expiryMonth'],
+  //       expYear: response['expiryYear'],
+  //       cvc: response['cvv']
+  //     }
+
+  //     this.stripCard(card);
+  //     alert(JSON.stringify(card));
+  //   }), (err => {
+  //     alert(err);
+
+  //   });
+  // }
+
+  // stripCard(card) {
+  //   this.stripe.setPublishableKey("pk_test_nO31PZwdYDUxiLqKH04kcf9a");
+  //   this.stripe.createCardToken(card)
+  //     .then(token => alert("Token : "+token.id))
+  //     .catch(error => alert(error));
+  // }
+
+
+
+  payTaps(){
+    const browser =  this.iab.create('https://www.paytabs.com/4qcw-V6DdnYsj2UZNUp7kGeSW0mulqZTc9KF-oOCJnYHe34/oZo815V9nEv8zBy9b_1DFl1jw2F5Wrf-vLRTWX_Dz4mzLuo/rcoM4O9IRHVqs4XRJizpioPYH4_F1l__yj5KkT-46QBeM-s/lofUQ2zuQvkvUZMMAK_Vccu9ZlOyai3MPUPmQTLXBnrCVITZjqL-6Fd3pAVLgmp8WoBeYA8khAD3axNgJyMlvh7inw','_blank',
+    {location:'no',clearcache:'yes',toolbar:'no'});
+
+    browser.on('loadstart').subscribe((eve) => {
+        
+    }, err => {
+     
+    })
+    
+    browser.on('loadstop').subscribe(()=>{
+     
+    }, err =>{
+     
+    })
+    
+    browser.on('loaderror').subscribe(()=>{
+     
+    }, err =>{
+     
+    })
+    
+    browser.on('exit').subscribe(()=>{
+      
+    }, err =>{
+     
+    })
+  }
 }

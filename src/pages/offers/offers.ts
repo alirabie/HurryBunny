@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 
-@IonicPage()
 @Component({
   selector: 'page-offers',
   templateUrl: 'offers.html',

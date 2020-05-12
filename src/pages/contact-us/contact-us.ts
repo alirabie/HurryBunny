@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , Config } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
-@IonicPage()
 @Component({
   selector: 'page-contact-us',
   templateUrl: 'contact-us.html',

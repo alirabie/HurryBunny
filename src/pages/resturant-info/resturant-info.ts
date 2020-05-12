@@ -10,8 +10,6 @@ import { ShoppingCartPage } from '../shopping-cart/shopping-cart';
 
 
 
-
-@IonicPage()
 @Component({
   selector: 'page-resturant-info',
   templateUrl: 'resturant-info.html',

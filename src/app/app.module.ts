@@ -10,7 +10,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
 import { HttpModule, Http } from '@angular/http'
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -47,6 +46,9 @@ import { MoreListPage } from '../pages/more-list/more-list';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { CardIO } from '@ionic-native/card-io';
+import { Stripe } from '@ionic-native/stripe';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 
@@ -137,21 +139,20 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     StatusBar,
-    GoogleMaps,
     Geolocation,
     LaunchNavigator,
     Network,
     Firebase,
     SplashScreen,
-    Geocoder,
     NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     GenratorProvider,
     Diagnostic,
     LocationAccuracy,
-    LocalNotifications
-
-
+    LocalNotifications,
+    CardIO,
+    InAppBrowser,
+    Stripe
   ]
 })
 export class AppModule { }

@@ -19,7 +19,7 @@ import { GenratorProvider } from '../../providers/genrator/genrator';
 import { CacheService } from 'ionic-cache';
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-more-list',
   templateUrl: 'more-list.html',

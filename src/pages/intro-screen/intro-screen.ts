@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 
-@IonicPage()
 @Component({
   selector: 'page-intro-screen',
   templateUrl: 'intro-screen.html',

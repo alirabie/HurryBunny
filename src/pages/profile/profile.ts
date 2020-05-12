@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Config, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Config, LoadingController, AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { GenratorProvider } from '../../providers/genrator/genrator'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

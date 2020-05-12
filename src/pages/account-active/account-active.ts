@@ -8,7 +8,6 @@ import { AlertController, Config } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 
 
-@IonicPage()
 @Component({
   selector: 'page-account-active',
   templateUrl: 'account-active.html',

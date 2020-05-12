@@ -7,7 +7,6 @@ import { LoginPage } from '../login/login';
 
 
 
-@IonicPage()
 @Component({
   selector: 'page-meals-reviews',
   templateUrl: 'meals-reviews.html',

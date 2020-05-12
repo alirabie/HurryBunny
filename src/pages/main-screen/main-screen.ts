@@ -11,7 +11,7 @@ import { min } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation';
 declare let google;
 
-@IonicPage()
+
 @Component({
   selector: 'page-main-screen',
   templateUrl: 'main-screen.html',

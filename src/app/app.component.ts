@@ -20,8 +20,6 @@ import { CacheService } from "ionic-cache";
 import { OrdersPage } from '../pages/orders/orders';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
-
-
 @Component({
     templateUrl: 'app.html'
 })
@@ -41,8 +39,9 @@ export class MyApp {
     confirmAlert;
 
     constructor(public platform: Platform, public localNotifications: LocalNotifications, public modelCtrl: ModalController, public genrator: GenratorProvider, public tost: ToastController, cache: CacheService, public evnts: Events, statusBar: StatusBar, public fcm: Firebase, public alertCtrl: AlertController, splashScreen: SplashScreen, private translateService: TranslateService, events: Events, public menuCtrl: MenuController, toastCtrl: ToastController) {
-       
+      
         platform.ready().then(() => {
+            
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             cache.setDefaultTTL(1 * 1); //set default cache TTL for 1 hour
@@ -83,10 +82,11 @@ export class MyApp {
                 this.nav.pop();
             });
 
-
-
+            
 
         });
+
+      
     }
 
 

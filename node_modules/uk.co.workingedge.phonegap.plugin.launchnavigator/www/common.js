@@ -28,6 +28,55 @@
 
 var ln = {};
 
+/*********************
+ * Internal properties
+ *********************/
+
+var DEFAULT_appSelectionDialogHeaderText = "Select app for navigation",
+    DEFAULT_appSelectionCancelButtonText = "Cancel",
+    DEFAULT_rememberChoicePromptDialogHeaderText = "Remember your choice?",
+    DEFAULT_rememberChoicePromptDialogBodyText = "Use the same app for navigating next time?",
+    DEFAULT_rememberChoicePromptDialogYesButtonText = "Yes",
+    DEFAULT_rememberChoicePromptDialogNoButtonText = "No";
+
+var store;
+
+var emptyFn = function(){};
+
+/********************
+ * Internal functions
+ ********************/
+
+var ensureStore = function(){
+    store = localforage.createInstance({
+        name: "launchnavigator"
+    });
+};
+
+var setItem = function(key, value, callback){
+    ensureStore();
+    return store.setItem(key, value, callback);
+};
+
+var getItem = function(key, callback){
+    ensureStore();
+    return store.getItem(key, function(err, value){
+        callback(value);
+    });
+};
+
+var removeItem = function(key, callback){
+    ensureStore();
+    return store.removeItem(key, callback);
+};
+
+var itemExists = function(key, callback){
+    ensureStore();
+    return store.getItem(key, function(err, value){
+        callback(value !== null);
+    });
+};
+
 /******************
  * Public Constants
  ******************/
@@ -60,7 +109,13 @@ ln.APP = {
     BING_MAPS: "bing_maps",
     SYGIC: "sygic",
     HERE_MAPS: "here_maps",
-    MOOVIT: "moovit"
+    MOOVIT: "moovit",
+    LYFT: "lyft",
+    MAPS_ME: "maps_me",
+    CABIFY: "cabify",
+    BAIDU: "baidu",
+    TAXIS_99: "taxis_99",
+    GAODE: "gaode"
 };
 
 /**
@@ -77,7 +132,13 @@ ln.APPS_BY_PLATFORM[ln.PLATFORM.ANDROID] = [
     ln.APP.YANDEX,
     ln.APP.SYGIC,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.LYFT,
+    ln.APP.MAPS_ME,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.APPS_BY_PLATFORM[ln.PLATFORM.IOS] = [
     ln.APP.USER_SELECT,
@@ -92,7 +153,13 @@ ln.APPS_BY_PLATFORM[ln.PLATFORM.IOS] = [
     ln.APP.TOMTOM,
     ln.APP.SYGIC,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.LYFT,
+    ln.APP.MAPS_ME,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.APPS_BY_PLATFORM[ln.PLATFORM.WINDOWS] = [
     ln.APP.BING_MAPS
@@ -126,6 +193,12 @@ ln.APP_NAMES[ln.APP.BING_MAPS] = "Bing Maps";
 ln.APP_NAMES[ln.APP.SYGIC] = "Sygic";
 ln.APP_NAMES[ln.APP.HERE_MAPS] = "HERE Maps";
 ln.APP_NAMES[ln.APP.MOOVIT] = "Moovit";
+ln.APP_NAMES[ln.APP.LYFT] = "Lyft";
+ln.APP_NAMES[ln.APP.MAPS_ME] = "MAPS.ME";
+ln.APP_NAMES[ln.APP.CABIFY] = "Cabify";
+ln.APP_NAMES[ln.APP.BAIDU] = "Baidu Maps";
+ln.APP_NAMES[ln.APP.TAXIS_99] = "99 Taxi";
+ln.APP_NAMES[ln.APP.GAODE] = "Gaode Maps (Amap)";
 
 /**
  * All possible transport modes
@@ -161,6 +234,25 @@ ln.TRANSPORT_MODES[ln.PLATFORM.ANDROID][ln.APP.SYGIC] = [
     ln.TRANSPORT_MODE.DRIVING,
     ln.TRANSPORT_MODE.WALKING
 ];
+ln.TRANSPORT_MODES[ln.PLATFORM.ANDROID][ln.APP.MAPS_ME] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
+ln.TRANSPORT_MODES[ln.PLATFORM.ANDROID][ln.APP.BAIDU] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
+ln.TRANSPORT_MODES[ln.PLATFORM.ANDROID][ln.APP.GAODE] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
+
 // Windows
 ln.TRANSPORT_MODES[ln.PLATFORM.WINDOWS] = {};
 ln.TRANSPORT_MODES[ln.PLATFORM.WINDOWS][ln.APP.BING_MAPS] = [
@@ -185,16 +277,35 @@ ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.GOOGLE_MAPS] = [
 ];
 ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.APPLE_MAPS] = [
     ln.TRANSPORT_MODE.DRIVING,
-    ln.TRANSPORT_MODE.WALKING
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.TRANSIT
 ];
 ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.SYGIC] = [
     ln.TRANSPORT_MODE.DRIVING,
     ln.TRANSPORT_MODE.WALKING
 ];
+ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.MAPS_ME] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
+ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.BAIDU] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
+ln.TRANSPORT_MODES[ln.PLATFORM.IOS][ln.APP.GAODE] = [
+    ln.TRANSPORT_MODE.DRIVING,
+    ln.TRANSPORT_MODE.WALKING,
+    ln.TRANSPORT_MODE.BICYCLING,
+    ln.TRANSPORT_MODE.TRANSIT
+];
 
 /**
  * Apps by platform that support specifying a start location
- * @type {obect}
+ * @type {object}
  */
 ln.SUPPORTS_START = {};
 ln.SUPPORTS_START[ln.PLATFORM.ANDROID] = [
@@ -204,7 +315,13 @@ ln.SUPPORTS_START[ln.PLATFORM.ANDROID] = [
     ln.APP.UBER,
     ln.APP.YANDEX,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.LYFT,
+    ln.APP.MAPS_ME,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.SUPPORTS_START[ln.PLATFORM.IOS] = [
     ln.APP.USER_SELECT,
@@ -215,7 +332,13 @@ ln.SUPPORTS_START[ln.PLATFORM.IOS] = [
     ln.APP.YANDEX,
     ln.APP.UBER,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.LYFT,
+    ln.APP.MAPS_ME,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.SUPPORTS_START[ln.PLATFORM.WINDOWS] = [
     ln.APP.BING_MAPS
@@ -223,7 +346,7 @@ ln.SUPPORTS_START[ln.PLATFORM.WINDOWS] = [
 
 /**
  * Apps by platform that support specifying a start nickname
- * @type {obect}
+ * @type {object}
  */
 ln.SUPPORTS_START_NAME = {};
 ln.SUPPORTS_START_NAME[ln.PLATFORM.ANDROID] = [
@@ -231,20 +354,28 @@ ln.SUPPORTS_START_NAME[ln.PLATFORM.ANDROID] = [
     ln.APP.CITYMAPPER,
     ln.APP.UBER,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.SUPPORTS_START_NAME[ln.PLATFORM.IOS] = [
     ln.APP.USER_SELECT,
-    ln.APP.APPLE_MAPS,
+    ln.APP.APPLE_MAPS, // Only launchMode=mapkit
     ln.APP.CITYMAPPER,
     ln.APP.UBER,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 
 /**
  * Apps by platform that support specifying a destination nickname
- * @type {obect}
+ * @type {object}
  */
 ln.SUPPORTS_DEST_NAME = {};
 ln.SUPPORTS_DEST_NAME[ln.PLATFORM.ANDROID] = [
@@ -253,27 +384,39 @@ ln.SUPPORTS_DEST_NAME[ln.PLATFORM.ANDROID] = [
     ln.APP.CITYMAPPER,
     ln.APP.UBER,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 ln.SUPPORTS_DEST_NAME[ln.PLATFORM.IOS] = [
     ln.APP.USER_SELECT,
-    ln.APP.APPLE_MAPS,
+    ln.APP.APPLE_MAPS, // Only launchMode=mapkit
     ln.APP.CITYMAPPER,
     ln.APP.NAVIGON,
     ln.APP.UBER,
     ln.APP.TOMTOM,
     ln.APP.HERE_MAPS,
-    ln.APP.MOOVIT
+    ln.APP.MOOVIT,
+    ln.APP.CABIFY,
+    ln.APP.BAIDU,
+    ln.APP.TAXIS_99,
+    ln.APP.GAODE
 ];
 
 /**
  * Apps by platform that support specifying a launch mode
- * @type {obect}
+ * @type {object}
  */
 ln.SUPPORTS_LAUNCH_MODE = {};
 ln.SUPPORTS_LAUNCH_MODE[ln.PLATFORM.ANDROID] = [
     ln.APP.USER_SELECT,
     ln.APP.GOOGLE_MAPS
+];
+ln.SUPPORTS_LAUNCH_MODE[ln.PLATFORM.IOS] = [
+    ln.APP.USER_SELECT,
+    ln.APP.APPLE_MAPS
 ];
 
 ln.COORDS_REGEX = /^[-\d.]+,[\s]*[-\d.]+$/;
@@ -283,23 +426,6 @@ ln.COORDS_REGEX = /^[-\d.]+,[\s]*[-\d.]+$/;
 /******************
  * Public API
  ******************/
-
-/**
- * Delegation shim to determine by arguments if API call is v2 or v3 and delegate accordingly.
- */
-ln.navigate = function(){
-    if(arguments.length <= 2 && (typeof(arguments[1]) == "undefined" || typeof(arguments[1]) == "object")){
-        ln.v3.navigate.apply(this, arguments);
-    }else if(typeof(arguments[1]) == "function" && (typeof(arguments[2]) == "undefined" || typeof(arguments[2]) == "function")){
-        // called with v3 signature: navigate(start, successCallback, errorCallback, options)
-        var options = typeof(arguments[3]) == "object" ? arguments[3] : {};
-        options.successCallback = arguments[1];
-        options.errorCallback = arguments[2];
-        ln.v3.navigate.call(this, arguments[0], options);
-    }else{
-        ln.v2.navigate.apply(this, arguments);
-    }
-};
 
 /**
  * Returns the display name of the specified app.
@@ -314,7 +440,7 @@ ln.getAppDisplayName = function(app){
 /**
  * Returns list of supported apps on a given platform.
  * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @return {array} - apps supported on specified platform as a list of `launchnavigator.APP` constants.
+ * @return {string[]} - apps supported on specified platform as a list of `launchnavigator.APP` constants.
  */
 ln.getAppsForPlatform = function(platform){
     ln.util.validatePlatform(platform);
@@ -337,7 +463,7 @@ ln.supportsTransportMode = function(app, platform){
  * Returns the list of transport modes supported by an app on a given platform.
  * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
  * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @return {array} - list of transports modes as constants in `launchnavigator.TRANSPORT_MODE`.
+ * @return {string[]} - list of transports modes as constants in `launchnavigator.TRANSPORT_MODE`.
  * If app/platform combination doesn't support specification of transport mode, the list will be empty;
  */
 ln.getTransportModes = function(app, platform){
@@ -349,7 +475,6 @@ ln.getTransportModes = function(app, platform){
 
 /**
  * Indicates if an app on a given platform supports specification of launch mode.
- * Note that currently only Google Maps on Android does.
  * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
  * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.ANDROID`.
  * @return {boolean} - true if app/platform combination supports specification of transport mode.
@@ -399,72 +524,230 @@ ln.supportsDestName = function(app, platform){
 
 /**
  *
- * @param {mixed} destination (required) - destination location to use for navigation - see launchnavigator.navigate()
- * @param {object} options (optional) - optional parameters - see launchnavigator.navigate()
+ * @param {string/number[]} destination (required) - destination location to use for navigation - see launchnavigator.navigate()
+ * @param {object} [options={}] - optional parameters - see launchnavigator.navigate()
+ * @param {function} successCallback - function executed in case of success
+ * @param {function} errorCallback - function executed in case of error
  */
 ln.userSelect = function(destination, options, successCallback, errorCallback){
-    options = options ? options : {};
-    options.errorCallback = options.errorCallback ? options.errorCallback : errorCallback || function(){};
-    options.successCallback = options.successCallback ? options.successCallback : successCallback || function(){};
-    options.appSelectionCallback = options.appSelectionCallback ? options.appSelectionCallback : function(){};
+    var userSelectDisplayed, app;
+
+    options = options || {};
+    options.errorCallback = options.errorCallback || errorCallback || emptyFn;
+    options.successCallback = options.successCallback || successCallback || emptyFn;
+    
+    // app selection
+    options.appSelection = options.appSelection || {};
+    options.appSelection.dialogPositionX = options.appSelection.dialogPositionX || 550;
+    options.appSelection.dialogPositionY = options.appSelection.dialogPositionY || 500;
+    options.appSelection.callback = options.appSelection.callback || emptyFn;
+    options.appSelection.rememberChoice = options.appSelection.rememberChoice || {};
+    options.appSelection.rememberChoice.enabled = typeof options.appSelection.rememberChoice.enabled !== "undefined" ? options.appSelection.rememberChoice.enabled : "prompt";
+    options.appSelection.rememberChoice.prompt = options.appSelection.rememberChoice.prompt || {};
+    options.appSelection.rememberChoice.prompt.callback = options.appSelection.rememberChoice.prompt.callback || emptyFn;
     
     var buttonList = [], buttonMap = {};
 
-    if(launchnavigator.userSelectDisplayed) return;
+    if(userSelectDisplayed) return;
 
-    function launchApp(app){
+    var launchApp = function(){
         options.app = app;
         launchnavigator.navigate(destination, options);
-    }
+    };
 
-    function onChooseApp(btnNumber){
-        delete launchnavigator.userSelectDisplayed;
-        var idx = btnNumber - 1,
-            app = buttonMap[idx];
-        if(app != "cancel"){
-            launchApp(app);
-            options.appSelectionCallback(app);
-        } else {
-            options.errorCallback('cancelled');
-        }
-    }
-
-    function displayChooser(){
-        launchnavigator.userSelectDisplayed = true;
+    var displayChooser = function(){
+        userSelectDisplayed = true;
         window.plugins.actionsheet.show({
-            'androidTheme': options.androidTheme || window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
-            'title': options.appSelectionDialogHeader || DEFAULT_appSelectionDialogHeader,
+            'androidTheme': options.appSelection.androidTheme || window.plugins.actionsheet.ANDROID_THEMES.THEME_HOLO_LIGHT,
+            'title': options.appSelection.dialogHeaderText || DEFAULT_appSelectionDialogHeaderText,
             'buttonLabels': buttonList,
             'androidEnableCancelButton' : true, // default false
             //'winphoneEnableCancelButton' : true, // default false
-            'addCancelButtonWithLabel': options.appSelectionCancelButton || DEFAULT_appSelectionCancelButton,
-            'position': [550, 500] // for iPad pass in the [x, y] position of the popover
+            'addCancelButtonWithLabel': options.appSelection.cancelButtonText || DEFAULT_appSelectionCancelButtonText,
+            'position': [options.appSelection.dialogPositionX, options.appSelection.dialogPositionY] // for iPad pass in the [x, y] position of the popover
         }, onChooseApp);
-    }
+    };
+
+    var onChooseApp = function (btnNumber){
+        userSelectDisplayed = false;
+        var idx = btnNumber - 1;
+        app = buttonMap[idx];
+        if(app !== "cancel"){
+            options.appSelection.callback(app);
+            if(options.appSelection.rememberChoice.enabled === true || options.appSelection.rememberChoice.enabled === "true"){
+                rememberUserChoiceAndLaunch();
+            }else if(options.appSelection.rememberChoice.enabled === false || options.appSelection.rememberChoice.enabled === "false"){
+                // Don't remember, just launch app
+                launchApp();
+            }else{
+                // Default
+                checkIfAlreadyPrompted();
+            }
+        } else {
+            options.errorCallback('cancelled');
+        }
+    };
+
+    var rememberUserChoiceAndLaunch = function(){
+        setItem("choice", app, function(){
+            launchApp();
+        });
+    };
+
+    var checkForChoice = function(availableApps){
+        getItem("choice", function(choice){
+            if(choice){
+                if(availableApps[choice]){
+                    app = choice;
+                    launchApp();
+                }else{
+                    // Chosen app is no longer available on device
+                    ln.appSelection.userChoice.clear(function(){
+                        ln.appSelection.userPrompted.clear(function(){
+                            displayChooser();
+                        });
+                    })
+                }
+            }else{
+                displayChooser();
+            }
+        })
+    };
+
+    // Check if user has already been prompted whether to remember their choice
+    var checkIfAlreadyPrompted = function(){
+        getItem("prompted", function(prompted){
+            if(prompted){
+                launchApp();
+            }else{
+                promptUser();
+            }
+        });
+    };
+
+    // Prompt user whether to remember their choice
+    var promptUser = function(){
+        if(options.appSelection.rememberChoice.promptFn){
+            options.appSelection.rememberChoice.promptFn(handleUserPromptChoice);
+        }else{
+            // Show prompt using cordova dialogs
+            navigator.notification.confirm(
+                options.appSelection.rememberChoice.prompt.bodyText || DEFAULT_rememberChoicePromptDialogBodyText,
+                function(idx){
+                    handleUserPromptChoice(idx === 1);
+                },
+                options.appSelection.rememberChoice.prompt.headerText || DEFAULT_rememberChoicePromptDialogHeaderText,
+                [
+                    options.appSelection.rememberChoice.prompt.yesButtonText || DEFAULT_rememberChoicePromptDialogYesButtonText,
+                    options.appSelection.rememberChoice.prompt.noButtonText || DEFAULT_rememberChoicePromptDialogNoButtonText
+                ]
+            );
+        }
+    };
+
+    var handleUserPromptChoice = function(shouldRemember){
+        options.appSelection.rememberChoice.prompt.callback(shouldRemember);
+        setItem("prompted", true, function(){
+            if(shouldRemember){
+                rememberUserChoiceAndLaunch();
+            }else{
+                launchApp();
+            }
+        });
+    };
+
 
     // Get list of available apps
     launchnavigator.availableApps(function(apps){
-        for(var app in apps){
-            var isAvailable = apps[app];
+        for(var _app in apps){
+            var isAvailable = apps[_app];
             if(!isAvailable) continue;
-            if(options.appSelectionList && options.appSelectionList.length > 0 && !ln.util.arrayContainsValue(options.appSelectionList, app)) continue;
-            buttonList.push(ln.getAppDisplayName(app));
-            buttonMap[buttonList.length-1] = app;
+            if(options.appSelection.list && options.appSelection.list.length > 0 && !ln.util.arrayContainsValue(options.appSelection.list, _app)) continue;
+            buttonList.push(ln.getAppDisplayName(_app));
+            buttonMap[buttonList.length-1] = _app;
         }
 
-        if(buttonList.length == 0){
-            return options.errorCallback('No apps in selection list are available');
+        if(buttonList.length === 0){
+            return options.errorCallback("No supported navigation apps are available on the device");
         }
 
-        if(buttonList.length == 1){
-            return launchApp(buttonMap[0]);
+        if(buttonList.length === 1){
+            app = buttonMap[0];
+            return launchApp();
         }
 
         buttonMap[buttonList.length] = "cancel"; // Add an entry for cancel button
 
-        displayChooser();
+        // Check if a user choice exists
+        checkForChoice(apps);
 
     }, options.errorCallback);
+};
+
+/*****************************
+ * App selection API functions
+ *****************************/
+ln.appSelection = {
+    userChoice: {},
+    userPrompted: {}
+};
+
+/**
+ * Indicates whether a user choice exists for a preferred navigator app.
+ * @param {function} cb - function to pass result to: will receive a boolean argument.
+ */
+ln.appSelection.userChoice.exists = function(cb){
+    itemExists("choice", cb);
+};
+
+/**
+ * Returns current user choice of preferred navigator app.
+ * @param {function} cb - function to pass result to: will receive a string argument indicating the app, which is a constant in `launchnavigator.APP`.
+ * If no current choice exists, value will be null.
+ */
+ln.appSelection.userChoice.get = function(cb){
+    getItem("choice", cb);
+};
+
+/**
+ * Sets the current user choice of preferred navigator app.
+ * @param {string} app - app to set as preferred choice as a constant in `launchnavigator.APP`.
+ * @param {function} cb - function to call once operation is complete.
+ */
+ln.appSelection.userChoice.set = function(app, cb){
+    setItem("choice", app, cb);
+};
+
+/**
+ * Clears current user choice of preferred navigator app.
+ * @param {function} cb - function to call once operation is complete.
+ */
+ln.appSelection.userChoice.clear = function(cb){
+    removeItem("choice", cb);
+};
+
+/**
+ * Indicates whether user has already been prompted whether to remember their choice a preferred navigator app.
+ * @param {function} cb - function to pass result to: will receive a boolean argument.
+ */
+ln.appSelection.userPrompted.get = function(cb){
+    itemExists("prompted", cb);
+};
+
+/**
+ * Sets flag indicating user has already been prompted whether to remember their choice a preferred navigator app.
+ * @param {function} cb - function to call once operation is complete.
+ */
+ln.appSelection.userPrompted.set = function(cb){
+    setItem("prompted", true, cb);
+};
+
+/**
+ * Clears flag which indicates if user has already been prompted whether to remember their choice a preferred navigator app.
+ * @param {function} cb - function to call once operation is complete.
+ */
+ln.appSelection.userPrompted.clear = function(cb){
+    removeItem("prompted", cb);
 };
 
 /*******************
@@ -508,7 +791,7 @@ ln.util.countKeysInObject = function (o){
 };
 
 ln.util.isValidApp = function(app){
-    if(app == "none") return true; // native chooser
+    if(app === "none") return true; // native chooser
     return ln.util.objectContainsValue(ln.APP, app);
 };
 
@@ -539,7 +822,7 @@ ln.util.validateTransportMode = function(transportMode){
 };
 
 ln.util.extractCoordsFromLocationString = function(location){
-    if(location && typeof(location) == "string" && location.match(ln.COORDS_REGEX)){
+    if(location && typeof(location) === "string" && location.match(ln.COORDS_REGEX)){
         location = location.replace(/\s*/g,'');
         var parts = location.split(",");
         location = [parts[0], parts[1]];
@@ -547,15 +830,34 @@ ln.util.extractCoordsFromLocationString = function(location){
     return location;
 };
 
-/*********************
- * Internal properties
- *********************/
+ln.util.isValidLaunchMode = function(launchMode){
+    for(var LAUNCH_MODE in ln.LAUNCH_MODE){
+        if(launchMode === ln.LAUNCH_MODE[LAUNCH_MODE]) return true;
+    }
+    return false;
+};
 
-var DEFAULT_appSelectionDialogHeader = "Select app for navigation",
-    DEFAULT_appSelectionCancelButton = "Cancel";
+ln.util.validateLaunchMode = function(launchMode){
+    if(!ln.util.isValidLaunchMode(launchMode)){
+        throw new Error("'"+launchMode+"' is not a recognised launch mode");
+    }
+};
 
-/********************
- * Internal functions
- ********************/
+ln.util.conformNavigateOptions = function(args){
+    var options;
+    if(args.length > 1 && typeof args[1] === "function"){
+        // assume (dest, success, error, opts)
+        options = (args.length > 3 && typeof args[3] === "object") ? args[3] : {};
+        options.successCallback = args[1];
+        if(args.length > 2 && typeof args[2] === "function"){
+            options.errorCallback = args[2];
+        }
+    }else{
+        // assume (dest, opts)
+        options = (args.length > 1 && typeof args[1] === "object") ? args[1] : {};
+    }
+    return options;
+};
+
 
 module.exports = ln;

@@ -14,7 +14,7 @@
 NSString*const UNKNOWN = @"unknown";
 
 NSString*const AUTHORIZATION_NOT_DETERMINED = @"not_determined";
-NSString*const AUTHORIZATION_DENIED = @"denied";
+NSString*const AUTHORIZATION_DENIED = @"denied_always";
 NSString*const AUTHORIZATION_GRANTED = @"authorized";
 
 // Internal constants
@@ -276,14 +276,13 @@ static Diagnostic* diagnostic = nil;
 
 - (void) setSetting: (NSString*)key forValue:(id)value
 {
-
-    [self.settings setObject:value forKey:key];
-    [self.settings synchronize];
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (id) getSetting: (NSString*) key
 {
-    return [self.settings objectForKey:key];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
 @end

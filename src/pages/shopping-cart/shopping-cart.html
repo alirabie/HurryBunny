@@ -148,7 +148,23 @@
     <!-- <ion-input dir="{{oriantation}}" class="notes" placeholder="{{'notes' | translate}}"></ion-input> -->
 
     <!--Choose Payment Method Link-->
-    <!-- <button ion-button clear class="paymethod">{{'chosepaymethod' | translate}}</button> -->
+    <h2 class="paymethod">{{'chosepaymethod' | translate}}</h2>
+
+    
+
+      <form>
+        <ion-list class="radio-grpup" radio-group >
+            <ion-item no-lines>
+                <ion-label>{{'cod' | translate}}</ion-label>
+                <ion-radio [checked]="true"  [value]="cod" item-start (ionSelect)="paymentMethod('cod')"></ion-radio>
+              </ion-item>
+            <ion-item no-lines>
+              <ion-label>{{'payonline' | translate}}</ion-label>
+              <ion-radio  [value]="online" item-start (ionSelect)="paymentMethod('online')"></ion-radio>
+            </ion-item>
+          </ion-list>
+      </form>
+
 
     <!--The Total Amount Requested-->
     <ion-row class="allcash">

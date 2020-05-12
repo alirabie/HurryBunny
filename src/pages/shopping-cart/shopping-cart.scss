@@ -136,11 +136,14 @@ page-shopping-cart {
         ion-icon.icon.icon-ios.ion-ios-close-circle-outline {color: indianred}
 	}
 
-    button.paymethod{
+    .paymethod{
         display:block;
         color:$color2;
+        padding-right:10px ;
+        padding-left: 10px ;
         font-size:16px;
         font-weight:600;
+    
         text-decoration:underline;
         margin:10px auto
     }
@@ -234,5 +237,10 @@ page-shopping-cart {
         padding:0 15px;
        
         width: calc(100% - 20px);
+    }
+
+    //payment selection
+    .radio-grpup ion-radio{
+      
     }
 }

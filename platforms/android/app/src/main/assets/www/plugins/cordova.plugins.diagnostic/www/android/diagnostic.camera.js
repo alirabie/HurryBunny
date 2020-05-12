@@ -34,11 +34,11 @@ var Diagnostic_Camera = (function(){
             mediaStatus = statuses[Diagnostic.permission.READ_EXTERNAL_STORAGE],
             status;
 
-        if(cameraStatus == Diagnostic.permissionStatus.DENIED_ALWAYS || mediaStatus == Diagnostic.permissionStatus.DENIED_ALWAYS){
+        if(cameraStatus === Diagnostic.permissionStatus.DENIED_ALWAYS || mediaStatus === Diagnostic.permissionStatus.DENIED_ALWAYS){
             status = Diagnostic.permissionStatus.DENIED_ALWAYS;
-        }else if(cameraStatus == Diagnostic.permissionStatus.DENIED || mediaStatus == Diagnostic.permissionStatus.DENIED){
-            status = Diagnostic.permissionStatus.DENIED;
-        }else if(cameraStatus == Diagnostic.permissionStatus.NOT_REQUESTED || mediaStatus == Diagnostic.permissionStatus.NOT_REQUESTED){
+        }else if(cameraStatus === Diagnostic.permissionStatus.DENIED_ONCE || mediaStatus === Diagnostic.permissionStatus.DENIED_ONCE){
+            status = Diagnostic.permissionStatus.DENIED_ONCE;
+        }else if(cameraStatus === Diagnostic.permissionStatus.NOT_REQUESTED || mediaStatus === Diagnostic.permissionStatus.NOT_REQUESTED){
             status = Diagnostic.permissionStatus.NOT_REQUESTED;
         }else{
             status = Diagnostic.permissionStatus.GRANTED;
@@ -189,7 +189,7 @@ var Diagnostic_Camera = (function(){
 
         params.successCallback = params.successCallback || function(){};
         var onSuccess = function(status){
-            params.successCallback(status == Diagnostic.permissionStatus.GRANTED);
+            params.successCallback(status === Diagnostic.permissionStatus.GRANTED);
         };
 
         Diagnostic_Camera.getCameraAuthorizationStatus({
@@ -202,4 +202,5 @@ var Diagnostic_Camera = (function(){
     return Diagnostic_Camera;
 });
 module.exports = new Diagnostic_Camera();
+
 });

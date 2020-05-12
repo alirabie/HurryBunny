@@ -36139,9 +36139,11 @@ page-shopping-cart table.details ion-icon.icon.icon-ios.ion-ios-close-circle-out
   color: indianred;
 }
 
-page-shopping-cart button.paymethod {
+page-shopping-cart .paymethod {
   display: block;
   color: #51423d;
+  padding-right: 10px;
+  padding-left: 10px;
   font-size: 16px;
   font-weight: 600;
   text-decoration: underline;

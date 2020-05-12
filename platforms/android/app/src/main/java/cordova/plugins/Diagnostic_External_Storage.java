@@ -25,7 +25,7 @@ package cordova.plugins;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.v4.os.EnvironmentCompat;
+import androidx.core.os.EnvironmentCompat;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
@@ -55,7 +55,7 @@ public class Diagnostic_External_Storage extends CordovaPlugin{
     /**
      * Tag for debug log messages
      */
-    public static final String TAG = "Diagnostic_Wifi";
+    public static final String TAG = "Diagnostic_External_Storage";
 
 
     /*************

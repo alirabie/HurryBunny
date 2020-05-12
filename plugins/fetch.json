@@ -39,21 +39,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-googlemaps": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-googlemaps@2.3.1"
-    },
-    "is_top_level": true,
-    "variables": {
-      "API_KEY_FOR_ANDROID": "AIzaSyCvTUFF2HuvESV5P-0uui7rTp8ZsQhZpcY",
-      "API_KEY_FOR_IOS": "AIzaSyAs41i4gNTlgBxBhqg5cA1VtoPv3W6_r0c",
-      "PLAY_SERVICES_VERSION": "15.0.1",
-      "ANDROID_SUPPORT_V4_VERSION": "26.1.0",
-      "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
-      "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
-    }
-  },
   "com.googlemaps.ios": {
     "source": {
       "type": "registry",
@@ -78,26 +63,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova.plugins.diagnostic": {
-    "source": {
-      "type": "registry",
-      "id": "cordova.plugins.diagnostic"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-firebase": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-firebase"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-inappbrowser": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-inappbrowser@3.0.0"
+      "id": "cordova-plugin-firebase@2.0.5"
     },
     "is_top_level": true,
     "variables": {}
@@ -118,14 +87,6 @@
     "is_top_level": false,
     "variables": {}
   },
-  "uk.co.workingedge.phonegap.plugin.launchnavigator": {
-    "source": {
-      "type": "registry",
-      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator@3"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-local-notification": {
     "source": {
       "type": "registry",
@@ -142,22 +103,6 @@
     "is_top_level": false,
     "variables": {}
   },
-  "cordova-plugin-wkwebview-engine": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-wkwebview-engine"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-ionic-webview": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-ionic-webview@4.2.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-splashscreen": {
     "source": {
       "type": "registry",
@@ -170,6 +115,98 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-nativegeocoder"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-android-support-gradle-release": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-android-support-gradle-release"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_VERSION": "28.+"
+    }
+  },
+  "cordova-plugin-ignore-lint-translation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ignore-lint-translation@~0.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-androidx": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-androidx"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-androidx-adapter": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-androidx-adapter"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-wkwebview-engine": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-wkwebview-engine"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@latest"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+    "source": {
+      "type": "registry",
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator@5.0.4"
+    },
+    "is_top_level": true,
+    "variables": {
+      "GOOGLE_API_KEY_FOR_ANDROID": "{your_api_key}"
+    }
+  },
+  "cordova.plugins.diagnostic": {
+    "source": {
+      "type": "registry",
+      "id": "cordova.plugins.diagnostic@5.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@3.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-native-spinner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-native-spinner"
     },
     "is_top_level": true,
     "variables": {}

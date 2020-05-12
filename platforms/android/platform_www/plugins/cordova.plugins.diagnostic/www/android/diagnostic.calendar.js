@@ -52,7 +52,7 @@ var Diagnostic_Calendar = (function(){
      */
     Diagnostic_Calendar.isCalendarAuthorized = function(successCallback, errorCallback) {
         function onSuccess(status){
-            successCallback(status == Diagnostic.permissionStatus.GRANTED);
+            successCallback(status === Diagnostic.permissionStatus.GRANTED);
         }
         Diagnostic_Calendar.getCalendarAuthorizationStatus(onSuccess, errorCallback);
     };
@@ -62,7 +62,11 @@ var Diagnostic_Calendar = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter which indicates the authorization status.
-     * Possible values are: "unknown", "denied", "not_determined", "authorized"
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
@@ -85,4 +89,5 @@ var Diagnostic_Calendar = (function(){
     return Diagnostic_Calendar;
 });
 module.exports = new Diagnostic_Calendar();
+
 });

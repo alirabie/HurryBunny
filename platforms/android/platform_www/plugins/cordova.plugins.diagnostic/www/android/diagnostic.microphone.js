@@ -52,7 +52,7 @@ var Diagnostic_Microphone = (function(){
      */
     Diagnostic_Microphone.isMicrophoneAuthorized = function(successCallback, errorCallback) {
         function onSuccess(status){
-            successCallback(status == Diagnostic.permissionStatus.GRANTED);
+            successCallback(status === Diagnostic.permissionStatus.GRANTED);
         }
         Diagnostic_Microphone.getMicrophoneAuthorizationStatus(onSuccess, errorCallback);
     };
@@ -62,7 +62,11 @@ var Diagnostic_Microphone = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter which indicates the authorization status.
-     * Possible values are: "unknown", "denied", "not_determined", "authorized"
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
@@ -84,4 +88,5 @@ var Diagnostic_Microphone = (function(){
     return Diagnostic_Microphone;
 });
 module.exports = new Diagnostic_Microphone();
+
 });

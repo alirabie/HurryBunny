@@ -9,7 +9,6 @@ import { Events } from 'ionic-angular';
 
 
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',

@@ -77,7 +77,7 @@ var Diagnostic = (function(){
     Diagnostic.runtimePermissionStatus = // deprecated
         Diagnostic.permissionStatus = {
             "GRANTED": "GRANTED", //  User granted access to this permission, the device is running Android 5.x or below, or the app is built with API 22 or below.
-            "DENIED": "DENIED", // User denied access to this permission
+            "DENIED_ONCE": "DENIED_ONCE", // User denied access to this permission
             "NOT_REQUESTED": "NOT_REQUESTED", // App has not yet requested access to this permission.
             "DENIED_ALWAYS": "DENIED_ALWAYS" // User denied access to this permission and checked "Never Ask Again" box.
         };
@@ -239,11 +239,9 @@ var Diagnostic = (function(){
             return onError("A runtime permissions request is already in progress");
         }
 
-        function onSuccess(status){
+        function onSuccess(statuses){
             requestInProgress = false;
-            successCallback(status);
-            var statuses = {};
-            statuses[permission] = status;
+            successCallback(statuses[permission]);
             Diagnostic._onPermissionRequestComplete(statuses);
         }
 
@@ -1057,7 +1055,11 @@ var Diagnostic = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter which indicates the authorization status.
-     * Possible values are: "unknown", "denied", "not_determined", "authorized"
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
@@ -1109,7 +1111,11 @@ var Diagnostic = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter which indicates the authorization status.
-     * Possible values are: "unknown", "denied", "not_determined", "authorized"
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
@@ -1162,7 +1168,11 @@ var Diagnostic = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter which indicates the authorization status.
-     * Possible values are: "unknown", "denied", "not_determined", "authorized"
+     * Possible values are:
+     * `cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ONCE`
+     * `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
@@ -1273,4 +1283,5 @@ var Diagnostic = (function(){
     return Diagnostic;
 });
 module.exports = new Diagnostic();
+
 });

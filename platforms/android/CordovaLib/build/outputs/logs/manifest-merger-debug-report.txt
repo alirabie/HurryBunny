@@ -1,12 +1,12 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
-INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-23:12
+ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:20:1-22:12
 	package
 		ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:21:7-35
 		INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
@@ -22,6 +22,10 @@ INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\an
 		INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
 		INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
 uses-sdk
-ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:22:5-44
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
+INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml:22:15-41
+		INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
+		ADDED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml
+		INJECTED from E:\My Work\Appsmatic\HURRYBUNNY\HarryBunny\HarryBunny\platforms\android\CordovaLib\AndroidManifest.xml

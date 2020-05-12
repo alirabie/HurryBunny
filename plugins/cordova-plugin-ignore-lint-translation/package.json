@@ -1,0 +1,54 @@
+{
+  "_from": "cordova-plugin-ignore-lint-translation@~0.0.1",
+  "_id": "cordova-plugin-ignore-lint-translation@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-OQUD9HJEJ6tPUQzsbleNBesi7cM=",
+  "_location": "/cordova-plugin-ignore-lint-translation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-ignore-lint-translation@~0.0.1",
+    "name": "cordova-plugin-ignore-lint-translation",
+    "escapedName": "cordova-plugin-ignore-lint-translation",
+    "rawSpec": "~0.0.1",
+    "saveSpec": null,
+    "fetchSpec": "~0.0.1"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ignore-lint-translation/-/cordova-plugin-ignore-lint-translation-0.0.1.tgz",
+  "_shasum": "390503f4724427ab4f510cec6e578d05eb22edc3",
+  "_spec": "cordova-plugin-ignore-lint-translation@~0.0.1",
+  "_where": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny",
+  "author": {
+    "name": "qkdreyer"
+  },
+  "bugs": {
+    "url": "https://github.com/qkdreyer/cordova-plugin-ignore-lint-translation/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Ignores Android MissingTranslation and ExtraTranslationduring Gradle lintVitalRelease task",
+  "homepage": "https://github.com/qkdreyer/cordova-plugin-ignore-lint-translation",
+  "keywords": [
+    "cordova",
+    "phonegap",
+    "plugin",
+    "ignore",
+    "lint",
+    "translation"
+  ],
+  "license": "ISC",
+  "main": "plugin.xml",
+  "name": "cordova-plugin-ignore-lint-translation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qkdreyer/cordova-plugin-ignore-lint-translation.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}

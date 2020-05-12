@@ -61,6 +61,16 @@ function onDiscoverSupportedAppsError(error){
 }
 
 /**
+ * Enables debug log output from the plugin to the JS and native consoles. By default debug is disabled.
+ * @param {boolean} enabled - Whether to enable debug.
+ * @param {function} success - callback to invoke on successfully setting debug.
+ * @param {function} error - callback to invoke on error while setting debug. Will be passed a single string argument containing the error message.
+ */
+ln.enableDebug = function(enabled, success, error){
+    cordova.exec(success, error, 'LaunchNavigator', 'enableDebug', [enabled]);
+};
+
+/**
  * Returns a list indicating which apps are installed and available on the current device.
  * @param {function} success - callback to invoke on successful determination of availability. Will be passed a key/value object where the key is the app name and the value is a boolean indicating whether the app is available.
  * @param {function} error - callback to invoke on error while determining availability. Will be passed a single string argument containing the error message.
@@ -88,120 +98,11 @@ ln.isAppAvailable = function(appName, success, error){
     }, error, 'LaunchNavigator', 'isAppAvailable', [appName]);
 };
 
-/*****************************
- * Platform-specific overrides
- *****************************/
-
-
-/**
- * Indicates if an app on a given platform supports specification of transport mode.
- * Android-specific implementation supports additional specification of launch mode.
- * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
- * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
- * @return {boolean} - true if app/platform combination supports specification of transport mode.
- */
-ln.supportsTransportMode = function(app, platform, launchMode){
-    common.util.validateApp(app);
-    common.util.validatePlatform(platform);
-
-    var result;
-    if(launchMode && platform == common.PLATFORM.ANDROID && app == common.APP.GOOGLE_MAPS){
-        ln.util.validateLaunchMode(launchMode);
-        result = launchMode === ln.LAUNCH_MODE.TURN_BY_TURN;
-    }else{
-        result = common._supportsTransportMode(app, platform);
-    }
-    return result;
-};
-common._supportsTransportMode = common.supportsTransportMode;
-
-/**
- * Returns the list of transport modes supported by an app on a given platform.
- * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
- * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
- * @return {array} - list of transports modes as constants in `launchnavigator.TRANSPORT_MODE`.
- * If app/platform combination doesn't support specification of transport mode, the list will be empty;
- */
-ln.getTransportModes = function(app, platform, launchMode){
-    if(ln.supportsTransportMode(app, platform, launchMode)){
-        return common.TRANSPORT_MODES[platform][app];
-    }
-    return [];
-};
-
-/**
- * Indicates if an app on a given platform supports specification of start location.
- * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
- * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
- * @return {boolean} - true if app/platform combination supports specification of start location.
- */
-ln.supportsStart = function(app, platform, launchMode){
-    common.util.validateApp(app);
-    common.util.validatePlatform(platform);
-
-    var result;
-    if(launchMode && platform == common.PLATFORM.ANDROID && app == common.APP.GOOGLE_MAPS){
-        ln.util.validateLaunchMode(launchMode);
-        result = launchMode === ln.LAUNCH_MODE.MAPS;
-    }else{
-        result = common._supportsStart(app, platform);
-    }
-    return result;
-};
-common._supportsStart = common.supportsStart;
-
-/**
- * Indicates if an app on a given platform supports specification of a custom nickname for destination location.
- * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
- * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
- * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
- * @return {boolean} - true if app/platform combination supports specification of destination location.
- */
-ln.supportsDestName = function(app, platform, launchMode){
-    common.util.validateApp(app);
-    common.util.validatePlatform(platform);
-    if(launchMode && platform == common.PLATFORM.ANDROID && app == common.APP.GOOGLE_MAPS){
-        ln.util.validateLaunchMode(launchMode);
-        result = launchMode === ln.LAUNCH_MODE.GEO;
-    }else{
-        result = common._supportsDestName(app, platform);
-    }
-    return result;
-};
-common._supportsDestName = common.supportsDestName;
-
-/*******************
- * Utility functions
- *******************/
-ln.util = {};
-
-ln.util.isValidLaunchMode = function(launchMode){
-    for(var LAUNCH_MODE in ln.LAUNCH_MODE){
-        if(launchMode == ln.LAUNCH_MODE[LAUNCH_MODE]) return true;
-    }
-    return false;
-};
-
-ln.util.validateLaunchMode = function(launchMode){
-    if(!ln.util.isValidLaunchMode(launchMode)){
-        throw new Error("'"+launchMode+"' is not a recognised launch mode");
-    }
-};
-
-/*********
- * v3 API
- *********/
-ln.v3 = {};
-
-
 /**
  * Opens navigator app to navigate to given destination, specified by either place name or lat/lon.
  * If a start location is not also specified, current location will be used for the start.
  *
- * @param {mixed} destination (required) - destination location to use for navigation.
+ * @param {string/number[]} destination (required) - destination location to use for navigation.
  * Either:
  * - a {string} containing the address. e.g. "Buckingham Palace, London"
  * - an {array}, where the first element is the latitude and the second element is a longitude, as decimal numbers. e.g. [50.1, -4.0]
@@ -231,9 +132,9 @@ ln.v3 = {};
  * Accepted values are "driving", "walking", "bicycling" or "transit".
  * Defaults to "driving" if not specified.
  *
- * - {string} launchMode - mode in which to open Google Maps app: "maps" or "turn-by-turn". Defaults to "maps" if not specified.
- *
- * - {boolean} enableDebug - if true, debug log output will be generated by the plugin. Defaults to false.
+ * - {string} launchModeGoogleMaps - mode in which to open Google Maps app:
+ *   - `launchnavigator.LAUNCH_MODE.MAPS` or `launchnavigator.LAUNCH_MODE.TURN_BY_TURN`
+ *   - Defaults to `launchnavigator.LAUNCH_MODE.MAPS` if not specified.
  *
  * - {object} extras - a key/value map of extra app-specific parameters. For example, to tell Google Maps to display Satellite view in "maps" launch mode: `{"t": "k"}`
  *
@@ -244,19 +145,23 @@ ln.v3 = {};
  * Defaults to "Cancel" if not specified.
  *
  * - {array} appSelectionList - list of apps, defined as `launchnavigator.APP` constants, which should be displayed in the picker if the app is available.
- This can be used to restrict which apps are displayed, even if they are installed. By default, all available apps will be displayed.
+ * This can be used to restrict which apps are displayed, even if they are installed. By default, all available apps will be displayed.
+ *
+ * - {boolean} enableGeocoding - if true, and input location type(s) doesn't match those required by the app, use geocoding to obtain the address/coords as required. Defaults to true.
  */
-ln.v3.navigate = function(destination, options) {
-    options = options ? options : {};
+ln.navigate = function(destination, options) {
+    options = common.util.conformNavigateOptions(arguments);
+
     var dType, sType = "none";
 
     // Input validation
-    function throwError(errMsg){
+    var throwError = function(errMsg){
         if(options.errorCallback){
             options.errorCallback(errMsg);
         }
         throw new Error(errMsg);
-    }
+    };
+
     if(!destination){
         throwError("No destination was specified");
     }
@@ -266,22 +171,25 @@ ln.v3.navigate = function(destination, options) {
     }
 
     options.app = options.app || common.APP.USER_SELECT;
+    options.enableGeocoding = typeof options.enableGeocoding !== "undefined" ? options.enableGeocoding : true;
 
     // If app is user-selection
-    if(options.app == common.APP.USER_SELECT){
+    if(options.app === common.APP.USER_SELECT){
         // Invoke user-selection UI and return (as it will re-invoke this method)
         return common.userSelect(destination, options);
     }
 
     destination = common.util.extractCoordsFromLocationString(destination);
-    if(typeof(destination) == "object"){
+    if(typeof(destination) === "object"){
+        if(typeof destination.length === "undefined") throw "destination must be a string or an array";
         dType = "pos";
     }else{
         dType = "name";
     }
     if(options.start){
         options.start = common.util.extractCoordsFromLocationString(options.start);
-        if(typeof(options.start) == "object"){
+        if(typeof(options.start) === "object"){
+            if(typeof options.start.length === "undefined") throw "start must be a string or an array";
             sType = "pos";
         }else{
             sType = "name";
@@ -298,8 +206,8 @@ ln.v3.navigate = function(destination, options) {
     if(!options.app) options.app = common.APP.GOOGLE_MAPS;
     common.util.validateApp(options.app);
 
-    if(!options.launchMode) options.launchMode = ln.LAUNCH_MODE.MAPS;
-    common.util.validateLaunchMode(options.launchMode);
+    if(!options.launchModeGoogleMaps) options.launchModeGoogleMaps = ln.LAUNCH_MODE.MAPS;
+    common.util.validateLaunchMode(options.launchModeGoogleMaps);
 
     if(options.extras) options.extras = JSON.stringify(options.extras);
 
@@ -317,56 +225,97 @@ ln.v3.navigate = function(destination, options) {
             options.start,
             options.startName,
             transportMode,
-            options.launchMode,
-            options.enableDebug || false,
-            options.extras
+            options.launchModeGoogleMaps,
+            options.extras,
+            options.enableGeocoding
         ]
     );
-
 };
 
-/*********************************
- * v2 legacy API to map to v3 API
- *********************************/
-ln.v2 = {};
+/*****************************
+ * Platform-specific overrides
+ *****************************/
+
 
 /**
- * Opens navigator app to navigate to given destination, specified by either place name or lat/lon.
- * If a start location is not also specified, current location will be used for the start.
- *
- * @param {Mixed} destination (required) - destination location to use for navigation.
- * Either:
- * - a {String} containing the place name. e.g. "London"
- * - an {Array}, where the first element is the latitude and the second element is a longitude, as decimal numbers. e.g. [50.1, -4.0]
- * @param {Mixed} start (optional) - start location to use for navigation. If not specified, the current location of the device will be used.
- * Either:
- * - a {String} containing the place name. e.g. "London"
- * - an {Array}, where the first element is the latitude and the second element is a longitude, as decimal numbers. e.g. [50.1, -4.0]
- * @param {Function} successCallback (optional) - A callback which will be called when plugin call is successful.
- * @param {Function} errorCallback (optional) - A callback which will be called when plugin encounters an error.
- * This callback function have a string param with the error.
- * @param {Object} options (optional) - platform-specific options:
- * {Boolean} disableAutoGeolocation - if TRUE, the plugin will NOT attempt to use the geolocation plugin to determine the current device position when the start location parameter is omitted. Defaults to FALSE.
- * {String} navigationMode - navigation mode in which to open Google Maps app: "maps" or "turn-by-turn". Defaults to "maps" if not specified.
- * In "turn-by-turn" mode, transportMode can be specified but start location cannot be specified (defaults to current location).
- * In "maps" mode, transportMode cannot be specified but start location can be specified.
- * {String} transportMode - transportation mode for navigation. Can only be specified if navigationMode == "turn-by-turn". Accepted values are "driving", "walking", "bicycling" or "transit". Defaults to "driving" if not specified.
+ * Indicates if an app on a given platform supports specification of transport mode.
+ * Android-specific implementation supports additional specification of launch mode.
+ * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
+ * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
+ * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
+ * @return {boolean} - true if app/platform combination supports specification of transport mode.
  */
-ln.v2.navigate = function(destination, start, successCallback, errorCallback, options) {
-    options = options ? options : {};
+ln.supportsTransportMode = function(app, platform, launchMode){
+    common.util.validateApp(app);
+    common.util.validatePlatform(platform);
 
-    console.warn("launchnavigator.navigate() called using deprecated v2 API signature. Please update to use v3 API signature as deprecated API support will be removed in a future version");
-
-    // Map to and call v3 API
-    ln.v3.navigate(destination, {
-        successCallback: successCallback,
-        errorCallback: errorCallback,
-        start: start,
-        transportMode: options.transportMode,
-        launchMode: options.navigationMode,
-        enableDebug: options.enableDebug
-    });
+    var result;
+    if(launchMode && platform === common.PLATFORM.ANDROID && app === common.APP.GOOGLE_MAPS){
+        common.util.validateLaunchMode(launchMode);
+        result = launchMode === ln.LAUNCH_MODE.TURN_BY_TURN;
+    }else{
+        result = common._supportsTransportMode(app, platform);
+    }
+    return result;
 };
+common._supportsTransportMode = common.supportsTransportMode;
+
+/**
+ * Returns the list of transport modes supported by an app on a given platform.
+ * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
+ * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
+ * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
+ * @return {string[]} - list of transports modes as constants in `launchnavigator.TRANSPORT_MODE`.
+ * If app/platform combination doesn't support specification of transport mode, the list will be empty;
+ */
+ln.getTransportModes = function(app, platform, launchMode){
+    if(ln.supportsTransportMode(app, platform, launchMode)){
+        return common.TRANSPORT_MODES[platform][app];
+    }
+    return [];
+};
+
+/**
+ * Indicates if an app on a given platform supports specification of start location.
+ * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
+ * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
+ * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
+ * @return {boolean} - true if app/platform combination supports specification of start location.
+ */
+ln.supportsStart = function(app, platform, launchMode){
+    common.util.validateApp(app);
+    common.util.validatePlatform(platform);
+
+    var result;
+    if(launchMode && platform === common.PLATFORM.ANDROID && app === common.APP.GOOGLE_MAPS){
+        common.util.validateLaunchMode(launchMode);
+        result = launchMode === ln.LAUNCH_MODE.MAPS;
+    }else{
+        result = common._supportsStart(app, platform);
+    }
+    return result;
+};
+common._supportsStart = common.supportsStart;
+
+/**
+ * Indicates if an app on a given platform supports specification of a custom nickname for destination location.
+ * @param {string} app - specified as a constant in `launchnavigator.APP`. e.g. `launchnavigator.APP.GOOGLE_MAPS`.
+ * @param {string} platform - specified as a constant in `launchnavigator.PLATFORM`. e.g. `launchnavigator.PLATFORM.IOS`.
+ * @param {string} launchMode (optional) - only applies to Google Maps on Android. Specified as a constant in `launchnavigator.LAUNCH_MODE`. e.g. `launchnavigator.LAUNCH_MODE.MAPS`.
+ * @return {boolean} - true if app/platform combination supports specification of destination location.
+ */
+ln.supportsDestName = function(app, platform, launchMode){
+    common.util.validateApp(app);
+    common.util.validatePlatform(platform);
+    if(launchMode && platform === common.PLATFORM.ANDROID && app === common.APP.GOOGLE_MAPS){
+        common.util.validateLaunchMode(launchMode);
+        result = launchMode === ln.LAUNCH_MODE.GEO;
+    }else{
+        result = common._supportsDestName(app, platform);
+    }
+    return result;
+};
+common._supportsDestName = common.supportsDestName;
 
 
 /************

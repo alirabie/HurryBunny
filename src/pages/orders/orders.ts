@@ -8,8 +8,6 @@ import { ViewChild } from '@angular/core';
 import { Content } from 'ionic-angular';
 
 
-
-@IonicPage()
 @Component({
   selector: 'page-orders',
   templateUrl: 'orders.html',

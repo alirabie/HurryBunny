@@ -79,13 +79,13 @@ var Diagnostic_Calendar = (function(){
      *
      * @param {Function} successCallback - The callback which will be called when operation is successful.
      * This callback function is passed a single string parameter indicating whether access to calendar was granted or denied:
-     * `cordova.plugins.diagnostic.permissionStatus.GRANTED` or `cordova.plugins.diagnostic.permissionStatus.DENIED`
+     * `cordova.plugins.diagnostic.permissionStatus.GRANTED` or `cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS`
      * @param {Function} errorCallback -  The callback which will be called when operation encounters an error.
      * This callback function is passed a single string parameter containing the error message.
      */
     Diagnostic_Calendar.requestCalendarAuthorization = function(successCallback, errorCallback) {
         return cordova.exec(function(isGranted){
-                successCallback(isGranted ? Diagnostic.permissionStatus.GRANTED : Diagnostic.permissionStatus.DENIED);
+                successCallback(isGranted ? Diagnostic.permissionStatus.GRANTED : Diagnostic.permissionStatus.DENIED_ALWAYS);
             },
             errorCallback,
             'Diagnostic_Calendar',
@@ -96,4 +96,5 @@ var Diagnostic_Calendar = (function(){
     return Diagnostic_Calendar;
 });
 module.exports = new Diagnostic_Calendar();
+
 });

@@ -5,8 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 
-
-@IonicPage()
 @Component({
   selector: 'page-view-order',
   templateUrl: 'view-order.html',

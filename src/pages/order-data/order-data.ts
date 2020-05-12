@@ -3,14 +3,13 @@ import { OrdersPage } from './../orders/orders';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController, Config, Platform, LoadingController, Form, App } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
 import { GenratorProvider } from '../../providers/genrator/genrator';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 declare let google;
-@IonicPage()
+
 @Component({
   selector: 'page-order-data',
   templateUrl: 'order-data.html',
@@ -40,7 +39,7 @@ export class OrderDataPage {
 
   public form;
 
-  constructor(public navCtrl: NavController,public app: App ,public navParams: NavParams, private _FB: FormBuilder, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, public genrator: GenratorProvider, public loader: LoadingController, platform: Platform) {
+  constructor(public navCtrl: NavController,public app: App ,public navParams: NavParams, private _FB: FormBuilder, public geo: Geolocation, public altCtrl: AlertController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, public genrator: GenratorProvider, public loader: LoadingController, platform: Platform) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 
 

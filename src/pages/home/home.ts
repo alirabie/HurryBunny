@@ -6,7 +6,6 @@ import { GenratorProvider } from './../../providers/genrator/genrator';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NavController, AlertController, ViewController, Config, Platform, App, NavParams, ModalController, Events, ToastController, Alert } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuController } from 'ionic-angular';
 import { MainScreenPage } from '../main-screen/main-screen';
@@ -60,7 +59,7 @@ export class HomePage {
     maxResults: 5
   };
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public nativeGeocoder: NativeGeocoder, public app: App, public events: Events, public toastCtrl: ToastController, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public googleMaps: GoogleMaps, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public nativeGeocoder: NativeGeocoder, public app: App, public events: Events, public toastCtrl: ToastController, public modelCtrl: ModalController, public navParams: NavParams, private diagnostic: Diagnostic, public genrator: GenratorProvider, public splashScreen: SplashScreen, public geo: Geolocation, public altCtrl: AlertController, public menu: MenuController, public translate: TranslateService, public viewCtrl: ViewController, config: Config, public alertCrtl: AlertController, platform: Platform, public locationAccuracy: LocationAccuracy) {
     config.set('ios', 'backButtonText', this.translate.instant('BUTTONS.back'));
 
     this.flag = this.navParams.get('flag');
@@ -256,7 +255,7 @@ export class HomePage {
 
       this.locationId = "0";
 
-      this.map.addListener('center_changed', () => {
+      this.map.addListener('idle', () => {
         marker.setPosition(this.map.getCenter())
 
         this.selectedLat = marker.position.lat() + "";
@@ -536,7 +535,6 @@ export class HomePage {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     let marker = new google.maps.Marker({
       map: this.map,
@@ -546,10 +544,12 @@ export class HomePage {
         lng: parseFloat(location.Longtitude)
       }, icon: "./assets/imgs/marker.png",
       draggable: false
-
     });
-
-
+    this.map.addListener('idle', () => {
+      marker.setPosition(this.map.getCenter())
+      this.selectedLat = marker.position.lat() + "";
+      this.selectedLng = marker.position.lng() + "";
+    });
   }
 
   presentPrompt() {

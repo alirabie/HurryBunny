@@ -3,59 +3,53 @@
 <plist version="1.0">
   <dict>
     <key>CFBundleDevelopmentRegion</key>
-    <string>English</string>
+    <string>en_US</string>
     <key>CFBundleDisplayName</key>
     <string>HurryBunny</string>
     <key>CFBundleExecutable</key>
-    <string>${EXECUTABLE_NAME}</string>
-    <key>CFBundleIcons</key>
-    <dict/>
-    <key>CFBundleIcons~ipad</key>
-    <dict/>
+    <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
-    <string>com.appsmatic.ionic.hurrybunnyy</string>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>${PRODUCT_NAME}</string>
+    <string>$(PRODUCT_NAME)</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.2.0</string>
+    <string>0.2.1</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>0.2.0</string>
+    <string>0.2.1</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>citymapper</string>
+      <string>comgooglemaps</string>
+      <string>navigon</string>
+      <string>transit</string>
+      <string>waze</string>
+      <string>yandexnavi</string>
+      <string>uber</string>
+      <string>tomtomhome</string>
+      <string>com.sygic.aura</string>
+      <string>here-route</string>
+      <string>moovit</string>
+      <string>lyft</string>
+      <string>mapsme</string>
+      <string>cabify</string>
+      <string>baidumap</string>
+      <string>taxis99</string>
+      <string>iosamap</string>
+    </array>
     <key>LSRequiresIPhoneOS</key>
-    <true/>
-    <key>NSMainNibFile</key>
-    <string/>
-    <key>NSMainNibFile~ipad</key>
-    <string/>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UIRequiresFullScreen</key>
     <true/>
     <key>NSAppTransportSecurity</key>
     <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
       <key>NSExceptionDomains</key>
       <dict>
-        <key>localhost</key>
-        <dict>
-          <key>NSExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
         <key>google.com</key>
         <dict>
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -69,62 +63,51 @@
           <true/>
         </dict>
       </dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
     </dict>
-    <key>UILaunchStoryboardName</key>
-    <string>CDVLaunchScreen</string>
-    <key>Google Maps API Key</key>
-    <string>AIzaSyAs41i4gNTlgBxBhqg5cA1VtoPv3W6_r0c</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>googlechromes</string>
-      <string>citymapper</string>
-      <string>comgooglemaps</string>
-      <string>navigon</string>
-      <string>transit</string>
-      <string>waze</string>
-      <string>yandexnavi</string>
-      <string>uber</string>
-      <string>tomtomhome</string>
-      <string>com.sygic.aura</string>
-      <string>here-route</string>
-      <string>moovit</string>
-    </array>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLName</key>
-        <string>io.ionic.starter</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>io.ionic.starter</string>
-        </array>
-      </dict>
-    </array>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>your location won't be shared without your permissione , we need your location to detect nearest restaurants of you , and use it if you use delivery service</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>This app requires constant Bluetooth access to function properly.</string>
     <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>This app requires bluetooth access to function properly.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>This app requires camera access to function properly.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires photo library access to function properly.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app requires microphone access to function properly.</string>
-    <key>NSContactsUsageDescription</key>
-    <string>This app requires contacts access to function properly.</string>
+    <string>This app requires Bluetooth access to function properly.</string>
     <key>NSCalendarsUsageDescription</key>
     <string>This app requires calendar access to function properly.</string>
-    <key>NSRemindersUsageDescription</key>
-    <string>This app requires reminders access to function properly.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires camera access to function properly.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>This app requires contacts access to function properly.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>NSMainNibFile</key>
+    <string/>
+    <key>NSMainNibFile~ipad</key>
+    <string/>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires microphone access to function properly.</string>
     <key>NSMotionUsageDescription</key>
     <string>This app requires motion detection access to function properly.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app requires photo library access to function properly.</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>This app requires reminders access to function properly.</string>
+    <key>UILaunchStoryboardName</key>
+    <string>CDVLaunchScreen</string>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>undefined</key>
+    <string>Bluetooth permission is required for diagnostic service</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Use geocoder service</string>
+    <string>your location won't be shared without your permissione , we need your location to detect nearest restaurants of you , and use it if you use delivery service.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>your location won't be shared without your permissione , we need your location to detect nearest restaurants of you , and use it if you use delivery service</string>
   </dict>
 </plist>

@@ -73,7 +73,7 @@ var Diagnostic_External_Storage = (function(){
      */
     Diagnostic_External_Storage.isExternalStorageAuthorized = function(successCallback, errorCallback){
         function onSuccess(status){
-            successCallback(status == Diagnostic.permissionStatus.GRANTED);
+            successCallback(status === Diagnostic.permissionStatus.GRANTED);
         }
         Diagnostic_External_Storage.getExternalStorageAuthorizationStatus(onSuccess, errorCallback);
     };
@@ -101,4 +101,5 @@ var Diagnostic_External_Storage = (function(){
     return Diagnostic_External_Storage;
 });
 module.exports = new Diagnostic_External_Storage();
+
 });

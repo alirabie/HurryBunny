@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-ionic-webview@4.2.0",
+  "_from": "cordova-plugin-ionic-webview@latest",
   "_id": "cordova-plugin-ionic-webview@4.2.0",
   "_inBundle": false,
   "_integrity": "sha512-6sQDV0iJel8DW+fWppuR/qEePiEU2HtlpPEYzxcGwaiBLLq8bVh30izJ9DgT8ozjF9nmF2tUxxzB0dN7U7jj+w==",
   "_location": "/cordova-plugin-ionic-webview",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "tag",
     "registry": true,
-    "raw": "cordova-plugin-ionic-webview@4.2.0",
+    "raw": "cordova-plugin-ionic-webview@latest",
     "name": "cordova-plugin-ionic-webview",
     "escapedName": "cordova-plugin-ionic-webview",
-    "rawSpec": "4.2.0",
+    "rawSpec": "latest",
     "saveSpec": null,
-    "fetchSpec": "4.2.0"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-4.2.0.tgz",
   "_shasum": "18f0e74061cbe5d399feeedb612a1eac9ddf6942",
-  "_spec": "cordova-plugin-ionic-webview@4.2.0",
-  "_where": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny",
+  "_spec": "cordova-plugin-ionic-webview@latest",
+  "_where": "/Users/appsmaticco/Desktop/HarryBunny",
   "author": {
     "name": "Ionic Team"
   },

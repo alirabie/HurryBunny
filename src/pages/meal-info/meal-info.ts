@@ -7,7 +7,7 @@ import { Events } from 'ionic-angular';
 import { ShoppingCartPage } from '../shopping-cart/shopping-cart'
 import { MealsReviewsPage } from '../meals-reviews/meals-reviews';
 
-@IonicPage()
+
 @Component({
   selector: 'page-meal-info',
   templateUrl: 'meal-info.html',

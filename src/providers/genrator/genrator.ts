@@ -29,7 +29,7 @@ export class GenratorProvider {
     //   this.url = this.ProductionURL;
     // }
     
-    this.url = this.ProductionURL;
+    this.url = this.devlomentURL;
 
   }
 
@@ -535,7 +535,25 @@ export class GenratorProvider {
   }
 
 
-  
+
+
+  pay(data){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Accept', 'application/json');
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Access-Control-Request-Method', '*');
+      headers.append('Access-Control-Allow-Methods', '');
+      headers.append('Access-Control-Request-Headers', 'Origin, Content-Type, Accept');
+      this.http.post('https://www.paytabs.com/apiv2/create_pay_page',JSON.stringify(data), { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 }
 
 

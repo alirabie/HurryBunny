@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 declare let google;
 
 
-@IonicPage()
 @Component({
   selector: 'page-update-location',
   templateUrl: 'update-location.html',
