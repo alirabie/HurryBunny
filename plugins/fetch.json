@@ -164,7 +164,7 @@
   "cordova-plugin-ionic-webview": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-ionic-webview@latest"
+      "id": "cordova-plugin-ionic-webview@^4.2.0"
     },
     "is_top_level": true,
     "variables": {}

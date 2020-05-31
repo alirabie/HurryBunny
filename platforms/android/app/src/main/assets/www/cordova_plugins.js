@@ -303,14 +303,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-ionic-webview.IonicWebView",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "Ionic.WebView"
-      ]
-    },
-    {
       "id": "cordova-plugin-actionsheet.ActionSheet",
       "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
       "pluginId": "cordova-plugin-actionsheet",
@@ -431,6 +423,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-native-spinner.SpinnerDialog",
+      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+      "pluginId": "cordova-plugin-native-spinner",
+      "clobbers": [
+        "SpinnerDialog"
+      ]
+    },
+    {
       "id": "cordova-plugin-inappbrowser.inappbrowser",
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
@@ -440,11 +440,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-native-spinner.SpinnerDialog",
-      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
-      "pluginId": "cordova-plugin-native-spinner",
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
       "clobbers": [
-        "SpinnerDialog"
+        "Ionic.WebView"
       ]
     }
   ];
@@ -467,12 +467,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-androidx": "1.0.2",
     "cordova-plugin-androidx-adapter": "1.1.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
-    "cordova-plugin-ionic-webview": "4.2.0",
     "cordova-plugin-actionsheet": "2.3.3",
     "uk.co.workingedge.phonegap.plugin.launchnavigator": "5.0.4",
     "cordova.plugins.diagnostic": "5.0.1",
     "cordova-plugin-add-swift-support": "2.0.2",
+    "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-inappbrowser": "3.2.0",
-    "cordova-plugin-native-spinner": "1.1.3"
+    "cordova-plugin-ionic-webview": "4.2.1"
   };
 });

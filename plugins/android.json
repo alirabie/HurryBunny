@@ -35,10 +35,6 @@
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     },
-    "cordova-plugin-ionic-webview": {
-      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
-    },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     },
@@ -69,10 +65,14 @@
       "OKHTTP_VERSION": "3.12.0",
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     },
+    "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     },
-    "cordova-plugin-native-spinner": {
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "com.appsmatic.ionic.hurrybunnyy"
     }
   },

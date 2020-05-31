@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\coordinatorlayout-1.0.0.aar\\9fc47a4d09971ecbf6f4885123ed6fa9\\res\\values\\values.xml",
@@ -20,6 +20,21 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1",
+                        "startColumns": "-1,-1,-1",
+                        "startOffsets": "-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "266,267,297",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "17846,17910,21452",
+                        "endColumns": "63,47,58",
+                        "endOffsets": "17905,17953,21506"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\jetified-firebase-messaging-17.5.0.aar\\5995fbde8af161a25933d56fa47d3d31\\res\\values\\values.xml",
                     "from": {
                         "startLines": "-1",
@@ -35,35 +50,18 @@
                     }
                 },
                 {
-                    "source": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\generated\\fabric\\res\\debug\\values\\com_crashlytics_build_id.xml",
+                    "source": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "8",
-                        "startColumns": "0",
-                        "startOffsets": "311",
-                        "endColumns": "162",
-                        "endOffsets": "473"
+                        "startLines": "-1,-1,-1",
+                        "startColumns": "-1,-1,-1",
+                        "startOffsets": "-1,-1,-1"
                     },
                     "to": {
-                        "startLines": "268",
-                        "startColumns": "4",
-                        "startOffsets": "17958",
-                        "endColumns": "164",
-                        "endOffsets": "18118"
-                    }
-                },
-                {
-                    "source": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\cordova-plugin-firebase-strings.xml",
-                    "from": {
-                        "startLines": "-1,-1",
-                        "startColumns": "-1,-1",
-                        "startOffsets": "-1,-1"
-                    },
-                    "to": {
-                        "startLines": "287,288",
-                        "startColumns": "4,4",
-                        "startOffsets": "20456,20536",
-                        "endColumns": "79,69",
-                        "endOffsets": "20531,20601"
+                        "startLines": "14,62,63",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "870,4273,4317",
+                        "endColumns": "42,43,48",
+                        "endOffsets": "908,4312,4361"
                     }
                 },
                 {
@@ -82,18 +80,20 @@
                     }
                 },
                 {
-                    "source": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\build\\generated\\fabric\\res\\debug\\values\\com_crashlytics_build_id.xml",
                     "from": {
-                        "startLines": "-1,-1,-1",
-                        "startColumns": "-1,-1,-1",
-                        "startOffsets": "-1,-1,-1"
+                        "startLines": "8",
+                        "startColumns": "0",
+                        "startOffsets": "311",
+                        "endColumns": "162",
+                        "endOffsets": "473"
                     },
                     "to": {
-                        "startLines": "266,267,297",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "17846,17910,21452",
-                        "endColumns": "63,47,58",
-                        "endOffsets": "17905,17953,21506"
+                        "startLines": "268",
+                        "startColumns": "4",
+                        "startOffsets": "17958",
+                        "endColumns": "164",
+                        "endOffsets": "18118"
                     }
                 },
                 {
@@ -112,18 +112,18 @@
                     }
                 },
                 {
-                    "source": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\src\\main\\res\\values\\cordova-plugin-firebase-strings.xml",
                     "from": {
-                        "startLines": "-1,-1,-1",
-                        "startColumns": "-1,-1,-1",
-                        "startOffsets": "-1,-1,-1"
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
                     },
                     "to": {
-                        "startLines": "14,62,63",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "870,4273,4317",
-                        "endColumns": "42,43,48",
-                        "endOffsets": "908,4312,4361"
+                        "startLines": "287,288",
+                        "startColumns": "4,4",
+                        "startOffsets": "20456,20536",
+                        "endColumns": "79,69",
+                        "endOffsets": "20531,20601"
                     }
                 },
                 {
@@ -143,7 +143,7 @@
                     }
                 },
                 {
-                    "source": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
                         "startLines": "-1,-1,-1,-1,-1,-1,-1,-1",
                         "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1",

@@ -2,7 +2,7 @@
 
 platform :ios, '10.0'
 
-target 'C:\Users\Eng Ali\Desktop\HurryBunny Fom Mac\HarryBunny\platforms\ios\HurryBunny' do
-	project 'C:\Users\Eng Ali\Desktop\HurryBunny Fom Mac\HarryBunny\platforms\ios\HurryBunny.xcodeproj'
+target 'HurryBunny' do
+	project 'HurryBunny.xcodeproj'
 
 end

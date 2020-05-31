@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\My Work\\Appsmatic\\HURRYBUNNY\\HarryBunny\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-am\\values-am.xml",
+            "outputFile": "C:\\Users\\Eng Ali\\Desktop\\HarryBunny\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-am\\values-am.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Eng Ali\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.0.0.aar\\64560e1a71c81b0a785251e6ba5a01e1\\res\\values-am\\values-am.xml",

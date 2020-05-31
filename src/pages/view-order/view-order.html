@@ -184,11 +184,11 @@
             </ion-row>
 
             <ion-row class="allcash">
-                <p *ngIf="order.order_discount!=0">
+                <p *ngIf="order.order_discount!=null">
                     <small>{{'amountreq' | translate}}</small> {{order.order_total_after_discount}}
                     <small>{{order.customer_currency_code}}</small>
                 </p>
-                <p *ngIf="order.order_discount==0">
+                <p *ngIf="order.order_discount==null">
                     <small>{{'amountreq' | translate}}</small> {{order.order_total | number :'2.1-2'}}
                     <small>{{order.customer_currency_code}}</small>
                 </p>

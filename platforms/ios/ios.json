@@ -35,6 +35,12 @@
               "count": 1
             }
           ],
+          "NSBluetoothAlwaysUsageDescription": [
+            {
+              "xml": "<string>This app requires constant Bluetooth access to function properly.</string>",
+              "count": 1
+            }
+          ],
           "NSCameraUsageDescription": [
             {
               "xml": "<string>This app requires camera access to function properly.</string>",
@@ -82,17 +88,15 @@
               "xml": "<array><string>citymapper</string><string>comgooglemaps</string><string>navigon</string><string>transit</string><string>waze</string><string>yandexnavi</string><string>uber</string><string>tomtomhome</string><string>com.sygic.aura</string><string>here-route</string><string>moovit</string><string>lyft</string><string>mapsme</string><string>cabify</string><string>baidumap</string><string>taxis99</string><string>iosamap</string></array>",
               "count": 1
             }
-          ],
+          ]
+        }
+      },
+      "NSBluetoothAlwaysUsageDescription": {
+        "parents": {
           "undefined": [
             {
               "xml": "<string>Bluetooth permission is required for diagnostic service</string>",
-              "count": 1
-            }
-          ],
-          "NSBluetoothAlwaysUsageDescription": [
-            {
-              "xml": "<string>This app requires constant Bluetooth access to function properly.</string>",
-              "count": 1
+              "count": 16
             }
           ]
         }
@@ -100,6 +104,10 @@
       "config.xml": {
         "parents": {
           "/*": [
+            {
+              "xml": "<feature name=\"ActionSheet\"><param name=\"ios-package\" value=\"ActionSheet\" /></feature>",
+              "count": 1
+            },
             {
               "xml": "<feature name=\"Badge\"><param name=\"ios-package\" value=\"APPBadge\" /></feature>",
               "count": 1
@@ -137,6 +145,10 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"NativeGeocoder\"><param name=\"ios-package\" value=\"NativeGeocoder\" /></feature>",
               "count": 1
             },
@@ -154,26 +166,6 @@
             },
             {
               "xml": "<feature name=\"CDVWKWebViewEngine\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<allow-navigation href=\"ionic://*\" />",
-              "count": 1
-            },
-            {
-              "xml": "<preference name=\"deployment-target\" value=\"11.0\" />",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"IonicWebView\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"ActionSheet\"><param name=\"ios-package\" value=\"ActionSheet\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"LaunchNavigator\"><param name=\"ios-package\" value=\"LaunchNavigatorPlugin\" /></feature>",
               "count": 1
             },
             {
@@ -221,6 +213,10 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"LaunchNavigator\"><param name=\"ios-package\" value=\"LaunchNavigatorPlugin\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -233,7 +229,15 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
+              "xml": "<allow-navigation href=\"ionic://*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"deployment-target\" value=\"11.0\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"IonicWebView\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
               "count": 1
             }
           ]
@@ -258,21 +262,17 @@
             }
           ]
         }
-      },
-      "NSBluetoothAlwaysUsageDescription": {
-        "parents": {
-          "undefined": [
-            {
-              "xml": "<string>Bluetooth permission is required for diagnostic service</string>",
-              "count": 8
-            }
-          ]
-        }
       }
     }
   },
   "installed_plugins": {
     "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-add-swift-support": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-androidx": {
@@ -308,6 +308,9 @@
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
+    "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
     "cordova-plugin-nativegeocoder": {
       "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
@@ -327,28 +330,30 @@
     "cordova-plugin-wkwebview-engine": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-actionsheet": {
+    "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "uk.co.workingedge.phonegap.plugin.launchnavigator": {
       "LOCATION_USAGE_DESCRIPTION": "This app requires access to your location for navigation purposes",
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
-    "cordova.plugins.diagnostic": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
-    "cordova-plugin-native-spinner": {
+    "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {},
   "modules": [
+    {
+      "id": "cordova-plugin-actionsheet.ActionSheet",
+      "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+      "pluginId": "cordova-plugin-actionsheet",
+      "clobbers": [
+        "window.plugins.actionsheet"
+      ]
+    },
     {
       "id": "cordova-plugin-badge.Badge",
       "file": "plugins/cordova-plugin-badge/www/badge.js",
@@ -621,6 +626,14 @@
       ]
     },
     {
+      "id": "cordova-plugin-native-spinner.SpinnerDialog",
+      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+      "pluginId": "cordova-plugin-native-spinner",
+      "clobbers": [
+        "SpinnerDialog"
+      ]
+    },
+    {
       "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
       "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
       "pluginId": "cordova-plugin-nativegeocoder",
@@ -675,54 +688,6 @@
       "pluginId": "cordova-plugin-wkwebview-engine",
       "clobbers": [
         "window.WkWebView"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-webview.IonicWebView",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "Ionic.WebView"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "cordova.exec"
-      ]
-    },
-    {
-      "id": "cordova-plugin-actionsheet.ActionSheet",
-      "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
-      "pluginId": "cordova-plugin-actionsheet",
-      "clobbers": [
-        "window.plugins.actionsheet"
-      ]
-    },
-    {
-      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
-      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
-      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
-      "clobbers": [
-        "launchnavigator"
-      ]
-    },
-    {
-      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LocalForage",
-      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/localforage.v1.5.0.min.js",
-      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
-      "clobbers": [
-        "localforage"
-      ]
-    },
-    {
-      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
-      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/ios/launchnavigator.js",
-      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
-      "merges": [
-        "launchnavigator"
       ]
     },
     {
@@ -814,6 +779,30 @@
       ]
     },
     {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "clobbers": [
+        "launchnavigator"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LocalForage",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/localforage.v1.5.0.min.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "clobbers": [
+        "localforage"
+      ]
+    },
+    {
+      "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+      "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/ios/launchnavigator.js",
+      "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+      "merges": [
+        "launchnavigator"
+      ]
+    },
+    {
       "id": "cordova-plugin-inappbrowser.inappbrowser",
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
@@ -823,16 +812,26 @@
       ]
     },
     {
-      "id": "cordova-plugin-native-spinner.SpinnerDialog",
-      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
-      "pluginId": "cordova-plugin-native-spinner",
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
       "clobbers": [
-        "SpinnerDialog"
+        "Ionic.WebView"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "cordova.exec"
       ]
     }
   ],
   "plugin_metadata": {
     "cordova-android-support-gradle-release": "3.0.1",
+    "cordova-plugin-actionsheet": "2.3.3",
+    "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-androidx": "1.0.2",
     "cordova-plugin-androidx-adapter": "1.1.0",
     "cordova-plugin-badge": "0.8.8",
@@ -844,17 +843,16 @@
     "cordova-plugin-ignore-lint-translation": "0.0.1",
     "cordova-plugin-ionic-keyboard": "2.0.5",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-nativegeocoder": "3.4.0",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-request-location-accuracy": "2.2.3",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-wkwebview-engine": "1.2.1",
-    "cordova-plugin-ionic-webview": "4.2.0",
-    "cordova-plugin-actionsheet": "2.3.3",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "5.0.4",
     "cordova.plugins.diagnostic": "5.0.1",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "5.0.4",
     "cordova-plugin-inappbrowser": "3.2.0",
-    "cordova-plugin-native-spinner": "1.1.3"
+    "cordova-plugin-ionic-webview": "4.2.1"
   }
 }

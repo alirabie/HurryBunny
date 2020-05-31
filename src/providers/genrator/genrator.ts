@@ -535,18 +535,25 @@ export class GenratorProvider {
   }
 
 
-
-
-  pay(data){
+  createPaymentPage(request){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/x-www-form-urlencoded');
-      headers.append('Access-Control-Allow-Origin', '*');
-      headers.append('Access-Control-Request-Method', '*');
-      headers.append('Access-Control-Allow-Methods', '');
-      headers.append('Access-Control-Request-Headers', 'Origin, Content-Type, Accept');
-      this.http.post('https://www.paytabs.com/apiv2/create_pay_page',JSON.stringify(data), { headers: headers })
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/payment/pt/createpage',JSON.stringify(request),{ headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+
+  verifyPayment(p_id,order_id){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.url + 'api/payment/pt/verify?payment_reference='+p_id+'&orderId='+order_id,{ headers: headers })
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {

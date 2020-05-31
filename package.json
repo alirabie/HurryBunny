@@ -67,7 +67,6 @@
     "ionic2-rating": "^1.2.2",
     "ionic2-super-tabs": "^5.2.0",
     "ionicons": "3.0.0",
-    "ionicpaytabsapp": "file:E:/Ionic-Paytabs-master",
     "ng-lazyload-image": "^5.1.2",
     "paytabs_api": "^1.0.0",
     "rxjs": "^6.0.0",
@@ -114,8 +113,8 @@
       "cordova-plugin-native-spinner": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
